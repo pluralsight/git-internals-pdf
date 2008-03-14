@@ -1,0 +1,15 @@
+h2. Normal Workflow Examples
+
+h3. Initializing
+
+init, .gitignore
+
+h3. Adding and Committing
+
+add, commit (-a -v -m)
+
+h3. Status
+
+status, ls-files
+
+showing the index and working tree

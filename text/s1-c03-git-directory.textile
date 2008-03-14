@@ -1,0 +1,7 @@
+h2. The Git Directory
+
+When you initialize a git repository, either by cloning an existing one or creating a new one, the first thing git does is create a "Git Directory".  This is the directory that stores all the object data, tags, branches, hooks and more.  Everything that git permanently stores goes in this single directory.  When you clone someone else's repository, it basically just copies the contents of this directory to your computer.  Without a checkout (called a "working directory") this is called a "bare" git repo and moving it to another computer backs up your entire project history.  It is the soul of git.
+
+Let's go over the contents of this directory.
+
+h3. branches

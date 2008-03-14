@@ -1,0 +1,23 @@
+h3. Focus and Design
+
+There are a number of areas that the developers of Git, including and especially Linus, have focused on in conceiving and building Git.
+
+h4. Non-linear Development
+
+branching and merging
+
+h4. Distributed Development
+
+local copy of the entire development history, no central repository
+
+h3. Efficiency
+
+seriously faster than nearly all other SCM systems for most operations.  
+
+todo. table of speed benchmarks for git vs. svn vs. ??
+      - add, commit, push, diff, merge
+      - directory/checkout sizes?
+
+h3. A Toolkit Design
+
+Following the Unix tradition, Git is a collection of many small tools written in C [1]

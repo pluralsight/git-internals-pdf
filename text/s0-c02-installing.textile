@@ -1,0 +1,54 @@
+h2. Installing Git
+
+Before we can start playing with git, we'll have to install it. I'll quickly cover installing git on Linux, Mac and Windows.
+
+You can download git from http://git.or.cz/
+
+http://kernel.org/pub/software/scm/git/
+
+h3. Installing on Linux
+
+wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
+tar jxpvf git-1.5.4.4.tar.bz2
+cd git-1.5.4.4
+make prefix=/usr all doc info
+sudo make prefix=/usr install install-doc install-info
+
+or : apt-get git-core, yum install git-core
+
+
+h3. Installing on Mac
+
+You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see
+
+h4. Mac 10.4 - Tiger
+
+There are some requirements you'll have to install before you can compile git.
+
+http://sourceforge.net/projects/expat/
+
+However, if you want an easier path, you can use the excellent MacPorts software:
+
+http://www.macports.org/
+
+and just run 
+
+# port install git-core
+
+
+h4. Mac 10.5 - Leopard
+
+All the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed. 
+
+MacPorts is also an easy option if you have that installed.
+
+
+h3. Windows
+
+Cygwin 	http://www.cygwin.com/setup.exe
+
+http://code.google.com/p/msysgit/
+
+A TortoiseCVS lookalike for Git
+
+http://repo.or.cz/w/git-cheetah.git/

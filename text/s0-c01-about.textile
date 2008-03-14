@@ -1,0 +1,7 @@
+h2. About this book
+
+It took me a pretty long time to really get git. As we've continued to use git more and more in our company, we've found ourselves having to teach people what it is and why we use it over and over again, and the reality is that git generally has a pretty steep learning curve compared to some other systems. I've seen case after case of developers who love git after they finally understand it, but getting to that point is often somewhat painstaking.
+
+This book then is aimed at the developer who does not particularly like SVN or whatever SCM system they are currently using, has heard good things about git, but doesn't know where to start or why it's so wonderful. It is meant to explain git as simply and graphically as possible in a clean, concise, easily readable volume. I would like you to be able to get through this book and understand git at a fundamental level, very quickly.
+
+To accomplish this, I'm starting the book out (after the introduction) with a section about what git does, rather than how to use it. I found that I didn't really understand git and had many problems in using it until I understood what it was doing rather than understanding it as a different, weird SVN-like system.

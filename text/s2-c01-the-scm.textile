@@ -1,0 +1,4 @@
+h2. The SCM (the porcelain)
+
+history of toolkit design and reluctance of full SCM
+Cogito and it's death

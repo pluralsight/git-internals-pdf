@@ -1,0 +1,8 @@
+h2. The Treeish
+
+  $ git show master@{2}           # See where the branch pointed 2,
+  $ git show master@{3}           # 3, ... changes ago.
+  $ gitk master@{yesterday}       # See where it pointed yesterday,
+  $ gitk master@{"1 week ago"}    # ... or last week
+  $ git log --walk-reflogs master # show reflog entries for master
+  

@@ -1,0 +1,4 @@
+h2. Sharing Repositories
+h3. Over SSH; git clone --bare; scp
+h3. Over Git; git daemon --detach
+h3. Over Http; git update-server-info

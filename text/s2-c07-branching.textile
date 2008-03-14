@@ -1,0 +1,6 @@
+h2. Branching
+
+branch, checkout
+reset
+git branch recovered-branch 7281251ddd
+
