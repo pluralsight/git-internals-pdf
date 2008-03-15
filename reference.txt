@@ -1,0 +1,14 @@
+
+note. Scott Barron has written one of the classic books on shaving. 
+
+todo. Write this section before publishing! 
+	 
+ruby. electric_project/blade.rb#preferred 
+   
+css 
+html 
+javascript 
+xml 
+yaml 
+shell (for code entered on the terminal) 
+code (for other languages not listed here, or plain text such as logfiles)
