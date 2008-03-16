@@ -1,11 +1,6 @@
 h2. Advanced Merging
 
-Wikipedia (http://en.wikipedia.org/wiki/Git_(software))
-
-Git implements several merging strategies; a non-default can be selected at merge time: [22]
-
-    * resolve: the traditional 3-way merge algorithm.
-
-    * recursive: This is the default when pulling or merging one branch, and is a variant of the 3-way merge algorithm. "When there are more than one common ancestors that can be used for 3-way merge, it creates a merged tree of the common ancestors and uses that as the reference tree for the 3-way merge. This has been reported to result in fewer merge conflicts without causing mis-merges by tests done on actual merge commits taken from Linux 2.6 kernel development history. Additionally this can detect and handle merges involving renames."[23]
-
-    * octopus: This is the default when merging more than two heads.
+* merge strategies
+** resolve
+** recursive
+** octopus

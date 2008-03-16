@@ -1,7 +1,10 @@
 h2. Distributed Workflow Examples
 
 h3. Cloning
+
 h3. Fetching, Pulling (tracking branches)
+
 h3. Pushing
+
 h3. Formatting Patches
 

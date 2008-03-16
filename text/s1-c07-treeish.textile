@@ -1,8 +1,18 @@
 h2. The Treeish
 
-  $ git show master@{2}           # See where the branch pointed 2,
-  $ git show master@{3}           # 3, ... changes ago.
-  $ gitk master@{yesterday}       # See where it pointed yesterday,
-  $ gitk master@{"1 week ago"}    # ... or last week
-  $ git log --walk-reflogs master # show reflog entries for master
-  
+
+* full sha - dae86e1950b1277e545cee180551750029cfe735
+* partial sha - dae86e
+* branch/tag name - master
+* date spec - master@{yesterday}
+** the value of master yesterday
+* ordinal spec - master@{5}
+** 5th prior value of master
+* carrot parent - e65s46^^2
+** second parent of commit
+* tilde spec - e65s46~5 (e65s46^^^^^^^^^^)
+** 5th generation grandparent of commit
+* tree pointer - e65s46^^{tree}
+** blob spec - master:/path/to/file
+
+$ git log --walk-reflogs master # show reflog entries for master

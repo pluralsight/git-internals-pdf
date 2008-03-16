@@ -1,0 +1,13 @@
+h2. The Git Data Model
+
+Directed Acyclic Graph
+
+h3. Branches
+
+
+h3. The Model
+
+HEAD ->
+tag ->
+branch (ref) ->
+commit -> (commit) -> tree -> (blobs, trees)

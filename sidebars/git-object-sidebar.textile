@@ -1,0 +1,18 @@
+h3. Loose Object Algorithm
+
+How exactly does Git store a git object, you ask?  Well, here is a snippet of Ruby code that will correctly store a loose object in a git directory.
+
+ruby. sha-object.rb
+
+So, if you want to store a file as a git blob, you could call this:
+
+ruby. put_raw_object(File.read(file_path), 'blob')
+
+h3. Legacy Headers
+
+There are actually two different ways that Git can store loose objects (that is, objects not in a packfile) - this is the 'legacy' way, used since the earliest versions of Git.  
+
+A more complex version of object storage was introduced in Git 1.4.2 that helps the git pack the objects for storage and transfer more efficiently, but it is not enabled by default yet.  If you would like to use the new format (which cannot be cloned or fetched by git binaries older than 1.4.2) you can run:
+
+shell. git config core.legacyheaders false
+

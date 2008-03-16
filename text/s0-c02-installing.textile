@@ -1,5 +1,7 @@
 h2. Installing Git
 
+todo. clean up this whole section, and actually run through each of these (yes, even windows!)
+
 Before we can start playing with git, we'll have to install it. I'll quickly cover installing git on Linux, Mac and Windows.
 
 You can download git from http://git.or.cz/

@@ -1,11 +1,15 @@
 h2. A Short History of Git
 
-Git started with Linus Torvalds scratching the very serious itch of needing a fast, efficient and massively distributed source code management system for the Linux kernel. 
+Git started with Linus Torvalds scratching the very serious itch of needing a fast, efficient and massively distributed source code management system for Linux kernel development. 
 
-The kernel team had moved from a patch emailing system to the proprietary BitKeeper SCM in 2002 and ended in April 2005 when BitMover stopped providing a free version of it's tool to the open source community because they felt some developers had reverse engineered it in violation of the license.
+The kernel team had moved from a patch emailing system to the proprietary BitKeeper SCM in 2002.  That ended in April 2005 when BitMover stopped providing a free version of it's tool to the open source community because they felt some developers had reverse engineered it in violation of the license.
 
 Since Linus had (and still has) a passionate dislike of all existing source code management systems, he decided to write his own.  Thus, in April of 2005, Git was born.  A few months later, in July, maintenance was turned over to Junio Hamano, who has maintained the project ever since.
 
-"I'm an egotistical bastard, and I name all my projects after myself. First Linux, now git." - Linus
+note. "I'm an egotistical bastard, and I name all my projects after myself. First Linux, now git." - Linus
 
 Git started out as a collection of lower level functions used in various combinations by perl scripts.  Recently (since 1.0), more and more of the perl scripts have been re-written in C, increasing portability and speed.
+
+todo. growth and adoption - list some projects (kernel, X.Org, Mesa3D, Compiz, Wine, OLPC, Fedora, Samba | ruby: rubinius, merb, god, github, rails?)
+
+http://git.fedoraproject.org/git/

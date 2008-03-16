@@ -21,3 +21,5 @@ todo. table of speed benchmarks for git vs. svn vs. ??
 h3. A Toolkit Design
 
 Following the Unix tradition, Git is a collection of many small tools written in C [1]
+
+todo. expand this whole chapter
