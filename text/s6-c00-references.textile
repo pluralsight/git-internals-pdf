@@ -1,0 +1,24 @@
+h1. References and Endnotes
+
+Here are some references that I used or that you may use to find out more about Git.
+
+
+h2. Web Documentation
+
+"Main Git Documentation":http://www.kernel.org/pub/software/scm/git/docs/
+- fantastic reference for all the command line programs
+
+"Git for Computer Scientists":http://eagain.net/articles/git-for-computer-scientists/
+- good detail about the DAG object model
+
+"Junio Hamano New Git Maintainer":http://kerneltrap.org/node/5496
+- some history on git and Junio becoming the new maintainer
+
+
+h2. Screencasts
+
+"Git Peepcode Screencast":http://peepcode.com/products/git
+
+"RailsCasts Git Screencast":http://railscasts.com/episodes/96
+
+"Using Git to Manage and Deploy Rails Apps":http://www.jointheconversation.org/railsgit

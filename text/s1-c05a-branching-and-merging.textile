@@ -1,0 +1,42 @@
+h3. Branching and Merging
+
+Now, let's see how git handles branching, fetching and merging operations, data-wise.
+
+For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
+
+!../artwork/s1/branches1.png!
+
+h4. Simple Case
+
+Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch, then create a few commits.
+
+!../artwork/s1/branch-story1.png!
+
+Then, our boss comes in and says we need a hot fix to production.  So we switch back to our master branch, make the change, push the release and then tag the commit with the release number. Then we go back to our 'experiment' branch, continue working and commit again.
+
+!../artwork/s1/branch-story2.png!
+
+At this point, we show the new branch to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our 'experiment' branch.
+
+!../artwork/s1/branch-story3.png!
+
+h4. Remotes
+
+Now lets take a look at remotes.  Remotes are basically other peoples branches of the same repository.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as 'origin' by default.  Which means the tree that was checked out during your initial clone would be referenced as 'origin/master', which means 'the master branch of the origin remote'. 
+
+Lets say you clone someone's repository and make a few changes.  You would have two references, one to 'origin/master' which points to where the master branch was on the persons repository you cloned from when you did so, and a 'master' branch that points the most recent local commit.
+
+!../artwork/s1/remote-story1.png!
+
+Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Lets say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
+
+!../artwork/s1/remote-story2.png!
+
+We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their master branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
+
+!../artwork/s1/remote-story3.png!
+
+Now we can run our tests and merge back into our master branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
+
+h4. Rebasing
+

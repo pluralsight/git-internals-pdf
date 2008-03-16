@@ -256,27 +256,102 @@ for more information on what you can do with hooks.
 
 h2. The Git Data Model
 
-Directed Acyclic Graph
+In computer science speak, the Git object data store is a Directed Acyclic Graph. That is, starting at any commit you can traverse it's parents in one direction and there is no chain that begins and ends with the same object. 
 
-h3. Branches
+All commit objects point to a tree and optionally to previous commits.  All trees point to one or many blobs and/or trees.  Given this simple model, we can store and retrieve vast histories of complex trees of arbitrarily changing content quickly and efficiently.
 
+This section is meant to demonstrate how that model looks.
+
+h3. References
+
+In addition to the Git objects, which are immutable - that is, they cannot ever be changed, there are references also stored in Git.  Unlike the objects, references can constantly change.  They are simple pointers to a particular commit, something like a tag, but easily moveable.
+
+Examples of references are branches and remotes.  A branch in git is nothing more than a file in the _.git/refs/heads/_ directory that contains the sha of the most recent commit of that branch.  To branch that line of development, all git does is create a new file in that directory that points to the same sha.  Then, as you continue to commit, one of the branches will keep changing to point to the new commit shas, while the other one can stay where it was.
 
 h3. The Model
 
+The basic data model I've been explaining looks something like this:
+
 !../artwork/s1/dag-model.png!
+
+The cheap references I've represented as the grey boxes, the immutable objects are the colored round cornered boxes.
 
 h3. An Example
 
+Lets look at an example of simple usage of git and which objects are stored in the git object store as we go.
+
+To begin with, we commit an initial tree of three files and two subdirectories, each directory with one file in it.  Possibly something like this:
+
+code. model-tree-example.txt
+
+When we first commit this tree, our Git model may look something like this:
+
 !../artwork/s1/object-dag-tree1.png!
+
+We have 3 trees, 3 blobs, 1 commit that points to the top of the tree, the current branch pointing to our last commit and the HEAD file pointing to the branch we're currently on to let Git know which commit will be the parent for the next commit.
+
+Now let's assume that we change the _lib/base/base_include.rb_ file and commit again.  At this point, a new blob is added, which changes the tree that points to it, which changes the tree that points to that tree and so on to the top of the entire directory.  Then a new commit object is added which points to it's parent and the new tree and the branch reference is moved forward.
+
+Let's also say at this point we tag this commit as a release, which adds a new tag object.  At this point, we'll have the following in Git.
 
 !../artwork/s1/object-dag-tree2.png!
 
+Notice how the other two blobs that were not changed were not added again.  The new trees that were added point to the same blobs in the data store that the previous trees pointed to.
+
+Now let's say we modify the _init.rb_ file at the base of the project.  The new blob will have to be added, which will add a new top tree, but all the subtrees will not be modified, so Git will re-use those references.  Again, the branch reference will move forward and the new commit will point to it's parent.
+
 !../artwork/s1/object-dag-tree3.png!
+
+At this point, let's stop to look at the objects we now have in our repository.  From this, we can easily recreate any of the three directories we committed by following the graph from the commit object.
+
+For instance, if we wanted the first tree, we could look for the parent of the parent of the HEAD, or the parent of the tag.  If we wanted the second tree, we could ask for the commit pointed to by the tag, and so on.
 
 !../artwork/s1/object-dag.png!
 
-h2. The Object Database
- 
+So, to keep all the information and history on the three versions of this tree, git stores 16 immutable, signed, compressed objects.
+
+h3. Branching and Merging
+
+Now, let's see how git handles branching, fetching and merging operations, data-wise.
+
+For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
+
+!../artwork/s1/branches1.png!
+
+h4. Simple Case
+
+Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch, then create a few commits.
+
+!../artwork/s1/branch-story1.png!
+
+Then, our boss comes in and says we need a hot fix to production.  So we switch back to our master branch, make the change, push the release and then tag the commit with the release number. Then we go back to our 'experiment' branch, continue working and commit again.
+
+!../artwork/s1/branch-story2.png!
+
+At this point, we show the new branch to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our 'experiment' branch.
+
+!../artwork/s1/branch-story3.png!
+
+h4. Remotes
+
+Now lets take a look at remotes.  Remotes are basically other peoples branches of the same repository.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as 'origin' by default.  Which means the tree that was checked out during your initial clone would be referenced as 'origin/master', which means 'the master branch of the origin remote'. 
+
+Lets say you clone someone's repository and make a few changes.  You would have two references, one to 'origin/master' which points to where the master branch was on the persons repository you cloned from when you did so, and a 'master' branch that points the most recent local commit.
+
+!../artwork/s1/remote-story1.png!
+
+Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Lets say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
+
+!../artwork/s1/remote-story2.png!
+
+We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their master branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
+
+!../artwork/s1/remote-story3.png!
+
+Now we can run our tests and merge back into our master branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
+
+h4. Rebasing
+
 
 h2. The Treeish
 
@@ -299,9 +374,23 @@ $ git log --walk-reflogs master # show reflog entries for master
 
 h2. Working Directory
 
+The working directory is the checkout of the current branch you are working on.  What is really important to note here is that this code is a working copy - it is not really important.
+
+This is something that developers from the Subversion world have a hard time understanding and tends to scare them mightily.  If you check out a different branch, git will basically make your working directory look like that branch, removing any checked in content that is currently in your working directory that is not in the new tree.
+
+Most long time Subversion users don't like to see content automatically removed from their directories, but that's one of the shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 
+
 h2. The Index    
 
+The index was called the cache for a while, because that's largely what it does.  It is a staging area for changes that are made to files or trees that are not committed to your repository yet.  It is also used to speed up some operations.  It acts as sort of a middle ground between your working directory and your repository.
+
+* keeping track of the state of working directory files
+* staging changes
+* generating commits
+
 h1. Section 2 - Using Git
+
+Now that you understand what Git does at a fundamental level - how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let's see how to actually use it.
 
 h2. The SCM (the porcelain)
 
@@ -446,4 +535,29 @@ h1. Commands Overview
 h2. The Plumbing
 
 h2. The Porcelain
+
+h1. References and Endnotes
+
+Here are some references that I used or that you may use to find out more about Git.
+
+
+h2. Web Documentation
+
+"Main Git Documentation":http://www.kernel.org/pub/software/scm/git/docs/
+- fantastic reference for all the command line programs
+
+"Git for Computer Scientists":http://eagain.net/articles/git-for-computer-scientists/
+- good detail about the DAG object model
+
+"Junio Hamano New Git Maintainer":http://kerneltrap.org/node/5496
+- some history on git and Junio becoming the new maintainer
+
+
+h2. Screencasts
+
+"Git Peepcode Screencast":http://peepcode.com/products/git
+
+"RailsCasts Git Screencast":http://railscasts.com/episodes/96
+
+"Using Git to Manage and Deploy Rails Apps":http://www.jointheconversation.org/railsgit
 

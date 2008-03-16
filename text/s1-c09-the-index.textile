@@ -1,1 +1,7 @@
 h2. The Index    
+
+The index was called the cache for a while, because that's largely what it does.  It is a staging area for changes that are made to files or trees that are not committed to your repository yet.  It is also used to speed up some operations.  It acts as sort of a middle ground between your working directory and your repository.
+
+* keeping track of the state of working directory files
+* staging changes
+* generating commits

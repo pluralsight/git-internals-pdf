@@ -1,1 +1,3 @@
 h1. Section 2 - Using Git
+
+Now that you understand what Git does at a fundamental level - how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let's see how to actually use it.
