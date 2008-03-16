@@ -1,0 +1,652 @@
+<h2>About this book</h2>
+
+
+	<p>It took me a pretty long time to really get git. As we&#8217;ve continued to use git more and more in our company, we&#8217;ve found ourselves having to teach people what it is and why we use it over and over again, and the reality is that git generally has a pretty steep learning curve compared to some other systems. I&#8217;ve seen case after case of developers who love git after they finally understand it, but getting to that point is often somewhat painstaking.</p>
+
+
+	<p>This book then is aimed at the developer who does not particularly like <span class="caps">SVN</span> or whatever <span class="caps">SCM</span> system they are currently using, has heard good things about git, but doesn&#8217;t know where to start or why it&#8217;s so wonderful. It is meant to explain git as simply and graphically as possible in a clean, concise, easily readable volume. I would like you to be able to get through this book and understand git at a fundamental level, very quickly.</p>
+
+
+	<p>To accomplish this, I&#8217;m starting the book out (after the introduction) with a section about what git does, rather than how to use it. I found that I didn&#8217;t really understand git and had many problems in using it until I understood what it was doing rather than understanding it as a different, weird <span class="caps">SVN</span>-like system.</p>
+
+
+	<h2>Installing Git</h2>
+
+
+	<p>todo. clean up this whole section, and actually run through each of these (yes, even windows!)</p>
+
+
+	<p>Before we can start playing with git, we&#8217;ll have to install it. I&#8217;ll quickly cover installing git on Linux, Mac and Windows.</p>
+
+
+	<p>You can download git from http://git.or.cz/</p>
+
+
+	<p>http://kernel.org/pub/software/scm/git/</p>
+
+
+	<h3>Installing on Linux</h3>
+
+
+	<p>wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
+tar jxpvf git-1.5.4.4.tar.bz2
+cd git-1.5.4.4
+make prefix=/usr all doc info
+sudo make prefix=/usr install install-doc install-info</p>
+
+
+	<p>or : apt-get git-core, yum install git-core</p>
+
+
+	<h3>Installing on Mac</h3>
+
+
+	<p>You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see</p>
+
+
+	<h4>Mac 10.4 &#8211; Tiger</h4>
+
+
+	<p>There are some requirements you&#8217;ll have to install before you can compile git.</p>
+
+
+	<p>http://sourceforge.net/projects/expat/</p>
+
+
+	<p>However, if you want an easier path, you can use the excellent MacPorts software:</p>
+
+
+	<p>http://www.macports.org/</p>
+
+
+	<p>and just run</p>
+
+
+	<ol>
+	<li>port install git-core</li>
+	</ol>
+
+
+	<h4>Mac 10.5 &#8211; Leopard</h4>
+
+
+	<p>All the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed.</p>
+
+
+	<p>MacPorts is also an easy option if you have that installed.</p>
+
+
+	<h3>Windows</h3>
+
+
+	<p>Cygwin     http://www.cygwin.com/setup.exe</p>
+
+
+	<p>http://code.google.com/p/msysgit/</p>
+
+
+	<p>A TortoiseCVS lookalike for Git</p>
+
+
+	<p>http://repo.or.cz/w/git-cheetah.git/</p>
+
+
+	<h2>A Short History of Git</h2>
+
+
+	<p>Git started with Linus Torvalds scratching the very serious itch of needing a fast, efficient and massively distributed source code management system for Linux kernel development.</p>
+
+
+	<p>The kernel team had moved from a patch emailing system to the proprietary BitKeeper <span class="caps">SCM</span> in 2002.  That ended in April 2005 when BitMover stopped providing a free version of it&#8217;s tool to the open source community because they felt some developers had reverse engineered it in violation of the license.</p>
+
+
+	<p>Since Linus had (and still has) a passionate dislike of all existing source code management systems, he decided to write his own.  Thus, in April of 2005, Git was born.  A few months later, in July, maintenance was turned over to Junio Hamano, who has maintained the project ever since.</p>
+
+
+	<p>note. &#8220;I&#8217;m an egotistical bastard, and I name all my projects after myself. First Linux, now git.&#8221; &#8211; Linus</p>
+
+
+	<p>Git started out as a collection of lower level functions used in various combinations by perl scripts.  Recently (since 1.0), more and more of the perl scripts have been re-written in C, increasing portability and speed.</p>
+
+
+	<p>todo. growth and adoption &#8211; list some projects (kernel, X.Org, Mesa3D, Compiz, Wine, <span class="caps">OLPC</span>, Fedora, Samba | ruby: rubinius, merb, god, github, rails?)</p>
+
+
+	<p>http://git.fedoraproject.org/git/</p>
+
+
+	<h1>Section 1 &#8211; Understanding Git</h1>
+
+
+	<p>In this section, we will go over what git was built for and how it works, hopefully laying the groundwork to properly understand what it is doing when we run the commands.</p>
+
+
+	<p>When I learned Git, as many people do, I learned it in the context of other SCMs I had used &#8211; Subversion or <span class="caps">CVS</span>.  I really think this is a horrible way to learn Git.  I felt far more comfortable with it when I stopped thinking that &#8216;git add&#8217; was sort of like &#8216;svn add&#8217;, but instead understood what it was actually doing.  Then I found I could find new and interesting ways to use what is really a very powerful and cool toolset.</p>
+
+
+	<p><img src="./artwork/s1/what-git-is.png" alt="" /></p>
+
+
+	<p>So, let&#8217;s see what it&#8217;s doing behind the scenes first.</p>
+
+
+	<h2>What is Git?</h2>
+
+
+	<p>Git is a stupid content tracker.  That is probably the best description of it &#8211; don&#8217;t think of it in a &#8216;like <span class="caps">SVN</span>, but&#8230;&#8217; context, but more like a really interesting file system.</p>
+
+
+	<p>Git tracks content &#8211; files and directories.  It is at it&#8217;s heart a collection of simple tools that implement a tree history storage and directory content management system.  It is simply used as an <span class="caps">SCM</span>, not really designed as one.</p>
+
+
+	<p>&#8220;In many ways you can just see git as a filesystem — it&#8217;s content-addressable, and it has a notion of versioning, but I really really designed it coming at the problem from the viewpoint of a filesystem person (hey, kernels is what I do), and I actually have absolutely zero interest in creating a traditional <span class="caps">SCM</span> system.&#8221; &#8211; Linus (http://marc.info/?l=linux-kernel&#38;m=111314792424707)</p>
+
+
+	<p>When most SCMs store a new version of a project, they store the code delta or diff.  When Git stores a new version of a project, it stores a new tree &#8211; a bunch of blobs of content and a collection of pointers that can be expanded back out into a full directory of content and subdirectories.  If you want a diff between two versions, it doesn&#8217;t add up all the deltas, it simply looks at the two full directories and runs a new diff on them.</p>
+
+
+	<p>This is what fundamentally allows the system to be easily distributed &#8211; it doesn&#8217;t have issues figuring out how to apply a complex series of deltas, it simply transfers all the directories that one user has and another does not have but is requesting.  It is efficient about it &#8211; it only stores identical files and directories once and it can compress and transfer it&#8217;s content using delta-compressed packfiles &#8211; but in concept, it is a very simple beast.  Git is at it&#8217;s heart very stupid simple.</p>
+
+
+	<h3>Focus and Design</h3>
+
+
+	<p>There are a number of areas that the developers of Git, including and especially Linus, have focused on in conceiving and building Git.</p>
+
+
+	<h4>Non-linear Development</h4>
+
+
+	<p>branching and merging</p>
+
+
+	<h4>Distributed Development</h4>
+
+
+	<p>local copy of the entire development history, no central repository</p>
+
+
+	<h3>Efficiency</h3>
+
+
+	<p>seriously faster than nearly all other <span class="caps">SCM</span> systems for most operations.</p>
+
+
+	<p>todo. table of speed benchmarks for git vs. svn vs. ??
+      &#8211; add, commit, push, diff, merge
+      &#8211; directory/checkout sizes?</p>
+
+
+	<h3>A Toolkit Design</h3>
+
+
+	<p>Following the Unix tradition, Git is a collection of many small tools written in C [1]</p>
+
+
+	<p>todo. expand this whole chapter</p>
+
+
+	<h2>Git Object Types</h2>
+
+
+	<p>There are four main object types in git, the first three being the most important to really understand the main functions of git.</p>
+
+
+	<p>All of these types of objects are stored in the git object database, which is kept in the git directory [see git directory].  Each object is compressed (with Zlib) and referenced by the <span class="caps">SHA1</span> value of its contents plus a small header.  In the examples, I will use the first 6 characters of the <span class="caps">SHA</span> for simplicity, but the actual value is 40 characters long.</p>
+
+
+	<p>To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to git, keeping the project in a git repository.  The basic layout of the project is this:</p>
+
+
+	<p><img src="./artwork/s1/layout.png" alt="" /></p>
+
+
+	<p>Let&#8217;s take a look at what git does when this is committed to a repository.</p>
+
+
+	<h3>The Blob</h3>
+
+
+	<p><em>sidebar of git object sha algorithm (git-object-sidebar.textile)</em></p>
+
+
+	<p>In git, the contents of files are stored as <strong>blobs</strong>.</p>
+
+
+	<p><img src="./artwork/s1/blobs.png" alt="" /></p>
+
+
+	<p>It is important to note that it is the <em>contents</em> that are stored, not the files.  The names and permissions of the files are not stored with the blob, just the contents.</p>
+
+
+	<p><img src="./artwork/s1/blob-expand.png" alt="" /></p>
+
+
+	<p>This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, git will only transfer the blob once, then expand it out into multiple files upon checkout.</p>
+
+
+	<h3>The Tree</h3>
+
+
+	<p><em>sidebar of tree object encoding algorithm (git-tree-sidebar.textile)</em></p>
+
+
+	<p>Directories in git basically correspond to <strong>trees</strong>.</p>
+
+
+	<p><img src="./artwork/s1/trees.png" alt="" /></p>
+
+
+	<p>A tree is a list of trees and blobs that the tree contains, along with the names and permissions of those blobs and trees.  The contents section of a tree object consists of a very simple text file that lists the <em>mode</em>, <em>type</em>, <em>name</em> and <em>sha</em> of each entry (see the sidebar for details).</p>
+
+
+	<p><img src="./artwork/s1/tree-expand.png" alt="" /></p>
+
+
+	<h3>The Commit</h3>
+
+
+	<p>So, now that we can store arbitrary trees of content in Git, where does the &#8216;history&#8217; part of &#8216;tree history storage system&#8217; come in?  The answer is the <strong>commit</strong> object.</p>
+
+
+	<p><img src="./artwork/s1/commit.png" alt="" /></p>
+
+
+	<p>The commit is very simple, much like the tree.  It simply points to a tree and keeps an <em>author</em>, <em>committer</em>, <em>message</em> and any <em>parent</em> commits that directly preceded it.</p>
+
+
+	<p><img src="./artwork/s1/commit-expand.png" alt="" /></p>
+
+
+	<p>Since this was my first commit, there are no parents.  If I commit a second time, the commit object will look more like this:</p>
+
+
+	<p><img src="./artwork/s1/commit-expand2.png" alt="" /></p>
+
+
+	<p>Notice how the <em>parent</em> in that commit is the same <span class="caps">SHA1</span> value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.</p>
+
+
+	<p>note. the current record for number of commit parents in the Linux kernel is 12 &#8211; <em>12</em> branches merged in a single commit</p>
+
+
+	<h3>The Tag</h3>
+
+
+	<p>The final type of object you will find in a git database is the <strong>tag</strong>.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an <em>object</em>, <em>type</em>, <em>tag</em>, <em>tagger</em> and a <em>message</em>. Normally the type is a &#8216;commit&#8217; and the object is the sha of the commit you&#8217;re tagging.  The tag can also be <span class="caps">GPG</span> signed, providing cryptographic integrity to a release or version.</p>
+
+
+	<p><img src="./artwork/s1/tag-expand.png" alt="" /></p>
+
+
+	<p>We&#8217;ll talk a little bit more about tags and how they differ from <em>branches</em> (which also point to commits, but are not stored as objects) in the section on [the git data model], where we&#8217;ll pull all of this together into how all these objects relate to each other conceptually.</p>
+
+
+	<h2>The Git Directory</h2>
+
+
+	<p>When you initialize a git repository, either by cloning an existing one or creating a new one, the first thing git does is create a &#8220;Git Directory&#8221;.  This is the directory that stores all the object data, tags, branches, hooks and more.  Everything that git permanently stores goes in this single directory.  When you clone someone else&#8217;s repository, it basically just copies the contents of this directory to your computer.  Without a checkout (called a &#8220;working directory&#8221;) this is called a &#8220;bare&#8221; git repo and moving it to another computer backs up your entire project history.  It is the soul of git.</p>
+
+
+	<p>When you run &#8216;git init&#8217; to initialize your repository, the git directory is by default installed in your current working directory as &#8217;.git&#8217;.  This can be overridden with the <em><span class="caps">GIT</span>_DIR</em> environment variable at any time.  In fact, the git directory does not need to be in your source tree at all.  It&#8217;s perfectly acceptable to keep all your git directories in a central place (/opt/git/myproject.git) and just make sure to set the <span class="caps">GIT</span>_DIR variable when you switch projects you are working on (/home/username/projects/myproject).</p>
+
+
+	<p>The git directory for our little project looks something like this:</p>
+
+
+	<p>code. simple-git-dir-tree.txt</p>
+
+
+	<p>For more in depth information on the git directory layout, see the <a href="http://www.kernel.org/pub/software/scm/git/docs/repository-layout.html">git repository layout docs.</a></p>
+
+
+	<p>For now, let&#8217;s go over some of the more important contents of this directory.</p>
+
+
+	<h3>.git/config</h3>
+
+
+	<p>This is the main git configuration file.  It keeps your project specific git options, such as your remotes, push configurations, tracking branches and more.  Your configuration will be loaded first from this file, then from a <sub>/.gitconfig file and then from an /etc/gitconfig file, if they exist.</p>
+
+
+	<p>Here is an example of what a config file might look like:</p>
+
+
+	<p>code. config-example.txt</p>
+
+
+	<p>See [config section] for more information on available configuration options.</p>
+
+
+	<h3>.git/index</h3>
+
+
+	<p>This is the default location of the &#8216;index&#8217; file for your git project.  This location can be overridden with the <em><span class="caps">GIT</span>_INDEX</em> environment variable, which is sometimes useful for temporary tree operations.  See [the index] or [advanced index operations] sections for more information on the git index.</p>
+
+
+	<h3>.git/objects/</h3>
+
+
+	<p>This is the main directory that holds the data of your git objects and pack files &#8211; that is, all the contents of the files you have ever checked in, plus your commit, tree and tag objects.</p>
+
+
+	<p>The files are stored by their <span class="caps">SHA1</span> values.  The first two characters make up the subdirectory and the last 38 is the filename.  For example, if the <span class="caps">SHA</span> for a blob we&#8217;ve checked in was</p>
+
+
+	<p>code. a576fac355dd17e39fd2671b010e36299f713b4d</p>
+
+
+	<p>the file we would find the Zlib compressed contents in is</p>
+
+
+	<p>code. [GIT_DIR]/objects/a5/76fac355dd17e39fd2671b010e36299f713b4d</p>
+
+
+	<h3>.git/refs/</h3>
+
+
+	<p>This directory normally has three subdirectories in it &#8211; <em>heads</em>, <em>remotes</em> and <em>tags</em>.  Each of these directories will hold files that correspond to your local branches, remote branches and tags, respectively.</p>
+
+
+	<p>For example, if you create a &#8216;development&#8217; branch, the file .git/refs/heads/development will be created and will contain the sha of the commit that is the latest commit of that branch.</p>
+
+
+	<h3>.git/HEAD</h3>
+
+
+	<p>This file holds a reference to the branch you are currently on.  This basically tells git what to use as the parent of your next commit.  The contents of it will generally look like this:</p>
+
+
+	<p>code. ref: refs/heads/master</p>
+
+
+	<h3>.git/hooks</h3>
+
+
+	<p>This directory contains shell scripts that are invoked after the git commands they are named after.  For example, after you run a commit, git will try to execute the <em>post-commit</em> script, if it has executable permissions.</p>
+
+
+	<p>See [hooks section] or the 
+<a href="http://www.kernel.org/pub/software/scm/git/docs/hooks.html">online hooks documentation</a>
+for more information on what you can do with hooks.</p>
+
+
+	<h2>The Git Data Model</h2>
+
+
+	<p>Directed Acyclic Graph</p>
+
+
+	<h3>Branches</h3>
+
+
+	<h3>The Model</h3>
+
+
+	<p><span class="caps">HEAD</span> -&gt;
+tag -&gt;
+branch (ref) -&gt;
+commit -&gt; (commit) -&gt; tree -&gt; (blobs, trees)</p>
+
+
+	<h2>The Object Database</h2>
+
+
+	<h2>The Treeish</h2>
+
+
+	<ul>
+	<li>full sha &#8211; dae86e1950b1277e545cee180551750029cfe735</li>
+		<li>partial sha &#8211; dae86e</li>
+		<li>branch/tag name &#8211; master</li>
+		<li>date spec &#8211; master@{yesterday}
+	<ul>
+	<li>the value of master yesterday</li>
+	</ul>
+	</li>
+		<li>ordinal spec &#8211; master@{5}
+	<ul>
+	<li>5th prior value of master</li>
+	</ul>
+	</li>
+		<li>carrot parent &#8211; e65s46<sup>^2
+	<ul>
+	<li>second parent of commit</li>
+	</ul>
+	</li>
+		<li>tilde spec &#8211; e65s46</sub>5 (e65s46</sup><sup>^^</sup><sup>^^</sup><sup>)
+	<ul>
+	<li>5th generation grandparent of commit</li>
+	</ul>
+	</li>
+		<li>tree pointer &#8211; e65s46</sup>^{tree}
+	<ul>
+	<li>blob spec &#8211; master:/path/to/file</li>
+	</ul></li>
+	</ul>
+
+
+	<p>$ git log&#8212;walk-reflogs master # show reflog entries for master</p>
+
+
+	<h2>Working Directory</h2>
+
+
+	<h2>The Index</h2>
+
+
+	<h1>Section 2 &#8211; Using Git</h1>
+
+
+	<h2>The <span class="caps">SCM</span> (the porcelain)</h2>
+
+
+	<p>history of toolkit design and reluctance of full <span class="caps">SCM</span>
+Cogito and it&#8217;s death</p>
+
+
+	<h2>Getting a Git Repository</h2>
+
+
+	<p>git clone</p>
+
+
+	<h2>Normal Workflow Examples</h2>
+
+
+	<h3>Initializing</h3>
+
+
+	<p>init, .gitignore</p>
+
+
+	<h3>Adding and Committing</h3>
+
+
+	<p>add, commit (-a -v -m)</p>
+
+
+	<h3>Status</h3>
+
+
+	<p>status, ls-files</p>
+
+
+	<p>showing the index and working tree</p>
+
+
+	<h2>Log &#8211; the Commit History</h2>
+
+
+	<h2>Browsing Git</h2>
+
+
+	<p>show, ls-tree, cat-file -p</p>
+
+
+	<h2>Git Diff</h2>
+
+
+	<p>diff &#8211; getting and sending patchfiles</p>
+
+
+	<h2>Branching</h2>
+
+
+	<p>branch, checkout
+reset
+git branch recovered-branch 7281251ddd</p>
+
+
+	<h2>Simple Merging</h2>
+
+
+	<h2>Rebasing</h2>
+
+
+	<h2>Distributed Workflow Examples</h2>
+
+
+	<h3>Cloning</h3>
+
+
+	<h3>Fetching, Pulling (tracking branches)</h3>
+
+
+	<h3>Pushing</h3>
+
+
+	<h3>Formatting Patches</h3>
+
+
+	<h2>All About Remotes (refspec)</h2>
+
+
+	<h2>Tagging</h2>
+
+
+	<h2>Sharing Repositories</h2>
+
+
+	<h3>Over <span class="caps">SSH</span></h3>
+
+
+	<p>git clone&#8212;bare; scp</p>
+
+
+	<h3>Over Git</h3>
+
+
+	<p>git daemon&#8212;detach</p>
+
+
+	<h3>Over Http</h3>
+
+
+	<p>git update-server-info</p>
+
+
+	<h4>GitHub</h4>
+
+
+	<h1>Section 3 &#8211; Git and Other Systems</h1>
+
+
+	<h2>Git and <span class="caps">SVN</span></h2>
+
+
+	<h3>Pros and Cons</h3>
+
+
+	<h3>Importing existing <span class="caps">SVN</span> projects</h3>
+
+
+	<h3>git-svn</h3>
+
+
+	<h3>git-svn-server</h3>
+
+
+	<h3>Piston / <span class="caps">SVN</span> Externals</h3>
+
+
+	<h2>Git and Ruby</h2>
+
+
+	<h3>Ruby/Git</h3>
+
+
+	<h3>Grit</h3>
+
+
+	<h3>Git-Ruby</h3>
+
+
+	<h2>Git and Application Deployment</h2>
+
+
+	<h3>Capistrano Module</h3>
+
+
+	<h3>Vlad the Deployer Module</h3>
+
+
+	<h1>Advanced Git</h1>
+
+
+	<h2>Bisect</h2>
+
+
+	<h2>Reading and Writing Trees</h2>
+
+
+	<h2>Advanced Index Operations</h2>
+
+
+	<h2>File and Index Staging</h2>
+
+
+	<h2>Submodules</h2>
+
+
+	<h2>Advanced Merging</h2>
+
+
+	<ul>
+	<li>merge strategies
+	<ul>
+	<li>resolve</li>
+		<li>recursive</li>
+		<li>octopus</li>
+	</ul></li>
+	</ul>
+
+
+	<h2>Shared Repositories</h2>
+
+
+	<h2>Hooks</h2>
+
+
+	<h2>Configuration Options</h2>
+
+
+	<h2>History Manipulation</h2>
+
+
+	<h2>Repository Maintenance</h2>
+
+
+	<h2>Patch Management</h2>
+
+
+	<h2>Recovering From Corruption</h2>
+
+
+	<h1>Commands Overview</h1>
+
+
+	<h2>The Plumbing</h2>
+
+
+	<h2>The Porcelain</h2>
