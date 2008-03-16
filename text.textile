@@ -263,10 +263,17 @@ h3. Branches
 
 h3. The Model
 
-HEAD ->
-tag ->
-branch (ref) ->
-commit -> (commit) -> tree -> (blobs, trees)
+!../artwork/s1/dag-model.png!
+
+h3. An Example
+
+!../artwork/s1/object-dag-tree1.png!
+
+!../artwork/s1/object-dag-tree2.png!
+
+!../artwork/s1/object-dag-tree3.png!
+
+!../artwork/s1/object-dag.png!
 
 h2. The Object Database
  
