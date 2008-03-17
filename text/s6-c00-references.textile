@@ -14,6 +14,7 @@ h2. Web Documentation
 "Junio Hamano New Git Maintainer":http://kerneltrap.org/node/5496
 - some history on git and Junio becoming the new maintainer
 
+"Git Rebase Explained":http://wincent.com/knowledge-base/Git_rebase_explained
 
 h2. Screencasts
 

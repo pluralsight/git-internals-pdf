@@ -4,3 +4,5 @@ h2. Advanced Merging
 ** resolve
 ** recursive
 ** octopus
+
+rebase --interactive

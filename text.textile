@@ -352,6 +352,40 @@ Now we can run our tests and merge back into our master branch if we want.  Then
 
 h4. Rebasing
 
+Let's say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote 'jen', do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)
+
+!../artwork/s1/rebase1.png!
+
+At this point, you both do work and commit changes and then you fetch and merge from her again.  Then she does another commit and you fetch and merge once more.  At this point, you'll have a commit history that looks something like this:
+
+!../artwork/s1/rebase2.png!
+
+Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.
+
+This is where the rebasing command comes in.  With rebase, git will checkout the _upstream branch_, in this case, Jen's master branch, and then replay all the changes you've done since you forked on top of those file, as if you had forked your work off at that point and done all your changes, rather than earlier.
+
+Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  Git will automatically remove these eventually, since nothing points to them, when you run the garbage collector (see git-gc).
+
+So let's see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans _Commit 1_ and applies the changes between _Commit 0_ and _Commit 1_ to the files in _Remote Commit 1_, creating a new _Commit 2_.
+
+!../artwork/s1/rebase3.png!
+
+Then, as you'll remember, you and Jen both commit again.  You'll notice that now it looks like she cloned you and committed and then you changed that code, rather than you both working at the same time and merging.
+
+!../artwork/s1/rebase4.png!
+
+At this point, instead of merging two more times like we did originally, we rebase the next two commits she makes.
+
+!../artwork/s1/rebase5.png!
+
+!../artwork/s1/rebase6.png!
+
+And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we merged instead.
+
+!../artwork/s1/rebase7-final.png!
+
+
+note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to - if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.
 
 h2. The Treeish
 
@@ -371,6 +405,8 @@ h2. The Treeish
 ** blob spec - master:/path/to/file
 
 $ git log --walk-reflogs master # show reflog entries for master
+
+!../artwork/s1/traversing-git-objects.png!
 
 h2. Working Directory
 
@@ -516,6 +552,8 @@ h2. Advanced Merging
 ** recursive
 ** octopus
 
+rebase --interactive
+
 h2. Shared Repositories
 
 h2. Hooks
@@ -552,6 +590,7 @@ h2. Web Documentation
 "Junio Hamano New Git Maintainer":http://kerneltrap.org/node/5496
 - some history on git and Junio becoming the new maintainer
 
+"Git Rebase Explained":http://wincent.com/knowledge-base/Git_rebase_explained
 
 h2. Screencasts
 

@@ -518,6 +518,57 @@ for more information on what you can do with hooks.</p>
 	<h4>Rebasing</h4>
 
 
+	<p>Let&#8217;s say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote &#8216;jen&#8217;, do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)</p>
+
+
+	<p><img src="./artwork/s1/rebase1.png" alt="" /></p>
+
+
+	<p>At this point, you both do work and commit changes and then you fetch and merge from her again.  Then she does another commit and you fetch and merge once more.  At this point, you&#8217;ll have a commit history that looks something like this:</p>
+
+
+	<p><img src="./artwork/s1/rebase2.png" alt="" /></p>
+
+
+	<p>Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.</p>
+
+
+	<p>This is where the rebasing command comes in.  With rebase, git will checkout the <em>upstream branch</em>, in this case, Jen&#8217;s master branch, and then replay all the changes you&#8217;ve done since you forked on top of those file, as if you had forked your work off at that point and done all your changes, rather than earlier.</p>
+
+
+	<p>Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  Git will automatically remove these eventually, since nothing points to them, when you run the garbage collector (see git-gc).</p>
+
+
+	<p>So let&#8217;s see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans <em>Commit 1</em> and applies the changes between <em>Commit 0</em> and <em>Commit 1</em> to the files in <em>Remote Commit 1</em>, creating a new <em>Commit 2</em>.</p>
+
+
+	<p><img src="./artwork/s1/rebase3.png" alt="" /></p>
+
+
+	<p>Then, as you&#8217;ll remember, you and Jen both commit again.  You&#8217;ll notice that now it looks like she cloned you and committed and then you changed that code, rather than you both working at the same time and merging.</p>
+
+
+	<p><img src="./artwork/s1/rebase4.png" alt="" /></p>
+
+
+	<p>At this point, instead of merging two more times like we did originally, we rebase the next two commits she makes.</p>
+
+
+	<p><img src="./artwork/s1/rebase5.png" alt="" /></p>
+
+
+	<p><img src="./artwork/s1/rebase6.png" alt="" /></p>
+
+
+	<p>And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we merged instead.</p>
+
+
+	<p><img src="./artwork/s1/rebase7-final.png" alt="" /></p>
+
+
+	<p>note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to &#8211; if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.</p>
+
+
 	<h2>The Treeish</h2>
 
 
@@ -553,6 +604,9 @@ for more information on what you can do with hooks.</p>
 
 
 	<p>$ git log&#8212;walk-reflogs master # show reflog entries for master</p>
+
+
+	<p><img src="./artwork/s1/traversing-git-objects.png" alt="" /></p>
 
 
 	<h2>Working Directory</h2>
@@ -770,6 +824,9 @@ git branch recovered-branch 7281251ddd</p>
 	</ul>
 
 
+	<p>rebase&#8212;interactive</p>
+
+
 	<h2>Shared Repositories</h2>
 
 
@@ -819,6 +876,9 @@ git branch recovered-branch 7281251ddd</p>
 
 	<p><a href="http://kerneltrap.org/node/5496">Junio Hamano New Git Maintainer</a>
 - some history on git and Junio becoming the new maintainer</p>
+
+
+	<p><a href="http://wincent.com/knowledge-base/Git_rebase_explained">Git Rebase Explained</a></p>
 
 
 	<h2>Screencasts</h2>

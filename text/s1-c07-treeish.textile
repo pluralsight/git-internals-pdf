@@ -16,3 +16,5 @@ h2. The Treeish
 ** blob spec - master:/path/to/file
 
 $ git log --walk-reflogs master # show reflog entries for master
+
+!../artwork/s1/traversing-git-objects.png!
