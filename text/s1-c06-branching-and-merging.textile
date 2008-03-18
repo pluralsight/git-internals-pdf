@@ -68,7 +68,7 @@ At this point, instead of merging two more times like we did originally, we reba
 
 !../artwork/s1/rebase6.png!
 
-And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we merged instead.
+And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we had merged instead.
 
 !../artwork/s1/rebase7-final.png!
 

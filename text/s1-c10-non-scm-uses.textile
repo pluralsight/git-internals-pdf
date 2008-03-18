@@ -1,0 +1,39 @@
+h2. Non-SCM Uses of Git
+
+I keep saying that Git is primarily a content tracking system with an SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.
+
+(uses for slowly changing distributed trees)
+
+
+h3. Peer to Peer Content Distribution Network
+
+Imagine you have a network of ...
+
+http://gittorrent.utsl.gen.nz/rfc.html
+
+
+
+h3. Distributed Document Oriented Database
+
+replication, search w/grep, no history loss
+
+
+h4. Distributed Wiki
+
+(offline writing)
+Branches, merges - distributed, adhoc documentation, book writing
+(git-wiki)
+
+
+h4. Distributed Issue Tracker
+
+(offline working on tickets)
+(http://www.distract.wellquite.org/ Monotone)
+(http://bugseverywhere.org/be/show/HomePage)
+
+
+h3. Backup Tool
+
+Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved).
+
+(http://eigenclass.org/hiki/gibak-backup-system-introduction)

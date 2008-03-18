@@ -455,6 +455,15 @@ for more information on what you can do with hooks.</p>
 	<p>So, to keep all the information and history on the three versions of this tree, git stores 16 immutable, signed, compressed objects.</p>
 
 
+	<h3>Traversal</h3>
+
+
+	<p>So, what do all the arrows in these illustrations really mean?  How does Git actually retrieve these objects in practice?  Well, it gets the initial <span class="caps">SHA</span> of the starting commit object by looking in the <em>.git/refs</em> directory for the branch, tag or remote you specify.  Then it traverses the objects by walking the trees one by one, checking out the blobs under the names listed.</p>
+
+
+	<p><img src="./artwork/s1/traversing-git-objects.png" alt="" /></p>
+
+
 	<h3>Branching and Merging</h3>
 
 
@@ -560,7 +569,7 @@ for more information on what you can do with hooks.</p>
 	<p><img src="./artwork/s1/rebase6.png" alt="" /></p>
 
 
-	<p>And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we merged instead.</p>
+	<p>And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we had merged instead.</p>
 
 
 	<p><img src="./artwork/s1/rebase7-final.png" alt="" /></p>
@@ -572,41 +581,101 @@ for more information on what you can do with hooks.</p>
 	<h2>The Treeish</h2>
 
 
-	<ul>
-	<li>full sha &#8211; dae86e1950b1277e545cee180551750029cfe735</li>
-		<li>partial sha &#8211; dae86e</li>
-		<li>branch/tag name &#8211; master</li>
-		<li>date spec &#8211; master@{yesterday}
-	<ul>
-	<li>the value of master yesterday</li>
-	</ul>
-	</li>
-		<li>ordinal spec &#8211; master@{5}
-	<ul>
-	<li>5th prior value of master</li>
-	</ul>
-	</li>
-		<li>carrot parent &#8211; e65s46<sup>^2
-	<ul>
-	<li>second parent of commit</li>
-	</ul>
-	</li>
-		<li>tilde spec &#8211; e65s46</sub>5 (e65s46</sup><sup>^^</sup><sup>^^</sup><sup>)
-	<ul>
-	<li>5th generation grandparent of commit</li>
-	</ul>
-	</li>
-		<li>tree pointer &#8211; e65s46</sup>^{tree}
-	<ul>
-	<li>blob spec &#8211; master:/path/to/file</li>
-	</ul></li>
-	</ul>
+	<p>Besides branch heads, there are a number of shorthand ways to refer to particular objects in the Git data store.  These are often referred to as a <em>treeish</em>.  Any Git command that takes an object &#8211; be it a commit, tree or blob &#8211; as an argument can take one of these shorthand versions as well.</p>
 
 
-	<p>$ git log&#8212;walk-reflogs master # show reflog entries for master</p>
+	<p>I will list here the most common, but please read the 
+<a href="http://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html">rev-parse command</a>
+for full descriptions of all the available syntaxes.</p>
 
 
-	<p><img src="./artwork/s1/traversing-git-objects.png" alt="" /></p>
+	<h4>Full <span class="caps">SHA</span></h4>
+
+
+	<p>code. dae86e1950b1277e545cee180551750029cfe735</p>
+
+
+	<p>You can always list out the entire <span class="caps">SHA1</span> value of the object to reference it.  This is sometimes easy if you&#8217;re copying and pasting values from a tree listing or some other command.</p>
+
+
+	<h4>Partial <span class="caps">SHA</span></h4>
+
+
+	<p>code. dae86e</p>
+
+
+	<p>Just about anything you can reference with the full <span class="caps">SHA</span> can be referenced fine with the first 6 or 7 characters.  Even though the <span class="caps">SHA</span> is always 40 characters long, it&#8217;s very uncommon for more than the first few to actually be the same.  Git is smart enough to figure out a partial <span class="caps">SHA</span> as long as it&#8217;s unique.</p>
+
+
+	<h4>Branch or Tag Name</h4>
+
+
+	<p>code. master</p>
+
+
+	<p>Anything in <em>.git/refs/heads</em> or <em>.git/refs/tags</em> can be used to refer to the commit it points to.</p>
+
+
+	<h4>Date Spec</h4>
+
+
+	<p>code. master@{yesterday}
+ master@{1 month ago}</p>
+
+
+	<p>This example would refer to the value of that branch yesterday.  Git will go through the commit parents until it found one that matched that date.</p>
+
+
+	<h4>Ordinal Spec</h4>
+
+
+	<p>code. master@{5}</p>
+
+
+	<p>This indicates the 5th prior value of the master branch.  Like the <em>Date Spec</em>, this depends on special files in the <em>.git/log</em> directory that are written during commits.</p>
+
+
+	<h4>Carrot Parent</h4>
+
+
+	<p>code. e65s46<sup>2
+ master</sup>2</p>
+
+
+	<p>This refers to the Nth parent of that commit.  This is only really helpful for commits that merged two or more commits &#8211; it is how you can refer to a commit other than the first parent.</p>
+
+
+	<h4>Tilde Spec</h4>
+
+
+	<p>code. e65s46</sub>5</p>
+
+
+	<p>The tilde character, followed by a number, refers to the Nth generation grandparent of that commit.  To clarify from the carrot, this is the equivalent commit in carrot syntax:</p>
+
+
+	<p>code. e65s46<sup>^^</sup><sup></p>
+
+
+	<p><img src="./artwork/s1/treeish.png" alt="" /></p>
+
+
+	<h4>Tree Pointer</h4>
+
+
+	<p>code. e65s46</sup>{tree}</p>
+
+
+	<p>This points to the tree of that commit.  Any time you add a ^{tree} to any commit-ish, it resolves to it&#8217;s tree.</p>
+
+
+	<h4>Blob Spec</h4>
+
+
+	<p>code. master:/path/to/file</p>
+
+
+	<p>This is very helpful for referring to a blob under a particular commit or tree.</p>
 
 
 	<h2>Working Directory</h2>
@@ -618,7 +687,10 @@ for more information on what you can do with hooks.</p>
 	<p>This is something that developers from the Subversion world have a hard time understanding and tends to scare them mightily.  If you check out a different branch, git will basically make your working directory look like that branch, removing any checked in content that is currently in your working directory that is not in the new tree.</p>
 
 
-	<p>Most long time Subversion users don&#8217;t like to see content automatically removed from their directories, but that&#8217;s one of the shifts you&#8217;ll need to make.  Your working directory is temporary &#8211; everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes.</p>
+	<p>note. the files in your working directory are temporary, they are not your repository!</p>
+
+
+	<p>Most long time Subversion users don&#8217;t like to see content automatically removed from their directories, but that&#8217;s one of the mental shifts you&#8217;ll need to make.  Your working directory is temporary &#8211; everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes.</p>
 
 
 	<h2>The Index</h2>
@@ -632,6 +704,55 @@ for more information on what you can do with hooks.</p>
 		<li>staging changes</li>
 		<li>generating commits</li>
 	</ul>
+
+
+	<h2>Non-SCM Uses of Git</h2>
+
+
+	<p>I keep saying that Git is primarily a content tracking system with an <span class="caps">SCM</span> tools built on top of it.  So, if it&#8217;s not built specifically to be an <span class="caps">SCM</span>, perhaps it would be useful to see some other examples of things it might be good for.</p>
+
+
+	<p>(uses for slowly changing distributed trees)</p>
+
+
+	<h3>Peer to Peer Content Distribution Network</h3>
+
+
+	<p>Imagine you have a network of &#8230;</p>
+
+
+	<p>http://gittorrent.utsl.gen.nz/rfc.html</p>
+
+
+	<h3>Distributed Document Oriented Database</h3>
+
+
+	<p>replication, search w/grep, no history loss</p>
+
+
+	<h4>Distributed Wiki</h4>
+
+
+	<p>(offline writing)
+Branches, merges &#8211; distributed, adhoc documentation, book writing
+(git-wiki)</p>
+
+
+	<h4>Distributed Issue Tracker</h4>
+
+
+	<p>(offline working on tickets)
+(http://www.distract.wellquite.org/ Monotone)
+(http://bugseverywhere.org/be/show/HomePage)</p>
+
+
+	<h3>Backup Tool</h3>
+
+
+	<p>Let&#8217;s say you want to build something like a distributed Time-Machine (Apple all rights reserved).</p>
+
+
+	<p>(http://eigenclass.org/hiki/gibak-backup-system-introduction)</p>
 
 
 	<h1>Section 2 &#8211; Using Git</h1>

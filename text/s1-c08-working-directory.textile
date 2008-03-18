@@ -4,4 +4,6 @@ The working directory is the checkout of the current branch you are working on. 
 
 This is something that developers from the Subversion world have a hard time understanding and tends to scare them mightily.  If you check out a different branch, git will basically make your working directory look like that branch, removing any checked in content that is currently in your working directory that is not in the new tree.
 
-Most long time Subversion users don't like to see content automatically removed from their directories, but that's one of the shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 
+note. the files in your working directory are temporary, they are not your repository!
+
+Most long time Subversion users don't like to see content automatically removed from their directories, but that's one of the mental shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 

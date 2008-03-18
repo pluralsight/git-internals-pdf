@@ -310,6 +310,13 @@ For instance, if we wanted the first tree, we could look for the parent of the p
 
 So, to keep all the information and history on the three versions of this tree, git stores 16 immutable, signed, compressed objects.
 
+h3. Traversal
+
+So, what do all the arrows in these illustrations really mean?  How does Git actually retrieve these objects in practice?  Well, it gets the initial SHA of the starting commit object by looking in the _.git/refs_ directory for the branch, tag or remote you specify.  Then it traverses the objects by walking the trees one by one, checking out the blobs under the names listed.
+
+!../artwork/s1/traversing-git-objects.png!
+
+
 h3. Branching and Merging
 
 Now, let's see how git handles branching, fetching and merging operations, data-wise.
@@ -380,7 +387,7 @@ At this point, instead of merging two more times like we did originally, we reba
 
 !../artwork/s1/rebase6.png!
 
-And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we merged instead.
+And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we had merged instead.
 
 !../artwork/s1/rebase7-final.png!
 
@@ -389,24 +396,71 @@ note. You should remember to only do this on local branches before you push or o
 
 h2. The Treeish
 
+Besides branch heads, there are a number of shorthand ways to refer to particular objects in the Git data store.  These are often referred to as a _treeish_.  Any Git command that takes an object - be it a commit, tree or blob - as an argument can take one of these shorthand versions as well.
 
-* full sha - dae86e1950b1277e545cee180551750029cfe735
-* partial sha - dae86e
-* branch/tag name - master
-* date spec - master@{yesterday}
-** the value of master yesterday
-* ordinal spec - master@{5}
-** 5th prior value of master
-* carrot parent - e65s46^^2
-** second parent of commit
-* tilde spec - e65s46~5 (e65s46^^^^^^^^^^)
-** 5th generation grandparent of commit
-* tree pointer - e65s46^^{tree}
-** blob spec - master:/path/to/file
+I will list here the most common, but please read the 
+"rev-parse command":http://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html
+for full descriptions of all the available syntaxes.
 
-$ git log --walk-reflogs master # show reflog entries for master
+h4. Full SHA
 
-!../artwork/s1/traversing-git-objects.png!
+code. dae86e1950b1277e545cee180551750029cfe735
+
+You can always list out the entire SHA1 value of the object to reference it.  This is sometimes easy if you're copying and pasting values from a tree listing or some other command.
+
+h4. Partial SHA 
+
+code. dae86e 
+
+Just about anything you can reference with the full SHA can be referenced fine with the first 6 or 7 characters.  Even though the SHA is always 40 characters long, it's very uncommon for more than the first few to actually be the same.  Git is smart enough to figure out a partial SHA as long as it's unique.
+
+h4. Branch or Tag Name
+
+code. master
+
+Anything in _.git/refs/heads_ or _.git/refs/tags_ can be used to refer to the commit it points to.
+
+h4. Date Spec 
+
+code. master@{yesterday}
+ master@{1 month ago}
+
+This example would refer to the value of that branch yesterday.  Git will go through the commit parents until it found one that matched that date. 
+
+h4. Ordinal Spec
+
+code. master@{5}
+
+This indicates the 5th prior value of the master branch.  Like the _Date Spec_, this depends on special files in the _.git/log_ directory that are written during commits.
+
+h4. Carrot Parent
+
+code. e65s46^2
+ master^2
+
+This refers to the Nth parent of that commit.  This is only really helpful for commits that merged two or more commits - it is how you can refer to a commit other than the first parent.
+
+h4. Tilde Spec
+
+code. e65s46~5 
+
+The tilde character, followed by a number, refers to the Nth generation grandparent of that commit.  To clarify from the carrot, this is the equivalent commit in carrot syntax:
+
+code. e65s46^^^^^
+
+!../artwork/s1/treeish.png!
+
+h4. Tree Pointer
+
+code. e65s46^{tree}
+
+This points to the tree of that commit.  Any time you add a ^{tree} to any commit-ish, it resolves to it's tree.
+
+h4. Blob Spec
+
+code. master:/path/to/file
+
+This is very helpful for referring to a blob under a particular commit or tree.
 
 h2. Working Directory
 
@@ -414,7 +468,9 @@ The working directory is the checkout of the current branch you are working on. 
 
 This is something that developers from the Subversion world have a hard time understanding and tends to scare them mightily.  If you check out a different branch, git will basically make your working directory look like that branch, removing any checked in content that is currently in your working directory that is not in the new tree.
 
-Most long time Subversion users don't like to see content automatically removed from their directories, but that's one of the shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 
+note. the files in your working directory are temporary, they are not your repository!
+
+Most long time Subversion users don't like to see content automatically removed from their directories, but that's one of the mental shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 
 
 h2. The Index    
 
@@ -423,6 +479,46 @@ The index was called the cache for a while, because that's largely what it does.
 * keeping track of the state of working directory files
 * staging changes
 * generating commits
+
+h2. Non-SCM Uses of Git
+
+I keep saying that Git is primarily a content tracking system with an SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.
+
+(uses for slowly changing distributed trees)
+
+
+h3. Peer to Peer Content Distribution Network
+
+Imagine you have a network of ...
+
+http://gittorrent.utsl.gen.nz/rfc.html
+
+
+
+h3. Distributed Document Oriented Database
+
+replication, search w/grep, no history loss
+
+
+h4. Distributed Wiki
+
+(offline writing)
+Branches, merges - distributed, adhoc documentation, book writing
+(git-wiki)
+
+
+h4. Distributed Issue Tracker
+
+(offline working on tickets)
+(http://www.distract.wellquite.org/ Monotone)
+(http://bugseverywhere.org/be/show/HomePage)
+
+
+h3. Backup Tool
+
+Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved).
+
+(http://eigenclass.org/hiki/gibak-backup-system-introduction)
 
 h1. Section 2 - Using Git
 
