@@ -1,0 +1,4 @@
+tmp/*
+log/*
+config/database.yml
+config/environments/production.rb

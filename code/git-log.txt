@@ -1,0 +1,24 @@
+$> git log
+commit cf25cc3bfb0ece7dc3609b8dc0cc4a1e19ffbcd4
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Mon Mar 17 21:52:20 2008 -0700
+
+    committing all changes
+
+commit 0c8a9ec46029a4e92a428cb98c9693f09f69a3ff
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the verison number
+
+commit 0576fac355dd17e39fd2671b010e36299f713b4d
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    my second commit, which is better than the first
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit

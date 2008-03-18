@@ -524,32 +524,93 @@ h1. Section 2 - Using Git
 
 Now that you understand what Git does at a fundamental level - how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let's see how to actually use it.
 
-h2. The SCM (the porcelain)
-
-history of toolkit design and reluctance of full SCM
-Cogito and it's death
-
 h2. Getting a Git Repository
 
-git clone
+There are two major ways you will get a Git repository - you will either clone an existing project, or you will initialize a new one.
+
+h3. New Repositories
+
+To create a new Git repository somewhere, simply go to the directory you want to add to version control and type
+
+shell. git init
+
+This will create a _.git_ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type
+
+shell. git add .
+  git commit -m 'my first commit'
+
+This will add all of your current files into your new repository and index and then create your first commit object, pointing your new 'master' branch to it.  Congratulations, you have now added your source code to Git.
+
+("git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html,
+"git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html, 
+"git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html)
+
+h3. Cloning a Repository
+
+Many times you will be cloning a repository, however.  This means that you are creating a complete copy of another repo, including all of it's history and published branches. 
+
+In order to do this, you simply need a URL that has a git repository hosted there, which can be over _http_, _https_, _ssh_ or the special _git_ protocol. We will use the public hosted repository of the simple library I mentioned at the beginning of the book.
+
+shell. git clone git://github.com/schacon/simplegit.git
+
+This will by default create a new directory called 'simplegit' and do an initial checkout of the 'master' branch.  If you want to put it in a different directory, you can specify that on the command line, too.
+
+shell. git clone git://github.com/schacon/simplegit.git my_directory
+
+
+("git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html)
 
 h2. Normal Workflow Examples
 
-h3. Initializing
+Now that we have our repository, let's go through some normal workflow examples of a single person developing.
 
-init, .gitignore
+h3. Ignoring
+
+First off, we will often want Git to automatically ignore certain files - often ones that are automatically generated during our development.  For example, in Rails development we often want to ignore the log files, the production specific configuration files, etc. To do this, we can add patterns into the _.gitignore_ file to tell Git that we don't want it to track them.
+
+Here is an example _.gitignore_ file.
+
+code. gitignore.txt
+
+("gitignore":http://www.kernel.org/pub/software/scm/git/docs/gitignore.html)
 
 h3. Adding and Committing
 
-add, commit (-a -v -m)
+Now we'll do some development and periodically commit our changes.  We have a few options here - we can commit individual files or we can tell the _commit_ command to automatically add all modified files in our working directory to the commit.
 
-h3. Status
+A good way to find out what you're about to commit is to use the 'status' command.
 
-status, ls-files
+shell. git-status.txt
 
-showing the index and working tree
+In this example, I can see that I've modified three files in my tree, but none of them have been added to the index yet - they are not staged and ready to be committed.  If I want to make these changes in two seperate commits, or I have completed work on some of them and would like to push that out, I can specify which files to add individually and then commit.
+
+shell. git-add-status.txt
+
+You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.
+
+If we want to commit all our changes, we can use this shorthand:
+
+shell. $> git commit -a -m 'committing all changes'
+
+If you would like to give a more useful commit message, you can leave out the '-m' option.  That will fire up your $EDITOR to add your commit message.
+
+note. Give special care to the first line of your commit message - it will often be the only thing people see when they are looking through your commit history.
+
+Now we can continue this loop - modifying, adding and committing - during our development.
+
+("git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html)
 
 h2. Log - the Commit History
+
+So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?
+
+The answer is the very powerful _git log_ command.  The 'log' command will show you your commit history
+
+code. git-log.txt
+
+code. git-log-oneline.txt
+
+("git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html)
 
 h2. Browsing Git
 

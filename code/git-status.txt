@@ -1,0 +1,10 @@
+$> git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#       modified:   README
+#       modified:   Rakefile
+#       modified:   lib/simplegit.rb
+#
+no changes added to commit (use "git add" and/or "git commit -a")

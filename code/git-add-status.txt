@@ -1,0 +1,14 @@
+$> git add Rakefile
+$> git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Rakefile
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#       modified:   README
+#       modified:   lib/simplegit.rb
+#

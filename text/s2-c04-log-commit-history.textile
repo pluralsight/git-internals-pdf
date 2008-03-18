@@ -1,1 +1,11 @@
 h2. Log - the Commit History
+
+So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?
+
+The answer is the very powerful _git log_ command.  The 'log' command will show you your commit history
+
+code. git-log.txt
+
+code. git-log-oneline.txt
+
+("git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html)

@@ -761,44 +761,133 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<p>Now that you understand what Git does at a fundamental level &#8211; how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let&#8217;s see how to actually use it.</p>
 
 
-	<h2>The <span class="caps">SCM</span> (the porcelain)</h2>
-
-
-	<p>history of toolkit design and reluctance of full <span class="caps">SCM</span>
-Cogito and it&#8217;s death</p>
-
-
 	<h2>Getting a Git Repository</h2>
 
 
-	<p>git clone</p>
+	<p>There are two major ways you will get a Git repository &#8211; you will either clone an existing project, or you will initialize a new one.</p>
+
+
+	<h3>New Repositories</h3>
+
+
+	<p>To create a new Git repository somewhere, simply go to the directory you want to add to version control and type</p>
+
+
+	<p>shell. git init</p>
+
+
+	<p>This will create a <em>.git</em> directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type</p>
+
+
+	<p>shell. git add .
+  git commit -m &#8216;my first commit&#8217;</p>
+
+
+	<p>This will add all of your current files into your new repository and index and then create your first commit object, pointing your new &#8216;master&#8217; branch to it.  Congratulations, you have now added your source code to Git.</p>
+
+
+	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-init.html">git init</a>,
+<a href="http://www.kernel.org/pub/software/scm/git/docs/git-commit.html">git commit</a>, 
+<a href="http://www.kernel.org/pub/software/scm/git/docs/git-add.html">git add</a>)</p>
+
+
+	<h3>Cloning a Repository</h3>
+
+
+	<p>Many times you will be cloning a repository, however.  This means that you are creating a complete copy of another repo, including all of it&#8217;s history and published branches.</p>
+
+
+	<p>In order to do this, you simply need a <span class="caps">URL</span> that has a git repository hosted there, which can be over <em>http</em>, <em>https</em>, <em>ssh</em> or the special <em>git</em> protocol. We will use the public hosted repository of the simple library I mentioned at the beginning of the book.</p>
+
+
+	<p>shell. git clone git://github.com/schacon/simplegit.git</p>
+
+
+	<p>This will by default create a new directory called &#8216;simplegit&#8217; and do an initial checkout of the &#8216;master&#8217; branch.  If you want to put it in a different directory, you can specify that on the command line, too.</p>
+
+
+	<p>shell. git clone git://github.com/schacon/simplegit.git my_directory</p>
+
+
+	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-clone.html">git clone</a>)</p>
 
 
 	<h2>Normal Workflow Examples</h2>
 
 
-	<h3>Initializing</h3>
+	<p>Now that we have our repository, let&#8217;s go through some normal workflow examples of a single person developing.</p>
 
 
-	<p>init, .gitignore</p>
+	<h3>Ignoring</h3>
+
+
+	<p>First off, we will often want Git to automatically ignore certain files &#8211; often ones that are automatically generated during our development.  For example, in Rails development we often want to ignore the log files, the production specific configuration files, etc. To do this, we can add patterns into the <em>.gitignore</em> file to tell Git that we don&#8217;t want it to track them.</p>
+
+
+	<p>Here is an example <em>.gitignore</em> file.</p>
+
+
+	<p>code. gitignore.txt</p>
+
+
+	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html">gitignore</a>)</p>
 
 
 	<h3>Adding and Committing</h3>
 
 
-	<p>add, commit (-a -v -m)</p>
+	<p>Now we&#8217;ll do some development and periodically commit our changes.  We have a few options here &#8211; we can commit individual files or we can tell the <em>commit</em> command to automatically add all modified files in our working directory to the commit.</p>
 
 
-	<h3>Status</h3>
+	<p>A good way to find out what you&#8217;re about to commit is to use the &#8216;status&#8217; command.</p>
 
 
-	<p>status, ls-files</p>
+	<p>shell. git-status.txt</p>
 
 
-	<p>showing the index and working tree</p>
+	<p>In this example, I can see that I&#8217;ve modified three files in my tree, but none of them have been added to the index yet &#8211; they are not staged and ready to be committed.  If I want to make these changes in two seperate commits, or I have completed work on some of them and would like to push that out, I can specify which files to add individually and then commit.</p>
+
+
+	<p>shell. git-add-status.txt</p>
+
+
+	<p>You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.</p>
+
+
+	<p>If we want to commit all our changes, we can use this shorthand:</p>
+
+
+	<p>shell. $&gt; git commit -a -m &#8216;committing all changes&#8217;</p>
+
+
+	<p>If you would like to give a more useful commit message, you can leave out the &#8216;-m&#8217; option.  That will fire up your $EDITOR to add your commit message.</p>
+
+
+	<p>note. Give special care to the first line of your commit message &#8211; it will often be the only thing people see when they are looking through your commit history.</p>
+
+
+	<p>Now we can continue this loop &#8211; modifying, adding and committing &#8211; during our development.</p>
+
+
+	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-status.html">git status</a>)</p>
 
 
 	<h2>Log &#8211; the Commit History</h2>
+
+
+	<p>So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?</p>
+
+
+	<p>The answer is the very powerful <em>git log</em> command.  The &#8216;log&#8217; command will show you your commit history</p>
+
+
+	<p>code. git-log.txt</p>
+
+
+	<p>code. git-log-oneline.txt</p>
+
+
+	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a>)</p>
 
 
 	<h2>Browsing Git</h2>
