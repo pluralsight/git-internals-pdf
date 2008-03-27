@@ -1,0 +1,6 @@
+text/*.*~
+sidebars/*.*~
+output/*
+.DS_Store
+code/**/*.*~
+.*~
