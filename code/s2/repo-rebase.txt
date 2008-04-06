@@ -1,0 +1,12 @@
+# Rebasing c110d7f..c4f10f2 onto c110d7f
+#
+# Commands:
+#  pick = use commit
+#  edit = use commit, but stop for amending
+#  squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+pick 2b6ae91 added git.add() function
+pick bdfd292 made ls-tree recursive
+pick c4f10f2 added verbose option to add()

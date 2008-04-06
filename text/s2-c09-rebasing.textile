@@ -36,11 +36,31 @@ h3. Interactive Rebasing
 
 Much like Git provides a nicer way to work with your index before committing with 'git add --interactive', there is an interactive rebasing option that can only be described as the "bee's knees".
 
+Assume we have started working on a story to add the 'git add' functionality to our library and so we've started a new branch called 'story92' and done the work there.  Then we decide that the 'ls-tree' function needs to be recursive and make that change, then we tweak the library again, committing each time. Meanwhile we've pulled in a change that implements the same 'ls-tree' change differently into our 'master' branch.  
 
+!../artwork/s2/repo-rebasei1.png!
 
+We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don't even really want to merge it, I just want to throw my change away.  Also, I don't really need the other two commits to be two commits, because the second one is just a tweak and could be squashed into the first one.  Lets use 'git rebase -i' to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:
 
-h3. Resetting Your Branch
+.code s2/repo-rebase.txt
 
+Now we can see all of the commits that we are going to rebase.  If we remove the 'made ls-tree recursive' line, it effectively ditches that commit so we'll avoid a conflict and not have to worry about it.  Changing the action on the last line to 'squash' tells git to just make this and the previous commit into a single commit.  So if we exit the editor with this as the new text:
+
+.code s2/repo-rebase2.txt
+
+Then git sees we have squashed two commits and wants us to pick a commit message for it, giving us the commit messages of both for us to create a new one for.
+
+.code s2/repo-rebase3.txt
+
+So we stick with the first message, save and exit the editor.
+
+.shell s2/repo-rebase4.txt
+
+Now we've rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we've just added a single commit with no resolving neccesary:
+
+!../artwork/s2/repo-rebasei2.png!
+
+The rebase command is one of the most useful and unique in the git workflow.  To learn more about some spiffy things you can do with it, check out the [History Manipulation] and [Advanced Merging] sections.
 
 * "git rebase":http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
 * "git reset":http://www.kernel.org/pub/software/scm/git/docs/git-reset.html

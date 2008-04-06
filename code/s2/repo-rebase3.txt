@@ -1,0 +1,17 @@
+# This is a combination of two commits.
+# The first commit's message is:
+
+added git.add() function
+
+# This is the 2nd commit message:
+
+added verbose option to add() function
+
+# Please enter the commit message for your changes.
+# (Comment lines starting with '#' will not be included)
+# Not currently on any branch.
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   lib/simplegit.rb
+#

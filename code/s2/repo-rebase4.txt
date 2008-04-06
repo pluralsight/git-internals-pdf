@@ -1,0 +1,4 @@
+$>git rebase -i master
+Created commit 8341085: added git.add() function
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+Successfully rebased and updated refs/heads/story92.

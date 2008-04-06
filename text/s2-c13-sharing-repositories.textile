@@ -1,13 +1,29 @@
 h2. Sharing Repositories
 
-h3. Over SSH
-
-git clone --bare; scp
-
 h3. Over Git
 
-git daemon --detach
+Git provides it's own special protocol, which is basically just a really thin wrapper over the 'git-upload-pack' command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up, run something like the following command:
+
+.shell $> git daemon --detach
+
+The git protocol has no built in authentication, so generally you cannot push over it (although some people have open push policies and so allow that - I would not recommend setting that up, so you'll have to look up how to do that).  If you want your users to have push access, it's recommended to use the ssh protocol.  Many repositories, like GitHub, have ssh enabled for account owners to push over, and git enabled for the public to pull over - which is often the most efficient combination.
+
+* "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html
+
+h3. Over SSH
+
+Git can work entirely over SSH - it actually does much the same thing that happens over the git protocol, except it implicitly has authentication built in, so if the user they are ssh'ing in as has access to write to the repo, then that user can push over ssh as well.
+
+.shell $> git clone --bare; scp
 
 h3. Over Http
 
-git update-server-info
+this is pretty easy to setup because there is no requirement other than a static web server - it is not like SVN which requires a DAV server to run.  If you want to push over http, however, you will need DAV setup - it's generally a much better idea to use ssh to do so, however.
+
+The only caveat is that you need to run 'git update-server-info' each time you commit to the repository.
+
+.shell $> git update-server-info
+
+It is generally a good idea to put this in the 
+
+.sidebar actually, you can run this without update-server-info if you never pack objects and you have a pre-defined list of branches you are always fetching.  All that update-server-info does is put a list of branches into one file (.git/info/refs) and a list of pack files into another (.git/objects/info/pack) to get around the fact that you cannot reliably list contents of a directory over http - it's not built into the protocol. So for git to know what packfiles and branches are available, it needs to have one url it can get those from.

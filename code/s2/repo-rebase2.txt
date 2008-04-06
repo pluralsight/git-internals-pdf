@@ -1,0 +1,2 @@
+pick 2b6ae91 added git.add() function
+squash c4f10f2 added verbose option to add() function

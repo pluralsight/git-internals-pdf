@@ -611,6 +611,9 @@ for more information on what you can do with hooks.</p>
 	<p>Working with others is unbelievably easy. You ask in an <span class="caps">IRC</span> room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the <span class="caps">URL</span> of their public git repo for that project.  You add it as a remote, fetch it, create a new &#8216;merge-feature&#8217; branch off your &#8216;development&#8217; branch, merge in the new changes and you&#8217;re done.  No emailing patches around and applying them &#8211; just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the &#8216;merge-feature&#8217; branch and that&#8217;s it.</p>
 
 
+	<p><img src="./artwork/s1/branching.png" alt="" /></p>
+
+
 	<p>You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.</p>
 
 
@@ -1206,9 +1209,31 @@ $&gt;git commit -m &#8216;fixed conflict&#8217;
 Created commit 47c668a: fixed conflict</p>
 
 
+	<h3>Undoing a Merge</h3>
+
+
+	<p>Assume we have gone through some massive merge because someone on your team hasn&#8217;t commited in a while, or you have a branch that was created some time ago but hasn&#8217;t been rebasing and you want to pull it in.  So you try to &#8216;git merge old_branch&#8217; it and you get conflict after conflict and it is just too much trouble to deal with and you just want to undo it all.</p>
+
+
+	<p>This is where &#8216;git reset&#8217; comes in.  To reset your working directory and index back to what it was before you tried the merge, simply run:</p>
+
+
+	<p>.shell $&gt;git reset&#8212;hard <span class="caps">HEAD</span></p>
+
+
+	<p>The &#8216;&#8212;hard&#8217; makes sure both your index file and working directory are changed to match what it used it be. By default it will only reset your index, leaving the partially merged files in your working directory.  If you happen to have worked through it all and committed, then decided that it was a mistake because all of your tests break or something, you can still go back (and throw away that commit) by running:</p>
+
+
+	<p>.shell $&gt;git reset&#8212;hard <span class="caps">ORIG</span>_HEAD</p>
+
+
+	<p>This is only helpful if you want to undo the latest change or changes.  If you happen to commit again then decide that you want to keep the latest commit, but undo a commit that was added sometime before that, you&#8217;ll need to use &#8216;git revert&#8217;, which is covered in [History Manipulation]</p>
+
+
 	<ul>
 	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-branch.html">git branch</a></li>
 		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-merge.html">git merge</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-reset.html">git reset</a></li>
 	</ul>
 
 
@@ -1254,7 +1279,7 @@ Created commit 47c668a: fixed conflict</p>
 	<p><img src="./artwork/s2/repo3.png" alt="" /></p>
 
 
-	<p>Then all we have to do is switch to the master branch and merge story84 to get this:</p>
+	<p>Then all we have to do is switch to the master branch and merge &#8216;story84&#8217; to get this:</p>
 
 
 	<p><img src="./artwork/s2/repo4.png" alt="" /></p>
@@ -1263,10 +1288,46 @@ Created commit 47c668a: fixed conflict</p>
 	<h3>Interactive Rebasing</h3>
 
 
-	<p>Like git provides a nicer way to work with your index before committing with &#8216;git add&#8212;interactive&#8217;, there is an interactive rebasing option.</p>
+	<p>Much like Git provides a nicer way to work with your index before committing with &#8216;git add&#8212;interactive&#8217;, there is an interactive rebasing option that can only be described as the &#8220;bee&#8217;s knees&#8221;.</p>
 
 
-	<h3>Resetting Your Branch</h3>
+	<p>Assume we have started working on a story to add the &#8216;git add&#8217; functionality to our library and so we&#8217;ve started a new branch called &#8216;story92&#8217; and done the work there.  Then we decide that the &#8216;ls-tree&#8217; function needs to be recursive and make that change, then we tweak the library again, committing each time. Meanwhile we&#8217;ve pulled in a change that implements the same &#8216;ls-tree&#8217; change differently into our &#8216;master&#8217; branch.</p>
+
+
+	<p><img src="./artwork/s2/repo-rebasei1.png" alt="" /></p>
+
+
+	<p>We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don&#8217;t even really want to merge it, I just want to throw my change away.  Also, I don&#8217;t really need the other two commits to be two commits, because the second one is just a tweak and could be squashed into the first one.  Lets use &#8216;git rebase -i&#8217; to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:</p>
+
+
+	<p>.code s2/repo-rebase.txt</p>
+
+
+	<p>Now we can see all of the commits that we are going to rebase.  If we remove the &#8216;made ls-tree recursive&#8217; line, it effectively ditches that commit so we&#8217;ll avoid a conflict and not have to worry about it.  Changing the action on the last line to &#8216;squash&#8217; tells git to just make this and the previous commit into a single commit.  So if we exit the editor with this as the new text:</p>
+
+
+	<p>.code s2/repo-rebase2.txt</p>
+
+
+	<p>Then git sees we have squashed two commits and wants us to pick a commit message for it, giving us the commit messages of both for us to create a new one for.</p>
+
+
+	<p>.code s2/repo-rebase3.txt</p>
+
+
+	<p>So we stick with the first message, save and exit the editor.</p>
+
+
+	<p>.shell s2/repo-rebase4.txt</p>
+
+
+	<p>Now we&#8217;ve rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we&#8217;ve just added a single commit with no resolving neccesary:</p>
+
+
+	<p><img src="./artwork/s2/repo-rebasei2.png" alt="" /></p>
+
+
+	<p>The rebase command is one of the most useful and unique in the git workflow.  To learn more about some spiffy things you can do with it, check out the [History Manipulation] and [Advanced Merging] sections.</p>
 
 
 	<ul>
@@ -1278,7 +1339,13 @@ Created commit 47c668a: fixed conflict</p>
 	<h2>Distributed Workflow Examples</h2>
 
 
+	<p>Now we&#8217;ve gone over most of the basic commands that you&#8217;ll use on a day to day basis as a single developer.  This chapter covers some examples of what you will use in order to collaborate with other developers on a code base.</p>
+
+
 	<h3>Cloning</h3>
+
+
+	<p>If you want to begin working on an existing project, you will need to get an initial version of it &#8211; copy it&#8217;s repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including http, https, ssh, it&#8217;s own &#8216;git&#8217; protocol, and rsync.  The &#8216;git&#8217; protocol and &#8216;ssh&#8217; are preferred because they are more efficient and not difficult to set up.</p>
 
 
 	<h3>Fetching, Pulling (tracking branches)</h3>
@@ -1299,25 +1366,54 @@ Created commit 47c668a: fixed conflict</p>
 	<h2>Sharing Repositories</h2>
 
 
-	<h3>Over <span class="caps">SSH</span></h3>
-
-
-	<p>git clone&#8212;bare; scp</p>
-
-
 	<h3>Over Git</h3>
 
 
-	<p>git daemon&#8212;detach</p>
+	<p>Git provides it&#8217;s own special protocol, which is basically just a really thin wrapper over the &#8216;git-upload-pack&#8217; command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up, run something like the following command:</p>
+
+
+	<p>.shell $&gt; git daemon&#8212;detach</p>
+
+
+	<p>The git protocol has no built in authentication, so generally you cannot push over it (although some people have open push policies and so allow that &#8211; I would not recommend setting that up, so you&#8217;ll have to look up how to do that).  If you want your users to have push access, it&#8217;s recommended to use the ssh protocol.  Many repositories, like GitHub, have ssh enabled for account owners to push over, and git enabled for the public to pull over &#8211; which is often the most efficient combination.</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html">git-daemon</a></li>
+	</ul>
+
+
+	<h3>Over <span class="caps">SSH</span></h3>
+
+
+	<p>Git can work entirely over <span class="caps">SSH</span> &#8211; it actually does much the same thing that happens over the git protocol, except it implicitly has authentication built in, so if the user they are ssh&#8217;ing in as has access to write to the repo, then that user can push over ssh as well.</p>
+
+
+	<p>.shell $&gt; git clone&#8212;bare; scp</p>
 
 
 	<h3>Over Http</h3>
 
 
-	<p>git update-server-info</p>
+	<p>this is pretty easy to setup because there is no requirement other than a static web server &#8211; it is not like <span class="caps">SVN</span> which requires a <span class="caps">DAV</span> server to run.  If you want to push over http, however, you will need <span class="caps">DAV</span> setup &#8211; it&#8217;s generally a much better idea to use ssh to do so, however.</p>
 
 
-	<h4>GitHub</h4>
+	<p>The only caveat is that you need to run &#8216;git update-server-info&#8217; each time you commit to the repository.</p>
+
+
+	<p>.shell $&gt; git update-server-info</p>
+
+
+	<p>It is generally a good idea to put this in the</p>
+
+
+	<p>.sidebar actually, you can run this without update-server-info if you never pack objects and you have a pre-defined list of branches you are always fetching.  All that update-server-info does is put a list of branches into one file (.git/info/refs) and a list of pack files into another (.git/objects/info/pack) to get around the fact that you cannot reliably list contents of a directory over http &#8211; it&#8217;s not built into the protocol. So for git to know what packfiles and branches are available, it needs to have one url it can get those from.</p>
+
+
+	<h4>Hosted Repositories</h4>
+
+
+	<h3>GitHub</h3>
 
 
 	<h1>Section 3 &#8211; Git and Other Systems</h1>
@@ -1397,6 +1493,9 @@ Created commit 47c668a: fixed conflict</p>
 
 
 	<p>splitting commits in interactive mode</p>
+
+
+	<p>http://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html</p>
 
 
 	<p>http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html</p>

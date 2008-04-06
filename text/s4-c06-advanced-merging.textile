@@ -1,5 +1,6 @@
 h2. Advanced Merging and Rebasing
 
+
 * merge strategies
 ** resolve
 ** recursive
@@ -8,5 +9,7 @@ h2. Advanced Merging and Rebasing
 rebase --onto
 
 splitting commits in interactive mode
+
+http://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html
 
 http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
