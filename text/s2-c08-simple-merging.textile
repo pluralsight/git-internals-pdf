@@ -1,1 +1,3 @@
 h2. Simple Merging
+
+Now we want to move it back into our 'master' branch and remove our temporary 'newfunc' branch.

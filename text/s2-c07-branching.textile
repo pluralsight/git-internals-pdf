@@ -1,6 +1,27 @@
 h2. Branching
 
-branch, checkout
+This is the fun part of Git that you'll come to love like a child. When you first initialize a git repository, or clone one, you'll get a 'master' branch by default if you don't specify something else.  This is really just a git suggestion and you don't have to use it - like just about everything in Git, it can be overridden.
+
+h3. Switching Branches
+
+However, let's say we're working on our project and we want to add a new function to our library, so we'll make a new branch called 'newfunc' and switch to it.  There are two ways we can do this, one is to create the branch and then switch to it:
+
+.shell $>git branch newfunc; git checkout newfunc
+
+The other way is to checkout a branch that doesn't exist yet and tell git you want to create it by passing the '-b' flag:
+
+.shell $> git checkout -b newfunc
+
+Now, to check which branch we are on, we just type 'git branch':
+
+.shell git-branch.txt
+
+We can see we are now on our new branch.  This means that if we modify a file and commit it, this branch will include that change, but the 'master' branch will not have it yet.  So, we add a new method to our library and commit it.
+
+h3. Reseting Your Branch
+
+
+branch
+checkout
 reset
-git branch recovered-branch 7281251ddd
 

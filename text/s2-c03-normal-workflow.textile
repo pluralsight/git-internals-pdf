@@ -14,21 +14,25 @@ code. gitignore.txt
 
 h3. Adding and Committing
 
-Now we'll do some development and periodically commit our changes.  We have a few options here - we can commit individual files or we can tell the _commit_ command to automatically add all modified files in our working directory to the commit.
+Now we'll do some development and periodically commit our changes.  We have a few options here - we can commit individual files or we can tell the _commit_ command to automatically add all modified files in our working directory to the index, then commit it.
 
-A good way to find out what you're about to commit is to use the 'status' command.
+A good way to find out what you're about to commit (that is, what is in your index) is to use the 'status' command.
 
 shell. git-status.txt
 
-In this example, I can see that I've modified three files in my tree, but none of them have been added to the index yet - they are not staged and ready to be committed.  If I want to make these changes in two seperate commits, or I have completed work on some of them and would like to push that out, I can specify which files to add individually and then commit.
+In this example, I can see that I've modified three files in my working directory, but none of them have been added to the index yet - they are not staged and ready to be committed.  If I want to make these changes in two separate commits, or I have completed work on some of them and would like to push that out, I can specify which files to add individually and then commit.
 
 shell. git-add-status.txt
 
 You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.
 
-If we want to commit all our changes, we can use this shorthand:
+!../artwork/s2/git-add-commit.png!
+
+If we want to commit all our changes, we can use this shorthand, which will automatically run a 'git add' on every modified file to our index, then commit the whole thing:
 
 shell. $> git commit -a -m 'committing all changes'
+
+!../artwork/s2/git-commit-a.png!
 
 If you would like to give a more useful commit message, you can leave out the '-m' option.  That will fire up your $EDITOR to add your commit message.
 

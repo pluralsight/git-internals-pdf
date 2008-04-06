@@ -1,12 +1,20 @@
-h3. Branching and Merging
+h2. Branching and Merging
 
-Now, let's see how git handles branching, fetching and merging operations, data-wise.
+Here we come to one of the real strengths of Git, cheap branching.  This is a feature that truly sets it apart and will likely change the way you think about developing code once you get used to it.
 
-For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
+When you are working on code in git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the sha of the last commit for that branch.  
+
+.note Branching is just writing 40 characters to a file
+
+Switching to that branch simply means making your working directory look like the tree that sha points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (makes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
+
+Merging is also simple, compared to most SCM systems - is just merging the trees that the commits you are trying to merge are pointing to, which is much simpler than resolving a bunch of deltas.
+
+Now, let's see how git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
 !../artwork/s1/branches1.png!
 
-h4. Simple Case
+h3. Simple Case
 
 Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch, then create a few commits.
 
@@ -20,7 +28,7 @@ At this point, we show the new branch to our co-workers and everyone likes the n
 
 !../artwork/s1/branch-story3.png!
 
-h4. Remotes
+h3. Remotes
 
 Now lets take a look at remotes.  Remotes are basically other peoples branches of the same repository.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as 'origin' by default.  Which means the tree that was checked out during your initial clone would be referenced as 'origin/master', which means 'the master branch of the origin remote'. 
 
@@ -38,7 +46,7 @@ We look at the 'idea' branch and like where they're going with it, but we also w
 
 Now we can run our tests and merge back into our master branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
 
-h4. Rebasing
+h3. Rebasing
 
 Let's say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote 'jen', do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)
 
@@ -74,3 +82,20 @@ And finally, we are left with a commit history that looks like Figure 1, rather 
 
 
 note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to - if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.
+
+h3. Use Cases
+
+So why is this helpful, exactly?  It means that you can keep your development cycles loosely coupled.  Here is an example of a common workflow with cheap branches.  
+
+You have a 'master' branch that is _always_ stable - you never merge anything into it that you wouldn't put into production. Then you have a 'development' branch that you merge any experimental code into before you imagine pulling it into the 'master' branch.  
+
+You create a new branch each time you begin to work on a story or feature, branching it off your current 'development' branch each time, so if you get blocked and need to put it on hold, it doesn't effect anything else.  When you do get back to them, you rebase them to the current 'development' and it's just like you started from there.  Often times you merge the branch back into 'development' and delete it the same day that you created it.  
+
+If you get a huge project or idea - say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.
+
+Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
+
+You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.
+
+
+

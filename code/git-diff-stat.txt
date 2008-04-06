@@ -1,0 +1,10 @@
+$>git diff --numstat a11bef06a3f65..cf25cc3bfb0
+3       1       README
+1       1       Rakefile
+4       5       lib/simplegit.rb
+
+$>git diff --stat 0576fac35..
+ README           |    4 +++-
+ Rakefile         |    2 +-
+ lib/simplegit.rb |    4 ++++
+ 3 files changed, 8 insertions(+), 2 deletions(-)

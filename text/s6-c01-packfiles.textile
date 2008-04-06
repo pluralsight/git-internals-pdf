@@ -1,0 +1,8 @@
+h2. Packfiles
+
+h3. What is a packfile and when are they created?
+
+h3. Packfile format
+
+h3. How does Git actually create a packfile?
+

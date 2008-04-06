@@ -467,19 +467,31 @@ for more information on what you can do with hooks.</p>
 	<p><img src="./artwork/s1/traversing-git-objects.png" alt="" /></p>
 
 
-	<h3>Branching and Merging</h3>
+	<h2>Branching and Merging</h2>
 
 
-	<p>Now, let&#8217;s see how git handles branching, fetching and merging operations, data-wise.</p>
+	<p>Here we come to one of the real strengths of Git, cheap branching.  This is a feature that truly sets it apart and will likely change the way you think about developing code once you get used to it.</p>
 
 
-	<p>For the following illustrations, we will represent the entire tree and the commit it points to as a single object.</p>
+	<p>When you are working on code in git, storing trees in any state and keeping pointers to them is very simple, as we&#8217;ve seen.  In fact, in Git the act of creating a new branch is simply writing a file in the &#8217;.git/refs/heads&#8217; directory that has the sha of the last commit for that branch.</p>
+
+
+	<p>.note Branching is just writing 40 characters to a file</p>
+
+
+	<p>Switching to that branch simply means making your working directory look like the tree that sha points to and updating the <span class="caps">HEAD</span> file so each commit from that point on moves that branch pointer forward (makes the 40 characters in &#8217;.git/refs/heads/[current_branch_name]&#8217; be the <span class="caps">SHA</span> of your last commit).</p>
+
+
+	<p>Merging is also simple, compared to most <span class="caps">SCM</span> systems &#8211; is just merging the trees that the commits you are trying to merge are pointing to, which is much simpler than resolving a bunch of deltas.</p>
+
+
+	<p>Now, let&#8217;s see how git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object.</p>
 
 
 	<p><img src="./artwork/s1/branches1.png" alt="" /></p>
 
 
-	<h4>Simple Case</h4>
+	<h3>Simple Case</h3>
 
 
 	<p>Let&#8217;s say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called &#8216;experiment&#8217; off of our main branch, which is by convention called &#8216;master&#8217;.  We then switch to the new branch, then create a few commits.</p>
@@ -500,7 +512,7 @@ for more information on what you can do with hooks.</p>
 	<p><img src="./artwork/s1/branch-story3.png" alt="" /></p>
 
 
-	<h4>Remotes</h4>
+	<h3>Remotes</h3>
 
 
 	<p>Now lets take a look at remotes.  Remotes are basically other peoples branches of the same repository.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as &#8216;origin&#8217; by default.  Which means the tree that was checked out during your initial clone would be referenced as &#8216;origin/master&#8217;, which means &#8216;the master branch of the origin remote&#8217;.</p>
@@ -527,7 +539,7 @@ for more information on what you can do with hooks.</p>
 	<p>Now we can run our tests and merge back into our master branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we&#8217;ve merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that &#8220;patch&#8221;.</p>
 
 
-	<h4>Rebasing</h4>
+	<h3>Rebasing</h3>
 
 
 	<p>Let&#8217;s say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote &#8216;jen&#8217;, do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)</p>
@@ -579,6 +591,27 @@ for more information on what you can do with hooks.</p>
 
 
 	<p>note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to &#8211; if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.</p>
+
+
+	<h3>Use Cases</h3>
+
+
+	<p>So why is this helpful, exactly?  It means that you can keep your development cycles loosely coupled.  Here is an example of a common workflow with cheap branches.</p>
+
+
+	<p>You have a &#8216;master&#8217; branch that is <em>always</em> stable &#8211; you never merge anything into it that you wouldn&#8217;t put into production. Then you have a &#8216;development&#8217; branch that you merge any experimental code into before you imagine pulling it into the &#8216;master&#8217; branch.</p>
+
+
+	<p>You create a new branch each time you begin to work on a story or feature, branching it off your current &#8216;development&#8217; branch each time, so if you get blocked and need to put it on hold, it doesn&#8217;t effect anything else.  When you do get back to them, you rebase them to the current &#8216;development&#8217; and it&#8217;s just like you started from there.  Often times you merge the branch back into &#8216;development&#8217; and delete it the same day that you created it.</p>
+
+
+	<p>If you get a huge project or idea &#8211; say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.</p>
+
+
+	<p>Working with others is unbelievably easy. You ask in an <span class="caps">IRC</span> room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the <span class="caps">URL</span> of their public git repo for that project.  You add it as a remote, fetch it, create a new &#8216;merge-feature&#8217; branch off your &#8216;development&#8217; branch, merge in the new changes and you&#8217;re done.  No emailing patches around and applying them &#8211; just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the &#8216;merge-feature&#8217; branch and that&#8217;s it.</p>
+
+
+	<p>You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.</p>
 
 
 	<h2>The Treeish</h2>
@@ -761,7 +794,10 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<h1>Section 2 &#8211; Using Git</h1>
 
 
-	<p>Now that you understand what Git does at a fundamental level &#8211; how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let&#8217;s see how to actually use it.</p>
+	<p>Now that you understand what Git does at a fundamental level &#8211; how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let&#8217;s see how to actually use it.  This next section presents some of the basic commands that you will need to know in order to use git effectively.</p>
+
+
+	<p>At the end of each section, there will be a link to the full documentation for each of the commands used in that section, in case you want to learn more or see all the options for that command.</p>
 
 
 	<h2>Getting a Git Repository</h2>
@@ -845,16 +881,16 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<h3>Adding and Committing</h3>
 
 
-	<p>Now we&#8217;ll do some development and periodically commit our changes.  We have a few options here &#8211; we can commit individual files or we can tell the <em>commit</em> command to automatically add all modified files in our working directory to the commit.</p>
+	<p>Now we&#8217;ll do some development and periodically commit our changes.  We have a few options here &#8211; we can commit individual files or we can tell the <em>commit</em> command to automatically add all modified files in our working directory to the index, then commit it.</p>
 
 
-	<p>A good way to find out what you&#8217;re about to commit is to use the &#8216;status&#8217; command.</p>
+	<p>A good way to find out what you&#8217;re about to commit (that is, what is in your index) is to use the &#8216;status&#8217; command.</p>
 
 
 	<p>shell. git-status.txt</p>
 
 
-	<p>In this example, I can see that I&#8217;ve modified three files in my tree, but none of them have been added to the index yet &#8211; they are not staged and ready to be committed.  If I want to make these changes in two seperate commits, or I have completed work on some of them and would like to push that out, I can specify which files to add individually and then commit.</p>
+	<p>In this example, I can see that I&#8217;ve modified three files in my working directory, but none of them have been added to the index yet &#8211; they are not staged and ready to be committed.  If I want to make these changes in two separate commits, or I have completed work on some of them and would like to push that out, I can specify which files to add individually and then commit.</p>
 
 
 	<p>shell. git-add-status.txt</p>
@@ -863,10 +899,16 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.</p>
 
 
-	<p>If we want to commit all our changes, we can use this shorthand:</p>
+	<p><img src="./artwork/s2/git-add-commit.png" alt="" /></p>
+
+
+	<p>If we want to commit all our changes, we can use this shorthand, which will automatically run a &#8216;git add&#8217; on every modified file to our index, then commit the whole thing:</p>
 
 
 	<p>shell. $&gt; git commit -a -m &#8216;committing all changes&#8217;</p>
+
+
+	<p><img src="./artwork/s2/git-commit-a.png" alt="" /></p>
 
 
 	<p>If you would like to give a more useful commit message, you can leave out the &#8216;-m&#8217; option.  That will fire up your $EDITOR to add your commit message.</p>
@@ -989,18 +1031,83 @@ For example, we can list the commit shas and the first line of the message with 
 	<h2>Git Diff</h2>
 
 
-	<p>diff &#8211; getting and sending patchfiles</p>
+	<p>Git has a great diff utility built in that can give you statistics or a patch file given any combination of tree objects, working directory and index.</p>
+
+
+	<p>Two common uses of this include seeing what you&#8217;ve worked on but not committed yet, and creating a patch file to send to someone over email (though there is a much preferred way to do that which we will learn about in the &#8220;distributed workflow&#8221; section a bit later).</p>
+
+
+	<h3>What has changed?</h3>
+
+
+	<p>If you simply run &#8216;git diff&#8217; with no arguments, it will show you the differences between your current working directory and my index, that is, the last time I ran &#8216;git add&#8217; on my files.  For example, if I add my email to the <span class="caps">README</span> file and run it, I will see this:</p>
+
+
+	<p>.shell git-diff-readme.txt</p>
+
+
+	<p>You can also use &#8216;git diff&#8217; to show you some spiffy stats for a diff, rather than a patch file, if you want to see a wider overview of what changed, then drill down into specific files later.  Here are some examples getting stats, the first for the differences between two commits and the second a summary between a commit and the current <span class="caps">HEAD</span>.</p>
+
+
+	<p>.shell git-diff-stat.txt</p>
+
+
+	<p>If you want to see what the specific difference is in one of those files, you can just add a path limiter to the diff command.</p>
+
+
+	<p>.shell git-diff-file.txt</p>
+
+
+	<p>You can use this command to detect changes between your index and any tree, or your working directory and any tree, your working directory and your index, etc.</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-diff.html">git diff</a></li>
+	</ul>
 
 
 	<h2>Branching</h2>
 
 
-	<p>branch, checkout
-reset
-git branch recovered-branch 7281251ddd</p>
+	<p>This is the fun part of Git that you&#8217;ll come to love like a child. When you first initialize a git repository, or clone one, you&#8217;ll get a &#8216;master&#8217; branch by default if you don&#8217;t specify something else.  This is really just a git suggestion and you don&#8217;t have to use it &#8211; like just about everything in Git, it can be overridden.</p>
+
+
+	<h3>Switching Branches</h3>
+
+
+	<p>However, let&#8217;s say we&#8217;re working on our project and we want to add a new function to our library, so we&#8217;ll make a new branch called &#8216;newfunc&#8217; and switch to it.  There are two ways we can do this, one is to create the branch and then switch to it:</p>
+
+
+	<p>.shell $&gt;git branch newfunc; git checkout newfunc</p>
+
+
+	<p>The other way is to checkout a branch that doesn&#8217;t exist yet and tell git you want to create it by passing the &#8216;-b&#8217; flag:</p>
+
+
+	<p>.shell $&gt; git checkout -b newfunc</p>
+
+
+	<p>Now, to check which branch we are on, we just type &#8216;git branch&#8217;:</p>
+
+
+	<p>.shell git-branch.txt</p>
+
+
+	<p>We can see we are now on our new branch.  This means that if we modify a file and commit it, this branch will include that change, but the &#8216;master&#8217; branch will not have it yet.  So, we add a new method to our library and commit it.</p>
+
+
+	<h3>Reseting Your Branch</h3>
+
+
+	<p>branch
+checkout
+reset</p>
 
 
 	<h2>Simple Merging</h2>
+
+
+	<p>Now we want to move it back into our &#8216;master&#8217; branch and remove our temporary &#8216;newfunc&#8217; branch.</p>
 
 
 	<h2>Rebasing</h2>
@@ -1158,6 +1265,10 @@ git branch recovered-branch 7281251ddd</p>
 
 
 	<h2>Recovering From Corruption</h2>
+
+
+	<p>(creating a branch from an abandoned commit)
+git branch recovered-branch 7281251ddd</p>
 
 
 	<h1>Commands Overview</h1>

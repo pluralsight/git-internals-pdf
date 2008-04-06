@@ -1,3 +1,23 @@
 h2. Git Diff
 
-diff - getting and sending patchfiles
+Git has a great diff utility built in that can give you statistics or a patch file given any combination of tree objects, working directory and index.
+
+Two common uses of this include seeing what you've worked on but not committed yet, and creating a patch file to send to someone over email (though there is a much preferred way to do that which we will learn about in the "distributed workflow" section a bit later).
+
+h3. What has changed?
+
+If you simply run 'git diff' with no arguments, it will show you the differences between your current working directory and my index, that is, the last time I ran 'git add' on my files.  For example, if I add my email to the README file and run it, I will see this:
+
+.shell git-diff-readme.txt
+
+You can also use 'git diff' to show you some spiffy stats for a diff, rather than a patch file, if you want to see a wider overview of what changed, then drill down into specific files later.  Here are some examples getting stats, the first for the differences between two commits and the second a summary between a commit and the current HEAD.
+
+.shell git-diff-stat.txt
+
+If you want to see what the specific difference is in one of those files, you can just add a path limiter to the diff command.
+
+.shell git-diff-file.txt
+
+You can use this command to detect changes between your index and any tree, or your working directory and any tree, your working directory and your index, etc.
+
+* "git diff":http://www.kernel.org/pub/software/scm/git/docs/git-diff.html
