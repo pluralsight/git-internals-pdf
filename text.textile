@@ -839,11 +839,49 @@ Created commit 47c668a: fixed conflict
 
 h2. Rebasing
 
+To review, rebasing is an alternative to merging that takes all the changes you've done since you branched off and applies those changes as patches to where the branch you are rebasing to is now.  For clean merges, this is a relatively simple process.  Say we have been working in a branch called 'story84' and it's completed and we want to merge it into the master branch.
+
+!../artwork/s2/repo1.png!
+
+If we do a simple merge, our history will look like this:
+
+!../artwork/s2/repo.png!
+
+But we don't want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running 'git merge story84' from the master branch, we can stay in the 'story84' branch and run 'git rebase master'
+
+.shell rebase-conflict.txt
+
+Many times this goes very smoothly and you can see all the new commits and trees written in place of the old ones.  In this case, I had edited the 'lib/simplegit.rb' file differently in each branch which caused a conflict.  I will have to resolve this conflict before I can continue the rebase.
+
+This gives us some options, since the rebase can do this at any point - say you have 8 commits to move onto the new branch - each one could cause a conflict and you will have to resolve them each manually.  The 'rebase' command will stop at each patch if it needs to and let you do this.  
+
+You have three things you can do here, you can either fix the file, run a 'git add' on it and then run a 'git rebase --continue', which will move on to the next patch until it's done.  Our second option is to run 'git rebase --abort', which will reset us to what our repo looked like before we tried the rebase. Or, we can run 'git rebase --skip', which will just leave this one patch out.
+
+.note Git rebase options for a conflict :
+--continue : trys to keep going once you've resolved it
+--abort : gives up altogether and returns to the state before the rebase
+--skip : skips this patch, but applies all the others
+
+In this case we will simply fix the conflict, run 'git add' on the file and then run 'git rebase --continue' which then makes our history look like this:
+
+!../artwork/s2/repo3.png!
+
+Then all we have to do is switch to the master branch and merge story84 to get this:
+
+!../artwork/s2/repo4.png!
+
+
 h3. Interactive Rebasing
+
+Like git provides a nicer way to work with your index before committing with 'git add --interactive', there is an interactive rebasing option.
+
+
 
 h3. Resetting Your Branch
 
-reset
+
+* "git rebase":http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
+* "git reset":http://www.kernel.org/pub/software/scm/git/docs/git-reset.html
 
 h2. Distributed Workflow Examples
 
@@ -916,20 +954,18 @@ h2. File and Index Staging
 
 h2. Submodules
 
-h2. Advanced Merging
+h2. Advanced Merging and Rebasing
 
 * merge strategies
 ** resolve
 ** recursive
 ** octopus
 
-rebase --interactive
+rebase --onto
 
-h2. Shared Repositories
+splitting commits in interactive mode
 
-h2. Hooks
-
-h2. Configuration Options
+http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
 
 h2. History Manipulation
 
@@ -939,10 +975,22 @@ http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html
 
 h3. Splitting One Commit into Two
 
+rebase -i
 
-h2. Repository Maintenance
+h3. Removing Commits
+
+git-rebase --onto topicA~5 topicA~3 topicA
+
 
 h2. Patch Management
+
+h2. Shared Repositories
+
+h2. Hooks
+
+h2. Configuration Options
+
+h2. Repository Maintenance
 
 h2. Recovering From Corruption
 

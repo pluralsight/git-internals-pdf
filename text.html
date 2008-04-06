@@ -1215,13 +1215,64 @@ Created commit 47c668a: fixed conflict</p>
 	<h2>Rebasing</h2>
 
 
+	<p>To review, rebasing is an alternative to merging that takes all the changes you&#8217;ve done since you branched off and applies those changes as patches to where the branch you are rebasing to is now.  For clean merges, this is a relatively simple process.  Say we have been working in a branch called &#8216;story84&#8217; and it&#8217;s completed and we want to merge it into the master branch.</p>
+
+
+	<p><img src="./artwork/s2/repo1.png" alt="" /></p>
+
+
+	<p>If we do a simple merge, our history will look like this:</p>
+
+
+	<p><img src="./artwork/s2/repo.png" alt="" /></p>
+
+
+	<p>But we don&#8217;t want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running &#8216;git merge story84&#8217; from the master branch, we can stay in the &#8216;story84&#8217; branch and run &#8216;git rebase master&#8217;</p>
+
+
+	<p>.shell rebase-conflict.txt</p>
+
+
+	<p>Many times this goes very smoothly and you can see all the new commits and trees written in place of the old ones.  In this case, I had edited the &#8216;lib/simplegit.rb&#8217; file differently in each branch which caused a conflict.  I will have to resolve this conflict before I can continue the rebase.</p>
+
+
+	<p>This gives us some options, since the rebase can do this at any point &#8211; say you have 8 commits to move onto the new branch &#8211; each one could cause a conflict and you will have to resolve them each manually.  The &#8216;rebase&#8217; command will stop at each patch if it needs to and let you do this.</p>
+
+
+	<p>You have three things you can do here, you can either fix the file, run a &#8216;git add&#8217; on it and then run a &#8216;git rebase&#8212;continue&#8217;, which will move on to the next patch until it&#8217;s done.  Our second option is to run &#8216;git rebase&#8212;abort&#8217;, which will reset us to what our repo looked like before we tried the rebase. Or, we can run &#8216;git rebase&#8212;skip&#8217;, which will just leave this one patch out.</p>
+
+
+	<p>.note Git rebase options for a conflict :
+&#8212;continue : trys to keep going once you&#8217;ve resolved it
+&#8212;abort : gives up altogether and returns to the state before the rebase
+&#8212;skip : skips this patch, but applies all the others</p>
+
+
+	<p>In this case we will simply fix the conflict, run &#8216;git add&#8217; on the file and then run &#8216;git rebase&#8212;continue&#8217; which then makes our history look like this:</p>
+
+
+	<p><img src="./artwork/s2/repo3.png" alt="" /></p>
+
+
+	<p>Then all we have to do is switch to the master branch and merge story84 to get this:</p>
+
+
+	<p><img src="./artwork/s2/repo4.png" alt="" /></p>
+
+
 	<h3>Interactive Rebasing</h3>
+
+
+	<p>Like git provides a nicer way to work with your index before committing with &#8216;git add&#8212;interactive&#8217;, there is an interactive rebasing option.</p>
 
 
 	<h3>Resetting Your Branch</h3>
 
 
-	<p>reset</p>
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html">git rebase</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-reset.html">git reset</a></li>
+	</ul>
 
 
 	<h2>Distributed Workflow Examples</h2>
@@ -1329,7 +1380,7 @@ Created commit 47c668a: fixed conflict</p>
 	<h2>Submodules</h2>
 
 
-	<h2>Advanced Merging</h2>
+	<h2>Advanced Merging and Rebasing</h2>
 
 
 	<ul>
@@ -1342,16 +1393,13 @@ Created commit 47c668a: fixed conflict</p>
 	</ul>
 
 
-	<p>rebase&#8212;interactive</p>
+	<p>rebase&#8212;onto</p>
 
 
-	<h2>Shared Repositories</h2>
+	<p>splitting commits in interactive mode</p>
 
 
-	<h2>Hooks</h2>
-
-
-	<h2>Configuration Options</h2>
+	<p>http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html</p>
 
 
 	<h2>History Manipulation</h2>
@@ -1366,10 +1414,28 @@ Created commit 47c668a: fixed conflict</p>
 	<h3>Splitting One Commit into Two</h3>
 
 
-	<h2>Repository Maintenance</h2>
+	<p>rebase -i</p>
+
+
+	<h3>Removing Commits</h3>
+
+
+	<p>git-rebase&#8212;onto topicA<sub>5 topicA</sub>3 topicA</p>
 
 
 	<h2>Patch Management</h2>
+
+
+	<h2>Shared Repositories</h2>
+
+
+	<h2>Hooks</h2>
+
+
+	<h2>Configuration Options</h2>
+
+
+	<h2>Repository Maintenance</h2>
 
 
 	<h2>Recovering From Corruption</h2>

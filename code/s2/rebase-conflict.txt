@@ -1,0 +1,26 @@
+$>git rebase master
+First, rewinding head to replay your work on top of it...
+HEAD is now at 2c0d4d7... added limit to log function
+
+Applying -added todo options
+
+Adds trailing whitespace.
+.dotest/patch:12:* add 
+warning: 1 line adds whitespace errors.
+Wrote tree 2d0bd54dc9e4c398769cdcb59256ca03bb482ccb
+Committed: b669c78acffaafd5ba34449e7faf88217394864a
+
+Applying limiting log to 30
+
+error: patch failed: lib/simplegit.rb:14
+error: lib/simplegit.rb: patch does not apply
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+Auto-merged lib/simplegit.rb
+CONFLICT (content): Merge conflict in lib/simplegit.rb
+Failed to merge in the changes.
+Patch failed at 0002.
+
+When you have resolved this problem run "git rebase --continue".
+If you would prefer to skip this patch, instead run "git rebase --skip".
+To restore the original branch and stop rebasing run "git rebase --abort".

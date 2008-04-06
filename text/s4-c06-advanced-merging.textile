@@ -1,8 +1,12 @@
-h2. Advanced Merging
+h2. Advanced Merging and Rebasing
 
 * merge strategies
 ** resolve
 ** recursive
 ** octopus
 
-rebase --interactive
+rebase --onto
+
+splitting commits in interactive mode
+
+http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
