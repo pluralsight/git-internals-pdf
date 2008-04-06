@@ -1,0 +1,21 @@
+What now> 2
+           staged     unstaged path
+  1:    unchanged        +5/-0 Rakefile
+  2:    unchanged        +4/-0 lib/simplegit.rb
+Update>> 1
+           staged     unstaged path
+* 1:    unchanged        +5/-0 Rakefile
+  2:    unchanged        +4/-0 lib/simplegit.rb
+Update>> 
+updated one path
+
+*** Commands ***
+  1: status       2: update       3: revert       4: add untracked
+  5: patch        6: diff         7: quit         8: help
+What now> 7
+Bye.
+
+$>git commit -m 'rakefile and todo file added'
+Created commit 4b0780c: rakefile and todo file added
+ 2 files changed, 9 insertions(+), 0 deletions(-)
+ create mode 100644 TODO

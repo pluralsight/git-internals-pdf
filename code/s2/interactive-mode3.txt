@@ -1,0 +1,5 @@
+What now> 1
+           staged     unstaged path
+  1:    unchanged        +5/-0 Rakefile
+  2:        +5/-0      nothing TODO
+  3:    unchanged        +4/-0 lib/simplegit.rb

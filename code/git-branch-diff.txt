@@ -1,0 +1,4 @@
+$>git diff --stat master newfunc
+ README           |    4 ++--
+ lib/simplegit.rb |    4 ++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)

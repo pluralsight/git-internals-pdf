@@ -1,0 +1,11 @@
+What now> 4
+  1: TODO
+Add untracked>> 1
+* 1: TODO
+Add untracked>> 
+added one path
+
+*** Commands ***
+  1: status       2: update       3: revert       4: add untracked
+  5: patch        6: diff         7: quit         8: help
+What now>

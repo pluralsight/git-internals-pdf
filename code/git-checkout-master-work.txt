@@ -1,0 +1,7 @@
+$> git checkout master
+
+$> vim README         # add some text
+
+$> git commit -a -m 'added more description'
+Created commit d6fad7d: added more description
+ 1 files changed, 1 insertions(+), 1 deletions(-)
