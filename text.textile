@@ -31,6 +31,8 @@ h3. Installing on Mac
 
 You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see
 
+http://sourceforge.net/project/showfiles.php?group_id=146701
+
 h4. Mac 10.4 - Tiger
 
 There are some requirements you'll have to install before you can compile git.
@@ -537,13 +539,13 @@ shell. git init
 This will create a _.git_ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type
 
 shell. git add .
-  git commit -m 'my first commit'
+git commit -m 'my first commit'
 
 This will add all of your current files into your new repository and index and then create your first commit object, pointing your new 'master' branch to it.  Congratulations, you have now added your source code to Git.
 
-("git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html,
-"git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html, 
-"git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html)
+* "git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html
+* "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
+* "git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html
 
 h3. Cloning a Repository
 
@@ -558,7 +560,7 @@ This will by default create a new directory called 'simplegit' and do an initial
 shell. git clone git://github.com/schacon/simplegit.git my_directory
 
 
-("git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html)
+* "git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html
 
 h2. Normal Workflow Examples
 
@@ -572,7 +574,7 @@ Here is an example _.gitignore_ file.
 
 code. gitignore.txt
 
-("gitignore":http://www.kernel.org/pub/software/scm/git/docs/gitignore.html)
+* ".gitignore":http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
 
 h3. Adding and Committing
 
@@ -598,23 +600,74 @@ note. Give special care to the first line of your commit message - it will often
 
 Now we can continue this loop - modifying, adding and committing - during our development.
 
-("git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html)
+* "git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html
 
 h2. Log - the Commit History
 
 So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?
 
-The answer is the very powerful _git log_ command.  The 'log' command will show you your commit history
+The answer is the very powerful _git log_ command.  The 'log' command will show you nearly anything you want to know about your commit history.  Also, since the entire history is stored locally, it's really fast compared with most other SCM systems.
 
-code. git-log.txt
+If you just run _git log_, you will get output like this:
 
-code. git-log-oneline.txt
+shell. git-log.txt
 
-("git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html)
+This will show you the sha of each commit, the committer and date of the commit, and the full message, starting from the last commit on your current branch and going backward in reverse chronological order (so if there are multiple parents, it just orders them by date)
+
+h3. Formatting Log Output
+
+This all takes up a lot of space though, so there are ways to limit and format this output differently.  '--pretty' is a useful option for formatting the output in different ways. 
+For example, we can list the commit shas and the first line of the message with '--pretty=oneline':
+
+shell. git-log-oneline.txt
+
+With '--pretty', you can choose between oneline, short, medium, full, fuller, email, raw and format:<string>, where <string> is a format you specify with variables.
+
+h3. Filtering Log Output
+
+There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with '-n', you can limit the range of dates you want to see commits for with --since and --until, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing the last 30 commits between yesterday and a month ago by me with 'controller' in the message:
+
+shell. git log -n 30 --since="1 month ago" --until=yesterday --author="schacon"
+
+* "git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html
 
 h2. Browsing Git
 
-show, ls-tree, cat-file -p
+Git also gives you access to a number of lower level tools that can be used to browse the repository, inspect the status and contents of any of the objects, and are generally helpful for inspection and debugging.
+
+h3. Showing Objects
+
+The 'git show' command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of it's subtrees.  Where it's most useful is using it to look at commits.
+
+h4. Showing Commits
+
+If you call it on a tree-ish that is a commit object, you will get simple information about the commit (the author, message, date, etc) and a diff of what changed between that commit and it's parents.
+
+.shell git-show-commit.txt
+
+h4. Showing Trees
+
+Instead of the 'git show' command, it's generally more useful to use the lower level 'git ls-tree' command to view trees, because it gives you the shas of all the blobs and trees that it points to.
+
+.shell git-lstree1.txt
+
+You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the sha of any blob anywhere in the tree without having to walk it one node at a time.  
+
+.shell git-lstree2.txt
+
+The '-t' makes it also show the shas of the subtrees themselves, rather than just all the blobs.
+
+h4. Showing Blobs
+
+Lastly, you may want to extract the contents of individual blobs.  The 'cat-file' command is an easy way to do that, and can also serve to let you know what type of object a sha is, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.
+
+.shell git-catfile.txt
+
+With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.
+
+* "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
+* "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
+* "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html
 
 h2. Git Diff
 
@@ -630,6 +683,8 @@ git branch recovered-branch 7281251ddd
 h2. Simple Merging
 
 h2. Rebasing
+
+h3. Interactively Rebasing
 
 h2. Distributed Workflow Examples
 
@@ -719,6 +774,12 @@ h2. Configuration Options
 
 h2. History Manipulation
 
+h3. Git Filter Branch
+
+http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html
+
+h3. Splitting One Commit into Two
+
 h2. Repository Maintenance
 
 h2. Patch Management
@@ -731,10 +792,39 @@ h2. The Plumbing
 
 h2. The Porcelain
 
+h1. The Appendix
+
+There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git (http://github.com/schacon/git-ruby).  Since most of these are pretty hard to find information on and for programmers like me who haven't touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here.
+
+h2. Packfiles
+
+h3. What is a packfile and when are they created?
+
+h3. Packfile format
+
+h3. How does Git actually create a packfile?
+
+
+h1. The Git Protocol
+
+
+port 9418
+
+If it wants to invoke git-upload pack, it sends something like '0053upload-pack path/to/repo<NUL>host=git.server.example:9148'.
+
+
+Also, if server sends incomplete datastream back, you need to complete it before stroing. You also need to compute the index file for the pack.
+
+thanks to Ilari on IRC
+
+http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html
+
 h1. References and Endnotes
 
 Here are some references that I used or that you may use to find out more about Git.
 
+The example git repository that I was working with throughout this book can be cloned from it's 
+"GitHub repository":http://github.com/schacon/simplegit
 
 h2. Web Documentation
 

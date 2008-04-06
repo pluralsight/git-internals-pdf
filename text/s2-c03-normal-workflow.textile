@@ -10,7 +10,7 @@ Here is an example _.gitignore_ file.
 
 code. gitignore.txt
 
-("gitignore":http://www.kernel.org/pub/software/scm/git/docs/gitignore.html)
+* ".gitignore":http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
 
 h3. Adding and Committing
 
@@ -36,4 +36,4 @@ note. Give special care to the first line of your commit message - it will often
 
 Now we can continue this loop - modifying, adding and committing - during our development.
 
-("git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html)
+* "git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html

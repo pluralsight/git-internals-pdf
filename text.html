@@ -44,6 +44,9 @@ sudo make prefix=/usr install install-doc install-info</p>
 	<p>You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see</p>
 
 
+	<p>http://sourceforge.net/project/showfiles.php?group_id=146701</p>
+
+
 	<h4>Mac 10.4 &#8211; Tiger</h4>
 
 
@@ -780,15 +783,17 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 
 
 	<p>shell. git add .
-  git commit -m &#8216;my first commit&#8217;</p>
+git commit -m &#8216;my first commit&#8217;</p>
 
 
 	<p>This will add all of your current files into your new repository and index and then create your first commit object, pointing your new &#8216;master&#8217; branch to it.  Congratulations, you have now added your source code to Git.</p>
 
 
-	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-init.html">git init</a>,
-<a href="http://www.kernel.org/pub/software/scm/git/docs/git-commit.html">git commit</a>, 
-<a href="http://www.kernel.org/pub/software/scm/git/docs/git-add.html">git add</a>)</p>
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-init.html">git init</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-commit.html">git commit</a> </li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-add.html">git add</a></li>
+	</ul>
 
 
 	<h3>Cloning a Repository</h3>
@@ -809,7 +814,9 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<p>shell. git clone git://github.com/schacon/simplegit.git my_directory</p>
 
 
-	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-clone.html">git clone</a>)</p>
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-clone.html">git clone</a></li>
+	</ul>
 
 
 	<h2>Normal Workflow Examples</h2>
@@ -830,7 +837,9 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<p>code. gitignore.txt</p>
 
 
-	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html">gitignore</a>)</p>
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html">.gitignore</a></li>
+	</ul>
 
 
 	<h3>Adding and Committing</h3>
@@ -869,7 +878,9 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<p>Now we can continue this loop &#8211; modifying, adding and committing &#8211; during our development.</p>
 
 
-	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-status.html">git status</a>)</p>
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-status.html">git status</a></li>
+	</ul>
 
 
 	<h2>Log &#8211; the Commit History</h2>
@@ -878,22 +889,101 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<p>So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?</p>
 
 
-	<p>The answer is the very powerful <em>git log</em> command.  The &#8216;log&#8217; command will show you your commit history</p>
+	<p>The answer is the very powerful <em>git log</em> command.  The &#8216;log&#8217; command will show you nearly anything you want to know about your commit history.  Also, since the entire history is stored locally, it&#8217;s really fast compared with most other <span class="caps">SCM</span> systems.</p>
 
 
-	<p>code. git-log.txt</p>
+	<p>If you just run <em>git log</em>, you will get output like this:</p>
 
 
-	<p>code. git-log-oneline.txt</p>
+	<p>shell. git-log.txt</p>
 
 
-	<p>(<a href="http://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a>)</p>
+	<p>This will show you the sha of each commit, the committer and date of the commit, and the full message, starting from the last commit on your current branch and going backward in reverse chronological order (so if there are multiple parents, it just orders them by date)</p>
+
+
+	<h3>Formatting Log Output</h3>
+
+
+	<p>This all takes up a lot of space though, so there are ways to limit and format this output differently.  &#8216;&#8212;pretty&#8217; is a useful option for formatting the output in different ways. 
+For example, we can list the commit shas and the first line of the message with &#8216;&#8212;pretty=oneline&#8217;:</p>
+
+
+	<p>shell. git-log-oneline.txt</p>
+
+
+	<p>With &#8216;&#8212;pretty&#8217;, you can choose between oneline, short, medium, full, fuller, email, raw and format:<string>, where <string> is a format you specify with variables.</p>
+
+
+	<h3>Filtering Log Output</h3>
+
+
+	<p>There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with &#8216;-n&#8217;, you can limit the range of dates you want to see commits for with&#8212;since and&#8212;until, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing the last 30 commits between yesterday and a month ago by me with &#8216;controller&#8217; in the message:</p>
+
+
+	<p>shell. git log -n 30&#8212;since=&#8221;1 month ago&#8221;&#8212;until=yesterday&#8212;author=&#8221;schacon&#8221;</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a></li>
+	</ul>
 
 
 	<h2>Browsing Git</h2>
 
 
-	<p>show, ls-tree, cat-file -p</p>
+	<p>Git also gives you access to a number of lower level tools that can be used to browse the repository, inspect the status and contents of any of the objects, and are generally helpful for inspection and debugging.</p>
+
+
+	<h3>Showing Objects</h3>
+
+
+	<p>The &#8216;git show&#8217; command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of it&#8217;s subtrees.  Where it&#8217;s most useful is using it to look at commits.</p>
+
+
+	<h4>Showing Commits</h4>
+
+
+	<p>If you call it on a tree-ish that is a commit object, you will get simple information about the commit (the author, message, date, etc) and a diff of what changed between that commit and it&#8217;s parents.</p>
+
+
+	<p>.shell git-show-commit.txt</p>
+
+
+	<h4>Showing Trees</h4>
+
+
+	<p>Instead of the &#8216;git show&#8217; command, it&#8217;s generally more useful to use the lower level &#8216;git ls-tree&#8217; command to view trees, because it gives you the shas of all the blobs and trees that it points to.</p>
+
+
+	<p>.shell git-lstree1.txt</p>
+
+
+	<p>You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the sha of any blob anywhere in the tree without having to walk it one node at a time.</p>
+
+
+	<p>.shell git-lstree2.txt</p>
+
+
+	<p>The &#8216;-t&#8217; makes it also show the shas of the subtrees themselves, rather than just all the blobs.</p>
+
+
+	<h4>Showing Blobs</h4>
+
+
+	<p>Lastly, you may want to extract the contents of individual blobs.  The &#8216;cat-file&#8217; command is an easy way to do that, and can also serve to let you know what type of object a sha is, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.</p>
+
+
+	<p>.shell git-catfile.txt</p>
+
+
+	<p>With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-show.html">git show</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html">git ls-tree</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html">git cat-file</a></li>
+	</ul>
 
 
 	<h2>Git Diff</h2>
@@ -914,6 +1004,9 @@ git branch recovered-branch 7281251ddd</p>
 
 
 	<h2>Rebasing</h2>
+
+
+	<h3>Interactively Rebasing</h3>
 
 
 	<h2>Distributed Workflow Examples</h2>
@@ -1049,6 +1142,15 @@ git branch recovered-branch 7281251ddd</p>
 	<h2>History Manipulation</h2>
 
 
+	<h3>Git Filter Branch</h3>
+
+
+	<p>http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html</p>
+
+
+	<h3>Splitting One Commit into Two</h3>
+
+
 	<h2>Repository Maintenance</h2>
 
 
@@ -1067,10 +1169,50 @@ git branch recovered-branch 7281251ddd</p>
 	<h2>The Porcelain</h2>
 
 
+	<h1>The Appendix</h1>
+
+
+	<p>There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git (http://github.com/schacon/git-ruby).  Since most of these are pretty hard to find information on and for programmers like me who haven&#8217;t touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here.</p>
+
+
+	<h2>Packfiles</h2>
+
+
+	<h3>What is a packfile and when are they created?</h3>
+
+
+	<h3>Packfile format</h3>
+
+
+	<h3>How does Git actually create a packfile?</h3>
+
+
+	<h1>The Git Protocol</h1>
+
+
+	<p>port 9418</p>
+
+
+	<p>If it wants to invoke git-upload pack, it sends something like &#8216;0053upload-pack path/to/repo<NUL>host=git.server.example:9148&#8217;.</p>
+
+
+	<p>Also, if server sends incomplete datastream back, you need to complete it before stroing. You also need to compute the index file for the pack.</p>
+
+
+	<p>thanks to Ilari on <span class="caps">IRC</span></p>
+
+
+	<p>http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html</p>
+
+
 	<h1>References and Endnotes</h1>
 
 
 	<p>Here are some references that I used or that you may use to find out more about Git.</p>
+
+
+	<p>The example git repository that I was working with throughout this book can be cloned from it&#8217;s 
+<a href="http://github.com/schacon/simplegit">GitHub repository</a></p>
 
 
 	<h2>Web Documentation</h2>

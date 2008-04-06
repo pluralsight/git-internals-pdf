@@ -11,13 +11,13 @@ shell. git init
 This will create a _.git_ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type
 
 shell. git add .
-  git commit -m 'my first commit'
+git commit -m 'my first commit'
 
 This will add all of your current files into your new repository and index and then create your first commit object, pointing your new 'master' branch to it.  Congratulations, you have now added your source code to Git.
 
-("git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html,
-"git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html, 
-"git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html)
+* "git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html
+* "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
+* "git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html
 
 h3. Cloning a Repository
 
@@ -32,4 +32,4 @@ This will by default create a new directory called 'simplegit' and do an initial
 shell. git clone git://github.com/schacon/simplegit.git my_directory
 
 
-("git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html)
+* "git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html

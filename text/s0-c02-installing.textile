@@ -23,6 +23,8 @@ h3. Installing on Mac
 
 You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see
 
+http://sourceforge.net/project/showfiles.php?group_id=146701
+
 h4. Mac 10.4 - Tiger
 
 There are some requirements you'll have to install before you can compile git.
