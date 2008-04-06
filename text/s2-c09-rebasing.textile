@@ -1,3 +1,7 @@
 h2. Rebasing
 
-h3. Interactively Rebasing
+h3. Interactive Rebasing
+
+h3. Resetting Your Branch
+
+reset

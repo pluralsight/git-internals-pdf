@@ -18,10 +18,20 @@ Now, to check which branch we are on, we just type 'git branch':
 
 We can see we are now on our new branch.  This means that if we modify a file and commit it, this branch will include that change, but the 'master' branch will not have it yet.  So, we add a new method to our library and commit it.
 
-h3. Reseting Your Branch
+.shell $> vim lib/simplegit.rb; git commit -a -m 'added lstree function'
+Created commit 1a8c32e: added lstree function
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+ 
+Now we want to change something in the README in the 'master' branch, but we haven't tested this function yet so we don't want to merge our new branch in yet.  That's fine, we just switch back and make the change.
 
+.shell git-checkout-master-work.txt
 
-branch
-checkout
-reset
+Now lets see what the differences in our branches are.
+
+.shell git-branch-diff.txt
+
+We could also get a patch file for one to apply to the other, but what we really want to do next is merge the two.
+
+* "git branch":http://www.kernel.org/pub/software/scm/git/docs/git-branch.html
+* "git checkout":http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html
 

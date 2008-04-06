@@ -1,3 +1,37 @@
 h2. Simple Merging
 
-Now we want to move it back into our 'master' branch and remove our temporary 'newfunc' branch.
+So now we want to move the changes in our 'newfunc' branch back into our 'master' branch and remove it.  This will require us merging one branch into another.  Since we're already in our 'master' branch, we'll merge in the 'newfunc' branch like this:
+
+.shell $>git merge newfunc
+
+Easy peasy.  We can see that the simplegit.rb file now has 4 new lines and the README file was auto-merged.
+
+Now we can get rid of our 'newfunc' branch with a simple:
+
+.shell $>git branch -d newfunc
+Deleted branch newfunc.
+
+h3. Resolving Conflicts
+
+That was a fairly simple problem, but what if we branch our code and then edit the same place in a file in two different ways?  In that case, we'll get a conflict when we try to merge them back together.  Git is not too aggressive in trying to resolve conflicts, since you don't want it to make assumptions that are not necessarily correct, so bugs aren't introduced without your knowledge.
+
+Let's say that we created a 'versioning' branch and then modified the version in the Rakefile to different versions in both the new branch and the 'master' branch, then tried to merge them together.
+
+.shell s2/merge-conflict.txt
+
+It tells us that there was a conflict and so the new commit object was not created.  We will have to merge the conflicted file manually and then commit it again.  The output tells us the files that had conflicts, in this case it was the Rakefile.
+
+.ruby s2/rakefile.rb
+
+We can see that in the 'master' branch, the version was changed to '0.1.2' and in the 'versioning' branch, the same line was changed to '0.2.0'.  All we have to do is choose which one is correct and remove the rest of the lines, like so:
+
+.ruby s2/rakefile-post.rb
+
+Now we add and commit that file, and we're good.
+
+.shell $>git add Rakefile 
+$>git commit -m 'fixed conflict'
+Created commit 47c668a: fixed conflict
+
+* "git branch":http://www.kernel.org/pub/software/scm/git/docs/git-branch.html
+* "git merge":http://www.kernel.org/pub/software/scm/git/docs/git-merge.html

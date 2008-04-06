@@ -44,9 +44,6 @@ sudo make prefix=/usr install install-doc install-info</p>
 	<p>You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see</p>
 
 
-	<p>http://sourceforge.net/project/showfiles.php?group_id=146701</p>
-
-
 	<h4>Mac 10.4 &#8211; Tiger</h4>
 
 
@@ -77,6 +74,9 @@ sudo make prefix=/usr install install-doc install-info</p>
 
 
 	<p>MacPorts is also an easy option if you have that installed.</p>
+
+
+	<p>http://code.google.com/p/git-osx-installer/</p>
 
 
 	<h3>Windows</h3>
@@ -925,6 +925,39 @@ git commit -m &#8216;my first commit&#8217;</p>
 	</ul>
 
 
+	<h3>Interactive Adding</h3>
+
+
+	<p>Although that will work for all of your development needs &#8211; many developers simply use &#8216;-a&#8217; nearly every time they commit to just automatically add everything to the index, there is another way of adding files that makes for a more controlled and thematic set of commits.  This is called &#8216;interactive&#8217; adding, and it is a very powerful tool to controlling what goes into each commit.</p>
+
+
+	<p>Let&#8217;s say we add a new function to our &#8216;lib/simplegit.rb&#8217; file, add a new task to our &#8216;Rakefile&#8217; and then add a new &#8216;TODO&#8217; file to our project.  Later we come back and want to commit, but we don&#8217;t remember which files had to do with each other and we don&#8217;t just want to commit them all together because that&#8217;s confusing for collaborators trying to review our code. &#8216;Interactive&#8217; mode let&#8217;s us modify our index interactively before committing.  To fire it up, type &#8216;git add -i&#8217;:</p>
+
+
+	<p>.shell s2/interactive-mode1.txt</p>
+
+
+	<p>We can see that we have two files that are being tracked (have been added at some point in the past) that have been modified.  We cannot yet see our new <span class="caps">TODO</span> file, though.  To add that, type &#8216;4&#8217; for the &#8216;add untracked&#8217; option and hit enter.</p>
+
+
+	<p>.shell s2/interactive-mode2.txt</p>
+
+
+	<p>You will see all the untracked files in your working directory.  Type the numbers of the files you want to add and hit enter twice when you&#8217;re done. This will drop you back to the main menu.  You can then type &#8216;1&#8217; to see what your index looks like now.</p>
+
+
+	<p>.shell s2/interactive-mode3.txt</p>
+
+
+	<p>You can see that the <span class="caps">TODO</span> file is now staged (in the index), but the other two are not.  Let&#8217;s add the Rakefile, but not the &#8216;lib/simplegit.rb&#8217; file and commit it. To do that, we hit &#8216;2&#8217;, which lists the files we can update, type &#8216;1&#8217; and enter to add the Rakefile, then hit enter again to go back to the main menu.  Then we hit &#8216;7&#8217; to exit and run the &#8216;git commit&#8217; command</p>
+
+
+	<p>.shell s2/interactive-mode4.txt</p>
+
+
+	<p>The interactive shell is pretty simple &#8211; playing with it instead of running &#8216;git add&#8217; commands directly may help in understanding what&#8217;s happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the &#8216;staged&#8217; column) is what will be committed when you run &#8216;git commit&#8217;</p>
+
+
 	<h2>Log &#8211; the Commit History</h2>
 
 
@@ -1096,24 +1129,99 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>We can see we are now on our new branch.  This means that if we modify a file and commit it, this branch will include that change, but the &#8216;master&#8217; branch will not have it yet.  So, we add a new method to our library and commit it.</p>
 
 
-	<h3>Reseting Your Branch</h3>
+	<p>.shell $&gt; vim lib/simplegit.rb; git commit -a -m &#8216;added lstree function&#8217;
+Created commit 1a8c32e: added lstree function
+ 1 files changed, 4 insertions(+), 0 deletions(-)</p>
 
 
-	<p>branch
-checkout
-reset</p>
+	<p>Now we want to change something in the <span class="caps">README</span> in the &#8216;master&#8217; branch, but we haven&#8217;t tested this function yet so we don&#8217;t want to merge our new branch in yet.  That&#8217;s fine, we just switch back and make the change.</p>
+
+
+	<p>.shell git-checkout-master-work.txt</p>
+
+
+	<p>Now lets see what the differences in our branches are.</p>
+
+
+	<p>.shell git-branch-diff.txt</p>
+
+
+	<p>We could also get a patch file for one to apply to the other, but what we really want to do next is merge the two.</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-branch.html">git branch</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html">git checkout</a></li>
+	</ul>
 
 
 	<h2>Simple Merging</h2>
 
 
-	<p>Now we want to move it back into our &#8216;master&#8217; branch and remove our temporary &#8216;newfunc&#8217; branch.</p>
+	<p>So now we want to move the changes in our &#8216;newfunc&#8217; branch back into our &#8216;master&#8217; branch and remove it.  This will require us merging one branch into another.  Since we&#8217;re already in our &#8216;master&#8217; branch, we&#8217;ll merge in the &#8216;newfunc&#8217; branch like this:</p>
+
+
+	<p>.shell $&gt;git merge newfunc</p>
+
+
+	<p>Easy peasy.  We can see that the simplegit.rb file now has 4 new lines and the <span class="caps">README</span> file was auto-merged.</p>
+
+
+	<p>Now we can get rid of our &#8216;newfunc&#8217; branch with a simple:</p>
+
+
+	<p>.shell $&gt;git branch -d newfunc
+Deleted branch newfunc.</p>
+
+
+	<h3>Resolving Conflicts</h3>
+
+
+	<p>That was a fairly simple problem, but what if we branch our code and then edit the same place in a file in two different ways?  In that case, we&#8217;ll get a conflict when we try to merge them back together.  Git is not too aggressive in trying to resolve conflicts, since you don&#8217;t want it to make assumptions that are not necessarily correct, so bugs aren&#8217;t introduced without your knowledge.</p>
+
+
+	<p>Let&#8217;s say that we created a &#8216;versioning&#8217; branch and then modified the version in the Rakefile to different versions in both the new branch and the &#8216;master&#8217; branch, then tried to merge them together.</p>
+
+
+	<p>.shell s2/merge-conflict.txt</p>
+
+
+	<p>It tells us that there was a conflict and so the new commit object was not created.  We will have to merge the conflicted file manually and then commit it again.  The output tells us the files that had conflicts, in this case it was the Rakefile.</p>
+
+
+	<p>.ruby s2/rakefile.rb</p>
+
+
+	<p>We can see that in the &#8216;master&#8217; branch, the version was changed to &#8216;0.1.2&#8217; and in the &#8216;versioning&#8217; branch, the same line was changed to &#8216;0.2.0&#8217;.  All we have to do is choose which one is correct and remove the rest of the lines, like so:</p>
+
+
+	<p>.ruby s2/rakefile-post.rb</p>
+
+
+	<p>Now we add and commit that file, and we&#8217;re good.</p>
+
+
+	<p>.shell $&gt;git add Rakefile 
+$&gt;git commit -m &#8216;fixed conflict&#8217;
+Created commit 47c668a: fixed conflict</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-branch.html">git branch</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-merge.html">git merge</a></li>
+	</ul>
 
 
 	<h2>Rebasing</h2>
 
 
-	<h3>Interactively Rebasing</h3>
+	<h3>Interactive Rebasing</h3>
+
+
+	<h3>Resetting Your Branch</h3>
+
+
+	<p>reset</p>
 
 
 	<h2>Distributed Workflow Examples</h2>

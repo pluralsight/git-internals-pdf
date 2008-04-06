@@ -23,8 +23,6 @@ h3. Installing on Mac
 
 You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see
 
-http://sourceforge.net/project/showfiles.php?group_id=146701
-
 h4. Mac 10.4 - Tiger
 
 There are some requirements you'll have to install before you can compile git.
@@ -45,6 +43,8 @@ h4. Mac 10.5 - Leopard
 All the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed. 
 
 MacPorts is also an easy option if you have that installed.
+
+http://code.google.com/p/git-osx-installer/
 
 
 h3. Windows
