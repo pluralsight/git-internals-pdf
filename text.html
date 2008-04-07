@@ -705,7 +705,7 @@ for full descriptions of all the available syntaxes.</p>
 	<p>code. e65s46</sup>{tree}</p>
 
 
-	<p>This points to the tree of that commit.  Any time you add a ^{tree} to any commit-ish, it resolves to it&#8217;s tree.</p>
+	<p>This points to the tree of that commit.  Any time you add a <sup>{tree} to any commit-ish, it resolves to it&#8217;s tree.</p>
 
 
 	<h4>Blob Spec</h4>
@@ -937,25 +937,25 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>Let&#8217;s say we add a new function to our &#8216;lib/simplegit.rb&#8217; file, add a new task to our &#8216;Rakefile&#8217; and then add a new &#8216;TODO&#8217; file to our project.  Later we come back and want to commit, but we don&#8217;t remember which files had to do with each other and we don&#8217;t just want to commit them all together because that&#8217;s confusing for collaborators trying to review our code. &#8216;Interactive&#8217; mode let&#8217;s us modify our index interactively before committing.  To fire it up, type &#8216;git add -i&#8217;:</p>
 
 
-	<p>.shell s2/interactive-mode1.txt</p>
+	<p>shell. interactive-mode1.txt</p>
 
 
 	<p>We can see that we have two files that are being tracked (have been added at some point in the past) that have been modified.  We cannot yet see our new <span class="caps">TODO</span> file, though.  To add that, type &#8216;4&#8217; for the &#8216;add untracked&#8217; option and hit enter.</p>
 
 
-	<p>.shell s2/interactive-mode2.txt</p>
+	<p>shell. interactive-mode2.txt</p>
 
 
 	<p>You will see all the untracked files in your working directory.  Type the numbers of the files you want to add and hit enter twice when you&#8217;re done. This will drop you back to the main menu.  You can then type &#8216;1&#8217; to see what your index looks like now.</p>
 
 
-	<p>.shell s2/interactive-mode3.txt</p>
+	<p>shell. interactive-mode3.txt</p>
 
 
 	<p>You can see that the <span class="caps">TODO</span> file is now staged (in the index), but the other two are not.  Let&#8217;s add the Rakefile, but not the &#8216;lib/simplegit.rb&#8217; file and commit it. To do that, we hit &#8216;2&#8217;, which lists the files we can update, type &#8216;1&#8217; and enter to add the Rakefile, then hit enter again to go back to the main menu.  Then we hit &#8216;7&#8217; to exit and run the &#8216;git commit&#8217; command</p>
 
 
-	<p>.shell s2/interactive-mode4.txt</p>
+	<p>shell. interactive-mode4.txt</p>
 
 
 	<p>The interactive shell is pretty simple &#8211; playing with it instead of running &#8216;git add&#8217; commands directly may help in understanding what&#8217;s happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the &#8216;staged&#8217; column) is what will be committed when you run &#8216;git commit&#8217;</p>
@@ -995,7 +995,7 @@ For example, we can list the commit shas and the first line of the message with 
 	<h3>Filtering Log Output</h3>
 
 
-	<p>There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with &#8216;-n&#8217;, you can limit the range of dates you want to see commits for with&#8212;since and&#8212;until, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing the last 30 commits between yesterday and a month ago by me with &#8216;controller&#8217; in the message:</p>
+	<p>There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with &#8216;-n&#8217;, you can limit the range of dates you want to see commits for with&#8212;since and&#8212;until, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing the last 30 commits between yesterday and a month ago by me :</p>
 
 
 	<p>shell. git log -n 30&#8212;since=&#8221;1 month ago&#8221;&#8212;until=yesterday&#8212;author=&#8221;schacon&#8221;</p>
@@ -1024,7 +1024,7 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>If you call it on a tree-ish that is a commit object, you will get simple information about the commit (the author, message, date, etc) and a diff of what changed between that commit and it&#8217;s parents.</p>
 
 
-	<p>.shell git-show-commit.txt</p>
+	<p>shell. git-show-commit.txt</p>
 
 
 	<h4>Showing Trees</h4>
@@ -1033,13 +1033,13 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>Instead of the &#8216;git show&#8217; command, it&#8217;s generally more useful to use the lower level &#8216;git ls-tree&#8217; command to view trees, because it gives you the shas of all the blobs and trees that it points to.</p>
 
 
-	<p>.shell git-lstree1.txt</p>
+	<p>shell. git-lstree1.txt</p>
 
 
 	<p>You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the sha of any blob anywhere in the tree without having to walk it one node at a time.</p>
 
 
-	<p>.shell git-lstree2.txt</p>
+	<p>shell. git-lstree2.txt</p>
 
 
 	<p>The &#8216;-t&#8217; makes it also show the shas of the subtrees themselves, rather than just all the blobs.</p>
@@ -1051,7 +1051,7 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>Lastly, you may want to extract the contents of individual blobs.  The &#8216;cat-file&#8217; command is an easy way to do that, and can also serve to let you know what type of object a sha is, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.</p>
 
 
-	<p>.shell git-catfile.txt</p>
+	<p>shell. git-catfile.txt</p>
 
 
 	<p>With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.</p>
@@ -1079,22 +1079,38 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>If you simply run &#8216;git diff&#8217; with no arguments, it will show you the differences between your current working directory and my index, that is, the last time I ran &#8216;git add&#8217; on my files.  For example, if I add my email to the <span class="caps">README</span> file and run it, I will see this:</p>
 
 
-	<p>.shell git-diff-readme.txt</p>
+	<p>shell. git-diff-readme.txt</p>
 
 
 	<p>You can also use &#8216;git diff&#8217; to show you some spiffy stats for a diff, rather than a patch file, if you want to see a wider overview of what changed, then drill down into specific files later.  Here are some examples getting stats, the first for the differences between two commits and the second a summary between a commit and the current <span class="caps">HEAD</span>.</p>
 
 
-	<p>.shell git-diff-stat.txt</p>
+	<p>shell. git-diff-stat.txt</p>
 
 
 	<p>If you want to see what the specific difference is in one of those files, you can just add a path limiter to the diff command.</p>
 
 
-	<p>.shell git-diff-file.txt</p>
+	<p>shell. git-diff-file.txt</p>
 
 
 	<p>You can use this command to detect changes between your index and any tree, or your working directory and any tree, your working directory and your index, etc.</p>
+
+
+	<h3>Generating Patch Files</h3>
+
+
+	<p>The default output of the &#8216;git diff&#8217; command is a valid patch file.  If you pipe the output into a file and email it to someone, they can apply it with the &#8216;patch&#8217; command.  If you&#8217;ve done some work off of a project in an &#8216;experiment&#8217; branch, you could create a patch file this way:</p>
+
+
+	<p>shell. $&gt; git diff master..experiment &gt; experiment.patch</p>
+
+
+	<p>You can then email that file to anyone, who could apply it with the &#8216;-p1&#8217; argument:</p>
+
+
+	<p>shell. $&gt;patch -p1 &lt; <sub>/experiment.patch 
+patching file lib/simplegit.rb</p>
 
 
 	<ul>
@@ -1114,25 +1130,25 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>However, let&#8217;s say we&#8217;re working on our project and we want to add a new function to our library, so we&#8217;ll make a new branch called &#8216;newfunc&#8217; and switch to it.  There are two ways we can do this, one is to create the branch and then switch to it:</p>
 
 
-	<p>.shell $&gt;git branch newfunc; git checkout newfunc</p>
+	<p>shell. $&gt;git branch newfunc; git checkout newfunc</p>
 
 
 	<p>The other way is to checkout a branch that doesn&#8217;t exist yet and tell git you want to create it by passing the &#8216;-b&#8217; flag:</p>
 
 
-	<p>.shell $&gt; git checkout -b newfunc</p>
+	<p>shell. $&gt; git checkout -b newfunc</p>
 
 
 	<p>Now, to check which branch we are on, we just type &#8216;git branch&#8217;:</p>
 
 
-	<p>.shell git-branch.txt</p>
+	<p>shell. git-branch.txt</p>
 
 
 	<p>We can see we are now on our new branch.  This means that if we modify a file and commit it, this branch will include that change, but the &#8216;master&#8217; branch will not have it yet.  So, we add a new method to our library and commit it.</p>
 
 
-	<p>.shell $&gt; vim lib/simplegit.rb; git commit -a -m &#8216;added lstree function&#8217;
+	<p>shell. $&gt; vim lib/simplegit.rb; git commit -a -m &#8216;added lstree function&#8217;
 Created commit 1a8c32e: added lstree function
  1 files changed, 4 insertions(+), 0 deletions(-)</p>
 
@@ -1140,13 +1156,13 @@ Created commit 1a8c32e: added lstree function
 	<p>Now we want to change something in the <span class="caps">README</span> in the &#8216;master&#8217; branch, but we haven&#8217;t tested this function yet so we don&#8217;t want to merge our new branch in yet.  That&#8217;s fine, we just switch back and make the change.</p>
 
 
-	<p>.shell git-checkout-master-work.txt</p>
+	<p>shell. git-checkout-master-work.txt</p>
 
 
 	<p>Now lets see what the differences in our branches are.</p>
 
 
-	<p>.shell git-branch-diff.txt</p>
+	<p>shell. git-branch-diff.txt</p>
 
 
 	<p>We could also get a patch file for one to apply to the other, but what we really want to do next is merge the two.</p>
@@ -1164,7 +1180,7 @@ Created commit 1a8c32e: added lstree function
 	<p>So now we want to move the changes in our &#8216;newfunc&#8217; branch back into our &#8216;master&#8217; branch and remove it.  This will require us merging one branch into another.  Since we&#8217;re already in our &#8216;master&#8217; branch, we&#8217;ll merge in the &#8216;newfunc&#8217; branch like this:</p>
 
 
-	<p>.shell $&gt;git merge newfunc</p>
+	<p>shell. $&gt;git merge newfunc</p>
 
 
 	<p>Easy peasy.  We can see that the simplegit.rb file now has 4 new lines and the <span class="caps">README</span> file was auto-merged.</p>
@@ -1173,7 +1189,7 @@ Created commit 1a8c32e: added lstree function
 	<p>Now we can get rid of our &#8216;newfunc&#8217; branch with a simple:</p>
 
 
-	<p>.shell $&gt;git branch -d newfunc
+	<p>shell. $&gt;git branch -d newfunc
 Deleted branch newfunc.</p>
 
 
@@ -1186,25 +1202,25 @@ Deleted branch newfunc.</p>
 	<p>Let&#8217;s say that we created a &#8216;versioning&#8217; branch and then modified the version in the Rakefile to different versions in both the new branch and the &#8216;master&#8217; branch, then tried to merge them together.</p>
 
 
-	<p>.shell s2/merge-conflict.txt</p>
+	<p>shell. merge-conflict.txt</p>
 
 
 	<p>It tells us that there was a conflict and so the new commit object was not created.  We will have to merge the conflicted file manually and then commit it again.  The output tells us the files that had conflicts, in this case it was the Rakefile.</p>
 
 
-	<p>.ruby s2/rakefile.rb</p>
+	<p>ruby. rakefile.rb</p>
 
 
 	<p>We can see that in the &#8216;master&#8217; branch, the version was changed to &#8216;0.1.2&#8217; and in the &#8216;versioning&#8217; branch, the same line was changed to &#8216;0.2.0&#8217;.  All we have to do is choose which one is correct and remove the rest of the lines, like so:</p>
 
 
-	<p>.ruby s2/rakefile-post.rb</p>
+	<p>ruby. rakefile-post.rb</p>
 
 
 	<p>Now we add and commit that file, and we&#8217;re good.</p>
 
 
-	<p>.shell $&gt;git add Rakefile 
+	<p>shell. $&gt;git add Rakefile 
 $&gt;git commit -m &#8216;fixed conflict&#8217;
 Created commit 47c668a: fixed conflict</p>
 
@@ -1218,13 +1234,13 @@ Created commit 47c668a: fixed conflict</p>
 	<p>This is where &#8216;git reset&#8217; comes in.  To reset your working directory and index back to what it was before you tried the merge, simply run:</p>
 
 
-	<p>.shell $&gt;git reset&#8212;hard <span class="caps">HEAD</span></p>
+	<p>shell. $&gt;git reset&#8212;hard <span class="caps">HEAD</span></p>
 
 
 	<p>The &#8216;&#8212;hard&#8217; makes sure both your index file and working directory are changed to match what it used it be. By default it will only reset your index, leaving the partially merged files in your working directory.  If you happen to have worked through it all and committed, then decided that it was a mistake because all of your tests break or something, you can still go back (and throw away that commit) by running:</p>
 
 
-	<p>.shell $&gt;git reset&#8212;hard <span class="caps">ORIG</span>_HEAD</p>
+	<p>shell. $&gt;git reset&#8212;hard <span class="caps">ORIG</span>_HEAD</p>
 
 
 	<p>This is only helpful if you want to undo the latest change or changes.  If you happen to commit again then decide that you want to keep the latest commit, but undo a commit that was added sometime before that, you&#8217;ll need to use &#8216;git revert&#8217;, which is covered in [History Manipulation]</p>
@@ -1255,7 +1271,7 @@ Created commit 47c668a: fixed conflict</p>
 	<p>But we don&#8217;t want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running &#8216;git merge story84&#8217; from the master branch, we can stay in the &#8216;story84&#8217; branch and run &#8216;git rebase master&#8217;</p>
 
 
-	<p>.shell rebase-conflict.txt</p>
+	<p>shell. rebase-conflict.txt</p>
 
 
 	<p>Many times this goes very smoothly and you can see all the new commits and trees written in place of the old ones.  In this case, I had edited the &#8216;lib/simplegit.rb&#8217; file differently in each branch which caused a conflict.  I will have to resolve this conflict before I can continue the rebase.</p>
@@ -1300,25 +1316,25 @@ Created commit 47c668a: fixed conflict</p>
 	<p>We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don&#8217;t even really want to merge it, I just want to throw my change away.  Also, I don&#8217;t really need the other two commits to be two commits, because the second one is just a tweak and could be squashed into the first one.  Lets use &#8216;git rebase -i&#8217; to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:</p>
 
 
-	<p>.code s2/repo-rebase.txt</p>
+	<p>code. repo-rebase.txt</p>
 
 
 	<p>Now we can see all of the commits that we are going to rebase.  If we remove the &#8216;made ls-tree recursive&#8217; line, it effectively ditches that commit so we&#8217;ll avoid a conflict and not have to worry about it.  Changing the action on the last line to &#8216;squash&#8217; tells git to just make this and the previous commit into a single commit.  So if we exit the editor with this as the new text:</p>
 
 
-	<p>.code s2/repo-rebase2.txt</p>
+	<p>code. repo-rebase2.txt</p>
 
 
 	<p>Then git sees we have squashed two commits and wants us to pick a commit message for it, giving us the commit messages of both for us to create a new one for.</p>
 
 
-	<p>.code s2/repo-rebase3.txt</p>
+	<p>code. repo-rebase3.txt</p>
 
 
 	<p>So we stick with the first message, save and exit the editor.</p>
 
 
-	<p>.shell s2/repo-rebase4.txt</p>
+	<p>shell. repo-rebase4.txt</p>
 
 
 	<p>Now we&#8217;ve rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we&#8217;ve just added a single commit with no resolving neccesary:</p>
@@ -1337,6 +1353,97 @@ Created commit 47c668a: fixed conflict</p>
 
 
 	<h2>Tagging</h2>
+
+
+	<p>As we previously covered, creating a tag in Git is much like making a branch.  A tag in Git serves is basically a signed branch that never moves &#8211; it is simply an arbitrary string that points to a specific commit.</p>
+
+
+	<p>For example, if you wanted to tag your code base every time you released to production or created a new binary to release, you would run something like this:</p>
+
+
+	<p>shell. $&gt; git tag -a v0.1 -m &#8216;this is my v0.1 tag&#8217;</p>
+
+
+	<p>As we recall from section one, that command will create a git object that looks something like this:</p>
+
+
+	<p><img src="./artwork/s1/tag-expand.png" alt="" /></p>
+
+
+	<p>and will store that in the &#8217;.git/objects/&#8217; directory and then will create a permanent reference to it in &#8217;.git/refs/tags/v0.1&#8217; that contains the sha of that tag.</p>
+
+
+	<p>Then you can use that as a reference to that commit at any time in commands like &#8216;diff&#8217; or &#8216;archive&#8217; (see next chapter).</p>
+
+
+	<h3>Lightweight Tags</h3>
+
+
+	<p>You can also create a tag that doesn&#8217;t actually add a Tag object to the database, but just creates a reference to it in the &#8217;.git/refs/tags&#8217; directory.  If you run the following command:</p>
+
+
+	<p>shell. $&gt; git tag v0.1</p>
+
+
+	<p>Git will create the same file as before, &#8217;.git/refs/tags/v0.1&#8217;, but it will contain the sha of the current <span class="caps">HEAD</span> commit itself, not the sha of a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.</p>
+
+
+	<h3>Signed Tags</h3>
+
+
+	<p>At the other end of the tagging spectrum, you can sign Tag object with a <span class="caps">GPG</span> key to ensure it&#8217;s cryptographic integrity.  Replacing &#8216;-a&#8217; with &#8217;-s&#8217; in the command will create a Tag object and sign it with the current users email address <span class="caps">GPG</span> key.  If you want to specify a key, you can run it with &#8216;-u&#8217; instead:</p>
+
+
+	<p>shell. $&gt; git tag -u <key-id> v0.1 -m &#8216;the 0.1 release&#8217;</p>
+
+
+	<p>Then, you or others can later verify that signed tag with a &#8216;-v&#8217;</p>
+
+
+	<p>shell. $&gt; git tag -v v0.1</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-tag.html">git tag</a></li>
+	</ul>
+
+
+	<h2>Archiving Git</h2>
+
+
+	<p>If you want to create a release of your code, or provide some poor non-git user with a snapshot of just a specific tree, you can use the <strong>git-archive</strong> command.</p>
+
+
+	<p>.note &#8216;git-archive&#8217; used to be called &#8216;git-tar-tree&#8217;, in case you ever see that command around in older articles</p>
+
+
+	<p>You can create the archive in either &#8216;tar&#8217; or &#8216;zip&#8217; formats, the default being &#8216;tar&#8217;.  You can use the &#8216;&#8212;prefix&#8217; argument to determine what directory, if any, the files are expanded into. To create a gzipped tarball, you&#8217;ll have to pipe the output through &#8216;gzip&#8217; first.</p>
+
+
+	<p>shell. $&gt;git-archive&#8212;prefix=simplegit/ v0.1 | gzip &gt; simple-git-0.1.tgz</p>
+
+
+	<p>Then, if you email that tarball to someone, they would get this when they opened it:</p>
+
+
+	<p>shell. git-archive.txt</p>
+
+
+	<p>You can also archive parts of your project.  This command will create a zip file of just the &#8216;lib&#8217; directory of the first parent of your master branch that will expand out into the current directory:</p>
+
+
+	<p>shell. $&gt;git-archive&#8212;format=zip master</sup> lib/ &gt; simple-git-lib.zip</p>
+
+
+	<p>Which will unzip like this:</p>
+
+
+	<p>shell. git-archive-zip.txt</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-archive.html">git archive</a></li>
+	</ul>
 
 
 	<h2>Distributed Workflow Examples</h2>
@@ -1364,7 +1471,7 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>Local clones are the simplest types of clones &#8211; it is basically the equivalent of copying the .git directory and doing a checkout.  The only major difference is that it adds all the original branches in as origin branches.  Often you will do this when creating a bare repository (that is, a repository without a working directory) for putting on a public server, or if you&#8217;re working with people using a shared repository over <span class="caps">NFS</span> or something similar.</p>
 
 
-	<p>.shell $&gt; git clone&#8212;bare simplegit/.git simplegit-bare.git</p>
+	<p>shell. $&gt; git clone&#8212;bare simplegit/.git simplegit-bare.git</p>
 
 
 	<h4><span class="caps">SSH</span> and Git Transports</h4>
@@ -1373,7 +1480,7 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>Cloning over ssh requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.</p>
 
 
-	<p>.shell $&gt; git clone git@github.com:schacon/ticgit.git ticgit_directory</p>
+	<p>shell. $&gt; git clone git@github.com:schacon/ticgit.git ticgit_directory</p>
 
 
 	<h4><span class="caps">HTTP</span> and <span class="caps">HTTPS</span> Transports</h4>
@@ -1382,7 +1489,7 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>Another popular way to clone a repository is over <span class="caps">HTTP</span>, just because it is so simple.  You don&#8217;t need to setup any special service or give out user credentials (made easier by services like gitosis), you simply scp your bare repository into any web server&#8217;s static content directory.  It is not as efficient as the other protocols &#8211; it will transfer loose objects and packfiles over a number of calls instead of packing them up, but it is simple.</p>
 
 
-	<p>.shell $&gt; git clone http://git.gitorious.org/piston/mainline.git piston</p>
+	<p>shell. $&gt; git clone http://git.gitorious.org/piston/mainline.git piston</p>
 
 
 	<p>Once you have run one of these commands, you will have a copy of the git repository, full of all the history &#8211; basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository &#8211; if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.</p>
@@ -1399,7 +1506,7 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>So let&#8217;s say that we&#8217;re going to hack on TicGit, our git based ticket tracking system project.  After we clone it, we look through the source code but don&#8217;t do anything right away. After some time passes we come back to the project but it may not still be up to date &#8211; changes may have occurred in the meantime.  So we fetch an update.</p>
 
 
-	<p>.shell $&gt; git fetch origin</p>
+	<p>shell. $&gt; git fetch origin</p>
 
 
 	<p>This will contact the server over the same protocol we used to clone it and grab all of the objects and references that have been added since our clone and update our &#8216;origin/[branch]&#8217; branches to point to what the server is pointing at now.</p>
@@ -1414,10 +1521,10 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>So, these commands are functionally equivalent:</p>
 
 
-	<p>.shell $&gt; git pull origin/story84</p>
+	<p>shell. $&gt; git pull origin/story84</p>
 
 
-	<p>.shell $&gt; git fetch origin/story84; git merge origin/story84</p>
+	<p>shell. $&gt; git fetch origin/story84; git merge origin/story84</p>
 
 
 	<ul>
@@ -1432,25 +1539,25 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over ssh), we can simply run &#8216;git push&#8217;</p>
 
 
-	<p>.shell $&gt; git push origin master</p>
+	<p>shell. $&gt; git push origin master</p>
 
 
 	<p>The &#8216;origin&#8217; in that case will be inferred if you leave it out, but if you&#8217;ve used a different name for your remote or you are trying to push one of your other branches, you can do that, too.</p>
 
 
-	<p>.shell $&gt; git push scott-public experimental</p>
+	<p>shell. $&gt; git push scott-public experimental</p>
 
 
 	<p>If you don&#8217;t specify a branch, it will infer that you want to push every branch that you and the server have in common.  So, if you have pushed your &#8216;master&#8217; branch and your &#8216;experimental&#8217; branch to the &#8216;scott-public&#8217; server at any point, running this will update the server to have the newest versions of <strong>both</strong> of them:</p>
 
 
-	<p>.shell $&gt; git push scott-public</p>
+	<p>shell. $&gt; git push scott-public</p>
 
 
 	<p>Whereas this will only update the &#8216;master&#8217; branch:</p>
 
 
-	<p>.shell $&gt; git push scott-public master</p>
+	<p>shell. $&gt; git push scott-public master</p>
 
 
 	<p>.note In Git, the opposite of &#8216;push&#8217; is not &#8216;pull&#8217;, but &#8216;fetch&#8217;. 
@@ -1471,14 +1578,14 @@ A &#8216;pull&#8217; is a &#8216;fetch&#8217; and then a &#8216;merge&#8217;.</p
 	<p>Pushing to and pulling from multiple sources is easy and straightforward. You simply add remotes :</p>
 
 
-	<p>.shell $&gt; git remote add mycap git@github.com:schacon/capistrano.git
+	<p>shell. $&gt; git remote add mycap git@github.com:schacon/capistrano.git
 $&gt; git remote add official git://github.com/jamis/capistrano.git</p>
 
 
 	<p>Then, if the the project is updated, I can pull in the changes from one remote, merge them locally, and then push to another remote.</p>
 
 
-	<p>.shell $&gt; git fetch official
+	<p>shell. $&gt; git fetch official
 $&gt; git merge official/master
 $&gt; git push mycap master</p>
 
@@ -1487,6 +1594,15 @@ $&gt; git push mycap master</p>
 
 
 	<p><img src="./artwork/s2/fetch-pull.png" alt="" /></p>
+
+
+	<p>You can also remove remotes at any time, which simply removes the lines that contain the url in your &#8217;.git/config&#8217; file and the references to their remote branches in &#8217;.git/refs/[remote_name]&#8217; directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.</p>
+
+
+	<p>You can also view useful information about a remote branch by using the &#8216;remote show&#8217; command.  For example, if I run this on a checkout of the Git source code itself, I will see this:</p>
+
+
+	<p>shell. git-remote-show.txt</p>
 
 
 	<ul>
@@ -1545,25 +1661,22 @@ $&gt; git push mycap master</p>
 	<p>In the end, there is really no single &#8216;right way&#8217; to do it &#8211; being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase &#8211; say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus&#8217;s branch.  In the end, you (or you and your team) will have to sit down for a second and think about what will work best for you.</p>
 
 
-	<h2>All About Remotes (refspec)</h2>
-
-
-	<p>.todo more about tracking branches and what they do</p>
-
-
 	<h2>Sharing Repositories</h2>
 
 
 	<h3>Over Git</h3>
 
 
-	<p>Git provides it&#8217;s own special protocol, which is basically just a really thin wrapper over the &#8216;git-upload-pack&#8217; command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up, run something like the following command:</p>
+	<p>Git provides it&#8217;s own special protocol, which is basically just a really thin wrapper over the &#8216;git-upload-pack&#8217; command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:</p>
 
 
-	<p>.shell $&gt; git daemon&#8212;detach</p>
+	<p>shell. $&gt;git-daemon&#8212;detach&#8212;export-all&#8212;base-path=/opt/git /opt/git/ambition</p>
 
 
-	<p>The git protocol has no built in authentication, so generally you cannot push over it (although some people have open push policies and so allow that &#8211; I would not recommend setting that up, so you&#8217;ll have to look up how to do that).  If you want your users to have push access, it&#8217;s recommended to use the ssh protocol.  Many repositories, like GitHub, have ssh enabled for account owners to push over, and git enabled for the public to pull over &#8211; which is often the most efficient combination.</p>
+	<p>Though for long term running, you&#8217;ll likely want to add this to your inet.d configuration.  See the <a href="http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html">git-daemon</a> docs for specific information on how to set that up.</p>
+
+
+	<p>The git protocol has no built in authentication, so generally you cannot push over it (although some people have open push policies and so allow that &#8211; I would not recommend setting that up, so you&#8217;ll have to look up how to do that).  If you want your users to have push access, it&#8217;s recommended to use the ssh protocol.  Many repositories, like GitHub, have ssh enabled for account owners to push over, and git-daemon enabled for the public to pull over &#8211; which is often the most efficient combination.</p>
 
 
 	<ul>
@@ -1577,10 +1690,10 @@ $&gt; git push mycap master</p>
 	<p>Git can work entirely over <span class="caps">SSH</span> &#8211; it actually does much the same thing that happens over the git protocol, except it implicitly has authentication built in, so if the user they are ssh&#8217;ing in as has access to write to the repo, then that user can push over ssh as well.</p>
 
 
-	<p>.shell $&gt; git clone&#8212;bare; scp</p>
+	<p>shell. $&gt; git clone&#8212;bare; scp</p>
 
 
-	<h3>Over Http</h3>
+	<h3>Over <span class="caps">HTTP</span></h3>
 
 
 	<p>this is pretty easy to setup because there is no requirement other than a static web server &#8211; it is not like <span class="caps">SVN</span> which requires a <span class="caps">DAV</span> server to run.  If you want to push over http, however, you will need <span class="caps">DAV</span> setup &#8211; it&#8217;s generally a much better idea to use ssh to do so, however.</p>
@@ -1589,19 +1702,40 @@ $&gt; git push mycap master</p>
 	<p>The only caveat is that you need to run &#8216;git update-server-info&#8217; each time you commit to the repository.</p>
 
 
-	<p>.shell $&gt; git update-server-info</p>
+	<p>shell. $&gt; git update-server-info</p>
 
 
-	<p>It is generally a good idea to put this in the</p>
+	<p>It is generally a good idea to put this in the post-commit hook file on any server that you want to be able to fetch from over <span class="caps">HTTP</span>.</p>
 
 
 	<p>.sidebar actually, you can run this without update-server-info if you never pack objects and you have a pre-defined list of branches you are always fetching.  All that update-server-info does is put a list of branches into one file (.git/info/refs) and a list of pack files into another (.git/objects/info/pack) to get around the fact that you cannot reliably list contents of a directory over http &#8211; it&#8217;s not built into the protocol. So for git to know what packfiles and branches are available, it needs to have one url it can get those from.</p>
 
 
-	<h4>Hosted Repositories</h4>
+	<h2>Hosted Repositories</h2>
+
+
+	<p>If you don&#8217;t want to deal with setting up and maintaining your own server for your git repository, you can use one of the growing number of public Git hosted servers.</p>
+
+
+	<p>I will focus on some interesting features of a commercial service called <a href="http://github.com">GitHub</a> here, but there is also an open source project called <a href="http://gitorious.com">Gitorious</a> that has many of the same features.</p>
+
+
+	<p>My focus on GitHub is only because it has private repos for commercial projects, the open source ones are free, and many popular projects featured in the Peepcode series, including Ruby on Rails, Merb, RSpec, and Capistrano are hosted there.</p>
 
 
 	<h3>GitHub</h3>
+
+
+	<p>open source software repos are free</p>
+
+
+	<p>closed source or multiple committers cost</p>
+
+
+	<p>social networking
+ &#8211; watching people and projects
+ &#8211; forking a project
+ &#8211; sending a pull request</p>
 
 
 	<h1>Section Three &#8211; Git and Other Systems</h1>
@@ -1689,6 +1823,12 @@ $&gt; git push mycap master</p>
 	<p>http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html</p>
 
 
+	<h2>All About Remotes (refspec)</h2>
+
+
+	<p>.todo more about tracking branches and what they do</p>
+
+
 	<h2>History Manipulation</h2>
 
 
@@ -1707,7 +1847,7 @@ $&gt; git push mycap master</p>
 	<h3>Removing Commits</h3>
 
 
-	<p>git-rebase&#8212;onto topicA<sub>5 topicA</sub>3 topicA</p>
+	<p>git-rebase&#8212;onto topicA</sub>5 topicA~3 topicA</p>
 
 
 	<h2>Patch Management</h2>
@@ -1845,6 +1985,9 @@ git branch recovered-branch 7281251ddd</p>
 	<h3><span class="caps">HTTP</span> walking</h3>
 
 
+	<h2>The Index File</h2>
+
+
 	<h1>References and Endnotes</h1>
 
 
@@ -1860,6 +2003,9 @@ git branch recovered-branch 7281251ddd</p>
 
 	<p><a href="http://www.kernel.org/pub/software/scm/git/docs/">Main Git Documentation</a>
 - fantastic reference for all the command line programs</p>
+
+
+	<p><a href="http://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git User&#8217;s Manual</a></p>
 
 
 	<p><a href="http://eagain.net/articles/git-for-computer-scientists/">Git for Computer Scientists</a>

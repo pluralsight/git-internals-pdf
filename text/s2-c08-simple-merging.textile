@@ -2,13 +2,13 @@ h2. Simple Merging
 
 So now we want to move the changes in our 'newfunc' branch back into our 'master' branch and remove it.  This will require us merging one branch into another.  Since we're already in our 'master' branch, we'll merge in the 'newfunc' branch like this:
 
-.shell $>git merge newfunc
+shell. $>git merge newfunc
 
 Easy peasy.  We can see that the simplegit.rb file now has 4 new lines and the README file was auto-merged.
 
 Now we can get rid of our 'newfunc' branch with a simple:
 
-.shell $>git branch -d newfunc
+shell. $>git branch -d newfunc
 Deleted branch newfunc.
 
 h3. Resolving Conflicts
@@ -17,19 +17,19 @@ That was a fairly simple problem, but what if we branch our code and then edit t
 
 Let's say that we created a 'versioning' branch and then modified the version in the Rakefile to different versions in both the new branch and the 'master' branch, then tried to merge them together.
 
-.shell s2/merge-conflict.txt
+shell. merge-conflict.txt
 
 It tells us that there was a conflict and so the new commit object was not created.  We will have to merge the conflicted file manually and then commit it again.  The output tells us the files that had conflicts, in this case it was the Rakefile.
 
-.ruby s2/rakefile.rb
+ruby. rakefile.rb
 
 We can see that in the 'master' branch, the version was changed to '0.1.2' and in the 'versioning' branch, the same line was changed to '0.2.0'.  All we have to do is choose which one is correct and remove the rest of the lines, like so:
 
-.ruby s2/rakefile-post.rb
+ruby. rakefile-post.rb
 
 Now we add and commit that file, and we're good.
 
-.shell $>git add Rakefile 
+shell. $>git add Rakefile 
 $>git commit -m 'fixed conflict'
 Created commit 47c668a: fixed conflict
 
@@ -39,11 +39,11 @@ Assume we have gone through some massive merge because someone on your team hasn
 
 This is where 'git reset' comes in.  To reset your working directory and index back to what it was before you tried the merge, simply run:
 
-.shell $>git reset --hard HEAD
+shell. $>git reset --hard HEAD
 
 The '--hard' makes sure both your index file and working directory are changed to match what it used it be. By default it will only reset your index, leaving the partially merged files in your working directory.  If you happen to have worked through it all and committed, then decided that it was a mistake because all of your tests break or something, you can still go back (and throw away that commit) by running:
 
-.shell $>git reset --hard ORIG_HEAD
+shell. $>git reset --hard ORIG_HEAD
 
 This is only helpful if you want to undo the latest change or changes.  If you happen to commit again then decide that you want to keep the latest commit, but undo a commit that was added sometime before that, you'll need to use 'git revert', which is covered in [History Manipulation]
 

@@ -15,19 +15,19 @@ h4. Local Clones
 
 Local clones are the simplest types of clones - it is basically the equivalent of copying the .git directory and doing a checkout.  The only major difference is that it adds all the original branches in as origin branches.  Often you will do this when creating a bare repository (that is, a repository without a working directory) for putting on a public server, or if you're working with people using a shared repository over NFS or something similar.
 
-.shell $> git clone --bare simplegit/.git simplegit-bare.git
+shell. $> git clone --bare simplegit/.git simplegit-bare.git
 
 h4. SSH and Git Transports
 
 Cloning over ssh requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.
 
-.shell $> git clone git@github.com:schacon/ticgit.git ticgit_directory
+shell. $> git clone git@github.com:schacon/ticgit.git ticgit_directory
 
 h4. HTTP and HTTPS Transports
 
 Another popular way to clone a repository is over HTTP, just because it is so simple.  You don't need to setup any special service or give out user credentials (made easier by services like gitosis), you simply scp your bare repository into any web server's static content directory.  It is not as efficient as the other protocols - it will transfer loose objects and packfiles over a number of calls instead of packing them up, but it is simple.
 
-.shell $> git clone http://git.gitorious.org/piston/mainline.git piston
+shell. $> git clone http://git.gitorious.org/piston/mainline.git piston
 
 Once you have run one of these commands, you will have a copy of the git repository, full of all the history - basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository - if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.
 
@@ -38,7 +38,7 @@ h3. Fetching and Pulling
 
 So let's say that we're going to hack on TicGit, our git based ticket tracking system project.  After we clone it, we look through the source code but don't do anything right away. After some time passes we come back to the project but it may not still be up to date - changes may have occurred in the meantime.  So we fetch an update.
 
-.shell $> git fetch origin
+shell. $> git fetch origin
 
 This will contact the server over the same protocol we used to clone it and grab all of the objects and references that have been added since our clone and update our 'origin/[branch]' branches to point to what the server is pointing at now.  
 
@@ -48,9 +48,9 @@ At this point, we may want to merge 'origin/story84' into our local 'story84' br
 
 So, these commands are functionally equivalent:
 
-.shell $> git pull origin/story84
+shell. $> git pull origin/story84
 
-.shell $> git fetch origin/story84; git merge origin/story84
+shell. $> git fetch origin/story84; git merge origin/story84
 
 * "git fetch":http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html
 * "git pull":http://www.kernel.org/pub/software/scm/git/docs/git-pull.html
@@ -60,19 +60,19 @@ h3. Pushing
 
 Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over ssh), we can simply run 'git push'
 
-.shell $> git push origin master
+shell. $> git push origin master
 
 The 'origin' in that case will be inferred if you leave it out, but if you've used a different name for your remote or you are trying to push one of your other branches, you can do that, too.
 
-.shell $> git push scott-public experimental
+shell. $> git push scott-public experimental
 
 If you don't specify a branch, it will infer that you want to push every branch that you and the server have in common.  So, if you have pushed your 'master' branch and your 'experimental' branch to the 'scott-public' server at any point, running this will update the server to have the newest versions of *both* of them:
 
-.shell $> git push scott-public
+shell. $> git push scott-public
 
 Whereas this will only update the 'master' branch:
 
-.shell $> git push scott-public master
+shell. $> git push scott-public master
 
 .note In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
 A 'pull' is a 'fetch' and then a 'merge'.
@@ -85,18 +85,24 @@ Although a bit different in syntax maybe, most of that should seem familiar to a
 
 Pushing to and pulling from multiple sources is easy and straightforward. You simply add remotes :
 
-.shell $> git remote add mycap git@github.com:schacon/capistrano.git
+shell. $> git remote add mycap git@github.com:schacon/capistrano.git
 $> git remote add official git://github.com/jamis/capistrano.git
 
 Then, if the the project is updated, I can pull in the changes from one remote, merge them locally, and then push to another remote.
 
-.shell $> git fetch official
+shell. $> git fetch official
 $> git merge official/master
 $> git push mycap master
 
 I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.
 
 !../artwork/s2/fetch-pull.png!
+
+You can also remove remotes at any time, which simply removes the lines that contain the url in your '.git/config' file and the references to their remote branches in '.git/refs/[remote_name]' directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.
+
+You can also view useful information about a remote branch by using the 'remote show' command.  For example, if I run this on a checkout of the Git source code itself, I will see this:
+
+shell. git-remote-show.txt
 
 * "git remote":http://www.kernel.org/pub/software/scm/git/docs/git-remote.html
 

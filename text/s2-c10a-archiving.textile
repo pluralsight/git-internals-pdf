@@ -1,0 +1,23 @@
+h2. Archiving Git
+
+If you want to create a release of your code, or provide some poor non-git user with a snapshot of just a specific tree, you can use the *git-archive* command.
+
+.note 'git-archive' used to be called 'git-tar-tree', in case you ever see that command around in older articles
+
+You can create the archive in either 'tar' or 'zip' formats, the default being 'tar'.  You can use the '--prefix' argument to determine what directory, if any, the files are expanded into. To create a gzipped tarball, you'll have to pipe the output through 'gzip' first.
+
+shell. $>git-archive --prefix=simplegit/ v0.1 | gzip > simple-git-0.1.tgz
+
+Then, if you email that tarball to someone, they would get this when they opened it:
+
+shell. git-archive.txt
+
+You can also archive parts of your project.  This command will create a zip file of just the 'lib' directory of the first parent of your master branch that will expand out into the current directory:
+
+shell. $>git-archive --format=zip master^ lib/ > simple-git-lib.zip
+
+Which will unzip like this:
+
+shell. git-archive-zip.txt
+
+* "git archive":http://www.kernel.org/pub/software/scm/git/docs/git-archive.html

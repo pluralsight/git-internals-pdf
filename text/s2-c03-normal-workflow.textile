@@ -48,19 +48,19 @@ Although that will work for all of your development needs - many developers simp
 
 Let's say we add a new function to our 'lib/simplegit.rb' file, add a new task to our 'Rakefile' and then add a new 'TODO' file to our project.  Later we come back and want to commit, but we don't remember which files had to do with each other and we don't just want to commit them all together because that's confusing for collaborators trying to review our code. 'Interactive' mode let's us modify our index interactively before committing.  To fire it up, type 'git add -i':
 
-.shell s2/interactive-mode1.txt
+shell. interactive-mode1.txt
 
 We can see that we have two files that are being tracked (have been added at some point in the past) that have been modified.  We cannot yet see our new TODO file, though.  To add that, type '4' for the 'add untracked' option and hit enter.
 
-.shell s2/interactive-mode2.txt
+shell. interactive-mode2.txt
 
 You will see all the untracked files in your working directory.  Type the numbers of the files you want to add and hit enter twice when you're done. This will drop you back to the main menu.  You can then type '1' to see what your index looks like now.
 
-.shell s2/interactive-mode3.txt
+shell. interactive-mode3.txt
 
 You can see that the TODO file is now staged (in the index), but the other two are not.  Let's add the Rakefile, but not the 'lib/simplegit.rb' file and commit it. To do that, we hit '2', which lists the files we can update, type '1' and enter to add the Rakefile, then hit enter again to go back to the main menu.  Then we hit '7' to exit and run the 'git commit' command
 
-.shell s2/interactive-mode4.txt
+shell. interactive-mode4.txt
 
 The interactive shell is pretty simple - playing with it instead of running 'git add' commands directly may help in understanding what's happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the 'staged' column) is what will be committed when you run 'git commit'
 

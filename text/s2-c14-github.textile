@@ -1,4 +1,19 @@
-h4. Hosted Repositories
+h2. Hosted Repositories
 
+If you don't want to deal with setting up and maintaining your own server for your git repository, you can use one of the growing number of public Git hosted servers.  
+
+I will focus on some interesting features of a commercial service called "GitHub":http://github.com here, but there is also an open source project called "Gitorious":http://gitorious.com that has many of the same features.
+
+My focus on GitHub is only because it has private repos for commercial projects, the open source ones are free, and many popular projects featured in the Peepcode series, including Ruby on Rails, Merb, RSpec, and Capistrano are hosted there.
 
 h3. GitHub
+
+open source software repos are free
+
+closed source or multiple committers cost
+
+social networking
+ - watching people and projects
+ - forking a project
+ - sending a pull request
+

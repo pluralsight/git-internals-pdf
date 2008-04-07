@@ -10,17 +10,17 @@ h4. Showing Commits
 
 If you call it on a tree-ish that is a commit object, you will get simple information about the commit (the author, message, date, etc) and a diff of what changed between that commit and it's parents.
 
-.shell git-show-commit.txt
+shell. git-show-commit.txt
 
 h4. Showing Trees
 
 Instead of the 'git show' command, it's generally more useful to use the lower level 'git ls-tree' command to view trees, because it gives you the shas of all the blobs and trees that it points to.
 
-.shell git-lstree1.txt
+shell. git-lstree1.txt
 
 You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the sha of any blob anywhere in the tree without having to walk it one node at a time.  
 
-.shell git-lstree2.txt
+shell. git-lstree2.txt
 
 The '-t' makes it also show the shas of the subtrees themselves, rather than just all the blobs.
 
@@ -28,7 +28,7 @@ h4. Showing Blobs
 
 Lastly, you may want to extract the contents of individual blobs.  The 'cat-file' command is an easy way to do that, and can also serve to let you know what type of object a sha is, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.
 
-.shell git-catfile.txt
+shell. git-catfile.txt
 
 With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.
 

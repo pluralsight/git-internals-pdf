@@ -10,6 +10,8 @@ h2. Web Documentation
 "Main Git Documentation":http://www.kernel.org/pub/software/scm/git/docs/
 - fantastic reference for all the command line programs
 
+"Git User's Manual":http://www.kernel.org/pub/software/scm/git/docs/user-manual.html
+
 "Git for Computer Scientists":http://eagain.net/articles/git-for-computer-scientists/
 - good detail about the DAG object model
 

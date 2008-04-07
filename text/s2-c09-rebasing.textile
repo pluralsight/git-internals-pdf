@@ -10,7 +10,7 @@ If we do a simple merge, our history will look like this:
 
 But we don't want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running 'git merge story84' from the master branch, we can stay in the 'story84' branch and run 'git rebase master'
 
-.shell rebase-conflict.txt
+shell. rebase-conflict.txt
 
 Many times this goes very smoothly and you can see all the new commits and trees written in place of the old ones.  In this case, I had edited the 'lib/simplegit.rb' file differently in each branch which caused a conflict.  I will have to resolve this conflict before I can continue the rebase.
 
@@ -42,19 +42,19 @@ Assume we have started working on a story to add the 'git add' functionality to 
 
 We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don't even really want to merge it, I just want to throw my change away.  Also, I don't really need the other two commits to be two commits, because the second one is just a tweak and could be squashed into the first one.  Lets use 'git rebase -i' to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:
 
-.code s2/repo-rebase.txt
+code. repo-rebase.txt
 
 Now we can see all of the commits that we are going to rebase.  If we remove the 'made ls-tree recursive' line, it effectively ditches that commit so we'll avoid a conflict and not have to worry about it.  Changing the action on the last line to 'squash' tells git to just make this and the previous commit into a single commit.  So if we exit the editor with this as the new text:
 
-.code s2/repo-rebase2.txt
+code. repo-rebase2.txt
 
 Then git sees we have squashed two commits and wants us to pick a commit message for it, giving us the commit messages of both for us to create a new one for.
 
-.code s2/repo-rebase3.txt
+code. repo-rebase3.txt
 
 So we stick with the first message, save and exit the editor.
 
-.shell s2/repo-rebase4.txt
+shell. repo-rebase4.txt
 
 Now we've rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we've just added a single commit with no resolving neccesary:
 

@@ -1,0 +1,5 @@
+develop>unzip simple-git-lib.zip 
+Archive:  simple-git-lib.zip
+ce9b0d5551762048735dd67917046b44176317e0
+   creating: lib/
+  inflating: lib/simplegit.rb

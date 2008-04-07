@@ -21,7 +21,7 @@ With '--pretty', you can choose between oneline, short, medium, full, fuller, em
 
 h3. Filtering Log Output
 
-There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with '-n', you can limit the range of dates you want to see commits for with --since and --until, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing the last 30 commits between yesterday and a month ago by me with 'controller' in the message:
+There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with '-n', you can limit the range of dates you want to see commits for with --since and --until, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing the last 30 commits between yesterday and a month ago by me :
 
 shell. git log -n 30 --since="1 month ago" --until=yesterday --author="schacon"
 

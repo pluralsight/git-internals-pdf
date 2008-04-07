@@ -1,0 +1,6 @@
+$>tar zxpvf simple-git-0.1.tgz  
+simplegit/README
+simplegit/Rakefile
+simplegit/TODO
+simplegit/lib/
+simplegit/lib/simplegit.rb
