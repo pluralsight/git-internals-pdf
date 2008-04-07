@@ -1,0 +1,25 @@
+h2. The Git Protocol
+
+port 9418
+
+Actually, ssh and git are basically identical here, it's just that git is unencrypted, unauthenticated and can only basically run one command, 'git-upload-pack' (Though you can also enable 'receive-pack' or 'upload-archive').
+
+If it wants to invoke git-upload pack, it sends something like '0053upload-pack path/to/repo<NUL>host=git.server.example:9148'. (Ilari)
+
+h3. Fetching
+
+* git fetch-pack
+
+If the server sends incomplete datastream back, you need to complete it before storing. You also need to compute the index file for the pack. (Ilari)
+
+* git upload-pack
+
+h3. Pushing
+
+* git upload-pack
+* git receive-pack
+
+
+* special thanks to Ilari on IRC for walking me through some of this and Shawn Pearce for getting me a copy of unmerged jgit code
+
+* "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html

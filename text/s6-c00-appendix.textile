@@ -1,3 +1,7 @@
-h1. The Appendix
+h1. Section Six - The Appendix
 
-There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git (http://github.com/schacon/git-ruby).  Since most of these are pretty hard to find information on and for programmers like me who haven't touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here.
+There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git, "git-ruby":http://github.com/schacon/git-ruby.  
+
+Since most of these are pretty hard to find information on and for programmers like me who haven't touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here. 
+
+If you don't care about the gritty specifics of what git is doing behind the scenes - if discussion of null bytes, bit shifting, delta compression and sideband demultiplexers is not of interest, feel free to skip ahead to the references.

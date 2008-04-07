@@ -25,3 +25,8 @@ h2. Screencasts
 "RailsCasts Git Screencast":http://railscasts.com/episodes/96
 
 "Using Git to Manage and Deploy Rails Apps":http://www.jointheconversation.org/railsgit
+
+h2. IRC
+
+#git channel on irc.freenode.net
+

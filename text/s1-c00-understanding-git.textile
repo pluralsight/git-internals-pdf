@@ -1,4 +1,4 @@
-h1. Section 1 - Understanding Git
+h1. Section One - Understanding Git
 
 In this section, we will go over what git was built for and how it works, hopefully laying the groundwork to properly understand what it is doing when we run the commands.
 

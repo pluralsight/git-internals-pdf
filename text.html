@@ -118,7 +118,7 @@ sudo make prefix=/usr install install-doc install-info</p>
 	<p>http://git.fedoraproject.org/git/</p>
 
 
-	<h1>Section 1 &#8211; Understanding Git</h1>
+	<h1>Section One &#8211; Understanding Git</h1>
 
 
 	<p>In this section, we will go over what git was built for and how it works, hopefully laying the groundwork to properly understand what it is doing when we run the commands.</p>
@@ -794,7 +794,7 @@ Branches, merges &#8211; distributed, adhoc documentation, book writing
 	<p>(http://eigenclass.org/hiki/gibak-backup-system-introduction)</p>
 
 
-	<h1>Section 2 &#8211; Using Git</h1>
+	<h1>Section Two &#8211; Using Git</h1>
 
 
 	<p>Now that you understand what Git does at a fundamental level &#8211; how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let&#8217;s see how to actually use it.  This next section presents some of the basic commands that you will need to know in order to use git effectively.</p>
@@ -1336,6 +1336,9 @@ Created commit 47c668a: fixed conflict</p>
 	</ul>
 
 
+	<h2>Tagging</h2>
+
+
 	<h2>Distributed Workflow Examples</h2>
 
 
@@ -1345,22 +1348,148 @@ Created commit 47c668a: fixed conflict</p>
 	<h3>Cloning</h3>
 
 
-	<p>If you want to begin working on an existing project, you will need to get an initial version of it &#8211; copy it&#8217;s repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including http, https, ssh, it&#8217;s own &#8216;git&#8217; protocol, and rsync.  The &#8216;git&#8217; protocol and &#8216;ssh&#8217; are preferred because they are more efficient and not difficult to set up.</p>
+	<p>If you want to begin working on an existing project, you will need to get an initial version of it &#8211; copy it&#8217;s repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, it&#8217;s own &#8216;git&#8217; protocol, and rsync.  The &#8216;git&#8217; protocol and &#8216;ssh&#8217; are preferred because they are more efficient and not difficult to set up.</p>
 
 
-	<h3>Fetching, Pulling (tracking branches)</h3>
+	<p>When you clone a repository, it in essence copies all the git objects to a new directory, checks you out a single local branch named the same as the <span class="caps">HEAD</span> branch on the cloned repo (normally &#8216;master&#8217;), and stores all the other branches under a remote reference by default named &#8216;origin&#8217;.</p>
+
+
+	<p>That means that if we cloned the repo in the previous examples, instead of &#8216;story84&#8217; being a local branch you can switch to, it becomes &#8216;origin/story84&#8217; that you have to create a local branch to pull into in order to work on (eg: &#8216;git checkout&#8212;track story84 origin/story84&#8217;)  
+The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push to the origin of this branch later, so remember where it came from.</p>
+
+
+	<h4>Local Clones</h4>
+
+
+	<p>Local clones are the simplest types of clones &#8211; it is basically the equivalent of copying the .git directory and doing a checkout.  The only major difference is that it adds all the original branches in as origin branches.  Often you will do this when creating a bare repository (that is, a repository without a working directory) for putting on a public server, or if you&#8217;re working with people using a shared repository over <span class="caps">NFS</span> or something similar.</p>
+
+
+	<p>.shell $&gt; git clone&#8212;bare simplegit/.git simplegit-bare.git</p>
+
+
+	<h4><span class="caps">SSH</span> and Git Transports</h4>
+
+
+	<p>Cloning over ssh requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.</p>
+
+
+	<p>.shell $&gt; git clone git@github.com:schacon/ticgit.git ticgit_directory</p>
+
+
+	<h4><span class="caps">HTTP</span> and <span class="caps">HTTPS</span> Transports</h4>
+
+
+	<p>Another popular way to clone a repository is over <span class="caps">HTTP</span>, just because it is so simple.  You don&#8217;t need to setup any special service or give out user credentials (made easier by services like gitosis), you simply scp your bare repository into any web server&#8217;s static content directory.  It is not as efficient as the other protocols &#8211; it will transfer loose objects and packfiles over a number of calls instead of packing them up, but it is simple.</p>
+
+
+	<p>.shell $&gt; git clone http://git.gitorious.org/piston/mainline.git piston</p>
+
+
+	<p>Once you have run one of these commands, you will have a copy of the git repository, full of all the history &#8211; basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository &#8211; if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.</p>
+
+
+	<h3>Fetching and Pulling</h3>
+
+
+	<p>So let&#8217;s say that we&#8217;re going to hack on TicGit, our git based ticket tracking system project.  After we clone it, we look through the source code but don&#8217;t do anything right away. After some time passes we come back to the project but it may not still be up to date &#8211; changes may have occurred in the meantime.  So we fetch an update.</p>
+
+
+	<p>.shell $&gt; git fetch origin</p>
+
+
+	<p>This will contact the server over the same protocol we used to clone it and grab all of the objects and references that have been added since our clone and update our &#8216;origin/[branch]&#8217; branches to point to what the server is pointing at now.</p>
+
+
+	<p>So, if we did create a tracking branch on &#8216;story84&#8217; and it was changed on the server (someone pushed an update), before we fetch, our local &#8216;story84&#8217; branch and our remote &#8216;origin/story84&#8217; branch will be the same.  After we fetch, they will be different.  &#8216;origin/story84&#8217; will now point to one of the new commit objects we downloaded during the fetch.</p>
+
+
+	<p>At this point, we may want to merge &#8216;origin/story84&#8217; into our local &#8216;story84&#8217; branch.  That&#8217;s easy enough, but if we want to do it automatically every time we fetch, we can use &#8216;git pull&#8217;, which is just a &#8216;fetch&#8217; and then a &#8216;merge&#8217; command.</p>
+
+
+	<p>So, these commands are functionally equivalent:</p>
+
+
+	<p>.shell $&gt; git pull origin/story84</p>
+
+
+	<p>.shell $&gt; git fetch origin/story84; git merge origin/story84</p>
 
 
 	<h3>Pushing</h3>
 
 
-	<h3>Formatting Patches</h3>
+	<p>Now we can get updated
+we have some changes that we want to share with others.</p>
+
+
+	<p>.note In Git, the opposite of &#8216;push&#8217; is not &#8216;pull&#8217;, but &#8216;fetch&#8217;. 
+A &#8216;pull&#8217; is a &#8216;fetch&#8217; and then a &#8216;merge&#8217;.</p>
+
+
+	<h3>Multiple Remotes</h3>
+
+
+	<p>pushing to and pulling from multiple sources</p>
+
+
+	<p><img src="./artwork/s2/fetch-pull.png" alt="" /></p>
+
+
+	<h3>Possible Workflows</h3>
+
+
+	<p>The idea of having multiple remote repositories that you can push to and/or pull from is probably new to you, and many people have a hard time figuring out what their workflow should look like, especially if they are moving from a centralized <span class="caps">SCM</span> system.  I will present a couple of possible workflows that I have seen, so you can determine what will work best for you and your team.</p>
+
+
+	<p>Most of these are simply a matter of convention, not even configuration.  Each of the models can pretty easily change to another with minimal configuration changes &#8211; maybe some permissions tweaked here or there.</p>
+
+
+	<h4>Central Repository Model</h4>
+
+
+	<p>There is a single repository that all developers push to and pull from.</p>
+
+
+	<p><img src="./artwork/s2/workflow-star.png" alt="" /></p>
+
+
+	<p>This model works just like a centralized <span class="caps">SCM</span> and Git can work that way just fine. If you setup a repository for your team on a server that everyone has ssh or <span class="caps">NFS</span> access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don&#8217;t want to worry about a hierarchy &#8211; the strength of this model is that it forces everyone to stay up to date with each other and it doesn&#8217;t depend on a single role.</p>
+
+
+	<p>Even large teams could use this, but in general there are a lot of gains to be made in larger teams with a different or hybrid model.</p>
+
+
+	<h4>Dictator and Lieutenant Model</h4>
+
+
+	<p>This is a highly hierarchical model where one individual has commit rights to a blessed repository that everyone else fetches from. Changes are fetched from developers by lieutenants responsible for specific subsystems and merged and tested.  Lieutenant branches are then fetched by the dictator and merged and pushed into the blessed repository, where the cycle starts over again.</p>
+
+
+	<p><img src="./artwork/s2/workflow-dictator.png" alt="" /></p>
+
+
+	<p>This is a model something like the Linux kernel uses, Linus being the benevolent dictator. This model is much better for large teams, and can be implemented with multiple and varied levels of lieutenants and sub-lieutenants in charge of various subsystems.  At any stage in this process, patches or commits can be rejected &#8211; not merged in and sent up the chain.</p>
+
+
+	<h4>Integration Manager Model</h4>
+
+
+	<p>This is where each developer has a public repository, but one is considered the &#8216;official&#8217; repository &#8211; it is used to create the packages and binaries.  A person or core team has commit rights to it, but many other developers have public forks of that repository.  When they have changes, they issue a pull request to an integration manager, who adds them as a remote if they haven&#8217;t already &#8211; then merges, tests, accepts and pushes.</p>
+
+
+	<p><img src="./artwork/s2/integration-manager.png" alt="" /></p>
+
+
+	<p>This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.</p>
+
+
+	<p>In the end, there is really no single &#8216;right way&#8217; to do it &#8211; being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase &#8211; say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus&#8217;s branch.</p>
 
 
 	<h2>All About Remotes (refspec)</h2>
 
 
-	<h2>Tagging</h2>
+	<p>.todo more about tracking branches and what they do</p>
 
 
 	<h2>Sharing Repositories</h2>
@@ -1416,7 +1545,7 @@ Created commit 47c668a: fixed conflict</p>
 	<h3>GitHub</h3>
 
 
-	<h1>Section 3 &#8211; Git and Other Systems</h1>
+	<h1>Section Three &#8211; Git and Other Systems</h1>
 
 
 	<h2>Git and <span class="caps">SVN</span></h2>
@@ -1458,7 +1587,7 @@ Created commit 47c668a: fixed conflict</p>
 	<h3>Vlad the Deployer Module</h3>
 
 
-	<h1>Advanced Git</h1>
+	<h1>Section Four &#8211; Advanced Git</h1>
 
 
 	<h2>Bisect</h2>
@@ -1544,19 +1673,49 @@ Created commit 47c668a: fixed conflict</p>
 git branch recovered-branch 7281251ddd</p>
 
 
-	<h1>Commands Overview</h1>
+	<h1>Section Five &#8211; Commands Overview</h1>
 
 
-	<h2>The Plumbing</h2>
+	<p>This section is meant to be a really quick reference to the common commands in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.</p>
+
+
+	<p>The section is broken into two parts, the Porcelain and the Plumbing.  The Porcelain commands are generally run by people on the command line, the Plumbing commands are generally used by scripts and programs to do complicated things at a lower level &#8211; use them if you want to write your own tool on top of git.</p>
 
 
 	<h2>The Porcelain</h2>
 
 
-	<h1>The Appendix</h1>
+	<h2>The Plumbing</h2>
 
 
-	<p>There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git (http://github.com/schacon/git-ruby).  Since most of these are pretty hard to find information on and for programmers like me who haven&#8217;t touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here.</p>
+	<h1>Section Six &#8211; The Appendix</h1>
+
+
+	<p>There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git, <a href="http://github.com/schacon/git-ruby">git-ruby</a>.</p>
+
+
+	<p>Since most of these are pretty hard to find information on and for programmers like me who haven&#8217;t touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here.</p>
+
+
+	<p>If you don&#8217;t care about the gritty specifics of what git is doing behind the scenes &#8211; if discussion of null bytes, bit shifting, delta compression and sideband demultiplexers is not of interest, feel free to skip ahead to the references.</p>
+
+
+	<h2>Loose Objects</h2>
+
+
+	<p>two versions of compressing &#8211; second not widely used yet, have to turn it on.</p>
+
+
+	<h3>Blobs</h3>
+
+
+	<h3>Trees</h3>
+
+
+	<h3>Commits</h3>
+
+
+	<h3>Tags</h3>
 
 
 	<h2>Packfiles</h2>
@@ -1568,25 +1727,63 @@ git branch recovered-branch 7281251ddd</p>
 	<h3>Packfile format</h3>
 
 
+	<p>index &#8211; 3 (4?) versions</p>
+
+
 	<h3>How does Git actually create a packfile?</h3>
 
 
-	<h1>The Git Protocol</h1>
+	<h2>The Git Protocol</h2>
 
 
 	<p>port 9418</p>
 
 
-	<p>If it wants to invoke git-upload pack, it sends something like &#8216;0053upload-pack path/to/repo<NUL>host=git.server.example:9148&#8217;.</p>
+	<p>Actually, ssh and git are basically identical here, it&#8217;s just that git is unencrypted, unauthenticated and can only basically run one command, &#8216;git-upload-pack&#8217; (Though you can also enable &#8216;receive-pack&#8217; or &#8216;upload-archive&#8217;).</p>
 
 
-	<p>Also, if server sends incomplete datastream back, you need to complete it before stroing. You also need to compute the index file for the pack.</p>
+	<p>If it wants to invoke git-upload pack, it sends something like &#8216;0053upload-pack path/to/repo<NUL>host=git.server.example:9148&#8217;. (Ilari)</p>
 
 
-	<p>thanks to Ilari on <span class="caps">IRC</span></p>
+	<h3>Fetching</h3>
 
 
-	<p>http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html</p>
+	<ul>
+	<li>git fetch-pack</li>
+	</ul>
+
+
+	<p>If the server sends incomplete datastream back, you need to complete it before storing. You also need to compute the index file for the pack. (Ilari)</p>
+
+
+	<ul>
+	<li>git upload-pack</li>
+	</ul>
+
+
+	<h3>Pushing</h3>
+
+
+	<ul>
+	<li>git upload-pack</li>
+		<li>git receive-pack</li>
+	</ul>
+
+
+	<ul>
+	<li>special thanks to Ilari on <span class="caps">IRC</span> for walking me through some of this and Shawn Pearce for getting me a copy of unmerged jgit code</li>
+	</ul>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html">git-daemon</a></li>
+	</ul>
+
+
+	<h2>The <span class="caps">HTTP</span> Transport</h2>
+
+
+	<h3><span class="caps">HTTP</span> walking</h3>
 
 
 	<h1>References and Endnotes</h1>
@@ -1627,3 +1824,9 @@ git branch recovered-branch 7281251ddd</p>
 
 
 	<p><a href="http://www.jointheconversation.org/railsgit">Using Git to Manage and Deploy Rails Apps</a></p>
+
+
+	<h2><span class="caps">IRC</span></h2>
+
+
+<h1>git channel on irc.freenode.net</h1>

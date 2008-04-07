@@ -1,0 +1,116 @@
+h2. Distributed Workflow Examples
+
+Now we've gone over most of the basic commands that you'll use on a day to day basis as a single developer.  This chapter covers some examples of what you will use in order to collaborate with other developers on a code base.
+
+h3. Cloning
+
+If you want to begin working on an existing project, you will need to get an initial version of it - copy it's repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, it's own 'git' protocol, and rsync.  The 'git' protocol and 'ssh' are preferred because they are more efficient and not difficult to set up.  
+
+When you clone a repository, it in essence copies all the git objects to a new directory, checks you out a single local branch named the same as the HEAD branch on the cloned repo (normally 'master'), and stores all the other branches under a remote reference by default named 'origin'.
+
+That means that if we cloned the repo in the previous examples, instead of 'story84' being a local branch you can switch to, it becomes 'origin/story84' that you have to create a local branch to pull into in order to work on (eg: 'git checkout --track story84 origin/story84')  
+The '--track' indicates that you may want to pull from or push to the origin of this branch later, so remember where it came from.
+
+h4. Local Clones
+
+Local clones are the simplest types of clones - it is basically the equivalent of copying the .git directory and doing a checkout.  The only major difference is that it adds all the original branches in as origin branches.  Often you will do this when creating a bare repository (that is, a repository without a working directory) for putting on a public server, or if you're working with people using a shared repository over NFS or something similar.
+
+.shell $> git clone --bare simplegit/.git simplegit-bare.git
+
+h4. SSH and Git Transports
+
+Cloning over ssh requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.
+
+.shell $> git clone git@github.com:schacon/ticgit.git ticgit_directory
+
+h4. HTTP and HTTPS Transports
+
+Another popular way to clone a repository is over HTTP, just because it is so simple.  You don't need to setup any special service or give out user credentials (made easier by services like gitosis), you simply scp your bare repository into any web server's static content directory.  It is not as efficient as the other protocols - it will transfer loose objects and packfiles over a number of calls instead of packing them up, but it is simple.
+
+.shell $> git clone http://git.gitorious.org/piston/mainline.git piston
+
+Once you have run one of these commands, you will have a copy of the git repository, full of all the history - basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository - if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.
+
+h3. Fetching and Pulling
+
+So let's say that we're going to hack on TicGit, our git based ticket tracking system project.  After we clone it, we look through the source code but don't do anything right away. After some time passes we come back to the project but it may not still be up to date - changes may have occurred in the meantime.  So we fetch an update.
+
+.shell $> git fetch origin
+
+This will contact the server over the same protocol we used to clone it and grab all of the objects and references that have been added since our clone and update our 'origin/[branch]' branches to point to what the server is pointing at now.  
+
+So, if we did create a tracking branch on 'story84' and it was changed on the server (someone pushed an update), before we fetch, our local 'story84' branch and our remote 'origin/story84' branch will be the same.  After we fetch, they will be different.  'origin/story84' will now point to one of the new commit objects we downloaded during the fetch.  
+
+At this point, we may want to merge 'origin/story84' into our local 'story84' branch.  That's easy enough, but if we want to do it automatically every time we fetch, we can use 'git pull', which is just a 'fetch' and then a 'merge' command.  
+
+So, these commands are functionally equivalent:
+
+.shell $> git pull origin/story84
+
+.shell $> git fetch origin/story84; git merge origin/story84
+
+
+h3. Pushing
+
+Now we can get updated
+we have some changes that we want to share with others.
+
+.note In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
+A 'pull' is a 'fetch' and then a 'merge'.
+
+
+
+
+h3. Multiple Remotes
+
+pushing to and pulling from multiple sources
+
+!../artwork/s2/fetch-pull.png!
+
+
+
+h3. Possible Workflows
+
+The idea of having multiple remote repositories that you can push to and/or pull from is probably new to you, and many people have a hard time figuring out what their workflow should look like, especially if they are moving from a centralized SCM system.  I will present a couple of possible workflows that I have seen, so you can determine what will work best for you and your team.  
+
+Most of these are simply a matter of convention, not even configuration.  Each of the models can pretty easily change to another with minimal configuration changes - maybe some permissions tweaked here or there.
+
+h4. Central Repository Model
+
+There is a single repository that all developers push to and pull from.
+
+!../artwork/s2/workflow-star.png!
+
+This model works just like a centralized SCM and Git can work that way just fine. If you setup a repository for your team on a server that everyone has ssh or NFS access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don't want to worry about a hierarchy - the strength of this model is that it forces everyone to stay up to date with each other and it doesn't depend on a single role. 
+
+Even large teams could use this, but in general there are a lot of gains to be made in larger teams with a different or hybrid model.
+
+h4. Dictator and Lieutenant Model
+
+This is a highly hierarchical model where one individual has commit rights to a blessed repository that everyone else fetches from. Changes are fetched from developers by lieutenants responsible for specific subsystems and merged and tested.  Lieutenant branches are then fetched by the dictator and merged and pushed into the blessed repository, where the cycle starts over again.
+
+!../artwork/s2/workflow-dictator.png!
+
+This is a model something like the Linux kernel uses, Linus being the benevolent dictator. This model is much better for large teams, and can be implemented with multiple and varied levels of lieutenants and sub-lieutenants in charge of various subsystems.  At any stage in this process, patches or commits can be rejected - not merged in and sent up the chain.
+
+h4. Integration Manager Model
+
+This is where each developer has a public repository, but one is considered the 'official' repository - it is used to create the packages and binaries.  A person or core team has commit rights to it, but many other developers have public forks of that repository.  When they have changes, they issue a pull request to an integration manager, who adds them as a remote if they haven't already - then merges, tests, accepts and pushes.
+
+!../artwork/s2/integration-manager.png!
+
+This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.
+
+In the end, there is really no single 'right way' to do it - being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase - say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus's branch.  In the end, you (or you and your team) will have to sit down for a second and think about what will work best for you.
+
+
+
+
+
+
+
+
+
+
+
+

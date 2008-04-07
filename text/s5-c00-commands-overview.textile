@@ -1,1 +1,5 @@
-h1. Commands Overview
+h1. Section Five - Commands Overview
+
+This section is meant to be a really quick reference to the common commands in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.
+
+The section is broken into two parts, the Porcelain and the Plumbing.  The Porcelain commands are generally run by people on the command line, the Plumbing commands are generally used by scripts and programs to do complicated things at a lower level - use them if you want to write your own tool on top of git.
