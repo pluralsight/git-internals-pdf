@@ -1388,6 +1388,11 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>Once you have run one of these commands, you will have a copy of the git repository, full of all the history &#8211; basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository &#8211; if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.</p>
 
 
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-clone.html">git clone</a></li>
+	</ul>
+
+
 	<h3>Fetching and Pulling</h3>
 
 
@@ -1415,24 +1420,78 @@ The &#8216;&#8212;track&#8217; indicates that you may want to pull from or push 
 	<p>.shell $&gt; git fetch origin/story84; git merge origin/story84</p>
 
 
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html">git fetch</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-pull.html">git pull</a></li>
+	</ul>
+
+
 	<h3>Pushing</h3>
 
 
-	<p>Now we can get updated
-we have some changes that we want to share with others.</p>
+	<p>Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over ssh), we can simply run &#8216;git push&#8217;</p>
+
+
+	<p>.shell $&gt; git push origin master</p>
+
+
+	<p>The &#8216;origin&#8217; in that case will be inferred if you leave it out, but if you&#8217;ve used a different name for your remote or you are trying to push one of your other branches, you can do that, too.</p>
+
+
+	<p>.shell $&gt; git push scott-public experimental</p>
+
+
+	<p>If you don&#8217;t specify a branch, it will infer that you want to push every branch that you and the server have in common.  So, if you have pushed your &#8216;master&#8217; branch and your &#8216;experimental&#8217; branch to the &#8216;scott-public&#8217; server at any point, running this will update the server to have the newest versions of <strong>both</strong> of them:</p>
+
+
+	<p>.shell $&gt; git push scott-public</p>
+
+
+	<p>Whereas this will only update the &#8216;master&#8217; branch:</p>
+
+
+	<p>.shell $&gt; git push scott-public master</p>
 
 
 	<p>.note In Git, the opposite of &#8216;push&#8217; is not &#8216;pull&#8217;, but &#8216;fetch&#8217;. 
 A &#8216;pull&#8217; is a &#8216;fetch&#8217; and then a &#8216;merge&#8217;.</p>
 
 
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-push.html">git push</a></li>
+	</ul>
+
+
 	<h3>Multiple Remotes</h3>
 
 
-	<p>pushing to and pulling from multiple sources</p>
+	<p>Although a bit different in syntax maybe, most of that should seem familiar to any users of other <span class="caps">SCM</span> systems.  However, this is where the &#8216;decentralized&#8217; part comes in.  In Git, there is really no special repository.  You can add as many remote repositories that are related to your codebase in some way as you want.  You can add each of your co-workers repositories as read-only repositories, you can have a centralized one you all share, one out on your production servers outside the firewall, a public one for stable or sanitized pushes on your personal webserver, one on your build server, etc, etc.</p>
+
+
+	<p>Pushing to and pulling from multiple sources is easy and straightforward. You simply add remotes :</p>
+
+
+	<p>.shell $&gt; git remote add mycap git@github.com:schacon/capistrano.git
+$&gt; git remote add official git://github.com/jamis/capistrano.git</p>
+
+
+	<p>Then, if the the project is updated, I can pull in the changes from one remote, merge them locally, and then push to another remote.</p>
+
+
+	<p>.shell $&gt; git fetch official
+$&gt; git merge official/master
+$&gt; git push mycap master</p>
+
+
+	<p>I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.</p>
 
 
 	<p><img src="./artwork/s2/fetch-pull.png" alt="" /></p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-remote.html">git remote</a></li>
+	</ul>
 
 
 	<h3>Possible Workflows</h3>
@@ -1483,7 +1542,7 @@ A &#8216;pull&#8217; is a &#8216;fetch&#8217; and then a &#8216;merge&#8217;.</p
 	<p>This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.</p>
 
 
-	<p>In the end, there is really no single &#8216;right way&#8217; to do it &#8211; being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase &#8211; say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus&#8217;s branch.</p>
+	<p>In the end, there is really no single &#8216;right way&#8217; to do it &#8211; being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase &#8211; say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus&#8217;s branch.  In the end, you (or you and your team) will have to sit down for a second and think about what will work best for you.</p>
 
 
 	<h2>All About Remotes (refspec)</h2>

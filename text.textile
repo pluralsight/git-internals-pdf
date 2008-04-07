@@ -956,6 +956,9 @@ Another popular way to clone a repository is over HTTP, just because it is so si
 
 Once you have run one of these commands, you will have a copy of the git repository, full of all the history - basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository - if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.
 
+* "git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html
+
+
 h3. Fetching and Pulling
 
 So let's say that we're going to hack on TicGit, our git based ticket tracking system project.  After we clone it, we look through the source code but don't do anything right away. After some time passes we come back to the project but it may not still be up to date - changes may have occurred in the meantime.  So we fetch an update.
@@ -974,25 +977,53 @@ So, these commands are functionally equivalent:
 
 .shell $> git fetch origin/story84; git merge origin/story84
 
+* "git fetch":http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html
+* "git pull":http://www.kernel.org/pub/software/scm/git/docs/git-pull.html
+
 
 h3. Pushing
 
-Now we can get updated
-we have some changes that we want to share with others.
+Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over ssh), we can simply run 'git push'
+
+.shell $> git push origin master
+
+The 'origin' in that case will be inferred if you leave it out, but if you've used a different name for your remote or you are trying to push one of your other branches, you can do that, too.
+
+.shell $> git push scott-public experimental
+
+If you don't specify a branch, it will infer that you want to push every branch that you and the server have in common.  So, if you have pushed your 'master' branch and your 'experimental' branch to the 'scott-public' server at any point, running this will update the server to have the newest versions of *both* of them:
+
+.shell $> git push scott-public
+
+Whereas this will only update the 'master' branch:
+
+.shell $> git push scott-public master
 
 .note In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
 A 'pull' is a 'fetch' and then a 'merge'.
 
-
-
+* "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html
 
 h3. Multiple Remotes
 
-pushing to and pulling from multiple sources
+Although a bit different in syntax maybe, most of that should seem familiar to any users of other SCM systems.  However, this is where the 'decentralized' part comes in.  In Git, there is really no special repository.  You can add as many remote repositories that are related to your codebase in some way as you want.  You can add each of your co-workers repositories as read-only repositories, you can have a centralized one you all share, one out on your production servers outside the firewall, a public one for stable or sanitized pushes on your personal webserver, one on your build server, etc, etc.
+
+Pushing to and pulling from multiple sources is easy and straightforward. You simply add remotes :
+
+.shell $> git remote add mycap git@github.com:schacon/capistrano.git
+$> git remote add official git://github.com/jamis/capistrano.git
+
+Then, if the the project is updated, I can pull in the changes from one remote, merge them locally, and then push to another remote.
+
+.shell $> git fetch official
+$> git merge official/master
+$> git push mycap master
+
+I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.
 
 !../artwork/s2/fetch-pull.png!
 
-
+* "git remote":http://www.kernel.org/pub/software/scm/git/docs/git-remote.html
 
 h3. Possible Workflows
 
@@ -1026,7 +1057,7 @@ This is where each developer has a public repository, but one is considered the 
 
 This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.
 
-In the end, there is really no single 'right way' to do it - being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase - say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus's branch.
+In the end, there is really no single 'right way' to do it - being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase - say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus's branch.  In the end, you (or you and your team) will have to sit down for a second and think about what will work best for you.
 
 
 
