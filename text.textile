@@ -658,7 +658,9 @@ shell. interactive-mode4.txt
 The interactive shell is pretty simple - playing with it instead of running 'git add' commands directly may help in understanding what's happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the 'staged' column) is what will be committed when you run 'git commit'
 
 
+h4. Removing
 
+'git rm'
 
 
 
@@ -735,6 +737,12 @@ shell. git-catfile.txt
 
 With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.
 
+h4. Gitk
+
+h4. Instaweb
+
+http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
+
 * "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 * "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
 * "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html
@@ -773,6 +781,10 @@ shell. $>patch -p1 < ~/experiment.patch
 patching file lib/simplegit.rb
 
 * "git diff":http://www.kernel.org/pub/software/scm/git/docs/git-diff.html
+
+h2. What Changed
+
+'git-what-changed'
 
 h2. Branching
 
@@ -931,6 +943,8 @@ The rebase command is one of the most useful and unique in the git workflow.  To
 
 * "git rebase":http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
 * "git reset":http://www.kernel.org/pub/software/scm/git/docs/git-reset.html
+
+h2. Stashing
 
 h2. Tagging
 
@@ -1198,169 +1212,11 @@ social networking
  - sending a pull request
 
 
-h1. Section Three - Git and Other Systems
-
-h2. Git and SVN 
-
-h3. Pros and Cons 
-
-h3. Importing existing SVN projects 
-
-h3. git-svn
-
-h3. git-svn-server
-
-h3. Piston / SVN Externals 
-
-h2. Git and Ruby 
-
-h3. Ruby/Git
-
-h3. Grit
-
-h3. Git-Ruby
-
-h2. Git and Application Deployment 
-
-h3. Capistrano Module
-
-h3. Vlad the Deployer Module
-
-h1. Section Four - Advanced Git
-
-h2. Bisect
-
-h2. Reading and Writing Trees
-
-h2. Advanced Index Operations
-
-h2. File and Index Staging
-
-h2. Submodules
-
-h2. Advanced Merging and Rebasing
-
-
-* merge strategies
-** resolve
-** recursive
-** octopus
-
-rebase --onto
-
-splitting commits in interactive mode
-
-http://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html
-
-http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
-
-h2. All About Remotes (refspec)
-
-.todo more about tracking branches and what they do
-
-h2. History Manipulation
-
-h3. Git Filter Branch
-
-http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html
-
-h3. Splitting One Commit into Two
-
-rebase -i
-
-h3. Removing Commits
-
-git-rebase --onto topicA~5 topicA~3 topicA
-
-
-h2. Patch Management
-
-h2. Shared Repositories
-
-h2. Hooks
-
-h2. Configuration Options
-
-h2. Repository Maintenance
-
-h2. Recovering From Corruption
-
-(creating a branch from an abandoned commit)
-git branch recovered-branch 7281251ddd
-
 h1. Section Five - Commands Overview
 
 This section is meant to be a really quick reference to the common commands in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.
 
 The section is broken into two parts, the Porcelain and the Plumbing.  The Porcelain commands are generally run by people on the command line, the Plumbing commands are generally used by scripts and programs to do complicated things at a lower level - use them if you want to write your own tool on top of git.
-
-h2. The Porcelain
-
-h2. The Plumbing
-
-h1. Section Six - The Appendix
-
-There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git, "git-ruby":http://github.com/schacon/git-ruby.  
-
-Since most of these are pretty hard to find information on and for programmers like me who haven't touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here. 
-
-If you don't care about the gritty specifics of what git is doing behind the scenes - if discussion of null bytes, bit shifting, delta compression and sideband demultiplexers is not of interest, feel free to skip ahead to the references.
-
-h2. Loose Objects
-
-two versions of compressing - second not widely used yet, have to turn it on.
-
-h3. Blobs
-
-h3. Trees
-
-h3. Commits
-
-h3. Tags
-
-
-h2. Packfiles
-
-h3. What is a packfile and when are they created?
-
-h3. Packfile format
-
-index - 3 (4?) versions
-
-h3. How does Git actually create a packfile?
-
-
-h2. The Git Protocol
-
-port 9418
-
-Actually, ssh and git are basically identical here, it's just that git is unencrypted, unauthenticated and can only basically run one command, 'git-upload-pack' (Though you can also enable 'receive-pack' or 'upload-archive').
-
-If it wants to invoke git-upload pack, it sends something like '0053upload-pack path/to/repo<NUL>host=git.server.example:9148'. (Ilari)
-
-h3. Fetching
-
-* git fetch-pack
-
-If the server sends incomplete datastream back, you need to complete it before storing. You also need to compute the index file for the pack. (Ilari)
-
-* git upload-pack
-
-h3. Pushing
-
-* git upload-pack
-* git receive-pack
-
-
-* special thanks to Ilari on IRC for walking me through some of this and Shawn Pearce for getting me a copy of unmerged jgit code
-
-* "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html
-
-h2. The HTTP Transport
-
-h3. HTTP walking
-
-h2. The Index File
 
 h1. References and Endnotes
 

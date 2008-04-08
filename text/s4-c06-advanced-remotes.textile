@@ -1,3 +1,0 @@
-h2. All About Remotes (refspec)
-
-.todo more about tracking branches and what they do

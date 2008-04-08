@@ -1,7 +1,0 @@
-h2. Git and Ruby 
-
-h3. Ruby/Git
-
-h3. Grit
-
-h3. Git-Ruby

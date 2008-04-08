@@ -1,4 +1,0 @@
-h2. Recovering From Corruption
-
-(creating a branch from an abandoned commit)
-git branch recovered-branch 7281251ddd

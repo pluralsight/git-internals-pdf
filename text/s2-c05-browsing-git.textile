@@ -32,6 +32,12 @@ shell. git-catfile.txt
 
 With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.
 
+h4. Gitk
+
+h4. Instaweb
+
+http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
+
 * "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 * "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
 * "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html

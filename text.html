@@ -961,6 +961,12 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>The interactive shell is pretty simple &#8211; playing with it instead of running &#8216;git add&#8217; commands directly may help in understanding what&#8217;s happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the &#8216;staged&#8217; column) is what will be committed when you run &#8216;git commit&#8217;</p>
 
 
+	<h4>Removing</h4>
+
+
+	<p>&#8216;git rm&#8217;</p>
+
+
 	<h2>Log &#8211; the Commit History</h2>
 
 
@@ -1057,6 +1063,15 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.</p>
 
 
+	<h4>Gitk</h4>
+
+
+	<h4>Instaweb</h4>
+
+
+	<p>http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html</p>
+
+
 	<ul>
 	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-show.html">git show</a></li>
 		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html">git ls-tree</a></li>
@@ -1109,13 +1124,19 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>You can then email that file to anyone, who could apply it with the &#8216;-p1&#8217; argument:</p>
 
 
-	<p>shell. $&gt;patch -p1 &lt; <sub>/experiment.patch 
+	<p>shell. $&gt;patch -p1 &lt; ~/experiment.patch 
 patching file lib/simplegit.rb</p>
 
 
 	<ul>
 	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-diff.html">git diff</a></li>
 	</ul>
+
+
+	<h2>What Changed</h2>
+
+
+	<p>&#8216;git-what-changed&#8217;</p>
 
 
 	<h2>Branching</h2>
@@ -1350,6 +1371,9 @@ Created commit 47c668a: fixed conflict</p>
 	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html">git rebase</a></li>
 		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-reset.html">git reset</a></li>
 	</ul>
+
+
+	<h2>Stashing</h2>
 
 
 	<h2>Tagging</h2>
@@ -1738,140 +1762,6 @@ $&gt; git push mycap master</p>
  &#8211; sending a pull request</p>
 
 
-	<h1>Section Three &#8211; Git and Other Systems</h1>
-
-
-	<h2>Git and <span class="caps">SVN</span></h2>
-
-
-	<h3>Pros and Cons</h3>
-
-
-	<h3>Importing existing <span class="caps">SVN</span> projects</h3>
-
-
-	<h3>git-svn</h3>
-
-
-	<h3>git-svn-server</h3>
-
-
-	<h3>Piston / <span class="caps">SVN</span> Externals</h3>
-
-
-	<h2>Git and Ruby</h2>
-
-
-	<h3>Ruby/Git</h3>
-
-
-	<h3>Grit</h3>
-
-
-	<h3>Git-Ruby</h3>
-
-
-	<h2>Git and Application Deployment</h2>
-
-
-	<h3>Capistrano Module</h3>
-
-
-	<h3>Vlad the Deployer Module</h3>
-
-
-	<h1>Section Four &#8211; Advanced Git</h1>
-
-
-	<h2>Bisect</h2>
-
-
-	<h2>Reading and Writing Trees</h2>
-
-
-	<h2>Advanced Index Operations</h2>
-
-
-	<h2>File and Index Staging</h2>
-
-
-	<h2>Submodules</h2>
-
-
-	<h2>Advanced Merging and Rebasing</h2>
-
-
-	<ul>
-	<li>merge strategies
-	<ul>
-	<li>resolve</li>
-		<li>recursive</li>
-		<li>octopus</li>
-	</ul></li>
-	</ul>
-
-
-	<p>rebase&#8212;onto</p>
-
-
-	<p>splitting commits in interactive mode</p>
-
-
-	<p>http://www.kernel.org/pub/software/scm/git/docs/git-mergetool.html</p>
-
-
-	<p>http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html</p>
-
-
-	<h2>All About Remotes (refspec)</h2>
-
-
-	<p>.todo more about tracking branches and what they do</p>
-
-
-	<h2>History Manipulation</h2>
-
-
-	<h3>Git Filter Branch</h3>
-
-
-	<p>http://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html</p>
-
-
-	<h3>Splitting One Commit into Two</h3>
-
-
-	<p>rebase -i</p>
-
-
-	<h3>Removing Commits</h3>
-
-
-	<p>git-rebase&#8212;onto topicA</sub>5 topicA~3 topicA</p>
-
-
-	<h2>Patch Management</h2>
-
-
-	<h2>Shared Repositories</h2>
-
-
-	<h2>Hooks</h2>
-
-
-	<h2>Configuration Options</h2>
-
-
-	<h2>Repository Maintenance</h2>
-
-
-	<h2>Recovering From Corruption</h2>
-
-
-	<p>(creating a branch from an abandoned commit)
-git branch recovered-branch 7281251ddd</p>
-
-
 	<h1>Section Five &#8211; Commands Overview</h1>
 
 
@@ -1879,113 +1769,6 @@ git branch recovered-branch 7281251ddd</p>
 
 
 	<p>The section is broken into two parts, the Porcelain and the Plumbing.  The Porcelain commands are generally run by people on the command line, the Plumbing commands are generally used by scripts and programs to do complicated things at a lower level &#8211; use them if you want to write your own tool on top of git.</p>
-
-
-	<h2>The Porcelain</h2>
-
-
-	<h2>The Plumbing</h2>
-
-
-	<h1>Section Six &#8211; The Appendix</h1>
-
-
-	<p>There are some things about Git that took me a while to learn, mostly during my time trying to re-implement a lot of the internals for my pure-ruby version of Git, <a href="http://github.com/schacon/git-ruby">git-ruby</a>.</p>
-
-
-	<p>Since most of these are pretty hard to find information on and for programmers like me who haven&#8217;t touched C since college, I thought it might be useful to try to document some of these concepts in a more understandable way here.</p>
-
-
-	<p>If you don&#8217;t care about the gritty specifics of what git is doing behind the scenes &#8211; if discussion of null bytes, bit shifting, delta compression and sideband demultiplexers is not of interest, feel free to skip ahead to the references.</p>
-
-
-	<h2>Loose Objects</h2>
-
-
-	<p>two versions of compressing &#8211; second not widely used yet, have to turn it on.</p>
-
-
-	<h3>Blobs</h3>
-
-
-	<h3>Trees</h3>
-
-
-	<h3>Commits</h3>
-
-
-	<h3>Tags</h3>
-
-
-	<h2>Packfiles</h2>
-
-
-	<h3>What is a packfile and when are they created?</h3>
-
-
-	<h3>Packfile format</h3>
-
-
-	<p>index &#8211; 3 (4?) versions</p>
-
-
-	<h3>How does Git actually create a packfile?</h3>
-
-
-	<h2>The Git Protocol</h2>
-
-
-	<p>port 9418</p>
-
-
-	<p>Actually, ssh and git are basically identical here, it&#8217;s just that git is unencrypted, unauthenticated and can only basically run one command, &#8216;git-upload-pack&#8217; (Though you can also enable &#8216;receive-pack&#8217; or &#8216;upload-archive&#8217;).</p>
-
-
-	<p>If it wants to invoke git-upload pack, it sends something like &#8216;0053upload-pack path/to/repo<NUL>host=git.server.example:9148&#8217;. (Ilari)</p>
-
-
-	<h3>Fetching</h3>
-
-
-	<ul>
-	<li>git fetch-pack</li>
-	</ul>
-
-
-	<p>If the server sends incomplete datastream back, you need to complete it before storing. You also need to compute the index file for the pack. (Ilari)</p>
-
-
-	<ul>
-	<li>git upload-pack</li>
-	</ul>
-
-
-	<h3>Pushing</h3>
-
-
-	<ul>
-	<li>git upload-pack</li>
-		<li>git receive-pack</li>
-	</ul>
-
-
-	<ul>
-	<li>special thanks to Ilari on <span class="caps">IRC</span> for walking me through some of this and Shawn Pearce for getting me a copy of unmerged jgit code</li>
-	</ul>
-
-
-	<ul>
-	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html">git-daemon</a></li>
-	</ul>
-
-
-	<h2>The <span class="caps">HTTP</span> Transport</h2>
-
-
-	<h3><span class="caps">HTTP</span> walking</h3>
-
-
-	<h2>The Index File</h2>
 
 
 	<h1>References and Endnotes</h1>

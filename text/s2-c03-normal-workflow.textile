@@ -65,7 +65,9 @@ shell. interactive-mode4.txt
 The interactive shell is pretty simple - playing with it instead of running 'git add' commands directly may help in understanding what's happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the 'staged' column) is what will be committed when you run 'git commit'
 
 
+h4. Removing
 
+'git rm'
 
 
 

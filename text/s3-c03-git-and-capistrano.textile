@@ -1,5 +1,0 @@
-h2. Git and Application Deployment 
-
-h3. Capistrano Module
-
-h3. Vlad the Deployer Module

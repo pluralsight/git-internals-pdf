@@ -1,1 +1,0 @@
-h1. Section Three - Git and Other Systems

@@ -1,3 +1,0 @@
-h2. The HTTP Transport
-
-h3. HTTP walking
