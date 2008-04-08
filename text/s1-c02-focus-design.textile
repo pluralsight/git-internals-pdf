@@ -2,24 +2,24 @@ h3. Focus and Design
 
 There are a number of areas that the developers of Git, including and especially Linus, have focused on in conceiving and building Git.
 
-h4. Non-linear Development
+h4. Non-Linear Development
 
-branching and merging
+Git is optimized for cheap and efficient branching and merging.  It is built to be worked on simultaneously by many people, having multiple branches developed simultaneously by individual developers, and merged constantly.  Because of this, branching is incredibly cheap and merging is incredibly easy.
 
 h4. Distributed Development
 
-local copy of the entire development history, no central repository
+Git is built to make distributed development simple.  No repository is special or central in Git - each clone is basically equal and could generally replace any other one at any time.  It works completely offline or with hundreds of remote repositories that can push to and/or fetch from each other over several simple and standard protocols.
 
 h3. Efficiency
 
-seriously faster than nearly all other SCM systems for most operations.  
+Git is very efficient.  Compared to many popular SCM systems, it seems downright unbelievably fast.  Most operations are local, which reduces unnecessary network overhead. Repositories are generally packed very efficiently, which often leads to surprisingly small repo sizes.
 
-todo. table of speed benchmarks for git vs. svn vs. ??
-      - add, commit, push, diff, merge
-      - directory/checkout sizes?
+.note The Ruby on Rails repository download, with full history, is around 13M, which is barely larger than a single checkout of the project.  The subversion server repository for the same project is over 100M.
+
+Git also is efficient in it's network operations - most protocols transfer only packed versions of only the objects that have changed.  It also won't try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.
 
 h3. A Toolkit Design
 
-Following the Unix tradition, Git is a collection of many small tools written in C [1]
+Git is not really a single binary, but a collection of hundreds of scripts, which is sometimes annoying to people trying to learn Git, but is pretty cool when you want to do anything non-standard with it.  Git is less a program and more a toolkit that can be combined and chained to do new and interesting things.
 
-todo. expand this whole chapter
+The tools can be more or less divided into two major camps, often referred to as the 'porcelain' and the 'plumbing'.  The 'plumbing' is not really meant to be used by people on the command line, but rather do simple things flexibly and are combined by programs and scripts into 'plumbing' programs.  The 'plumbing' scripts are largely what we will be focusing on in this book - the user-oriented interfaces to do SCM type things, hiding the low-level fun.

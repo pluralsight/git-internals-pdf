@@ -8,23 +8,27 @@ To accomplish this, I'm starting the book out (after the introduction) with a se
 
 h2. Installing Git
 
-todo. clean up this whole section, and actually run through each of these (yes, even windows!)
+Before we can start playing with git, we'll have to install it. I'll quickly cover installing Git on Linux, Mac and Windows.
 
-Before we can start playing with git, we'll have to install it. I'll quickly cover installing git on Linux, Mac and Windows.
-
-You can download git from http://git.or.cz/
-
-http://kernel.org/pub/software/scm/git/
+You can download the Git source code from "git.or.cz":http://git.or.cz/
 
 h3. Installing on Linux
 
-wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
-tar jxpvf git-1.5.4.4.tar.bz2
-cd git-1.5.4.4
-make prefix=/usr all doc info
-sudo make prefix=/usr install install-doc install-info
+If you are installing from source, it will go something like the standard:
 
-or : apt-get git-core, yum install git-core
+shell. $>wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
+$>tar jxpvf git-1.5.4.4.tar.bz2
+$>cd git-1.5.4.4
+$>make prefix=/usr all doc info
+$>sudo make prefix=/usr install install-doc install-info
+
+If you are running Ubuntu or another Debian based system, you can run
+
+shell. $>apt-get git-core
+
+or on RedHat based systems, you can sometimes run:
+
+shell. $>yum install git-core
 
 
 h3. Installing on Mac
@@ -57,13 +61,8 @@ http://code.google.com/p/git-osx-installer/
 
 h3. Windows
 
-Cygwin 	http://www.cygwin.com/setup.exe
+"Msysgit":http://code.google.com/p/msysgit/
 
-http://code.google.com/p/msysgit/
-
-A TortoiseCVS lookalike for Git
-
-http://repo.or.cz/w/git-cheetah.git/
 
 h2. A Short History of Git
 
@@ -75,11 +74,9 @@ Since Linus had (and still has) a passionate dislike of all existing source code
 
 note. "I'm an egotistical bastard, and I name all my projects after myself. First Linux, now git." - Linus
 
-Git started out as a collection of lower level functions used in various combinations by perl scripts.  Recently (since 1.0), more and more of the perl scripts have been re-written in C, increasing portability and speed.
+Git started out as a collection of lower level functions used in various combinations by shell and perl scripts.  Recently (since 1.0), more and more of the scripts have been re-written in C (referred to as built-ins), increasing portability and speed.
 
-todo. growth and adoption - list some projects (kernel, X.Org, Mesa3D, Compiz, Wine, OLPC, Fedora, Samba | ruby: rubinius, merb, god, github, rails?)
-
-http://git.fedoraproject.org/git/
+Though originally used for just the Linux kernel, the Git project has spread rapidly, and now is used for a number of other Linux projects, such as the X.org, Mesa3D, Wine, Fedora and Samba projects.  Recently it has begun to spread outsite the Linux world to host projects such as Rubinius, Merb, Ruby on Rails, Nu, Io and many more major open source projects.
 
 h1. Section One - Understanding Git
 
@@ -109,27 +106,27 @@ h3. Focus and Design
 
 There are a number of areas that the developers of Git, including and especially Linus, have focused on in conceiving and building Git.
 
-h4. Non-linear Development
+h4. Non-Linear Development
 
-branching and merging
+Git is optimized for cheap and efficient branching and merging.  It is built to be worked on simultaneously by many people, having multiple branches developed simultaneously by individual developers, and merged constantly.  Because of this, branching is incredibly cheap and merging is incredibly easy.
 
 h4. Distributed Development
 
-local copy of the entire development history, no central repository
+Git is built to make distributed development simple.  No repository is special or central in Git - each clone is basically equal and could generally replace any other one at any time.  It works completely offline or with hundreds of remote repositories that can push to and/or fetch from each other over several simple and standard protocols.
 
 h3. Efficiency
 
-seriously faster than nearly all other SCM systems for most operations.  
+Git is very efficient.  Compared to many popular SCM systems, it seems downright unbelievably fast.  Most operations are local, which reduces unnecessary network overhead. Repositories are generally packed very efficiently, which often leads to surprisingly small repo sizes.
 
-todo. table of speed benchmarks for git vs. svn vs. ??
-      - add, commit, push, diff, merge
-      - directory/checkout sizes?
+.note The Ruby on Rails repository download, with full history, is around 13M, which is barely larger than a single checkout of the project.  The subversion server repository for the same project is over 100M.
+
+Git also is efficient in it's network operations - most protocols transfer only packed versions of only the objects that have changed.  It also won't try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.
 
 h3. A Toolkit Design
 
-Following the Unix tradition, Git is a collection of many small tools written in C [1]
+Git is not really a single binary, but a collection of hundreds of scripts, which is sometimes annoying to people trying to learn Git, but is pretty cool when you want to do anything non-standard with it.  Git is less a program and more a toolkit that can be combined and chained to do new and interesting things.
 
-todo. expand this whole chapter
+The tools can be more or less divided into two major camps, often referred to as the 'porcelain' and the 'plumbing'.  The 'plumbing' is not really meant to be used by people on the command line, but rather do simple things flexibly and are combined by programs and scripts into 'plumbing' programs.  The 'plumbing' scripts are largely what we will be focusing on in this book - the user-oriented interfaces to do SCM type things, hiding the low-level fun.
 
 h2. Git Object Types 
 
@@ -452,7 +449,7 @@ Anything in _.git/refs/heads_ or _.git/refs/tags_ can be used to refer to the co
 h4. Date Spec 
 
 code. master@{yesterday}
- master@{1 month ago}
+master@{1 month ago}
 
 This example would refer to the value of that branch yesterday.  Git will go through the commit parents until it found one that matched that date. 
 
@@ -465,7 +462,7 @@ This indicates the 5th prior value of the master branch.  Like the _Date Spec_, 
 h4. Carrot Parent
 
 code. e65s46^2
- master^2
+master^2
 
 This refers to the Nth parent of that commit.  This is only really helpful for commits that merged two or more commits - it is how you can refer to a commit other than the first parent.
 
@@ -495,59 +492,67 @@ h2. Working Directory
 
 The working directory is the checkout of the current branch you are working on.  What is really important to note here is that this code is a working copy - it is not really important.
 
-This is something that developers from the Subversion world have a hard time understanding and tends to scare them mightily.  If you check out a different branch, git will basically make your working directory look like that branch, removing any checked in content that is currently in your working directory that is not in the new tree.
+This is something that developers from most other SCMs have a hard time understanding and tends to scare them mightily.  If you check out a different branch, git will basically make your working directory look like that branch, removing any checked in content that is currently in your working directory that is not in the new tree.  This is why Git will only let you checkout another branch if everything is checked in - there are no uncommitted modified files.  The reason for this is that Git will remove files that are not necessary in the branch you are checking out - it needs to make sure that you can get them back again.
 
-note. the files in your working directory are temporary, they are not your repository!
-
-Most long time Subversion users don't like to see content automatically removed from their directories, but that's one of the mental shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 
+Most users don't like to see content automatically removed from their directories, but that's one of the mental shifts you'll need to make.  Your working directory is temporary - everything is stored permanently in your git repository.  Your working directory is just a copy of a tree so you can edit it and commit changes. 
 
 h2. The Index    
 
-The index was called the cache for a while, because that's largely what it does.  It is a staging area for changes that are made to files or trees that are not committed to your repository yet.  It is also used to speed up some operations.  It acts as sort of a middle ground between your working directory and your repository.
+Git has two places that content states are stored.  The working directory stores one state at a time in a human editable format.  When committed, that state becomes permanent and repeatable by through storage in the object database.  However, how do you determine what in your working directory goes into your next commit.  Perhaps you have edited 3 files and you want 2 to go into the first commit because they are related changes and the other file into a second commit.  This is where the index file comes in.
 
-* keeping track of the state of working directory files
-* staging changes
-* generating commits
+The index was called the cache for a while, because that's largely what it does.  It is a staging area for changes that are made to files or trees that are not committed to your repository yet.  It acts as sort of a middle ground between your working directory and your repository.  What is in it when you run 'git commit' is what the tree that your commit object points to will look like.
+
+.note Early on, the index was called the 'cache' or the 'current directory cache'
+
+It is also used to speed up some operations. It keeps track of the state of all the files in your working directory so you can quickly see what has been modified since the last commit.
 
 h2. Non-SCM Uses of Git
 
-I keep saying that Git is primarily a content tracking system with an SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.
+I keep saying that Git is primarily a content tracking toolkit with SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.  
 
-(uses for slowly changing distributed trees)
-
+This is a simple listing of some other tools that have been built on Git internals to demonstrate that an SCM is the bundled application, but it's a useful toolkit for any application needing to track and manage slowly changing distributed trees of content.
 
 h3. Peer to Peer Content Distribution Network
 
-Imagine you have a network of ...
+Imagine you are a retail chain or university campus and have a network of digital signage displays that play flash content advertisements or show campus news, etc.  You have to get new content out to them every day or two, which may consist of any combination of XML files, images, animations, text and sound.
 
-http://gittorrent.utsl.gen.nz/rfc.html
+You need to build a content distribution framework that will easily and efficiently transfer all the necessary content to the machines on your network.  You need to constantly determine what content each machine has and what it needs to have and transfer the difference as efficiently as possible, because networking to these units may be spotty.  
 
+It turns out that Git is an excellent solution to this problem.  You can simply check all the needed content into Git, create a branch for each unit and point that branch to the exact subtree of content it needs.  Then at some interval, you have the unit fetch it's branch.  If nothing has changed, nothing happens - if content has changed somehow, it gets only the files it does not already have in a delta compressed package and then expands them locally.  Log and status files could even be transferred back by a push.
 
+An example of a media company actually using this approach is "Reactrix":http://reactrix.com/, which also happens to be where I work.
+
+.note Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
 
 h3. Distributed Document Oriented Database
 
-replication, search w/grep, no history loss
-
+Using Git as a backend for a document oriented database could have some interesting applications.  Git provides a number of features such as replication, searching with grep, and full versioning history for free.
 
 h4. Distributed Wiki
 
-(offline writing)
-Branches, merges - distributed, adhoc documentation, book writing
-(git-wiki)
+Let's say we wanted to have a wiki for documentation on a project we're working on.  If we create a wiki that works off of files, we can simply write those files into a Git repository and run a commit after every change.  This gives us good performance, since it's just reading the content off the disk, and full file version history and easy 'recently changed' data.  We also get searching built in and can edit the wiki offline.  
 
+The other cool feature we could use is the distributed nature of it.  We could add other people on the project as remote repositories and push to and fetch from them, merging changes to write a book or documentation collaboratively.  We could branch to try out a re-write and then either merge it in or throw it away if we don't like it.  We could send a pull request to our collegues for them to try out the branch to preview it before we decide whether to merge it in or not.
+
+It's possible the entire wiki project could even live in a bare branch (that is, a branch with no common ancestors with any existing branch) in the same repository as our project, so clones can get the documentation as well, without it muddying up our code tree.
+
+See the "git-wiki":http://github.com/al3x/git-wiki/tree/master project for an example of this.
 
 h4. Distributed Issue Tracker
 
-(offline working on tickets)
-(http://www.distract.wellquite.org/ Monotone)
-(http://bugseverywhere.org/be/show/HomePage)
+Another similar project might be a distributed ticketing system, where all the tickets (bugs and features) for a project could be stored in a git repository, worked on offline and transferred with a project.
 
+Examples of projects trying to do this are 
+"Ditz":http://ditz.rubyforge.org/, "Kipling":http://gitorious.org/projects/kipling and my own 
+"TicGit":http://github.com/schacon/ticgit/wikis.
 
 h3. Backup Tool
 
-Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved).
+Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved) that efficiently packs up it's backups and transfers them to multiple machines.  I'm hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn't do, which is permissions.  Git stores the mode of it's content in the tree, but it doesn't store any permissions data, which means it's not good for backing up directories in which permissions are important, like '/etc' for example.
 
-(http://eigenclass.org/hiki/gibak-backup-system-introduction)
+One project that has tackled this is "Gibak":http://eigenclass.org/hiki/gibak-backup-system-introduction, by implementing a metastore in OCaml, and it's worth a look if this topic interests you.
+
+.note If you are interested in using Git in a non-standard way and like Ruby, you might be interested in using my "'git' gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.
 
 h1. Section Two - Using Git
 
@@ -782,10 +787,6 @@ patching file lib/simplegit.rb
 
 * "git diff":http://www.kernel.org/pub/software/scm/git/docs/git-diff.html
 
-h2. What Changed
-
-'git-what-changed'
-
 h2. Branching
 
 This is the fun part of Git that you'll come to love like a child. When you first initialize a git repository, or clone one, you'll get a 'master' branch by default if you don't specify something else.  This is really just a git suggestion and you don't have to use it - like just about everything in Git, it can be overridden.
@@ -1006,6 +1007,37 @@ shell. git-archive-zip.txt
 
 * "git archive":http://www.kernel.org/pub/software/scm/git/docs/git-archive.html
 
+h2. The Care and Feeding of Git
+
+Git requires a bit of tender loving care from time to time.  It may seem a bit odd, but occasionally you should run a few commands on your repositories to make sure they're healthy and running as quickly as possible.
+
+h3. garbage collection
+
+The 'git gc' command is an important one to remember.  It will pack up your objects into the delta-compressed format, saving you a lot of space and seriously speeding up several commands.
+
+shell. git-gc.txt
+
+If can turn gc'ing automatically on and off by setting a configuration setting to '1' or '0':
+
+shell. $> git config --global gc.auto 1
+
+This will make git automatically gc itself occasionally.  You may want to setup a cron to do this at night, however, as it can take a while sometimes on really large repositories.
+
+h3. fsck and prune
+
+If you want to check the health of your repository, you can run 'git-fsck', which will tell you if you have any unreachable or corrupted objects in your database and help you fix them.
+
+shell. git-fsck.txt
+
+Which you can then remove with 'git-prune' (you can run it with '-n' first to see what it will do)
+
+shell. git-prune.txt
+
+
+* "git gc":http://www.kernel.org/pub/software/scm/git/docs/git-gc.html
+* "git fsck":http://www.kernel.org/pub/software/scm/git/docs/git-fsck.html
+* "git prune":http://www.kernel.org/pub/software/scm/git/docs/git-prune.html
+
 h2. Distributed Workflow Examples
 
 Now we've gone over most of the basic commands that you'll use on a day to day basis as a single developer.  This chapter covers some examples of what you will use in order to collaborate with other developers on a code base.
@@ -1212,11 +1244,10 @@ social networking
  - sending a pull request
 
 
-h1. Section Five - Commands Overview
+h1. Section Three - Commands Overview
 
-This section is meant to be a really quick reference to the common commands in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.
+This section is meant to be a really quick reference to the commands we have reviewed in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.
 
-The section is broken into two parts, the Porcelain and the Plumbing.  The Porcelain commands are generally run by people on the command line, the Plumbing commands are generally used by scripts and programs to do complicated things at a lower level - use them if you want to write your own tool on top of git.
 
 h1. References and Endnotes
 

@@ -8,8 +8,6 @@ Since Linus had (and still has) a passionate dislike of all existing source code
 
 note. "I'm an egotistical bastard, and I name all my projects after myself. First Linux, now git." - Linus
 
-Git started out as a collection of lower level functions used in various combinations by perl scripts.  Recently (since 1.0), more and more of the perl scripts have been re-written in C, increasing portability and speed.
+Git started out as a collection of lower level functions used in various combinations by shell and perl scripts.  Recently (since 1.0), more and more of the scripts have been re-written in C (referred to as built-ins), increasing portability and speed.
 
-todo. growth and adoption - list some projects (kernel, X.Org, Mesa3D, Compiz, Wine, OLPC, Fedora, Samba | ruby: rubinius, merb, god, github, rails?)
-
-http://git.fedoraproject.org/git/
+Though originally used for just the Linux kernel, the Git project has spread rapidly, and now is used for a number of other Linux projects, such as the X.org, Mesa3D, Wine, Fedora and Samba projects.  Recently it has begun to spread outsite the Linux world to host projects such as Rubinius, Merb, Ruby on Rails, Nu, Io and many more major open source projects.

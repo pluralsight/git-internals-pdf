@@ -27,7 +27,7 @@ Anything in _.git/refs/heads_ or _.git/refs/tags_ can be used to refer to the co
 h4. Date Spec 
 
 code. master@{yesterday}
- master@{1 month ago}
+master@{1 month ago}
 
 This example would refer to the value of that branch yesterday.  Git will go through the commit parents until it found one that matched that date. 
 
@@ -40,7 +40,7 @@ This indicates the 5th prior value of the master branch.  Like the _Date Spec_, 
 h4. Carrot Parent
 
 code. e65s46^2
- master^2
+master^2
 
 This refers to the Nth parent of that commit.  This is only really helpful for commits that merged two or more commits - it is how you can refer to a commit other than the first parent.
 

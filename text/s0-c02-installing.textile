@@ -1,22 +1,26 @@
 h2. Installing Git
 
-todo. clean up this whole section, and actually run through each of these (yes, even windows!)
+Before we can start playing with git, we'll have to install it. I'll quickly cover installing Git on Linux, Mac and Windows.
 
-Before we can start playing with git, we'll have to install it. I'll quickly cover installing git on Linux, Mac and Windows.
-
-You can download git from http://git.or.cz/
-
-http://kernel.org/pub/software/scm/git/
+You can download the Git source code from "git.or.cz":http://git.or.cz/
 
 h3. Installing on Linux
 
-wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
-tar jxpvf git-1.5.4.4.tar.bz2
-cd git-1.5.4.4
-make prefix=/usr all doc info
-sudo make prefix=/usr install install-doc install-info
+If you are installing from source, it will go something like the standard:
 
-or : apt-get git-core, yum install git-core
+shell. $>wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
+$>tar jxpvf git-1.5.4.4.tar.bz2
+$>cd git-1.5.4.4
+$>make prefix=/usr all doc info
+$>sudo make prefix=/usr install install-doc install-info
+
+If you are running Ubuntu or another Debian based system, you can run
+
+shell. $>apt-get git-core
+
+or on RedHat based systems, you can sometimes run:
+
+shell. $>yum install git-core
 
 
 h3. Installing on Mac
@@ -49,10 +53,5 @@ http://code.google.com/p/git-osx-installer/
 
 h3. Windows
 
-Cygwin 	http://www.cygwin.com/setup.exe
+"Msysgit":http://code.google.com/p/msysgit/
 
-http://code.google.com/p/msysgit/
-
-A TortoiseCVS lookalike for Git
-
-http://repo.or.cz/w/git-cheetah.git/

@@ -1,0 +1,9 @@
+$>git prune -n
+2302a5a4baec369fb631bb89cfe287cc002dc049 blob
+5e069ed35afae29015b6622fe715c0aee10112ad blob
+8276318347b8e971733ca5fab77c8f5018c75261 tree
+8e1088e1cc1bc67e0ef01e018707dcb07a2a562b tree
+cb54512d0a989dcfb2d78a7f3c8909f76ad2326a blob
+$>git prune
+$>git fsck
+$>
