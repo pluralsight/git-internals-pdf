@@ -2,3 +2,71 @@ h1. Section Three - Commands Overview
 
 This section is meant to be a really quick reference to the commands we have reviewed in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.
 
+h2. Basic Git
+
+h3. "git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html
+
+h3. "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
+
+h3. "git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html
+
+h3. "git rm":http://www.kernel.org/pub/software/scm/git/docs/git-rm.html
+
+h3. "git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html
+
+h3. "git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html
+
+h3. "git branch":http://www.kernel.org/pub/software/scm/git/docs/git-branch.html
+
+h3. "git checkout":http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html
+
+h3. "git merge":http://www.kernel.org/pub/software/scm/git/docs/git-merge.html
+
+h3. "git reset":http://www.kernel.org/pub/software/scm/git/docs/git-reset.html
+
+h3. "git rebase":http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
+
+h3. "git stash":http://www.kernel.org/pub/software/scm/git/docs/git-stash.html
+
+h3. "git tag":http://www.kernel.org/pub/software/scm/git/docs/git-tag.html
+
+h3. "git fetch":http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html
+
+h3. "git pull":http://www.kernel.org/pub/software/scm/git/docs/git-pull.html
+
+h3. "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html
+
+h3. "git remote":http://www.kernel.org/pub/software/scm/git/docs/git-remote.html
+
+
+
+h2. Inspecting Repositories
+
+h3. "git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html
+
+h3. "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
+
+h3. "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
+
+h3. "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html
+
+h3. "gitk":http://www.kernel.org/pub/software/scm/git/docs/gitk.html
+
+h3. "git instaweb":http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
+
+h3. "git grep":http://www.kernel.org/pub/software/scm/git/docs/git-grep.html
+
+h3. "git diff":http://www.kernel.org/pub/software/scm/git/docs/git-diff.html
+
+
+h2. Extra Tools
+
+h3. "git archive":http://www.kernel.org/pub/software/scm/git/docs/git-archive.html
+
+h3. "git gc":http://www.kernel.org/pub/software/scm/git/docs/git-gc.html
+
+h3. "git fsck":http://www.kernel.org/pub/software/scm/git/docs/git-fsck.html
+
+h3. "git prune":http://www.kernel.org/pub/software/scm/git/docs/git-prune.html
+
+h3. "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html
