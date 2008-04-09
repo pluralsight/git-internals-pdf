@@ -839,6 +839,33 @@ master</sup>2</p>
 	<p>At the end of each section, there will be a link to the full documentation for each of the commands used in that section, in case you want to learn more or see all the options for that command.</p>
 
 
+	<h2>Setting Up Your Profile</h2>
+
+
+	<p>For every commit you do, Git will try to associate a name and email address.  One of the first things you&#8217;ll want to do in Git is to set these values.  You can set them as global configuration values with the &#8216;git config&#8217; command:</p>
+
+
+	<p>shell. $&gt;git config&#8212;global user.name &#8220;Scott Chacon&#8221; 
+$&gt;git config&#8212;global user.email &#8220;schacon@gmail.com&#8221;</p>
+
+
+	<p>That will create a new &#8217;~/.gitconfig&#8217; file that will now look like this:</p>
+
+
+	<p>shell. git-config.txt</p>
+
+
+	<p>You can change those variables at any time either by editing that file, or running the &#8216;git config&#8217; commands again.</p>
+
+
+	<p>If you want to set different values for a specific project, just leave out the &#8216;&#8212;global&#8217; and it will write the same snippet into your &#8217;.git/config&#8217; file in that repository, which will overwrite your global values.</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-config.html">git config</a></li>
+	</ul>
+
+
 	<h2>Getting a Git Repository</h2>
 
 
@@ -1943,7 +1970,7 @@ $&gt; git push mycap master</p>
 	<p>You can follow your friends or developers whose work you are interested in, or individual projects.  You then subscribe to a single Atom feed and are kept up to date on what all those projects and people are doing, code-wise.</p>
 
 
-	<p><img src="./artwork/s2/github.png" alt="" /></p>
+	<p><img src="./artwork/s2/github1.png" alt="" /></p>
 
 
 	<p>More interesting, you can publicly fork a project, so you have your own copy of it.  GitHub is unique in concept in that it is really centered around individuals rather than projects.  For instance, if you want to follow or work on Merb, you would follow or fork wycats&#8217;s Merb, there is really no &#8216;official&#8217; Merb page in GitHub.  It&#8217;s simply that wycats is known to be the blessed repository by the Merb project.</p>
@@ -1952,7 +1979,7 @@ $&gt; git push mycap master</p>
 	<p>You could just as easily follow and fork someone else&#8217;s repository of the project.  An interesting example of this is the <a href="http://github.com/sr/git-wiki">git-wiki</a> project, which was started by a user called &#8216;sr&#8217;, then was forked and greatly modified by &#8216;al3x&#8217;.  &#8216;sr&#8217; wanted to keep the project simple, and so now there are two major versions of the project by these two.  I have a checkout of the project and remotes added for each one, so I could work on and contribute to either.</p>
 
 
-	<p><img src="./artwork/s2/github.png" alt="" /></p>
+	<p><img src="./artwork/s2/github2.png" alt="" /></p>
 
 
 	<p>Let&#8217;s say there is a popular feature request that is either not completed or not accepted by the main project maintainer.  You can very easily fork the project and keep your patch or patches up to date with the head on a regular basis and people can pull from yours instead.  Perhaps enough demand builds up or enough testing is done from all these users that the patch is accepted.  You can then delete your fork and revert to the original project head.</p>
@@ -1968,6 +1995,201 @@ $&gt; git push mycap master</p>
 
 
 	<p>This section is meant to be a really quick reference to the commands we have reviewed in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.</p>
+
+
+	<h2>Basic Git</h2>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-config.html">git config</a></h3>
+
+
+	<p>Sets configuration values for things like your user name, email, and gpg key, your preferred diff algorithm, file formats to use, proxies, remotes and tons of other stuff.  For a full list, see the <a href="http://www.kernel.org/pub/software/scm/git/docs/git-config.html">git-config docs</a></p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-init.html">git init</a></h3>
+
+
+	<p>Initializes a git repository &#8211; creates the initial &#8217;.git&#8217; directory in a new or existing project.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-clone.html">git clone</a></h3>
+
+
+	<p>Copies a Git repository from another place and adds the original location as a remote you can fetch from again and possibly push to if you have permission.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-add.html">git add</a></h3>
+
+
+	<p>Adds changes in files in your working directory to your index, or staging area.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-rm.html">git rm</a></h3>
+
+
+	<p>Removes files from your index and your working directory so they will stopped being tracked.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-commit.html">git commit</a></h3>
+
+
+	<p>Takes all of the changes staged in the index (that have been &#8216;git add&#8217;ed),  creates a new commit object pointing to it, and advances the branch to point to that new commit.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-status.html">git status</a></h3>
+
+
+	<p>Shows you the status of files in your index versus your working directory.  It will list out files that are untracked (only in your working directory), modified (tracked but not yet updated in your index), and staged (added to your index and ready for committing).</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-branch.html">git branch</a></h3>
+
+
+	<p>Lists existing branches, including remote branches if &#8216;-a&#8217; is provided.  Creates a new branch if a branch name is provided.  Branches can also be created with &#8216;-b&#8217; option to &#8216;git checkout&#8217;.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html">git checkout</a></h3>
+
+
+	<p>Checks out a different branch &#8211; makes your working directory look like the tree of the commit that branch points to and updates your <span class="caps">HEAD</span> to point to this branch now, so your next commit will modify it.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-merge.html">git merge</a></h3>
+
+
+	<p>Merges one or more branches into your current branch and automatically creates a new commit if there are no conflicts.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-reset.html">git reset</a></h3>
+
+
+	<p>Resets your index and working directory to the state of your last commit, in the event that something screwed up and you just want to go back.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html">git rebase</a></h3>
+
+
+	<p>An alternative to merge that rewrites your commit history to move commits since you branched off to apply to the current head instead.  A bit dangerous as it discards existing commit objects.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-stash.html">git stash</a></h3>
+
+
+	<p>Temporarily saves changes that you don&#8217;t want to commit immediately for later.  Can re-apply the saved changes at any time.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-tag.html">git tag</a></h3>
+
+
+	<p>Tags a specific commit with a simple, human readable handle that never moves.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html">git fetch</a></h3>
+
+
+	<p>Fetches all the objects that a remote version of your repository has that you do not yet so you can merge them into yours or simply inspect them.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-pull.html">git pull</a></h3>
+
+
+	<p>Runs a &#8216;git fetch&#8217; then a &#8216;git merge&#8217;.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-push.html">git push</a></h3>
+
+
+	<p>Pushes all the objects that you have that a remote version does not yet have to that repository and advances it&#8217;s branches.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-remote.html">git remote</a></h3>
+
+
+	<p>Lists all the remote versions of your repository, or can be used to add and delete them.</p>
+
+
+	<h2>Inspecting Repositories</h2>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a></h3>
+
+
+	<p>Shows a listing of commits on a branch or involving a specific file and optionally details about what changed between it and it&#8217;s parents.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-show.html">git show</a></h3>
+
+
+	<p>Shows information about a git object, normally used to view commit information.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html">git ls-tree</a></h3>
+
+
+	<p>Shows a tree object, including the mode and name of each node and the <span class="caps">SHA1</span> value of the blob or tree that it points to. Can also be run recursively to see all subtrees as well.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-cat-file.html">git cat-file</a></h3>
+
+
+	<p>Used to view the type of an object if you only have the <span class="caps">SHA1</span> value, or used to redirect contents of files or view raw information about any object.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-grep.html">git grep</a></h3>
+
+
+	<p>Lets you search through your trees of content for words and phrases without having to actually check them out.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-diff.html">git diff</a></h3>
+
+
+	<p>Generates patch files or statistics of differences between paths or files in your git repository, or your index or your working directory.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/gitk.html">gitk</a></h3>
+
+
+	<p>Graphical Tcl/Tk based interface to a local Git repository.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html">git instaweb</a></h3>
+
+
+	<p>Wrapper script to quickly run a web server with an interface into your repository and automatically directs a web browser to it.</p>
+
+
+	<h2>Extra Tools</h2>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-archive.html">git archive</a></h3>
+
+
+	<p>Creates a tar or zip file of the contents of a single tree from your repository.  Easiest way to export a snapshot of content from your repository.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-gc.html">git gc</a></h3>
+
+
+	<p>Garbage collector for your repository.  Packs all your loose objects for space and speed efficiency and optionally removes unreachable objects as well.  Should be run occasionally on each of your repos.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-fsck.html">git fsck</a></h3>
+
+
+	<p>Does an integrity check of the Git &#8220;filesystem&#8221;, identifying dangling pointers and corrupted objects.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-prune.html">git prune</a></h3>
+
+
+	<p>Removes objects that are no longer pointed to by any object in any reachable branch.</p>
+
+
+	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html">git-daemon</a></h3>
+
+
+	<p>Runs a simple, unauthenticated wrapper on the git-upload-pack program, used to provide efficient, anonymous and unencrypted fetch access to a Git repository.</p>
 
 
 	<h1>References and Endnotes</h1>
@@ -1994,11 +2216,17 @@ $&gt; git push mycap master</p>
 - good detail about the <span class="caps">DAG</span> object model</p>
 
 
-	<p><a href="http://kerneltrap.org/node/5496">Junio Hamano New Git Maintainer</a>
-- some history on git and Junio becoming the new maintainer</p>
+	<p><a href="http://www.kernel.org/pub/software/scm/git/docs/tutorial.html">A Tutorial Introduction to Git</a></p>
 
 
 	<p><a href="http://wincent.com/knowledge-base/Git_rebase_explained">Git Rebase Explained</a></p>
+
+
+	<p><a href="http://cworth.org/hgbook-git/tour/">A Tour of Git, the Basics</a></p>
+
+
+	<p><a href="http://kerneltrap.org/node/5496">Junio Hamano New Git Maintainer</a>
+- some history on git and Junio becoming the new maintainer</p>
 
 
 	<h2>Screencasts</h2>

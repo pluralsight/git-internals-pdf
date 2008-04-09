@@ -4,6 +4,10 @@ This section is meant to be a really quick reference to the commands we have rev
 
 h2. Basic Git
 
+h3. "git config":http://www.kernel.org/pub/software/scm/git/docs/git-config.html
+
+Sets configuration values for things like your user name, email, and gpg key, your preferred diff algorithm, file formats to use, proxies, remotes and tons of other stuff.  For a full list, see the "git-config docs":http://www.kernel.org/pub/software/scm/git/docs/git-config.html
+
 h3. "git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html
 
 Initializes a git repository - creates the initial '.git' directory in a new or existing project.

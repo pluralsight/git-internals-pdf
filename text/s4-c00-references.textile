@@ -15,10 +15,15 @@ h2. Web Documentation
 "Git for Computer Scientists":http://eagain.net/articles/git-for-computer-scientists/
 - good detail about the DAG object model
 
+"A Tutorial Introduction to Git":http://www.kernel.org/pub/software/scm/git/docs/tutorial.html
+
+"Git Rebase Explained":http://wincent.com/knowledge-base/Git_rebase_explained
+
+"A Tour of Git, the Basics":http://cworth.org/hgbook-git/tour/
+
 "Junio Hamano New Git Maintainer":http://kerneltrap.org/node/5496
 - some history on git and Junio becoming the new maintainer
 
-"Git Rebase Explained":http://wincent.com/knowledge-base/Git_rebase_explained
 
 h2. Screencasts
 
