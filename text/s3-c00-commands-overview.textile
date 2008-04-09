@@ -6,67 +6,127 @@ h2. Basic Git
 
 h3. "git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html
 
-h3. "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
-
-h3. "git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html
-
-h3. "git rm":http://www.kernel.org/pub/software/scm/git/docs/git-rm.html
+Initializes a git repository - creates the initial '.git' directory in a new or existing project.
 
 h3. "git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html
 
+Copies a Git repository from another place and adds the original location as a remote you can fetch from again and possibly push to if you have permission.
+
+h3. "git add":http://www.kernel.org/pub/software/scm/git/docs/git-add.html
+
+Adds changes in files in your working directory to your index, or staging area.
+
+h3. "git rm":http://www.kernel.org/pub/software/scm/git/docs/git-rm.html
+
+Removes files from your index and your working directory so they will stopped being tracked.
+
+h3. "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
+
+Takes all of the changes staged in the index (that have been 'git add'ed),  creates a new commit object pointing to it, and advances the branch to point to that new commit.
+
 h3. "git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html
+
+Shows you the status of files in your index versus your working directory.  It will list out files that are untracked (only in your working directory), modified (tracked but not yet updated in your index), and staged (added to your index and ready for committing).
 
 h3. "git branch":http://www.kernel.org/pub/software/scm/git/docs/git-branch.html
 
+Lists existing branches, including remote branches if '-a' is provided.  Creates a new branch if a branch name is provided.  Branches can also be created with '-b' option to 'git checkout'.
+
 h3. "git checkout":http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html
+
+Checks out a different branch - makes your working directory look like the tree of the commit that branch points to and updates your HEAD to point to this branch now, so your next commit will modify it.
 
 h3. "git merge":http://www.kernel.org/pub/software/scm/git/docs/git-merge.html
 
+Merges one or more branches into your current branch and automatically creates a new commit if there are no conflicts.
+
 h3. "git reset":http://www.kernel.org/pub/software/scm/git/docs/git-reset.html
+
+Resets your index and working directory to the state of your last commit, in the event that something screwed up and you just want to go back.
 
 h3. "git rebase":http://www.kernel.org/pub/software/scm/git/docs/git-rebase.html
 
+An alternative to merge that rewrites your commit history to move commits since you branched off to apply to the current head instead.  A bit dangerous as it discards existing commit objects.
+
 h3. "git stash":http://www.kernel.org/pub/software/scm/git/docs/git-stash.html
+
+Temporarily saves changes that you don't want to commit immediately for later.  Can re-apply the saved changes at any time.
 
 h3. "git tag":http://www.kernel.org/pub/software/scm/git/docs/git-tag.html
 
+Tags a specific commit with a simple, human readable handle that never moves.
+
 h3. "git fetch":http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html
+
+Fetches all the objects that a remote version of your repository has that you do not yet so you can merge them into yours or simply inspect them.
 
 h3. "git pull":http://www.kernel.org/pub/software/scm/git/docs/git-pull.html
 
+Runs a 'git fetch' then a 'git merge'.
+
 h3. "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html
+
+Pushes all the objects that you have that a remote version does not yet have to that repository and advances it's branches.
 
 h3. "git remote":http://www.kernel.org/pub/software/scm/git/docs/git-remote.html
 
+Lists all the remote versions of your repository, or can be used to add and delete them.
 
 
 h2. Inspecting Repositories
 
 h3. "git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html
 
+Shows a listing of commits on a branch or involving a specific file and optionally details about what changed between it and it's parents.
+
 h3. "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
+
+Shows information about a git object, normally used to view commit information.
 
 h3. "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
 
-h3. "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html
+Shows a tree object, including the mode and name of each node and the SHA1 value of the blob or tree that it points to. Can also be run recursively to see all subtrees as well.
 
-h3. "gitk":http://www.kernel.org/pub/software/scm/git/docs/gitk.html
+h3. "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-file.html
 
-h3. "git instaweb":http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
+Used to view the type of an object if you only have the SHA1 value, or used to redirect contents of files or view raw information about any object.
 
 h3. "git grep":http://www.kernel.org/pub/software/scm/git/docs/git-grep.html
 
+Lets you search through your trees of content for words and phrases without having to actually check them out.
+
 h3. "git diff":http://www.kernel.org/pub/software/scm/git/docs/git-diff.html
+
+Generates patch files or statistics of differences between paths or files in your git repository, or your index or your working directory.
+
+h3. "gitk":http://www.kernel.org/pub/software/scm/git/docs/gitk.html
+
+Graphical Tcl/Tk based interface to a local Git repository.
+
+h3. "git instaweb":http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
+
+Wrapper script to quickly run a web server with an interface into your repository and automatically directs a web browser to it.
 
 
 h2. Extra Tools
 
 h3. "git archive":http://www.kernel.org/pub/software/scm/git/docs/git-archive.html
 
+Creates a tar or zip file of the contents of a single tree from your repository.  Easiest way to export a snapshot of content from your repository.
+
 h3. "git gc":http://www.kernel.org/pub/software/scm/git/docs/git-gc.html
+
+Garbage collector for your repository.  Packs all your loose objects for space and speed efficiency and optionally removes unreachable objects as well.  Should be run occasionally on each of your repos.
 
 h3. "git fsck":http://www.kernel.org/pub/software/scm/git/docs/git-fsck.html
 
+Does an integrity check of the Git "filesystem", identifying dangling pointers and corrupted objects.
+
 h3. "git prune":http://www.kernel.org/pub/software/scm/git/docs/git-prune.html
 
+Removes objects that are no longer pointed to by any object in any reachable branch.
+
 h3. "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html
+
+Runs a simple, unauthenticated wrapper on the git-upload-pack program, used to provide efficient, anonymous and unencrypted fetch access to a Git repository.
+
