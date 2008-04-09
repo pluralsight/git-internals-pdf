@@ -1931,22 +1931,37 @@ $&gt; git push mycap master</p>
 	<p>I will focus on some interesting features of a commercial service called <a href="http://github.com">GitHub</a> here, but there is also an open source project called <a href="http://gitorious.com">Gitorious</a> that has many of the same features.</p>
 
 
-	<p>My focus on GitHub is only because it has private repos for commercial projects, the open source ones are free, and many popular projects featured in the Peepcode series, including Ruby on Rails, Merb, RSpec, and Capistrano are hosted there.</p>
+	<p>My focus on GitHub is only because it has private repos for commercial projects, which means you could use it to host your companies source code (as GitHub does), but also the open source ones are free, and it hosts many popular projects featured in the Peepcode series, including Ruby on Rails, Merb, RSpec, and Capistrano.</p>
 
 
 	<h3>GitHub</h3>
 
 
-	<p>open source software repos are free</p>
+	<p>GitHub is interesting as a source code hosting service because it includes some social networking features, which is not what most people imagine when thinking of source code hosting.</p>
 
 
-	<p>closed source or multiple committers cost</p>
+	<p>You can follow your friends or developers whose work you are interested in, or individual projects.  You then subscribe to a single Atom feed and are kept up to date on what all those projects and people are doing, code-wise.</p>
 
 
-	<p>social networking
- &#8211; watching people and projects
- &#8211; forking a project
- &#8211; sending a pull request</p>
+	<p><img src="./artwork/s2/github.png" alt="" /></p>
+
+
+	<p>More interesting, you can publicly fork a project, so you have your own copy of it.  GitHub is unique in concept in that it is really centered around individuals rather than projects.  For instance, if you want to follow or work on Merb, you would follow or fork wycats&#8217;s Merb, there is really no &#8216;official&#8217; Merb page in GitHub.  It&#8217;s simply that wycats is known to be the blessed repository by the Merb project.</p>
+
+
+	<p>You could just as easily follow and fork someone else&#8217;s repository of the project.  An interesting example of this is the <a href="http://github.com/sr/git-wiki">git-wiki</a> project, which was started by a user called &#8216;sr&#8217;, then was forked and greatly modified by &#8216;al3x&#8217;.  &#8216;sr&#8217; wanted to keep the project simple, and so now there are two major versions of the project by these two.  I have a checkout of the project and remotes added for each one, so I could work on and contribute to either.</p>
+
+
+	<p><img src="./artwork/s2/github.png" alt="" /></p>
+
+
+	<p>Let&#8217;s say there is a popular feature request that is either not completed or not accepted by the main project maintainer.  You can very easily fork the project and keep your patch or patches up to date with the head on a regular basis and people can pull from yours instead.  Perhaps enough demand builds up or enough testing is done from all these users that the patch is accepted.  You can then delete your fork and revert to the original project head.</p>
+
+
+	<p>This will also really change patch submission for large projects.  When Rails is fully on GitHub and integrated into the core team workflow, submitting patches will be far less painful for all parties.  You can fork the project, add your patch and submit a pull request for your branch with the fix to one of the core members or through the ticketing system.  They can add you as a remote easily, create a new testing branch, merge in or rebase your branch, test and accept or reject.  If your patch is ignored or the team doesn&#8217;t have time to deal with it yet, it&#8217;s easy to keep up to date by continually rebasing and re-sending the pull requests until it&#8217;s either rejected or accepted.  It doesn&#8217;t just go stale until it&#8217;s difficult to apply the patch anymore.</p>
+
+
+	<p>Services like GitHub and an increased adoption of distributed <span class="caps">SCM</span> systems will dramatically change open source development workflows on teams of all sizes, in addition to changing the way individual developers work.</p>
 
 
 	<h1>Section Three &#8211; Commands Overview</h1>
