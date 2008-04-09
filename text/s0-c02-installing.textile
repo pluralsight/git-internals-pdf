@@ -1,8 +1,8 @@
 h2. Installing Git
 
-Before we can start playing with git, we'll have to install it. I'll quickly cover installing Git on Linux, Mac and Windows.
+Before we can start playing with git, we'll have to install it. I'll quickly cover installing Git on Linux, Mac and Windows.  I will not get into super fine detail, because others have done that much better, but I will give you an overview and links as to where to find detailed instructions on each platform.
 
-You can download the Git source code from "git.or.cz":http://git.or.cz/
+For all of these, you can download the Git source code from "git.or.cz":http://git.or.cz/
 
 h3. Installing on Linux
 
@@ -25,33 +25,47 @@ shell. $>yum install git-core
 
 h3. Installing on Mac
 
-You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see
+You are likely going to want to install git without the asciidoc dependency because it is a pain to install.   Other than that, what you basically need is Curl and Expat.  For any of these except the binary OS X installer, you will need the Developer Tools installed.  If you don't have the OS X install discs anymore, you can get the tools from the "Apple Website":http://developer.apple.com/tools/
+
 
 h4. Mac 10.4 - Tiger
 
-There are some requirements you'll have to install before you can compile git.
+There are some requirements you'll have to install before you can compile git.  Expat can be installed roughly like this:
 
-http://sourceforge.net/projects/expat/
+shell. curl -O http://surfnet.dl.sourceforge.net/sourceforge/expat/expat-2.0.1.tar.gz
+tar zxvf expat-2.0.1.tar.gz 
+cd expat-2.0.1
+./configure --prefix=/usr/local
+make
+make check
+sudo make install
+cd ..
+
+Then download and compile Git as per the Linux instructions.
 
 However, if you want an easier path, you can use the excellent MacPorts software:
 
-http://www.macports.org/
+Follow the instructions on the "MacPorts Homepage":http://www.macports.org/
 
 and just run 
 
-# port install git-core
+shell. $ sudo port install git-core
 
+For an in depth tutorial on installing on 10.4, see "this article":http://blog.kineticweb.com/articles/2007/08/26/compiling-git-for-mac-os-x-10-4-10-intel
 
 h4. Mac 10.5 - Leopard
 
-All the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed. 
+The easiest way to install is most likely the "Git OSX Installer":http://code.google.com/p/git-osx-installer/, which you can get from Google Code.  Just download and run the dmg from the website.
+
+If you want to compile from source, all the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed. 
+
+For an in-depth tutorial on installations under Leopard, see "this article":http://blog.kineticweb.com/articles/2007/10/30/compiling-git-for-mac-os-x-leopard-10-5
 
 MacPorts is also an easy option if you have that installed.
 
-http://code.google.com/p/git-osx-installer/
-
-
 h3. Windows
 
-"Msysgit":http://code.google.com/p/msysgit/
+There are two options on Windows currently, but the popular one seems to be "MSysGit":http://code.google.com/p/msysgit/, which installs easily and is runnable on the Windows command line.  Simply download the exe file from the "downloads list":http://code.google.com/p/msysgit/downloads/list and run it.
+
+
 

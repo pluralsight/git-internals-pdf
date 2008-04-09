@@ -32,12 +32,36 @@ shell. git-catfile.txt
 
 With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.
 
+h3. Graphical Interfaces
+
+There are two major graphical interfaces that come with Git as tools to browse the repository.
+
 h4. Gitk
+
+A very popular choice for browsing Git repositories is the Tcl/Tk based browser called 'gitk'.  If you want to see a simple visualization of your repository, gitk is a great tool.
+
+!../artwork/s2/gitk.png!
+
+Gitk will also take most of the same arguments that 'git log' will take, including '--since', '--until', '--max-count', revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is 'gitk --all', which will show you all of your branches (rather than just the one you are currently on) next to each other.
 
 h4. Instaweb
 
-http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
+If you don't want to fire up Tk, you can also browse your repository quickly via the 'git instaweb' command.  This will basically fire up a web server running the "gitweb":http://git.or.cz/gitwiki/Gitweb cgi script using lighttpd, apache or webrick.  It then tries to automatically fire up your default web browser and points it at the new server.
+
+shell. git-instaweb.txt
+
+!../s2/instaweb.png!
+
+When you are done, you can run the following to shut down the server.
+
+shell. $>git instaweb --stop
+
+This is a quick way to throw up a web interface on your git repository for sharing with others or simply browsing it in a different way.  
+
+For a more long term web interface to your repository, you can throw the gitweb files that come with Git into your cgi-bin directory.
 
 * "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 * "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
 * "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html
+* "gitk":http://www.kernel.org/pub/software/scm/git/docs/gitk.html
+* "git instaweb":http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html

@@ -67,7 +67,11 @@ The interactive shell is pretty simple - playing with it instead of running 'git
 
 h4. Removing
 
-'git rm'
+For removing files from your tree, you can simply run 
+
+shell. git rm <filename>
+  
+which will remove that file from the index (and thus from the next commit) as well as from your working directory.  On your next commit, the tree that commit points to will simply not contain that file anymore.
 
 
 

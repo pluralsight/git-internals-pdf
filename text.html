@@ -13,10 +13,10 @@
 	<h2>Installing Git</h2>
 
 
-	<p>Before we can start playing with git, we&#8217;ll have to install it. I&#8217;ll quickly cover installing Git on Linux, Mac and Windows.</p>
+	<p>Before we can start playing with git, we&#8217;ll have to install it. I&#8217;ll quickly cover installing Git on Linux, Mac and Windows.  I will not get into super fine detail, because others have done that much better, but I will give you an overview and links as to where to find detailed instructions on each platform.</p>
 
 
-	<p>You can download the Git source code from <a href="http://git.or.cz/">git.or.cz</a></p>
+	<p>For all of these, you can download the Git source code from <a href="http://git.or.cz/">git.or.cz</a></p>
 
 
 	<h3>Installing on Linux</h3>
@@ -47,48 +47,62 @@ $&gt;sudo make prefix=/usr install install-doc install-info</p>
 	<h3>Installing on Mac</h3>
 
 
-	<p>You are likely going to want to install git without the asciidoc dependency because it is a pain to install.  When you compile from source, you will see</p>
+	<p>You are likely going to want to install git without the asciidoc dependency because it is a pain to install.   Other than that, what you basically need is Curl and Expat.  For any of these except the binary <span class="caps">OS X</span> installer, you will need the Developer Tools installed.  If you don&#8217;t have the <span class="caps">OS X</span> install discs anymore, you can get the tools from the <a href="http://developer.apple.com/tools/">Apple Website</a></p>
 
 
 	<h4>Mac 10.4 &#8211; Tiger</h4>
 
 
-	<p>There are some requirements you&#8217;ll have to install before you can compile git.</p>
+	<p>There are some requirements you&#8217;ll have to install before you can compile git.  Expat can be installed roughly like this:</p>
 
 
-	<p>http://sourceforge.net/projects/expat/</p>
+	<p>shell. curl -O http://surfnet.dl.sourceforge.net/sourceforge/expat/expat-2.0.1.tar.gz
+tar zxvf expat-2.0.1.tar.gz 
+cd expat-2.0.1
+./configure&#8212;prefix=/usr/local
+make
+make check
+sudo make install
+cd ..</p>
+
+
+	<p>Then download and compile Git as per the Linux instructions.</p>
 
 
 	<p>However, if you want an easier path, you can use the excellent MacPorts software:</p>
 
 
-	<p>http://www.macports.org/</p>
+	<p>Follow the instructions on the <a href="http://www.macports.org/">MacPorts Homepage</a></p>
 
 
 	<p>and just run</p>
 
 
-	<ol>
-	<li>port install git-core</li>
-	</ol>
+	<p>shell. $ sudo port install git-core</p>
+
+
+	<p>For an in depth tutorial on installing on 10.4, see <a href="http://blog.kineticweb.com/articles/2007/08/26/compiling-git-for-mac-os-x-10-4-10-intel">this article</a></p>
 
 
 	<h4>Mac 10.5 &#8211; Leopard</h4>
 
 
-	<p>All the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed.</p>
+	<p>The easiest way to install is most likely the <a href="http://code.google.com/p/git-osx-installer/">Git <span class="caps">OSX</span> Installer</a>, which you can get from Google Code.  Just download and run the dmg from the website.</p>
+
+
+	<p>If you want to compile from source, all the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed.</p>
+
+
+	<p>For an in-depth tutorial on installations under Leopard, see <a href="http://blog.kineticweb.com/articles/2007/10/30/compiling-git-for-mac-os-x-leopard-10-5">this article</a></p>
 
 
 	<p>MacPorts is also an easy option if you have that installed.</p>
 
 
-	<p>http://code.google.com/p/git-osx-installer/</p>
-
-
 	<h3>Windows</h3>
 
 
-	<p><a href="http://code.google.com/p/msysgit/">Msysgit</a></p>
+	<p>There are two options on Windows currently, but the popular one seems to be <a href="http://code.google.com/p/msysgit/">MSysGit</a>, which installs easily and is runnable on the Windows command line.  Simply download the exe file from the <a href="http://code.google.com/p/msysgit/downloads/list">downloads list</a> and run it.</p>
 
 
 	<h2>A Short History of Git</h2>
@@ -118,6 +132,9 @@ $&gt;sudo make prefix=/usr install install-doc install-info</p>
 	<p>In this section, we will go over what git was built for and how it works, hopefully laying the groundwork to properly understand what it is doing when we run the commands.</p>
 
 
+	<p>.note the initial commit message for the git project was &#8216;initial version of &#8220;git&#8221;, the information manager from hell&#8217; &#8211; Linus, 4/7/05</p>
+
+
 	<p>When I learned Git, as many people do, I learned it in the context of other SCMs I had used &#8211; Subversion or <span class="caps">CVS</span>.  I really think this is a horrible way to learn Git.  I felt far more comfortable with it when I stopped thinking that &#8216;git add&#8217; was sort of like &#8216;svn add&#8217;, but instead understood what it was actually doing.  Then I found I could find new and interesting ways to use what is really a very powerful and cool toolset.</p>
 
 
@@ -136,7 +153,7 @@ $&gt;sudo make prefix=/usr install install-doc install-info</p>
 	<p>Git tracks content &#8211; files and directories.  It is at it&#8217;s heart a collection of simple tools that implement a tree history storage and directory content management system.  It is simply used as an <span class="caps">SCM</span>, not really designed as one.</p>
 
 
-	<p>&#8220;In many ways you can just see git as a filesystem — it&#8217;s content-addressable, and it has a notion of versioning, but I really really designed it coming at the problem from the viewpoint of a filesystem person (hey, kernels is what I do), and I actually have absolutely zero interest in creating a traditional <span class="caps">SCM</span> system.&#8221; &#8211; Linus (http://marc.info/?l=linux-kernel&#38;m=111314792424707)</p>
+	<p>sidebar. &#8220;In many ways you can just see git as a filesystem — it&#8217;s content-addressable, and it has a notion of versioning, but I really really designed it coming at the problem from the viewpoint of a filesystem person (hey, kernels is what I do), and I actually have absolutely zero interest in creating a traditional <span class="caps">SCM</span> system.&#8221; &#8211; Linus (http://marc.info/?l=linux-kernel&#38;m=111314792424707)</p>
 
 
 	<p>When most SCMs store a new version of a project, they store the code delta or diff.  When Git stores a new version of a project, it stores a new tree &#8211; a bunch of blobs of content and a collection of pointers that can be expanded back out into a full directory of content and subdirectories.  If you want a diff between two versions, it doesn&#8217;t add up all the deltas, it simply looks at the two full directories and runs a new diff on them.</p>
@@ -179,6 +196,9 @@ $&gt;sudo make prefix=/usr install install-doc install-info</p>
 
 
 	<p>Git is not really a single binary, but a collection of hundreds of scripts, which is sometimes annoying to people trying to learn Git, but is pretty cool when you want to do anything non-standard with it.  Git is less a program and more a toolkit that can be combined and chained to do new and interesting things.</p>
+
+
+	<p>note. For a long time, Git was just the raw toolkit and the project to wrap those into a user friendly <span class="caps">SCM</span> was called &#8216;Cogito&#8217;.  That project has since been abandoned as Git itself became easier to use.</p>
 
 
 	<p>The tools can be more or less divided into two major camps, often referred to as the &#8216;porcelain&#8217; and the &#8216;plumbing&#8217;.  The &#8216;plumbing&#8217; is not really meant to be used by people on the command line, but rather do simple things flexibly and are combined by programs and scripts into &#8216;plumbing&#8217; programs.  The &#8216;plumbing&#8217; scripts are largely what we will be focusing on in this book &#8211; the user-oriented interfaces to do <span class="caps">SCM</span> type things, hiding the low-level fun.</p>
@@ -980,7 +1000,13 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<h4>Removing</h4>
 
 
-	<p>&#8216;git rm&#8217;</p>
+	<p>For removing files from your tree, you can simply run</p>
+
+
+	<p>shell. git rm <filename></p>
+
+
+	<p>which will remove that file from the index (and thus from the next commit) as well as from your working directory.  On your next commit, the tree that commit points to will simply not contain that file anymore.</p>
 
 
 	<h2>Log &#8211; the Commit History</h2>
@@ -1079,19 +1105,80 @@ For example, we can list the commit shas and the first line of the message with 
 	<p>With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.</p>
 
 
+	<h3>Graphical Interfaces</h3>
+
+
+	<p>There are two major graphical interfaces that come with Git as tools to browse the repository.</p>
+
+
 	<h4>Gitk</h4>
+
+
+	<p>A very popular choice for browsing Git repositories is the Tcl/Tk based browser called &#8216;gitk&#8217;.  If you want to see a simple visualization of your repository, gitk is a great tool.</p>
+
+
+	<p><img src="./artwork/s2/gitk.png" alt="" /></p>
+
+
+	<p>Gitk will also take most of the same arguments that &#8216;git log&#8217; will take, including &#8216;<del>-since&#8217;, &#8216;</del>-until&#8217;, &#8216;&#8212;max-count&#8217;, revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is &#8216;gitk&#8212;all&#8217;, which will show you all of your branches (rather than just the one you are currently on) next to each other.</p>
 
 
 	<h4>Instaweb</h4>
 
 
-	<p>http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html</p>
+	<p>If you don&#8217;t want to fire up Tk, you can also browse your repository quickly via the &#8216;git instaweb&#8217; command.  This will basically fire up a web server running the <a href="http://git.or.cz/gitwiki/Gitweb">gitweb</a> cgi script using lighttpd, apache or webrick.  It then tries to automatically fire up your default web browser and points it at the new server.</p>
+
+
+	<p>shell. git-instaweb.txt</p>
+
+
+	<p><img src="./s2/instaweb.png" alt="" /></p>
+
+
+	<p>When you are done, you can run the following to shut down the server.</p>
+
+
+	<p>shell. $&gt;git instaweb&#8212;stop</p>
+
+
+	<p>This is a quick way to throw up a web interface on your git repository for sharing with others or simply browsing it in a different way.</p>
+
+
+	<p>For a more long term web interface to your repository, you can throw the gitweb files that come with Git into your cgi-bin directory.</p>
 
 
 	<ul>
 	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-show.html">git show</a></li>
 		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html">git ls-tree</a></li>
 		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html">git cat-file</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/gitk.html">gitk</a></li>
+		<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html">git instaweb</a></li>
+	</ul>
+
+
+	<h2>Searching Git</h2>
+
+
+	<p>Git has an easy way for searching through trees in your repository without having to check them out into your working directory.  It is called &#8216;git-grep&#8217; and works very much like the traditional <span class="caps">UNIX</span> &#8216;grep&#8217; command, with the difference that instead of listing the files you want to search as an argument, you list the trees you want to search.</p>
+
+
+	<p>For example, if we wanted to search for the string &#8216;log_syslog&#8217; in versions 1.0 and 1.5.3.8 of the Git source code in the C files only, we can find that very easily.</p>
+
+
+	<p>shell. git-grep.txt</p>
+
+
+	<p>You can see that you can see the number of lines that match, or the actual lines, and you can list as many trees (in this case, I used tags to reference them) as you want to search.</p>
+
+
+	<p>Another interesting example is to see which files in these versions do not contain the string &#8216;git&#8217; anywhere in them:</p>
+
+
+	<p>shell. git-grep2.txt</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-grep.html">git grep</a></li>
 	</ul>
 
 
@@ -1384,6 +1471,50 @@ Created commit 47c668a: fixed conflict</p>
 
 
 	<h2>Stashing</h2>
+
+
+	<p>Stashing is a pretty simple concept that is incredibly useful and very easy to use.  If you are working on your code and you need to switch to another branch for some reason and don&#8217;t want to commit your current state because it is only partially completed, you can run &#8216;git stash&#8217;, which will basically take the changes from your last commit to the current state of your working directory and store it temporarily.</p>
+
+
+	<p>In the following example, I have a change to my &#8216;lib/simplegit.rb&#8217; file, but it&#8217;s not complete.</p>
+
+
+	<p>shell. stash.txt</p>
+
+
+	<p>Now I can see that my working directory is clean, as if I had committed, but I did not.  Now I can switch branches, work for a while somewhere else, then switch back. So where did that change go?  How do I get it back?  Well, I can see my stashes by running &#8216;git stash list&#8217;.</p>
+
+
+	<p>shell. stash-list.txt</p>
+
+
+	<p>I see I have two stashes on the &#8216;master&#8217; branch, both saved off of working from the same commit, and I have one stashed change off the &#8216;experiment&#8217; branch.  However, I can&#8217;t remember which stash was the one I want, so I can use &#8216;git stash show&#8217; to figure it out.</p>
+
+
+	<p>shell. stash-show.txt</p>
+
+
+	<p>I can also use any normal git tools that will take a tree on it, for instance, &#8216;git diff&#8217;:</p>
+
+
+	<p>shell. stash-diff.txt</p>
+
+
+	<p>And finally, I can apply it:</p>
+
+
+	<p>shell. stash-apply.txt</p>
+
+
+	<p>Now we can see that our working directory is back to where it was, with one file in an unstaged state.  Now I would have to &#8216;git add&#8217; and &#8216;git commit&#8217; it if I wanted to keep the change.</p>
+
+
+	<p>Normally it&#8217;s not even this complicated.  If you run &#8216;git stash apply&#8217; without the actual stash reference, it will just apply the last stash you saved on that branch.  Normally I will just use &#8216;git stash&#8217; to save something, go work elsewhere, then come back and run &#8216;git stash apply&#8217; to get back to where I was.</p>
+
+
+	<ul>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/git-stash.html">git stash</a></li>
+	</ul>
 
 
 	<h2>Tagging</h2>

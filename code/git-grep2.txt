@@ -1,0 +1,13 @@
+$>git grep -L -v git v1.5.3.8 v1.0.0 
+v1.5.3.8:contrib/fast-import/git-p4.bat
+v1.5.3.8:contrib/p4import/README
+v1.5.3.8:t/t5100/patch0007
+v1.5.3.8:t/t5100/patch0008
+v1.5.3.8:templates/this--description
+v1.0.0:debian/git-arch.files
+v1.0.0:debian/git-cvs.files
+v1.0.0:debian/git-doc.files
+v1.0.0:debian/git-email.files
+v1.0.0:debian/git-svn.files
+v1.0.0:debian/git-tk.files
+v1.0.0:templates/this--description

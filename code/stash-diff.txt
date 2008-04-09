@@ -1,0 +1,16 @@
+$>git diff stash@{1}
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index e939f77..b03bc9c 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -21,10 +21,6 @@ class SimpleGit
+    command("git ls-tree -r -t #{treeish}")
+  end
+
+-  def commit(message = 'commit message')
+-    command("git commit -m #{message}")
+-  end
+-
+  private
+
+    def command(git_cmd)

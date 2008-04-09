@@ -1,0 +1,17 @@
+$>git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#       modified:   lib/simplegit.rb
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$>git stash
+Saved working directory and index state "WIP on master: c110d7f... made the ls-tree function recursive and list trees"
+(To restore them type "git stash apply")
+HEAD is now at c110d7f made the ls-tree function recursive and list trees
+
+$>git status
+# On branch master
+nothing to commit (working directory clean)

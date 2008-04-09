@@ -5,7 +5,7 @@ Git is a stupid content tracker.  That is probably the best description of it - 
 Git tracks content - files and directories.  It is at it's heart a collection of simple tools that implement a tree history storage and directory content management system.  It is simply used as an SCM, not really designed as one.
 
 
-"In many ways you can just see git as a filesystem — it's content-addressable, and it has a notion of versioning, but I really really designed it coming at the problem from the viewpoint of a filesystem person (hey, kernels is what I do), and I actually have absolutely zero interest in creating a traditional SCM system." - Linus (http://marc.info/?l=linux-kernel&m=111314792424707)
+sidebar. "In many ways you can just see git as a filesystem — it's content-addressable, and it has a notion of versioning, but I really really designed it coming at the problem from the viewpoint of a filesystem person (hey, kernels is what I do), and I actually have absolutely zero interest in creating a traditional SCM system." - Linus (http://marc.info/?l=linux-kernel&m=111314792424707)
 
   
 When most SCMs store a new version of a project, they store the code delta or diff.  When Git stores a new version of a project, it stores a new tree - a bunch of blobs of content and a collection of pointers that can be expanded back out into a full directory of content and subdirectories.  If you want a diff between two versions, it doesn't add up all the deltas, it simply looks at the two full directories and runs a new diff on them.

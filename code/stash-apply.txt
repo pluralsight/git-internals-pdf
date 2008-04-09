@@ -1,0 +1,8 @@
+$>git stash apply stash@{1}
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#
+#       modified:   lib/simplegit.rb
+#
+no changes added to commit (use "git add" and/or "git commit -a")
