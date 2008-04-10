@@ -13,7 +13,7 @@ Deleted branch newfunc.
 
 h3. Resolving Conflicts
 
-That was a fairly simple problem, but what if we branch our code and then edit the same place in a file in two different ways?  In that case, we'll get a conflict when we try to merge them back together.  Git is not too aggressive in trying to resolve conflicts, since you don't want it to make assumptions that are not necessarily correct, so bugs aren't introduced without your knowledge.
+That was a fairly simple problem, but what if we branch our code and then edit the same place in a file in different ways in each branch?  In that case, we'll get a conflict when we try to merge them back together.  Git is not too aggressive in trying to resolve conflicts, since you don't want it to make assumptions that are not necessarily correct, so bugs aren't introduced without your knowledge.
 
 Let's say that we created a 'versioning' branch and then modified the version in the Rakefile to different versions in both the new branch and the 'master' branch, then tried to merge them together.
 
@@ -35,7 +35,7 @@ Created commit 47c668a: fixed conflict
 
 h3. Undoing a Merge
 
-Assume we have gone through some massive merge because someone on your team hasn't commited in a while, or you have a branch that was created some time ago but hasn't been rebasing and you want to pull it in.  So you try to 'git merge old_branch' it and you get conflict after conflict and it is just too much trouble to deal with and you just want to undo it all.
+Assume we have gone through some massive merge because someone on your team hasn't committed in a while, or you have a branch that was created some time ago but hasn't been rebasing and you want to pull it in.  So you try to 'git merge old_branch' it and you get conflict after conflict and it is just too much trouble to deal with and you just want to undo it all.
 
 This is where 'git reset' comes in.  To reset your working directory and index back to what it was before you tried the merge, simply run:
 
@@ -45,8 +45,9 @@ The '--hard' makes sure both your index file and working directory are changed t
 
 shell. $>git reset --hard ORIG_HEAD
 
-This is only helpful if you want to undo the latest change or changes.  If you happen to commit again then decide that you want to keep the latest commit, but undo a commit that was added sometime before that, you'll need to use 'git revert', which is covered in [History Manipulation]
+This is only helpful if you want to undo the latest change or changes.  If you happen to commit again then decide that you want to keep the latest commit, but undo a commit that was added sometime before that, you'll need to use 'git revert', which is a bit too dangerous to cover here.
 
 * "git branch":http://www.kernel.org/pub/software/scm/git/docs/git-branch.html
 * "git merge":http://www.kernel.org/pub/software/scm/git/docs/git-merge.html
 * "git reset":http://www.kernel.org/pub/software/scm/git/docs/git-reset.html
+* "git revert":http://www.kernel.org/pub/software/scm/git/docs/git-revert.html

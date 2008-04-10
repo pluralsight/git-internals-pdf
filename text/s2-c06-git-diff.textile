@@ -2,11 +2,13 @@ h2. Git Diff
 
 Git has a great diff utility built in that can give you statistics or a patch file given any combination of tree objects, working directory and index.
 
-Two common uses of this include seeing what you've worked on but not committed yet, and creating a patch file to send to someone over email (though there is a much preferred way to do that which we will learn about in the "distributed workflow" section a bit later).
+Two common uses of this include seeing what you've worked on but not committed yet, and creating a patch file to send to someone over email (though there is a much preferred way to share changes which we will learn about in the "distributed workflow" section a bit later).
 
 h3. What has changed?
 
-If you simply run 'git diff' with no arguments, it will show you the differences between your current working directory and my index, that is, the last time I ran 'git add' on my files.  For example, if I add my email to the README file and run it, I will see this:
+If you simply run 'git diff' with no arguments, it will show you the differences between your current working directory and your index, that is, the last time you ran 'git add' on your files. 
+
+For example, if I add my email to the README file and run it, I will see this:
 
 shell. git-diff-readme.txt
 

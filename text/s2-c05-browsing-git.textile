@@ -58,7 +58,7 @@ shell. $>git instaweb --stop
 
 This is a quick way to throw up a web interface on your git repository for sharing with others or simply browsing it in a different way.  
 
-For a more long term web interface to your repository, you can throw the gitweb files that come with Git into your cgi-bin directory.
+For a more long term web interface to your repository, you can put the gitweb perl files that come with Git into your cgi-bin directory.
 
 * "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 * "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
