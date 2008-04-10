@@ -1,0 +1,3 @@
+*.indd -crlf -diff -merge
+*.graffle -crlf -diff -merge
+*.eps -crlf -diff -merge
