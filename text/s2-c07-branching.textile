@@ -6,11 +6,11 @@ h3. Switching Branches
 
 However, let's say we're working on our project and we want to add a new function to our library, so we'll make a new branch called 'newfunc' and switch to it.  There are two ways we can do this, one is to create the branch and then switch to it:
 
-shell. $>git branch newfunc; git checkout newfunc
+shell. $ git branch newfunc; git checkout newfunc
 
 The other way is to checkout a branch that doesn't exist yet and tell git you want to create it by passing the '-b' flag:
 
-shell. $> git checkout -b newfunc
+shell. $ git checkout -b newfunc
 
 Now, to check which branch we are on, we just type 'git branch':
 

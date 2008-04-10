@@ -1,4 +1,4 @@
-$>git merge newfunc
+$ git merge newfunc
 Auto-merged README
 Merge made by recursive.
  README           |    2 +-

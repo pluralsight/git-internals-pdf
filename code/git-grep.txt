@@ -1,4 +1,4 @@
-$>git grep -n 'log_syslog' v1.5.3.8 v1.0.0 -- *.c
+$ git grep -n 'log_syslog' v1.5.3.8 v1.0.0 -- *.c
 v1.5.3.8:daemon.c:16:static int log_syslog;
 v1.5.3.8:daemon.c:92:   if (log_syslog) {
 v1.5.3.8:daemon.c:768:                          if (log_syslog)
@@ -13,6 +13,6 @@ v1.0.0:daemon.c:615:                    log_syslog = 1;
 v1.0.0:daemon.c:623:                    log_syslog = 1;
 v1.0.0:daemon.c:653:    if (log_syslog)
 
-$>git grep -n -c 'log_syslog' v1.5.3.8 v1.0.0 -- *.c
+$ git grep -n -c 'log_syslog' v1.5.3.8 v1.0.0 -- *.c
 v1.5.3.8:daemon.c:7
 v1.0.0:daemon.c:6

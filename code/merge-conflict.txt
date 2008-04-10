@@ -1,4 +1,4 @@
-$>git merge versioning
+$ git merge versioning
 Auto-merged Rakefile
 CONFLICT (content): Merge conflict in Rakefile
 Automatic merge failed; fix conflicts and then commit the result.

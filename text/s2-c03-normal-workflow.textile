@@ -30,7 +30,7 @@ You can see that if we commit at this point, only the Rakefile will show up as c
 
 If we want to commit all our changes, we can use this shorthand, which will automatically run a 'git add' on every modified file to our index, then commit the whole thing:
 
-shell. $> git commit -a -m 'committing all changes'
+shell. $ git commit -a -m 'committing all changes'
 
 !../artwork/s2/git-commit-a.png!
 

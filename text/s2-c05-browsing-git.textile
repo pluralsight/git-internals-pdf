@@ -54,7 +54,7 @@ shell. git-instaweb.txt
 
 When you are done, you can run the following to shut down the server.
 
-shell. $>git instaweb --stop
+shell. $ git instaweb --stop
 
 This is a quick way to throw up a web interface on your git repository for sharing with others or simply browsing it in a different way.  
 

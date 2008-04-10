@@ -1,4 +1,4 @@
-$>git stash list
+$ git stash list
 stash@{0}: WIP on experiment: 89e6d12... trying git archive
 stash@{1}: WIP on master: c110d7f... made the ls-tree function recursive 
 stash@{2}: WIP on master: c110d7f... made the ls-tree function recursive 

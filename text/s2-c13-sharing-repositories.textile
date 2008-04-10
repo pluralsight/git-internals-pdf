@@ -4,7 +4,7 @@ h3. Over Git
 
 Git provides it's own special protocol, which is basically just a really thin wrapper over the 'git-upload-pack' command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:
 
-shell. $>git-daemon --detach --export-all --base-path=/opt/git /opt/git/ambition
+shell. $ git-daemon --detach --export-all --base-path=/opt/git /opt/git/ambition
  
 Though for long term running, you'll likely want to add this to your inet.d configuration.  See the "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html docs for specific information on how to set that up.
 
@@ -16,7 +16,7 @@ h3. Over SSH
 
 Git can work entirely over SSH - it actually does much the same thing that happens over the git protocol, except it implicitly has authentication built in, so if the user they are ssh'ing in as has access to write to the repo, then that user can push over ssh as well.
 
-shell. $> git clone --bare; scp
+shell. $ git clone --bare; scp
 
 h3. Over HTTP
 
@@ -24,7 +24,7 @@ this is pretty easy to setup because there is no requirement other than a static
 
 The only caveat is that you need to run 'git update-server-info' each time you commit to the repository.
 
-shell. $> git update-server-info
+shell. $ git update-server-info
 
 It is generally a good idea to put this in the post-commit hook file on any server that you want to be able to fetch from over HTTP.
 

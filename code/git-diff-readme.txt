@@ -1,4 +1,4 @@
-$>git diff
+$ git diff
 diff --git a/README b/README
 index 569b350..26c6ac8 100644
 --- a/README

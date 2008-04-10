@@ -1,4 +1,4 @@
-$>git diff a11bef06a3f65..cf25cc3bfb0 -- Rakefile
+$ git diff a11bef06a3f65..cf25cc3bfb0 -- Rakefile
 diff --git a/Rakefile b/Rakefile
 index a874b73..8f94139 100644
 --- a/Rakefile

@@ -1,4 +1,4 @@
-$> git status
+$ git status
 # On branch master
 # Changed but not updated:
 #   (use "git add <file>..." to update what will be committed)

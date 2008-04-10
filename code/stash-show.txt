@@ -1,7 +1,7 @@
-$>git stash show stash@{1}
+$ git stash show stash@{1}
  lib/simplegit.rb |    4 ++++
  1 files changed, 4 insertions(+), 0 deletions(-)
 
-$>git stash show stash@{2}
+$ git stash show stash@{2}
  lib/simplegit.rb |    8 ++++++++
  1 files changed, 8 insertions(+), 0 deletions(-)

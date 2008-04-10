@@ -1,4 +1,4 @@
-$>git diff stash@{1}
+$ git diff stash@{1}
 diff --git a/lib/simplegit.rb b/lib/simplegit.rb
 index e939f77..b03bc9c 100644
 --- a/lib/simplegit.rb

@@ -15,7 +15,7 @@ updated one path
 What now> 7
 Bye.
 
-$>git commit -m 'rakefile and todo file added'
+$ git commit -m 'rakefile and todo file added'
 Created commit 4b0780c: rakefile and todo file added
  2 files changed, 9 insertions(+), 0 deletions(-)
  create mode 100644 TODO

@@ -10,7 +10,7 @@ shell. git-gc.txt
 
 If can turn gc'ing automatically on and off by setting a configuration setting to '1' or '0':
 
-shell. $> git config --global gc.auto 1
+shell. $ git config --global gc.auto 1
 
 This will make git automatically gc itself occasionally.  You may want to setup a cron to do this at night, however, as it can take a while sometimes on really large repositories.
 

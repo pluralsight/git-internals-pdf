@@ -26,7 +26,7 @@ h3. Generating Patch Files
 
 The default output of the 'git diff' command is a valid patch file.  If you pipe the output into a file and email it to someone, they can apply it with the 'patch' command.  If you've done some work off of a project in an 'experiment' branch, you could create a patch file this way:
 
-shell. $> git diff master..experiment > experiment.patch
+shell. $ git diff master..experiment > experiment.patch
 
 You can then email that file to anyone, who could apply it with the '-p1' argument:
 

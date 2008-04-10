@@ -1,4 +1,4 @@
-$>git remote show origin
+$ git remote show origin
 * remote origin
   URL: git://git.kernel.org/pub/scm/git/git.git
   Remote branch(es) merged with 'git pull' while on branch master

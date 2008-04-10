@@ -1,4 +1,4 @@
-$>git fsck
+$ git fsck
 dangling tree 8276318347b8e971733ca5fab77c8f5018c75261
 dangling blob 2302a5a4baec369fb631bb89cfe287cc002dc049
 dangling blob cb54512d0a989dcfb2d78a7f3c8909f76ad2326a

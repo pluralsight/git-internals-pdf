@@ -1,10 +1,10 @@
-$>git cat-file -t ae850bd698b2b5dfbac1ab5fd95a48c4f4d5275b
+$ git cat-file -t ae850bd698b2b5dfbac1ab5fd95a48c4f4d5275b
 tree
-$>git cat-file -p ae850bd698b2b5dfbac1ab5fd95a48c4f4d5275b
+$ git cat-file -p ae850bd698b2b5dfbac1ab5fd95a48c4f4d5275b
 100644 blob 7e92ed361869246dc76f0cd0e526efd6a13bd87a    simplegit.rb
-$>git cat-file -t 569b350811
+$ git cat-file -t 569b350811
 blob
-$>git cat-file -p 569b350811 
+$ git cat-file -p 569b350811 
 SimpleGit Ruby Library
 ======================
 

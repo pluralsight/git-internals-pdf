@@ -1,4 +1,4 @@
-$>git rebase master
+$ git rebase master
 First, rewinding head to replay your work on top of it...
 HEAD is now at 2c0d4d7... added limit to log function
 

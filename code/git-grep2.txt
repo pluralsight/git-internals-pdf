@@ -1,4 +1,4 @@
-$>git grep -L -v git v1.5.3.8 v1.0.0 
+$ git grep -L -v git v1.5.3.8 v1.0.0 
 v1.5.3.8:contrib/fast-import/git-p4.bat
 v1.5.3.8:contrib/p4import/README
 v1.5.3.8:t/t5100/patch0007

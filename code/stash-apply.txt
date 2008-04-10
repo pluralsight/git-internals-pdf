@@ -1,4 +1,4 @@
-$>git stash apply stash@{1}
+$ git stash apply stash@{1}
 # On branch master
 # Changed but not updated:
 #   (use "git add <file>..." to update what will be committed)

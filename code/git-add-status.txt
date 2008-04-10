@@ -1,5 +1,5 @@
-$> git add Rakefile
-$> git status
+$ git add Rakefile
+$ git status
 # On branch master
 # Changes to be committed:
 #   (use "git reset HEAD <file>..." to unstage)

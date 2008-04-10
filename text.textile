@@ -582,8 +582,8 @@ h2. Setting Up Your Profile
 
 For every commit you do, Git will try to associate a name and email address.  One of the first things you'll want to do in Git is to set these values.  You can set them as global configuration values with the 'git config' command:
 
-shell. $>git config --global user.name "Scott Chacon"
-$>git config --global user.email "schacon@gmail.com"
+shell. $ git config --global user.name "Scott Chacon"
+$ git config --global user.email "schacon@gmail.com"
 
 That will create a new '~/.gitconfig' file that will now look like this:
 
@@ -663,7 +663,7 @@ You can see that if we commit at this point, only the Rakefile will show up as c
 
 If we want to commit all our changes, we can use this shorthand, which will automatically run a 'git add' on every modified file to our index, then commit the whole thing:
 
-shell. $> git commit -a -m 'committing all changes'
+shell. $ git commit -a -m 'committing all changes'
 
 !../artwork/s2/git-commit-a.png!
 
@@ -803,7 +803,7 @@ shell. git-instaweb.txt
 
 When you are done, you can run the following to shut down the server.
 
-shell. $>git instaweb --stop
+shell. $ git instaweb --stop
 
 This is a quick way to throw up a web interface on your git repository for sharing with others or simply browsing it in a different way.  
 
@@ -857,7 +857,7 @@ h3. Generating Patch Files
 
 The default output of the 'git diff' command is a valid patch file.  If you pipe the output into a file and email it to someone, they can apply it with the 'patch' command.  If you've done some work off of a project in an 'experiment' branch, you could create a patch file this way:
 
-shell. $> git diff master..experiment > experiment.patch
+shell. $ git diff master..experiment > experiment.patch
 
 You can then email that file to anyone, who could apply it with the '-p1' argument:
 
@@ -874,11 +874,11 @@ h3. Switching Branches
 
 However, let's say we're working on our project and we want to add a new function to our library, so we'll make a new branch called 'newfunc' and switch to it.  There are two ways we can do this, one is to create the branch and then switch to it:
 
-shell. $>git branch newfunc; git checkout newfunc
+shell. $ git branch newfunc; git checkout newfunc
 
 The other way is to checkout a branch that doesn't exist yet and tell git you want to create it by passing the '-b' flag:
 
-shell. $> git checkout -b newfunc
+shell. $ git checkout -b newfunc
 
 Now, to check which branch we are on, we just type 'git branch':
 
@@ -908,13 +908,13 @@ h2. Simple Merging
 
 So now we want to move the changes in our 'newfunc' branch back into our 'master' branch and remove it.  This will require us merging one branch into another.  Since we're already in our 'master' branch, we'll merge in the 'newfunc' branch like this:
 
-shell. $>git merge newfunc
+shell. $ git merge newfunc
 
 Easy peasy.  We can see that the simplegit.rb file now has 4 new lines and the README file was auto-merged.
 
 Now we can get rid of our 'newfunc' branch with a simple:
 
-shell. $>git branch -d newfunc
+shell. $ git branch -d newfunc
 Deleted branch newfunc.
 
 h3. Resolving Conflicts
@@ -935,8 +935,8 @@ ruby. rakefile-post.rb
 
 Now we add and commit that file, and we're good.
 
-shell. $>git add Rakefile 
-$>git commit -m 'fixed conflict'
+shell. $ git add Rakefile 
+$ git commit -m 'fixed conflict'
 Created commit 47c668a: fixed conflict
 
 h3. Undoing a Merge
@@ -945,11 +945,11 @@ Assume we have gone through some massive merge because someone on your team hasn
 
 This is where 'git reset' comes in.  To reset your working directory and index back to what it was before you tried the merge, simply run:
 
-shell. $>git reset --hard HEAD
+shell. $ git reset --hard HEAD
 
 The '--hard' makes sure both your index file and working directory are changed to match what it used it be. By default it will only reset your index, leaving the partially merged files in your working directory.  If you happen to have worked through it all and committed, then decided that it was a mistake because all of your tests break or something, you can still go back (and throw away that commit) by running:
 
-shell. $>git reset --hard ORIG_HEAD
+shell. $ git reset --hard ORIG_HEAD
 
 This is only helpful if you want to undo the latest change or changes.  If you happen to commit again then decide that you want to keep the latest commit, but undo a commit that was added sometime before that, you'll need to use 'git revert', which is covered in [History Manipulation]
 
@@ -1060,7 +1060,7 @@ As we previously covered, creating a tag in Git is much like making a branch.  A
 
 For example, if you wanted to tag your code base every time you released to production or created a new binary to release, you would run something like this:
 
-shell. $> git tag -a v0.1 -m 'this is my v0.1 tag'
+shell. $ git tag -a v0.1 -m 'this is my v0.1 tag'
 
 As we recall from section one, that command will create a git object that looks something like this:
 
@@ -1074,7 +1074,7 @@ h3. Lightweight Tags
 
 You can also create a tag that doesn't actually add a Tag object to the database, but just creates a reference to it in the '.git/refs/tags' directory.  If you run the following command:
 
-shell. $> git tag v0.1
+shell. $ git tag v0.1
 
 Git will create the same file as before, '.git/refs/tags/v0.1', but it will contain the sha of the current HEAD commit itself, not the sha of a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.
 
@@ -1082,11 +1082,11 @@ h3. Signed Tags
 
 At the other end of the tagging spectrum, you can sign Tag object with a GPG key to ensure it's cryptographic integrity.  Replacing '-a' with '-s' in the command will create a Tag object and sign it with the current users email address GPG key.  If you want to specify a key, you can run it with '-u' instead:
 
-shell. $> git tag -u <key-id> v0.1 -m 'the 0.1 release'
+shell. $ git tag -u <key-id> v0.1 -m 'the 0.1 release'
 
 Then, you or others can later verify that signed tag with a '-v'
 
-shell. $> git tag -v v0.1
+shell. $ git tag -v v0.1
 
 * "git tag":http://www.kernel.org/pub/software/scm/git/docs/git-tag.html
 
@@ -1098,7 +1098,7 @@ If you want to create a release of your code, or provide some poor non-git user 
 
 You can create the archive in either 'tar' or 'zip' formats, the default being 'tar'.  You can use the '--prefix' argument to determine what directory, if any, the files are expanded into. To create a gzipped tarball, you'll have to pipe the output through 'gzip' first.
 
-shell. $>git-archive --prefix=simplegit/ v0.1 | gzip > simple-git-0.1.tgz
+shell. $ git-archive --prefix=simplegit/ v0.1 | gzip > simple-git-0.1.tgz
 
 Then, if you email that tarball to someone, they would get this when they opened it:
 
@@ -1106,7 +1106,7 @@ shell. git-archive.txt
 
 You can also archive parts of your project.  This command will create a zip file of just the 'lib' directory of the first parent of your master branch that will expand out into the current directory:
 
-shell. $>git-archive --format=zip master^ lib/ > simple-git-lib.zip
+shell. $ git-archive --format=zip master^ lib/ > simple-git-lib.zip
 
 Which will unzip like this:
 
@@ -1126,7 +1126,7 @@ shell. git-gc.txt
 
 If can turn gc'ing automatically on and off by setting a configuration setting to '1' or '0':
 
-shell. $> git config --global gc.auto 1
+shell. $ git config --global gc.auto 1
 
 This will make git automatically gc itself occasionally.  You may want to setup a cron to do this at night, however, as it can take a while sometimes on really large repositories.
 
@@ -1162,19 +1162,19 @@ h4. Local Clones
 
 Local clones are the simplest types of clones - it is basically the equivalent of copying the .git directory and doing a checkout.  The only major difference is that it adds all the original branches in as origin branches.  Often you will do this when creating a bare repository (that is, a repository without a working directory) for putting on a public server, or if you're working with people using a shared repository over NFS or something similar.
 
-shell. $> git clone --bare simplegit/.git simplegit-bare.git
+shell. $ git clone --bare simplegit/.git simplegit-bare.git
 
 h4. SSH and Git Transports
 
 Cloning over ssh requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.
 
-shell. $> git clone git@github.com:schacon/ticgit.git ticgit_directory
+shell. $ git clone git@github.com:schacon/ticgit.git ticgit_directory
 
 h4. HTTP and HTTPS Transports
 
 Another popular way to clone a repository is over HTTP, just because it is so simple.  You don't need to setup any special service or give out user credentials (made easier by services like gitosis), you simply scp your bare repository into any web server's static content directory.  It is not as efficient as the other protocols - it will transfer loose objects and packfiles over a number of calls instead of packing them up, but it is simple.
 
-shell. $> git clone http://git.gitorious.org/piston/mainline.git piston
+shell. $ git clone http://git.gitorious.org/piston/mainline.git piston
 
 Once you have run one of these commands, you will have a copy of the git repository, full of all the history - basically every blob and tree and commit that project has ever had.  This is really a full backup of the repository - if the main server ever goes down or gets corrupted, everyone who has ever cloned it has a fully capable backup that can replace it.  With Git, there is really no single point of failure.
 
@@ -1185,7 +1185,7 @@ h3. Fetching and Pulling
 
 So let's say that we're going to hack on TicGit, our git based ticket tracking system project.  After we clone it, we look through the source code but don't do anything right away. After some time passes we come back to the project but it may not still be up to date - changes may have occurred in the meantime.  So we fetch an update.
 
-shell. $> git fetch origin
+shell. $ git fetch origin
 
 This will contact the server over the same protocol we used to clone it and grab all of the objects and references that have been added since our clone and update our 'origin/[branch]' branches to point to what the server is pointing at now.  
 
@@ -1195,9 +1195,9 @@ At this point, we may want to merge 'origin/story84' into our local 'story84' br
 
 So, these commands are functionally equivalent:
 
-shell. $> git pull origin/story84
+shell. $ git pull origin/story84
 
-shell. $> git fetch origin/story84; git merge origin/story84
+shell. $ git fetch origin/story84; git merge origin/story84
 
 * "git fetch":http://www.kernel.org/pub/software/scm/git/docs/git-fetch.html
 * "git pull":http://www.kernel.org/pub/software/scm/git/docs/git-pull.html
@@ -1207,19 +1207,19 @@ h3. Pushing
 
 Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over ssh), we can simply run 'git push'
 
-shell. $> git push origin master
+shell. $ git push origin master
 
 The 'origin' in that case will be inferred if you leave it out, but if you've used a different name for your remote or you are trying to push one of your other branches, you can do that, too.
 
-shell. $> git push scott-public experimental
+shell. $ git push scott-public experimental
 
 If you don't specify a branch, it will infer that you want to push every branch that you and the server have in common.  So, if you have pushed your 'master' branch and your 'experimental' branch to the 'scott-public' server at any point, running this will update the server to have the newest versions of *both* of them:
 
-shell. $> git push scott-public
+shell. $ git push scott-public
 
 Whereas this will only update the 'master' branch:
 
-shell. $> git push scott-public master
+shell. $ git push scott-public master
 
 .note In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
 A 'pull' is a 'fetch' and then a 'merge'.
@@ -1232,14 +1232,14 @@ Although a bit different in syntax maybe, most of that should seem familiar to a
 
 Pushing to and pulling from multiple sources is easy and straightforward. You simply add remotes :
 
-shell. $> git remote add mycap git@github.com:schacon/capistrano.git
-$> git remote add official git://github.com/jamis/capistrano.git
+shell. $ git remote add mycap git@github.com:schacon/capistrano.git
+$ git remote add official git://github.com/jamis/capistrano.git
 
 Then, if the the project is updated, I can pull in the changes from one remote, merge them locally, and then push to another remote.
 
-shell. $> git fetch official
-$> git merge official/master
-$> git push mycap master
+shell. $ git fetch official
+$ git merge official/master
+$ git push mycap master
 
 I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.
 
@@ -1305,7 +1305,7 @@ h3. Over Git
 
 Git provides it's own special protocol, which is basically just a really thin wrapper over the 'git-upload-pack' command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:
 
-shell. $>git-daemon --detach --export-all --base-path=/opt/git /opt/git/ambition
+shell. $ git-daemon --detach --export-all --base-path=/opt/git /opt/git/ambition
  
 Though for long term running, you'll likely want to add this to your inet.d configuration.  See the "git-daemon":http://www.kernel.org/pub/software/scm/git/docs/git-daemon.html docs for specific information on how to set that up.
 
@@ -1317,7 +1317,7 @@ h3. Over SSH
 
 Git can work entirely over SSH - it actually does much the same thing that happens over the git protocol, except it implicitly has authentication built in, so if the user they are ssh'ing in as has access to write to the repo, then that user can push over ssh as well.
 
-shell. $> git clone --bare; scp
+shell. $ git clone --bare; scp
 
 h3. Over HTTP
 
@@ -1325,7 +1325,7 @@ this is pretty easy to setup because there is no requirement other than a static
 
 The only caveat is that you need to run 'git update-server-info' each time you commit to the repository.
 
-shell. $> git update-server-info
+shell. $ git update-server-info
 
 It is generally a good idea to put this in the post-commit hook file on any server that you want to be able to fetch from over HTTP.
 

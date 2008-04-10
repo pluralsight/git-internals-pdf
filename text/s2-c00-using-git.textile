@@ -8,8 +8,8 @@ h2. Setting Up Your Profile
 
 For every commit you do, Git will try to associate a name and email address.  One of the first things you'll want to do in Git is to set these values.  You can set them as global configuration values with the 'git config' command:
 
-shell. $>git config --global user.name "Scott Chacon"
-$>git config --global user.email "schacon@gmail.com"
+shell. $ git config --global user.name "Scott Chacon"
+$ git config --global user.email "schacon@gmail.com"
 
 That will create a new '~/.gitconfig' file that will now look like this:
 

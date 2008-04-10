@@ -1,4 +1,4 @@
-$>git show master^
+$ git show master^
 commit 0c8a9ec46029a4e92a428cb98c9693f09f69a3ff
 Author: Scott Chacon <schacon@gmail.com>
 Date:   Mon Mar 17 21:52:11 2008 -0700

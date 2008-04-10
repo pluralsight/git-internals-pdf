@@ -1,4 +1,4 @@
-$> git log
+$ git log
 commit cf25cc3bfb0ece7dc3609b8dc0cc4a1e19ffbcd4
 Author: Scott Chacon <schacon@gmail.com>
 Date:   Mon Mar 17 21:52:20 2008 -0700
