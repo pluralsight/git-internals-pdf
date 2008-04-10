@@ -1,6 +1,6 @@
 h2. The Index    
 
-Git has two places that content states are stored.  The working directory stores one state at a time in a human editable format.  When committed, that state becomes permanent and repeatable by through storage in the object database.  However, how do you determine what in your working directory goes into your next commit.  Perhaps you have edited 3 files and you want 2 to go into the first commit because they are related changes and the other file into a second commit.  This is where the index file comes in.
+Git has two places that content states are stored.  The working directory stores one state at a time in a human editable format.  When committed, that state becomes permanent and repeatable by being stored in the object database.  However, how do you determine what changes in your working directory goes into your next commit.  Perhaps you have edited 3 files and you want 2 to go into the first commit because they are related changes and the other file into a second commit.  This is where the index file comes in.
 
 The index was called the cache for a while, because that's largely what it does.  It is a staging area for changes that are made to files or trees that are not committed to your repository yet.  It acts as sort of a middle ground between your working directory and your repository.  What is in it when you run 'git commit' is what the tree that your commit object points to will look like.
 

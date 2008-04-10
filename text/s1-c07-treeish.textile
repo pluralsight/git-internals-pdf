@@ -29,13 +29,13 @@ h4. Date Spec
 code. master@{yesterday}
 master@{1 month ago}
 
-This example would refer to the value of that branch yesterday.  Git will go through the commit parents until it found one that matched that date. 
+This example would refer to the value of that branch yesterday. Importantly, this is the value of that branch _in your repository_ yesterday.  This value is relative to your repo - your 'master@{yesterday}' will likely be different than someone else's, even on the same project, whereas the SHA values will _always_ point to the same commit in every copy of the repository.
 
 h4. Ordinal Spec
 
 code. master@{5}
 
-This indicates the 5th prior value of the master branch.  Like the _Date Spec_, this depends on special files in the _.git/log_ directory that are written during commits.
+This indicates the 5th prior value of the master branch.  Like the _Date Spec_, this depends on special files in the _.git/log_ directory that are written during commits, and is specific to _your_ repository.
 
 h4. Carrot Parent
 

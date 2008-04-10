@@ -2,7 +2,7 @@ h2. Non-SCM Uses of Git
 
 I keep saying that Git is primarily a content tracking toolkit with SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.  
 
-This is a simple listing of some other tools that have been built on Git internals to demonstrate that an SCM is the bundled application, but it's a useful toolkit for any application needing to track and manage slowly changing distributed trees of content.
+This is a simple listing of some other tools that have been built on Git internals to demonstrate that an SCM is the bundled application, but Git can also be a useful toolkit for any application needing to track and manage slowly changing distributed trees of content.
 
 h3. Peer to Peer Content Distribution Network
 
@@ -14,7 +14,7 @@ It turns out that Git is an excellent solution to this problem.  You can simply 
 
 An example of a media company actually using this approach is "Reactrix":http://reactrix.com/, which also happens to be where I work.
 
-.note Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
+.note Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control internally.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
 
 h3. Distributed Document Oriented Database
 
@@ -32,7 +32,7 @@ See the "git-wiki":http://github.com/al3x/git-wiki/tree/master project for an ex
 
 h4. Distributed Issue Tracker
 
-Another similar project might be a distributed ticketing system, where all the tickets (bugs and features) for a project could be stored in a git repository, worked on offline and transferred with a project.
+Another similar project might be a distributed ticketing system, where all the tickets (bugs and features) for a project could be stored in a Git repository, worked on offline and transferred with a project.
 
 Examples of projects trying to do this are 
 "Ditz":http://ditz.rubyforge.org/, "Kipling":http://gitorious.org/projects/kipling and my own 

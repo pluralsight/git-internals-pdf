@@ -1,6 +1,6 @@
 h2. The Git Data Model
 
-In computer science speak, the Git object data store is a Directed Acyclic Graph. That is, starting at any commit you can traverse it's parents in one direction and there is no chain that begins and ends with the same object. 
+In computer science speak, the Git object data is a Directed Acyclic Graph. That is, starting at any commit you can traverse it's parents in one direction and there is no chain that begins and ends with the same object. 
 
 All commit objects point to a tree and optionally to previous commits.  All trees point to one or many blobs and/or trees.  Given this simple model, we can store and retrieve vast histories of complex trees of arbitrarily changing content quickly and efficiently.
 
@@ -10,7 +10,7 @@ h3. References
 
 In addition to the Git objects, which are immutable - that is, they cannot ever be changed, there are references also stored in Git.  Unlike the objects, references can constantly change.  They are simple pointers to a particular commit, something like a tag, but easily moveable.
 
-Examples of references are branches and remotes.  A branch in git is nothing more than a file in the _.git/refs/heads/_ directory that contains the sha of the most recent commit of that branch.  To branch that line of development, all git does is create a new file in that directory that points to the same sha.  Then, as you continue to commit, one of the branches will keep changing to point to the new commit shas, while the other one can stay where it was.
+Examples of references are branches and remotes.  A branch in Git is nothing more than a file in the _.git/refs/heads/_ directory that contains the sha of the most recent commit of that branch.  To branch that line of development, all Git does is create a new file in that directory that points to the same sha.  Then, as you continue to commit, one of the branches will keep changing to point to the new commit shas, while the other one can stay where it was. _(Don't worry, we'll go over this again a bit later...)_
 
 h3. The Model
 
@@ -22,7 +22,7 @@ The cheap references I've represented as the grey boxes, the immutable objects a
 
 h3. An Example
 
-Lets look at an example of simple usage of git and which objects are stored in the git object store as we go.
+Lets look at an example of simple usage of Git and which objects are stored in the Git object database as we go.
 
 To begin with, we commit an initial tree of three files and two subdirectories, each directory with one file in it.  Possibly something like this:
 
@@ -34,9 +34,9 @@ When we first commit this tree, our Git model may look something like this:
 
 We have 3 trees, 3 blobs, 1 commit that points to the top of the tree, the current branch pointing to our last commit and the HEAD file pointing to the branch we're currently on to let Git know which commit will be the parent for the next commit.
 
-Now let's assume that we change the _lib/base/base_include.rb_ file and commit again.  At this point, a new blob is added, which changes the tree that points to it, which changes the tree that points to that tree and so on to the top of the entire directory.  Then a new commit object is added which points to it's parent and the new tree and the branch reference is moved forward.
+Now let's assume that we change the _lib/base/base_include.rb_ file and commit again.  At this point, a new blob is added, which changes the tree that points to it, which changes the tree that points to that tree and so on to the top of the entire directory.  Then a new commit object is added which points to it's parent and the new tree, then the branch reference is moved forward.
 
-Let's also say at this point we tag this commit as a release, which adds a new tag object.  At this point, we'll have the following in Git.
+Let's also say at this point we tag this commit as a release, which adds a new tag object.  At this point, we'll have the following in Git:
 
 !../artwork/s1/object-dag-tree2.png!
 
@@ -46,13 +46,13 @@ Now let's say we modify the _init.rb_ file at the base of the project.  The new 
 
 !../artwork/s1/object-dag-tree3.png!
 
-At this point, let's stop to look at the objects we now have in our repository.  From this, we can easily recreate any of the three directories we committed by following the graph from the commit object.
+At this point, let's stop to look at the objects we now have in our repository.  From this, we can easily recreate any of the three directories we committed by following the graph from the most recent commit object, and having Git expand the trees that are pointed to.
 
 For instance, if we wanted the first tree, we could look for the parent of the parent of the HEAD, or the parent of the tag.  If we wanted the second tree, we could ask for the commit pointed to by the tag, and so on.
 
 !../artwork/s1/object-dag.png!
 
-So, to keep all the information and history on the three versions of this tree, git stores 16 immutable, signed, compressed objects.
+So, to keep all the information and history on the three versions of this tree, Git stores 16 immutable, signed, compressed objects.
 
 h3. Traversal
 

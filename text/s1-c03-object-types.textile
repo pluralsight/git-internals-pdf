@@ -1,20 +1,18 @@
 h2. Git Object Types 
 
-There are four main object types in git, the first three being the most important to really understand the main functions of git.
+Git _objects_ are the actual data of Git, the main thing that the repository is made up of.  There are four main object types in Git, the first three being the most important to really understand the main functions of Git.
 
-All of these types of objects are stored in the git object database, which is kept in the git directory [see git directory].  Each object is compressed (with Zlib) and referenced by the SHA1 value of its contents plus a small header.  In the examples, I will use the first 6 characters of the SHA for simplicity, but the actual value is 40 characters long.
+All of these types of objects are stored in the Git *Object Database*, which is kept in the *Git Directory*.  Each object is compressed (with Zlib) and referenced by the SHA1 value of its contents plus a small header.  In the examples, I will use the first 6 characters of the SHA1 for simplicity, but the actual value is 40 characters long.
 
-To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to git, keeping the project in a git repository.  The basic layout of the project is this:
+To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to Git, keeping the project in a Git repository.  The basic layout of the project is this:
 
 !../artwork/s1/layout.png!
 
-Let's take a look at what git does when this is committed to a repository.
+Let's take a look at what Git does when this is committed to a repository.
 
 h3. The Blob
 
-_sidebar of git object sha algorithm (git-object-sidebar.textile)_
-
-In git, the contents of files are stored as *blobs*.
+In Git, the contents of files are stored as *blobs*.
 
 !../artwork/s1/blobs.png!
 
@@ -22,17 +20,15 @@ It is important to note that it is the _contents_ that are stored, not the files
 
 !../artwork/s1/blob-expand.png!
 
-This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, git will only transfer the blob once, then expand it out into multiple files upon checkout.
+This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, Git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, Git will only transfer the blob once, then expand it out into multiple files upon checkout.
 
 h3. The Tree
 
-_sidebar of tree object encoding algorithm (git-tree-sidebar.textile)_
-
-Directories in git basically correspond to *trees*.  
+Directories in Git basically correspond to *trees*.  
 
 !../artwork/s1/trees.png!
 
-A tree is a list of trees and blobs that the tree contains, along with the names and permissions of those blobs and trees.  The contents section of a tree object consists of a very simple text file that lists the _mode_, _type_, _name_ and _sha_ of each entry (see the sidebar for details).
+A tree is a simple list of trees and blobs that the tree contains, along with the names and permissions of those trees and blobs.  The contents section of a tree object consists of a very simple text file that lists the _mode_, _type_, _name_ and _sha_ of each entry.
 
 !../artwork/s1/tree-expand.png!
 
@@ -57,8 +53,8 @@ note. the current record for number of commit parents in the Linux kernel is 12 
 
 h3. The Tag
 
-The final type of object you will find in a git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the type is a 'commit' and the object is the sha of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
+The final type of object you will find in a Git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the _type_ is a 'commit' and the _object_ is the SHA1 of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
 
 !../artwork/s1/tag-expand.png!
 
-We'll talk a little bit more about tags and how they differ from _branches_ (which also point to commits, but are not stored as objects) in the section on [the git data model], where we'll pull all of this together into how all these objects relate to each other conceptually.
+We'll talk a little bit more about tags and how they differ from _branches_ (which also point to commits, but are not stored as objects) in the next section, where we'll pull all of this together into how all these objects relate to each other conceptually.

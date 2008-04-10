@@ -1,50 +1,50 @@
 h2. Branching and Merging
 
-Here we come to one of the real strengths of Git, cheap branching.  This is a feature that truly sets it apart and will likely change the way you think about developing code once you get used to it.
+Here we come to one of the real strengths of Git, cheap inline branching.  This is a feature that truly sets it apart and will likely change the way you think about developing code once you get used to it.
 
-When you are working on code in git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the sha of the last commit for that branch.  
+When you are working on code in Git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the sha of the last commit for that branch.  
 
-.note Branching is just writing 40 characters to a file
+.note Creating a branch is nothing more than just writing 40 characters to a file
 
-Switching to that branch simply means making your working directory look like the tree that sha points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (makes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
+Switching to that branch simply means having Git make your working directory look like the tree that sha points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
 
-Merging is also simple, compared to most SCM systems - is just merging the trees that the commits you are trying to merge are pointing to, which is much simpler than resolving a bunch of deltas.
+Merging is also easy, compared to most SCM systems - is simply merging the trees that the commits you are telling it to merge are pointing to, which is much simpler than resolving a bunch of deltas.
 
-Now, let's see how git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
+Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
 !../artwork/s1/branches1.png!
 
 h3. Simple Case
 
-Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch, then create a few commits.
+Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch and create a few commits.
 
 !../artwork/s1/branch-story1.png!
 
-Then, our boss comes in and says we need a hot fix to production.  So we switch back to our master branch, make the change, push the release and then tag the commit with the release number. Then we go back to our 'experiment' branch, continue working and commit again.
+Then, our boss comes in and says we need a hot fix to production.  So we switch back to our 'master' branch, make the change, push the release and then tag the new commit with the release number. Then we go back to our 'experiment' branch, continue working and commit again.
 
 !../artwork/s1/branch-story2.png!
 
-At this point, we show the new branch to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our 'experiment' branch.
+At this point, we show the new branch code to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our 'experiment' branch.  Our history of commit objects now looks like this:
 
 !../artwork/s1/branch-story3.png!
 
 h3. Remotes
 
-Now lets take a look at remotes.  Remotes are basically other peoples branches of the same repository.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as 'origin' by default.  Which means the tree that was checked out during your initial clone would be referenced as 'origin/master', which means 'the master branch of the origin remote'. 
+Now lets take a look at remotes.  Remotes are basically pointers to branches in other peoples copies of the same repository, often on other computers.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as 'origin' by default.  Which means the tree that was checked out during your initial clone would be referenced as 'origin/master', which means 'the master branch of the origin remote'. 
 
 Lets say you clone someone's repository and make a few changes.  You would have two references, one to 'origin/master' which points to where the master branch was on the persons repository you cloned from when you did so, and a 'master' branch that points the most recent local commit.
 
 !../artwork/s1/remote-story1.png!
 
-Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Lets say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
+Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Let's say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
 
 !../artwork/s1/remote-story2.png!
 
-We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their master branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
+We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their 'master' branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
 
 !../artwork/s1/remote-story3.png!
 
-Now we can run our tests and merge back into our master branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
+Now we can run our tests and merge everything back into our 'master' branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
 
 h3. Rebasing
 
@@ -58,9 +58,9 @@ At this point, you both do work and commit changes and then you fetch and merge 
 
 Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.
 
-This is where the rebasing command comes in.  With rebase, git will checkout the _upstream branch_, in this case, Jen's master branch, and then replay all the changes you've done since you forked on top of those file, as if you had forked your work off at that point and done all your changes, rather than earlier.
+This is where the rebasing command comes in.  With rebase, Git will checkout the _upstream branch_, in this case, Jen's master branch, and then replay all the changes you've done since you forked on top of those files, as if you had forked your work off at _that_ point and done all your changes, rather than earlier.
 
-Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  Git will automatically remove these eventually, since nothing points to them, when you run the garbage collector (see git-gc).
+Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  These objects can then be removed, since nothing points to them, when you run the garbage collection tools (see "The Care and Feeding of Git" chapter).
 
 So let's see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans _Commit 1_ and applies the changes between _Commit 0_ and _Commit 1_ to the files in _Remote Commit 1_, creating a new _Commit 2_.
 
@@ -93,9 +93,10 @@ You create a new branch each time you begin to work on a story or feature, branc
 
 If you get a huge project or idea - say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.
 
-Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
+Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public Git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
 
 !../artwork/s1/branching.png!
+_(example of project collaboration using multiple branch forks and merges)_
 
 You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.
 
