@@ -2,7 +2,7 @@ h2. Archiving Git
 
 If you want to create a release of your code, or provide some poor non-git user with a snapshot of just a specific tree, you can use the *git-archive* command.
 
-.note 'git-archive' used to be called 'git-tar-tree', in case you ever see that command around in older articles
+note.  'git-archive' used to be called 'git-tar-tree', in case you ever see that command around in older articles
 
 You can create the archive in either 'tar' or 'zip' formats, the default being 'tar'.  You can use the '--prefix' argument to determine what directory, if any, the files are expanded into. To create a gzipped tarball, you'll have to pipe the output through 'gzip' first.
 

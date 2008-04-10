@@ -23,7 +23,7 @@ h3. Cloning a Repository
 
 Many times you will be _cloning_ a repository, however.  This means that you are creating a complete copy of another repo, including all of it's history and published branches. 
 
-.note A clone is, for all intents and purposes, a full backup.  If the server that you cloned from has a hard disk failure or something equally catastrophic, you can basically take any of the clones and stick it back up there when the server is restored without anyone really the worse for wear.
+note.  A clone is, for all intents and purposes, a full backup.  If the server that you cloned from has a hard disk failure or something equally catastrophic, you can basically take any of the clones and stick it back up there when the server is restored without anyone really the worse for wear.
 
 In order to do this, you simply need a URL that has a Git repository hosted there, which can be over _http_, _https_, _ssh_ or the special _git_ protocol. We will use the public hosted repository of the simple library I mentioned at the beginning of the book.
 

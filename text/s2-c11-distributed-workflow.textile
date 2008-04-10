@@ -74,7 +74,7 @@ Whereas this will only update the 'master' branch:
 
 shell. $ git push scott-public master
 
-.note In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
+note.  In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
 A 'pull' is a 'fetch' and then a 'merge'.
 
 * "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html

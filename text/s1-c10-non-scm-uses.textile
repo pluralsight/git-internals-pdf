@@ -14,7 +14,7 @@ It turns out that Git is an excellent solution to this problem.  You can simply 
 
 An example of a media company actually using this approach is "Reactrix":http://reactrix.com/, which also happens to be where I work.
 
-.note Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control internally.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
+note.  Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control internally.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
 
 h3. Distributed Document Oriented Database
 
@@ -44,4 +44,4 @@ Let's say you want to build something like a distributed Time-Machine (Apple all
 
 One project that has tackled this is "Gibak":http://eigenclass.org/hiki/gibak-backup-system-introduction, by implementing a metastore in OCaml, and it's worth a look if this topic interests you.
 
-.note If you are interested in using Git in a non-standard way and like Ruby, you might be interested in using my "'git' gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.
+note.  If you are interested in using Git in a non-standard way and like Ruby, you might be interested in using my "'git' gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.

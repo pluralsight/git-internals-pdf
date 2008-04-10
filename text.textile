@@ -96,7 +96,7 @@ h1. Section One - Understanding Git
 
 In this section, we will go over what git was built for and how it works, hopefully laying the groundwork to properly understand what it is doing when we run the commands.
 
-.note the initial commit message for the git project was 'initial version of "git", the information manager from hell' - Linus, 4/7/05
+note.  the initial commit message for the git project was 'initial version of "git", the information manager from hell' - Linus, 4/7/05
 
 When I learned Git, as many people do, I learned it in the context of other SCMs I had used - Subversion or CVS.  I really think this is a horrible way to learn Git.  I felt far more comfortable with it when I stopped thinking that 'git add' was sort of like 'svn add', but instead understood what it was actually doing.  Then I found I could find new and interesting ways to use what is really a very powerful and cool toolset.
 
@@ -134,7 +134,7 @@ h3. Efficiency
 
 Git is very efficient.  Compared to many popular SCM systems, it seems downright unbelievably fast.  Most operations are local, which reduces unnecessary network overhead. Repositories are generally packed very efficiently, which often leads to surprisingly small repo sizes.
 
-.note The Ruby on Rails repository download, with full history, is around 13M, which is barely larger than a single checkout of the project.  The subversion server repository for the same project is over 100M.
+note.  The Ruby on Rails repository download, with full history, is around 13M, which is barely larger than a single checkout of the project.  The subversion server repository for the same project is over 100M.
 
 Git also is efficient in it's network operations - most protocols transfer only packed versions of only the objects that have changed.  It also won't try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.
 
@@ -340,7 +340,7 @@ Here we come to one of the real strengths of Git, cheap branching.  This is a fe
 
 When you are working on code in git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the sha of the last commit for that branch.  
 
-.note Branching is just writing 40 characters to a file
+note.  Branching is just writing 40 characters to a file
 
 Switching to that branch simply means making your working directory look like the tree that sha points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (makes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
 
@@ -520,7 +520,7 @@ Git has two places that content states are stored.  The working directory stores
 
 The index was called the cache for a while, because that's largely what it does.  It is a staging area for changes that are made to files or trees that are not committed to your repository yet.  It acts as sort of a middle ground between your working directory and your repository.  What is in it when you run 'git commit' is what the tree that your commit object points to will look like.
 
-.note Early on, the index was called the 'cache' or the 'current directory cache'
+note.  Early on, the index was called the 'cache' or the 'current directory cache'
 
 It is also used to speed up some operations. It keeps track of the state of all the files in your working directory so you can quickly see what has been modified since the last commit.
 
@@ -540,7 +540,7 @@ It turns out that Git is an excellent solution to this problem.  You can simply 
 
 An example of a media company actually using this approach is "Reactrix":http://reactrix.com/, which also happens to be where I work.
 
-.note Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
+note.  Somewhat interestingly, Git being a good solution to this problem is what exposed me to the tool in the first place.  We were using Git for content distribution on our network since the 1.0 release back in 2005, but actually using Perforce for version control.  It wasn't until nearly a year later that we switched to actually using it to manage our source code.
 
 h3. Distributed Document Oriented Database
 
@@ -570,7 +570,7 @@ Let's say you want to build something like a distributed Time-Machine (Apple all
 
 One project that has tackled this is "Gibak":http://eigenclass.org/hiki/gibak-backup-system-introduction, by implementing a metastore in OCaml, and it's worth a look if this topic interests you.
 
-.note If you are interested in using Git in a non-standard way and like Ruby, you might be interested in using my "'git' gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.
+note.  If you are interested in using Git in a non-standard way and like Ruby, you might be interested in using my "'git' gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.
 
 h1. Section Two - Using Git
 
@@ -977,7 +977,7 @@ This gives us some options, since the rebase can do this at any point - say you 
 
 You have three things you can do here, you can either fix the file, run a 'git add' on it and then run a 'git rebase --continue', which will move on to the next patch until it's done.  Our second option is to run 'git rebase --abort', which will reset us to what our repo looked like before we tried the rebase. Or, we can run 'git rebase --skip', which will just leave this one patch out.
 
-.note Git rebase options for a conflict :
+note.  Git rebase options for a conflict :
 --continue : trys to keep going once you've resolved it
 --abort : gives up altogether and returns to the state before the rebase
 --skip : skips this patch, but applies all the others
@@ -1094,7 +1094,7 @@ h2. Archiving Git
 
 If you want to create a release of your code, or provide some poor non-git user with a snapshot of just a specific tree, you can use the *git-archive* command.
 
-.note 'git-archive' used to be called 'git-tar-tree', in case you ever see that command around in older articles
+note.  'git-archive' used to be called 'git-tar-tree', in case you ever see that command around in older articles
 
 You can create the archive in either 'tar' or 'zip' formats, the default being 'tar'.  You can use the '--prefix' argument to determine what directory, if any, the files are expanded into. To create a gzipped tarball, you'll have to pipe the output through 'gzip' first.
 
@@ -1221,7 +1221,7 @@ Whereas this will only update the 'master' branch:
 
 shell. $ git push scott-public master
 
-.note In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
+note.  In Git, the opposite of 'push' is not 'pull', but 'fetch'. 
 A 'pull' is a 'fetch' and then a 'merge'.
 
 * "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html

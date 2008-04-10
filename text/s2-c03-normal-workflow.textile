@@ -66,7 +66,7 @@ The interactive shell is pretty simple and very powerful - playing with it inste
 
 You can also do more complicated things, like going through all of your change patches hunk by hunk, deciding if each hunk should be applied to the next commit or not.  This means that if you've made a bunch of changes to one file, you can commit _part_ of those changes in one commit, and the rest in a second.  Try the 'patch' menu option in the Interactive Adding menu to try this out.
 
-.note Beware of using interactive adding if you are already used to running 'git commit -a'.  If you run through the whole interactive add process and then run 'git commit -a', it will basically ignore everything you just did and just add all modified files.
+note.  Beware of using interactive adding if you are already used to running 'git commit -a'.  If you run through the whole interactive add process and then run 'git commit -a', it will basically ignore everything you just did and just add all modified files.
 
 
 h4. Removing

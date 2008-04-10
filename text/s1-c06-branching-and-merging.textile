@@ -4,7 +4,7 @@ Here we come to one of the real strengths of Git, cheap inline branching.  This 
 
 When you are working on code in Git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the sha of the last commit for that branch.  
 
-.note Creating a branch is nothing more than just writing 40 characters to a file
+note.  Creating a branch is nothing more than just writing 40 characters to a file
 
 Switching to that branch simply means having Git make your working directory look like the tree that sha points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
 
