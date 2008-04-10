@@ -1,4 +1,4 @@
-$>tar zxpvf simple-git-0.1.tgz  
+$ tar zxpvf simple-git-0.1.tgz  
 simplegit/README
 simplegit/Rakefile
 simplegit/TODO

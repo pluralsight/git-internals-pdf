@@ -6,4 +6,4 @@ $ git prune -n
 cb54512d0a989dcfb2d78a7f3c8909f76ad2326a blob
 $ git prune
 $ git fsck
-$>
+$ 

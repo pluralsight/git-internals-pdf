@@ -18,7 +18,7 @@ shell. git-branch.txt
 
 We can see we are now on our new branch.  This means that if we modify a file and commit it, this branch will include that change, but the 'master' branch will not have it yet.  So, we add a new method to our library and commit it.
 
-shell. $> vim lib/simplegit.rb; git commit -a -m 'added lstree function'
+shell. $  vim lib/simplegit.rb; git commit -a -m 'added lstree function'
 Created commit 1a8c32e: added lstree function
  1 files changed, 4 insertions(+), 0 deletions(-)
  

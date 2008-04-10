@@ -10,19 +10,19 @@ h3. Installing on Linux
 
 If you are installing from source, it will go something like the standard:
 
-shell. $>wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
-$>tar jxpvf git-1.5.4.4.tar.bz2
-$>cd git-1.5.4.4
-$>make prefix=/usr all doc info
-$>sudo make prefix=/usr install install-doc install-info
+shell. $ wget http://kernel.org/pub/software/scm/git/git-1.5.4.4.tar.bz2
+$ tar jxpvf git-1.5.4.4.tar.bz2
+$ cd git-1.5.4.4
+$ make prefix=/usr all doc info
+$ sudo make prefix=/usr install install-doc install-info
 
 If you are running Ubuntu or another Debian based system, you can run
 
-shell. $>apt-get git-core
+shell. $ apt-get git-core
 
 or on yum based systems, you can often run:
 
-shell. $>yum install git-core
+shell. $ yum install git-core
 
 
 h3. Installing on Mac
