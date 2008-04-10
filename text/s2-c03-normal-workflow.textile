@@ -54,7 +54,7 @@ We can see that we have two files that are being tracked (have been added at som
 
 shell. interactive-mode2.txt
 
-You will see all the untracked files in your working directory.  Type the numbers of the files you want to add and hit enter twice when you're done. This will drop you back to the main menu.  You can then type '1' to see what your index looks like now.
+You will see all the untracked files in your working directory.  Type the numbers of the files you want to add, or a range (ie: '1-5'), and hit enter twice when you're done. This will drop you back to the main menu.  You can then type '1' to see what your index looks like now.
 
 shell. interactive-mode3.txt
 
@@ -62,12 +62,16 @@ You can see that the TODO file is now staged (in the index), but the other two a
 
 shell. interactive-mode4.txt
 
-The interactive shell is pretty simple - playing with it instead of running 'git add' commands directly may help in understanding what's happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the 'staged' column) is what will be committed when you run 'git commit'
+The interactive shell is pretty simple and very powerful - playing with it instead of running 'git add' commands directly may help in understanding what's happening, since you can see the status of your files in the index versus the working directory more clearly.  It helps visualize that what is in your index (the 'staged' column) is what will be committed when you run 'git commit'.
+
+You can also do more complicated things, like going through all of your change patches hunk by hunk, deciding if each hunk should be applied to the next commit or not.  This means that if you've made a bunch of changes to one file, you can commit _part_ of those changes in one commit, and the rest in a second.  Try the 'patch' menu option in the Interactive Adding menu to try this out.
+
+.note Beware of using interactive adding if you are already used to running 'git commit -a'.  If you run through the whole interactive add process and then run 'git commit -a', it will basically ignore everything you just did and just add all modified files.
 
 
 h4. Removing
 
-For removing files from your tree, you can simply run 
+For removing files from your tree, you can simply run:
 
 shell. git rm <filename>
   

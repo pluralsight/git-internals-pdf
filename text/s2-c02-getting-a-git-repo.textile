@@ -4,11 +4,11 @@ There are two major ways you will get a Git repository - you will either clone a
 
 h3. New Repositories
 
-To create a new Git repository somewhere, simply go to the directory you want to add to version control and type
+To create a new Git repository somewhere, simply go to the directory you want to add version control to and type:
 
 shell. git init
 
-This will create a _.git_ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type
+This will create a _.git_ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type:
 
 shell. git add .
 git commit -m 'my first commit'
@@ -21,13 +21,15 @@ This will add all of your current files into your new repository and index and t
 
 h3. Cloning a Repository
 
-Many times you will be cloning a repository, however.  This means that you are creating a complete copy of another repo, including all of it's history and published branches. 
+Many times you will be _cloning_ a repository, however.  This means that you are creating a complete copy of another repo, including all of it's history and published branches. 
 
-In order to do this, you simply need a URL that has a git repository hosted there, which can be over _http_, _https_, _ssh_ or the special _git_ protocol. We will use the public hosted repository of the simple library I mentioned at the beginning of the book.
+.note A clone is, for all intents and purposes, a full backup.  If the server that you cloned from has a hard disk failure or something equally catastrophic, you can basically take any of the clones and stick it back up there when the server is restored without anyone really the worse for wear.
+
+In order to do this, you simply need a URL that has a Git repository hosted there, which can be over _http_, _https_, _ssh_ or the special _git_ protocol. We will use the public hosted repository of the simple library I mentioned at the beginning of the book.
 
 shell. git clone git://github.com/schacon/simplegit.git
 
-This will by default create a new directory called 'simplegit' and do an initial checkout of the 'master' branch.  If you want to put it in a different directory, you can specify that on the command line, too.
+This will by default create a new directory called 'simplegit' and do an initial checkout of the 'master' branch.  If you want to put it in a different directory than the name of the project, you can specify that on the command line, too.
 
 shell. git clone git://github.com/schacon/simplegit.git my_directory
 

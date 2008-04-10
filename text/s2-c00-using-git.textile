@@ -1,8 +1,8 @@
 h1. Section Two - Using Git
 
-Now that you understand what Git does at a fundamental level - how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let's see how to actually use it.  This next section presents some of the basic commands that you will need to know in order to use git effectively.  
+Now that you _hopefully_ understand what Git is designed to do at a fundamental level - how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let's see how to actually use it.  This next section presents some of the basic commands that you will need to know in order to use Git effectively.  
 
-At the end of each section, there will be a link to the full documentation for each of the commands used in that section, in case you want to learn more or see all the options for that command.
+At the end of each chapter, there will be a link to the official Git documentation for each of the commands used in that section, in case you want to learn more or see all the options for that command.
 
 h2. Setting Up Your Profile
 
