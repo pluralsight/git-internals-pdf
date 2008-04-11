@@ -54,6 +54,6 @@ h3. .git/hooks
 
 This directory contains shell scripts that are invoked after the Git commands they are named after.  For example, after you run a commit, Git will try to execute the _post-commit_ script, if it has executable permissions.
 
-See [hooks section] or the 
+See the 
 "online hooks documentation":http://www.kernel.org/pub/software/scm/git/docs/hooks.html
 for more information on what you can do with hooks.

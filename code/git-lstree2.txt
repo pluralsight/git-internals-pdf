@@ -1,5 +1,5 @@
 $ git ls-tree -r -t master^{tree}
-100644 blob 569b350811e7bfcb2cc781956641c37189e120d9    README
-100644 blob 8f94139338f9404f26296befa88755fc2598c289    Rakefile
-040000 tree ae850bd698b2b5dfbac1ab5fd95a48c4f4d5275b    lib
-100644 blob 7e92ed361869246dc76f0cd0e526efd6a13bd87a    lib/simplegit.rb
+100644 blob 569b350811e7bfcb2cc781956641c    README
+100644 blob 8f94139338f9404f26296befa8875    Rakefile
+040000 tree ae850bd698b2b5dfbac1ab5fd95a4    lib
+100644 blob 7e92ed361869246dc76f0cd0e526e    lib/simplegit.rb

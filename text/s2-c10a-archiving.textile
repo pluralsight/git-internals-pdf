@@ -1,4 +1,4 @@
-h2. Archiving Git
+h2. Exporting Git
 
 If you want to create a release of your code, or provide some poor non-git user with a snapshot of just a specific tree, you can use the *git-archive* command.
 

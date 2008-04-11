@@ -5,6 +5,9 @@ Here are some references that I used or that you may use to find out more about 
 The example git repository that I was working with throughout this book can be cloned from it's 
 "GitHub repository":http://github.com/schacon/simplegit
 
+For anything you cannot find in this book or these references, be sure to ask the fantastic people hanging out at the
+'#git' channel on irc.freenode.net
+
 h2. Web Documentation
 
 "Main Git Documentation":http://www.kernel.org/pub/software/scm/git/docs/
@@ -33,7 +36,5 @@ h2. Screencasts
 
 "Using Git to Manage and Deploy Rails Apps":http://www.jointheconversation.org/railsgit
 
-h2. IRC
 
-#git channel on irc.freenode.net
 

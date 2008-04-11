@@ -1,4 +1,4 @@
 $ git ls-tree master^{tree}
-100644 blob 569b350811e7bfcb2cc781956641c37189e120d9    README
-100644 blob 8f94139338f9404f26296befa88755fc2598c289    Rakefile
-040000 tree ae850bd698b2b5dfbac1ab5fd95a48c4f4d5275b    lib
+100644 blob 569b350811e7bfcb2cc781956641c3   README
+100644 blob 8f94139338f9404f26296befa88755   Rakefile
+040000 tree ae850bd698b2b5dfbac1ab5fd95a48   lib
