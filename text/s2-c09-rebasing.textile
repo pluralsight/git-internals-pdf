@@ -1,5 +1,7 @@
 h2. Rebasing
 
+todo. sidebar:c7-rebasing.textile
+
 To review, rebasing is an alternative to merging that takes all the changes you've done since you branched off and applies those changes as patches to where the branch you are rebasing to is now, abandoning your original commit objects.  For clean merges, this is a relatively simple process.  Say we have been working in a branch called 'story84' and it's completed and we want to merge it into the master branch.
 
 !../artwork/s2/repo1.png!

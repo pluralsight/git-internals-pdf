@@ -2,6 +2,8 @@ h2. Browsing Git
 
 Git also gives you access to a number of lower level tools that can be used to browse the repository, inspect the status and contents of any of the objects, and are generally helpful for inspection and debugging.
 
+todo. sidebar:c5-git-browsing.textile
+
 h3. Showing Objects
 
 The 'git show' command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of it's subtrees.  Where it's most useful is using it to look at commits.

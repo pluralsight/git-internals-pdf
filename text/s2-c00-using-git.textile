@@ -6,6 +6,8 @@ At the end of each chapter, there will be a link to the official Git documentati
 
 h2. Setting Up Your Profile
 
+todo. sidebar:c1-init.textile
+
 For every commit you do, Git will try to associate a name and email address.  One of the first things you'll want to do in Git is to set these values.  You can set them as global configuration values with the 'git config' command:
 
 shell. $ git config --global user.name "Scott Chacon"

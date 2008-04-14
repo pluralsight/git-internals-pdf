@@ -2,6 +2,8 @@ h2. Log - the Commit History
 
 So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?
 
+todo. sidebar:c4-git-log.textile
+
 The answer is the very powerful _git log_ command.  The 'log' command can show you nearly anything you want to know about your commit history.  Also, since the entire history is stored locally, it's really fast compared with most other SCM systems (especially if your repository is packed - see "Care and Feeding" chapter)
 
 If you just run _git log_, you will get output like this:

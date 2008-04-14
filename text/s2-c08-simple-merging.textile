@@ -1,5 +1,7 @@
 h2. Simple Merging
 
+todo. sidebar:c6-branch-merge.textile
+
 So now we want to move the changes in our 'newfunc' branch back into our 'master' branch and remove it.  This will require us merging one branch into another.  Since we're already in our 'master' branch, we'll merge in the 'newfunc' branch like this:
 
 shell. $ git merge newfunc

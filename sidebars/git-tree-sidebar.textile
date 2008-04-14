@@ -1,5 +1,0 @@
-h3. Tree Contents Algorithm
-
-How exactly does Git store a tree object, you ask?  The tree object is not like a blob, where you can just read the contents of the file you want to store.  How is the tree actually stored?  Here is another ruby function that will store a full tree in git, including all the subtrees.
-
-ruby. tree-object.rb

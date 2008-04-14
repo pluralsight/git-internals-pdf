@@ -2,6 +2,8 @@ h2. Distributed Workflow Examples
 
 Now we've gone over most of the basic commands that you'll use on a day to day basis as a single developer.  This chapter covers some examples of what you will use in order to collaborate with other developers on a code base.
 
+todo. sidebar:c8-dist-workflow.textile
+
 h3. Cloning
 
 If you want to begin working on an existing project, you will need to get an initial version of it - copy it's repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, it's own 'git' protocol, and rsync.  The 'git' protocol and 'ssh' are preferred because they are more efficient and not difficult to set up.  

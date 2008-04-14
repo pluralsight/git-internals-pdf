@@ -1,0 +1,5 @@
+h3. Rebasing Screencast
+
+This screencast follows roughly the same course as the previous one on branching and merging, only we replace merging with rebasing.  This screencast also demonstrates the interactive rebase command ('git rebase -i'). We also demonstrate some slightly more complex branching, by using both interactive and normal rebasing techniques simultaneously on separate branches, then choosing one and deleting the other.
+
+movie. c7-rebase.mov
