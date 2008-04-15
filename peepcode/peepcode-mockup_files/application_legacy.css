@@ -1,0 +1,505 @@
+/*       
+  peepcode_pink         = "#ff43a7"
+  peepcode_light_pink   = "#ffddff"
+----- */
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Verdana, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 12px;
+  line-height: 1.5em;
+  background: #f0f0f0 url(dark-gradient-short.png) repeat-x center 2em;
+}
+
+#menu, #footer {
+	background-color: black;
+	color: white;
+  padding: 0.5em;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1em;
+	line-height: 1.5em;
+	list-style-type: none;
+}
+
+#menu {
+  font-weight: bold;
+  font-family: "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
+	text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+#menu li {
+	display: inline;
+  margin: 0 15px;
+	border-bottom: none;
+}
+#menu li a {
+  padding: 0;
+	border-bottom: none;
+  color: white;
+}
+#menu li a:hover {
+  background-color: transparent;
+  border-bottom: 3px solid white;
+}
+
+.container {
+	width: 73em;
+	margin: 0 auto;
+	background-color: transparent;
+}
+
+/* 
+  Footer 
+*/
+#footer {
+	clear: both;
+	text-align: left;
+	color: white;
+  background: black url(/images/dark-gradient.png) bottom repeat-x;
+  padding-top: 1.5em;
+}
+#footer a {
+  color: white;
+}
+#footer a:hover {
+  background-color: #333;
+}
+#footer .column {
+  overflow: hidden;
+}
+#footer h2 {
+  background-color: transparent;
+  color: white;
+}
+#footer ul.products span.price {
+  font-weight: normal;
+}
+/* HACK Make light text on dark look better. Only works in Safari. */
+#footer p, #footer li, #footer h2, .sidebar strong, .sidebar span.price, #menu li, h2 {
+  text-shadow: #000 0 0 0;
+}
+
+.column {
+	float: left;
+	padding-bottom: 3em;
+  position: relative;
+  width: 18em;
+}
+
+/* 
+  Double-wide column 
+*/
+.double {
+	width: 36em;
+}
+.double p, .double ul, .double blockquote, .double code, .double pre {
+  font-size: 1em;
+  line-height: 1.5em; margin-bottom: 1.5em;
+}
+.double blockquote, .double cite {
+	font-family: Georgia, serif;
+	font-style: italic;
+	text-align: left;
+	font-size: 1em;
+	line-height: 1.5em;
+}
+.double cite {
+  text-align: right;
+}
+.double code {
+  line-height: 90%;
+}
+
+/*
+  Single-wide column
+*/
+.single {
+	width: 18em;
+	padding-top: 15em;
+}
+.single p, .single blockquote {
+  font-size: 0.833em;
+  line-height: 1.800em; margin-bottom: 1.800em;
+}
+
+.single h2, #footer h2 {
+	font-size: 1.333em;
+	line-height: 1.125em; margin-bottom: 1.125em;
+/*  margin-bottom: 0.625em; padding-top: 0.25em; padding-bottom: 0.25em;*/
+}
+
+/*
+  Basic HTML Elements
+*/
+a {
+	color: black;
+  border-bottom: 1px dotted #ff43a7;
+	text-decoration: none;
+	padding: 0;
+}
+a:hover {
+	background-color: #ffddff;
+	color: black;
+	border-bottom: 1px solid #ff43a7;
+}
+a.blind_link, a.preview {
+  border-bottom: 0;
+}
+a.blind_link:hover, a.preview:hover {
+  background-color: transparent;
+  border-bottom: 0;
+}
+a.preview {
+  width: 18em; height: 13.5em;
+  position: absolute;
+  overflow: hidden;
+  top: 0; border: 0;
+  background-color: transparent;
+}
+a.preview img:hover {
+  opacity: 0.5;
+}
+a.preview img {
+  position: absolute;
+  width: 12em;
+  top: 2.5em; left: 1.5em;
+}
+a.sponsor {
+  display: block;
+  border: 0;
+  margin-left: 15px;
+}
+a.sponsor_image {
+  display: block;
+  width: 16em;
+  height: 9em;
+}
+a.feed, #menu li a.feed, .sidebar a.feed, #footer a.feed {
+  color: #ffa500;
+  border-bottom: 1px dotted #ffa500;
+}
+a.feed:hover, #menu li a.feed:hover, .sidebar a.feed:hover, #footer a.feed:hover {
+  border-bottom: 1px solid #ffa500;
+  background-color: transparent;
+}
+a img {
+	border: 0;
+}
+
+
+strong {
+	background-color: #ffffcc;
+	font-weight: normal;
+}
+
+
+table.buy_buttons {
+  width: 15em;
+  margin: 1em auto;
+}
+table.buy_buttons tr td {
+  text-align: center;
+}
+
+/* 
+  Hanging quotes for reviews. 
+*/
+blockquote {
+  text-indent: -0.5em;
+/*  font-style: italic;*/
+}
+cite {
+  text-indent: 0;
+	display: block;
+	font-weight: bold;
+}
+
+
+
+/* Incredibly useful class for extending a div around contents that float. */
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+* html>body .clearfix {
+	display: inline-block;
+	width: 100%;
+}
+
+* html .clearfix {
+	/* Hides from IE-mac */
+	height: 1%;
+	/* End hide from IE-mac */
+}
+
+
+.clearleft {
+	clear: left;
+}
+
+
+
+h1, h2, h3, p, ul, blockquote, pre {
+  margin: 0 15px;
+}
+h1, h2, h3 {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	clear: both;
+}
+h2 {
+	font-size: 1.667em;
+	text-transform: uppercase;
+	line-height: 0.900em; margin-bottom: 0.900em;
+  margin-right: 0;
+}
+h2 strong, h3 strong {
+	background-color: transparent;
+	font-weight: bold;
+	color: #ff43a7; /* Pink */
+}
+
+h1#logo {
+	height: 5.1em; /* 9x line height */
+	margin: 0;
+	font-size: 1.667em;
+	line-height: 0.900em; margin-bottom: 0.900em;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: -25px center; 
+  background-image: url(peepcodelogo.png);
+  }
+h1#logo span {
+  display: none;
+  }
+
+
+h3 {
+	font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em;
+	text-transform: uppercase;
+}
+
+
+p {
+  margin-top: 0; padding: 0;
+  margin-bottom: 1.5em;
+}
+
+p.small, div.small , td.small , th.small , tr.small td , tr.small th , table.small th , table.small td, .subdued {
+	font-size: 0.833em;
+	line-height: 1.800em; 
+	margin-bottom: 1.8em;
+}
+
+ul {
+  margin-bottom: 1.5em;
+  margin-left: 3em;
+  list-style-type: square;
+}
+li {
+
+}
+
+/*
+  Custom classes
+*/
+
+/*
+  Forms
+*/
+form.login {
+	margin: 0 auto;
+	width: 200px;
+}
+
+form#checkout_form {
+  margin-bottom: 3em;
+  margin-right: 15px;
+}
+
+div#keep_shopping {
+  margin-right: 15px;
+  margin-bottom: 1em;
+  margin-top: 4em;
+  clear: both;
+}
+
+div#reset_button {
+  margin-bottom: 2em;
+}
+
+label.error {
+  background: url(/images/gradients/error.png) repeat-x;
+  padding: 5px;
+}
+input.error {
+  border: 2px solid red;
+}
+
+input.paypal {
+  clear: both; display: block; float: right;
+}
+
+/* Buttons inside tables don't need an extra bottom-margin */
+td form.button-form button {
+  margin-bottom: 0;
+}
+
+div.errorExplanation {
+	padding-bottom: 10px;
+}
+
+div.errorExplanation h2 {
+	display: none;
+}
+
+div.errorExplanation li {
+}
+
+div.fieldWithErrors {
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+div.fieldWithErrors input {
+	border: 4px solid #ff43a7;
+	padding: 3px;
+}
+
+
+
+
+.date {
+	color: #777;
+}
+
+
+ul.products {
+  list-style-type: none;
+  margin-left: 0;
+	margin-right: 0;
+}
+ul.products span.price {
+  font-weight: bold;
+  color: green;
+  margin-right: 1em;
+  display: block;
+  width: 3em;
+  float: left;
+  text-align: right;
+}
+.sidebar ul.products span.price { color: white; }
+ul.products span.product_title {
+  display: block;
+  float: left;
+  width: 13em;
+}
+ul.products li {
+  clear: left;
+  padding: 0.75em 0;
+}
+
+button {
+  border: 0;
+	font-weight: bold;  
+  color: white;
+/*  letter-spacing: -1px;*/
+  margin: 0 15px;
+  background-color: green;
+	font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em;
+	text-transform: uppercase;
+}
+button:hover {
+  background-color: #99cc99;
+  color: green;
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+span.amp {
+  font-family: "Palatino", "Book Antiqua", serif;
+  font-size: 110%;
+  font-style: italic;
+}
+
+/*
+  Colored block
+*/
+.sidebar {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  margin-bottom: 1.5em;
+  background: #ff43a7 url(/images/dark-to-pink-gradient.png) repeat-x top;
+}
+.sidebar h2 {
+  text-align: center;
+  padding-left: 0;
+  margin-left: 0; 
+}
+.sidebar h2 strong {
+  color: white;
+}
+.sidebar a {
+  border-bottom: 1px dotted black;
+}
+.sidebar a:hover {
+  background-color: transparent;
+  border-bottom: 1px solid black;
+}
+.sidebar p strong {
+  background-color: transparent;
+  font-weight: bold;
+}
+
+
+div.subscription_credits_remaining {
+  font-family: Georgia;
+  font-size: 3em;
+  font-weight: bold;
+  line-height: 1em;
+  padding-top: 0;
+  margin-top: -0.5em;
+  }
+
+
+/*
+  Controller-specific
+*/
+.orders form {
+  text-align: right;
+}
+.orders label {
+  display: block;
+  height: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+img.bug {
+  padding-right: 5px;
+}
+
+.subdued {
+  color: #999999;
+}
+
+#user_zipcode_p {
+  padding-top: 10px;
+  clear: left;
+}
+
+#account_note {
+  clear: left;
+}
+
+h1 { behavior: url(/hacks/iepng/iepngfix.htc) }
