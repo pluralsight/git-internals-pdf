@@ -28,13 +28,13 @@ shell. git-add-status.txt
 
 You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.
 
-!../artwork/s2/git-add-commit.png!
+!s2/git-add-commit.png!
 
 If we want to commit all our changes, we can use this shorthand, which will automatically run a 'git add' on every modified file to our index, then commit the whole thing:
 
 shell. $ git commit -a -m 'committing all changes'
 
-!../artwork/s2/git-commit-a.png!
+!s2/git-commit-a.png!
 
 If you would like to give a more useful commit message, you can leave out the '-m' option.  That will fire up your $EDITOR to add your commit message.
 

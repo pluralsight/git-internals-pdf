@@ -2,8 +2,7 @@ h2. Installing Git
 
 Before we can start playing with Git, we'll have to install it. I'll quickly cover installing Git on Linux, Mac and Windows.  I will not get into really fine detail, because others have done that much better, but I will give you an overview and links as to where to find more detailed instructions on each platform.
 
-For any of these examples, you can find a link to the most current Git source code at 
-"git.or.cz":http://git.or.cz/
+For any of these examples, you can find a link to the most current Git source code at "git.or.cz":http://git.or.cz/.
 
 I would recommend compiling from source if possible, simply because Git is lately making big strides in usability, so more current versions may be a bit easier to use.
 
@@ -48,8 +47,7 @@ cd ..
 Then download and compile Git as per the Linux instructions.
 
 However, if you want an easier path, you can use the excellent MacPorts software.  To install MacPorts, simply follow the instructions on the 
-"MacPorts Homepage":http://www.macports.org/
-, and then just run :
+"MacPorts Homepage":http://www.macports.org/, and then just run :
 
 shell. $ sudo port install git-core
 
@@ -59,8 +57,7 @@ For an in depth tutorial on installing on 10.4, see
 h4. Mac 10.5 - Leopard
 
 The easiest way to install is most likely the 
-"Git OSX Installer":http://code.google.com/p/git-osx-installer/
-, which you can get from Google Code, and has just recently been linked to as the "official" Mac version on the Git homepage.  Just download and run the dmg from the website.
+"Git OSX Installer":http://code.google.com/p/git-osx-installer/, which you can get from Google Code, and has just recently been linked to as the "official" Mac version on the Git homepage.  Just download and run the dmg from the website.
 
 If you want to compile from source, all the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed. 
 

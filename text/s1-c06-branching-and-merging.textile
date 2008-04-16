@@ -12,21 +12,21 @@ Merging is also easy, compared to most SCM systems - is simply merging the trees
 
 Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
-!../artwork/s1/branches1.png!
+!s1/branches1.png!
 
 h3. Simple Case
 
 Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch and create a few commits.
 
-!../artwork/s1/branch-story1.png!
+!s1/branch-story1.png!
 
 Then, our boss comes in and says we need a hot fix to production.  So we switch back to our 'master' branch, make the change, push the release and then tag the new commit with the release number. Then we go back to our 'experiment' branch, continue working and commit again.
 
-!../artwork/s1/branch-story2.png!
+!s1/branch-story2.png!
 
 At this point, we show the new branch code to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our 'experiment' branch.  Our history of commit objects now looks like this:
 
-!../artwork/s1/branch-story3.png!
+!s1/branch-story3.png!
 
 h3. Remotes
 
@@ -34,15 +34,15 @@ Now lets take a look at remotes.  Remotes are basically pointers to branches in 
 
 Lets say you clone someone's repository and make a few changes.  You would have two references, one to 'origin/master' which points to where the master branch was on the persons repository you cloned from when you did so, and a 'master' branch that points the most recent local commit.
 
-!../artwork/s1/remote-story1.png!
+!s1/remote-story1.png!
 
 Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Let's say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
 
-!../artwork/s1/remote-story2.png!
+!s1/remote-story2.png!
 
 We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their 'master' branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
 
-!../artwork/s1/remote-story3.png!
+!s1/remote-story3.png!
 
 Now we can run our tests and merge everything back into our 'master' branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
 
@@ -50,11 +50,11 @@ h3. Rebasing
 
 Let's say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote 'jen', do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)
 
-!../artwork/s1/rebase1.png!
+!s1/rebase1.png!
 
 At this point, you both do work and commit changes and then you fetch and merge from her again.  Then she does another commit and you fetch and merge once more.  At this point, you'll have a commit history that looks something like this:
 
-!../artwork/s1/rebase2.png!
+!s1/rebase2.png!
 
 Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.
 
@@ -64,21 +64,21 @@ Rebase will literally produce a series of patch files of your work and start app
 
 So let's see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans _Commit 1_ and applies the changes between _Commit 0_ and _Commit 1_ to the files in _Remote Commit 1_, creating a new _Commit 2_.
 
-!../artwork/s1/rebase3.png!
+!s1/rebase3.png!
 
 Then, as you'll remember, you and Jen both commit again.  You'll notice that now it looks like she cloned you and committed and then you changed that code, rather than you both working at the same time and merging.
 
-!../artwork/s1/rebase4.png!
+!s1/rebase4.png!
 
 At this point, instead of merging two more times like we did originally, we rebase the next two commits she makes.
 
-!../artwork/s1/rebase5.png!
+!s1/rebase5.png!
 
-!../artwork/s1/rebase6.png!
+!s1/rebase6.png!
 
 And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we had merged instead.
 
-!../artwork/s1/rebase7-final.png!
+!s1/rebase7-final.png!
 
 
 note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to - if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.
@@ -95,7 +95,7 @@ If you get a huge project or idea - say refactoring the entire code base to the 
 
 Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public Git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
 
-!../artwork/s1/branching.png!
+!s1/branching.png!
 _(example of project collaboration using multiple branch forks and merges)_
 
 You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.

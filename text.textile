@@ -110,7 +110,7 @@ note.  the first commit message for the Git project was 'initial version of "git
 
 When I learned Git, as many people do, I learned it in the context of other SCMs I had used - Subversion or CVS.  I have come to believe that this is a horrible way to learn Git.  I felt far more comfortable with it when I stopped thinking that 'git add' was sort of like 'svn add', but instead understood what it was actually doing.  Then I found I could find new and interesting ways to use what is really a very powerful and cool toolset.
 
-!../artwork/s1/what-git-is.png!
+!s1/what-git-is.png!
 
 So, let's see what it's doing behind the scenes first. 
 
@@ -162,7 +162,7 @@ All of these types of objects are stored in the Git *Object Database*, which is 
 
 To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to Git, keeping the project in a Git repository.  The basic layout of the project is this:
 
-!../artwork/s1/layout.png!
+!s1/layout.png!
 
 Let's take a look at what Git does when this is committed to a repository.
 
@@ -170,11 +170,11 @@ h3. The Blob
 
 In Git, the contents of files are stored as *blobs*.
 
-!../artwork/s1/blobs.png!
+!s1/blobs.png!
 
 It is important to note that it is the _contents_ that are stored, not the files.  The names and permissions of the files are not stored with the blob, just the contents.  
 
-!../artwork/s1/blob-expand.png!
+!s1/blob-expand.png!
 
 This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, Git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, Git will only transfer the blob once, then expand it out into multiple files upon checkout.
 
@@ -182,26 +182,26 @@ h3. The Tree
 
 Directories in Git basically correspond to *trees*.  
 
-!../artwork/s1/trees.png!
+!s1/trees.png!
 
 A tree is a simple list of trees and blobs that the tree contains, along with the names and permissions of those trees and blobs.  The contents section of a tree object consists of a very simple text file that lists the _mode_, _type_, _name_ and _sha_ of each entry.
 
-!../artwork/s1/tree-expand.png!
+!s1/tree-expand.png!
 
 
 h3. The Commit
 
 So, now that we can store arbitrary trees of content in Git, where does the 'history' part of 'tree history storage system' come in?  The answer is the *commit* object.
 
-!../artwork/s1/commit.png!
+!s1/commit.png!
 
 The commit is very simple, much like the tree.  It simply points to a tree and keeps an _author_, _committer_, _message_ and any _parent_ commits that directly preceded it.  
 
-!../artwork/s1/commit-expand.png!
+!s1/commit-expand.png!
 
 Since this was my first commit, there are no parents.  If I commit a second time, the commit object will look more like this:
 
-!../artwork/s1/commit-expand2.png!
+!s1/commit-expand2.png!
 
 Notice how the _parent_ in that commit is the same SHA1 value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.
 
@@ -211,7 +211,7 @@ h3. The Tag
 
 The final type of object you will find in a Git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the _type_ is a 'commit' and the _object_ is the SHA1 of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
 
-!../artwork/s1/tag-expand.png!
+!s1/tag-expand.png!
 
 We'll talk a little bit more about tags and how they differ from _branches_ (which also point to commits, but are not stored as objects) in the next section, where we'll pull all of this together into how all these objects relate to each other conceptually.
 
@@ -233,7 +233,7 @@ h3. The Model
 
 The basic data model I've been explaining looks something like this:
 
-!../artwork/s1/dag-model.png!
+!s1/dag-model.png!
 
 The cheap references I've represented as the grey boxes, the immutable objects are the colored round cornered boxes.
 
@@ -247,7 +247,7 @@ code. model-tree-example.txt
 
 When we first commit this tree, our Git model may look something like this:
 
-!../artwork/s1/object-dag-tree1.png!
+!s1/object-dag-tree1.png!
 
 We have 3 trees, 3 blobs, 1 commit that points to the top of the tree, the current branch pointing to our last commit and the HEAD file pointing to the branch we're currently on to let Git know which commit will be the parent for the next commit.
 
@@ -255,19 +255,19 @@ Now let's assume that we change the _lib/base/base_include.rb_ file and commit a
 
 Let's also say at this point we tag this commit as a release, which adds a new tag object.  At this point, we'll have the following in Git:
 
-!../artwork/s1/object-dag-tree2.png!
+!s1/object-dag-tree2.png!
 
 Notice how the other two blobs that were not changed were not added again.  The new trees that were added point to the same blobs in the data store that the previous trees pointed to.
 
 Now let's say we modify the _init.rb_ file at the base of the project.  The new blob will have to be added, which will add a new top tree, but all the subtrees will not be modified, so Git will re-use those references.  Again, the branch reference will move forward and the new commit will point to it's parent.
 
-!../artwork/s1/object-dag-tree3.png!
+!s1/object-dag-tree3.png!
 
 At this point, let's stop to look at the objects we now have in our repository.  From this, we can easily recreate any of the three directories we committed by following the graph from the most recent commit object, and having Git expand the trees that are pointed to.
 
 For instance, if we wanted the first tree, we could look for the parent of the parent of the HEAD, or the parent of the tag.  If we wanted the second tree, we could ask for the commit pointed to by the tag, and so on.
 
-!../artwork/s1/object-dag.png!
+!s1/object-dag.png!
 
 So, to keep all the information and history on the three versions of this tree, Git stores 16 immutable, signed, compressed objects.
 
@@ -275,7 +275,7 @@ h3. Traversal
 
 So, what do all the arrows in these illustrations really mean?  How does Git actually retrieve these objects in practice?  Well, it gets the initial SHA of the starting commit object by looking in the _.git/refs_ directory for the branch, tag or remote you specify.  Then it traverses the objects by walking the trees one by one, checking out the blobs under the names listed.
 
-!../artwork/s1/traversing-git-objects.png!
+!s1/traversing-git-objects.png!
 
 
 h2. Branching and Merging
@@ -292,21 +292,21 @@ Merging is also easy, compared to most SCM systems - is simply merging the trees
 
 Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
-!../artwork/s1/branches1.png!
+!s1/branches1.png!
 
 h3. Simple Case
 
 Let's say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called 'experiment' off of our main branch, which is by convention called 'master'.  We then switch to the new branch and create a few commits.
 
-!../artwork/s1/branch-story1.png!
+!s1/branch-story1.png!
 
 Then, our boss comes in and says we need a hot fix to production.  So we switch back to our 'master' branch, make the change, push the release and then tag the new commit with the release number. Then we go back to our 'experiment' branch, continue working and commit again.
 
-!../artwork/s1/branch-story2.png!
+!s1/branch-story2.png!
 
 At this point, we show the new branch code to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our 'experiment' branch.  Our history of commit objects now looks like this:
 
-!../artwork/s1/branch-story3.png!
+!s1/branch-story3.png!
 
 h3. Remotes
 
@@ -314,15 +314,15 @@ Now lets take a look at remotes.  Remotes are basically pointers to branches in 
 
 Lets say you clone someone's repository and make a few changes.  You would have two references, one to 'origin/master' which points to where the master branch was on the persons repository you cloned from when you did so, and a 'master' branch that points the most recent local commit.
 
-!../artwork/s1/remote-story1.png!
+!s1/remote-story1.png!
 
 Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Let's say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
 
-!../artwork/s1/remote-story2.png!
+!s1/remote-story2.png!
 
 We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their 'master' branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
 
-!../artwork/s1/remote-story3.png!
+!s1/remote-story3.png!
 
 Now we can run our tests and merge everything back into our 'master' branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
 
@@ -330,11 +330,11 @@ h3. Rebasing
 
 Let's say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote 'jen', do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)
 
-!../artwork/s1/rebase1.png!
+!s1/rebase1.png!
 
 At this point, you both do work and commit changes and then you fetch and merge from her again.  Then she does another commit and you fetch and merge once more.  At this point, you'll have a commit history that looks something like this:
 
-!../artwork/s1/rebase2.png!
+!s1/rebase2.png!
 
 Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.
 
@@ -344,21 +344,21 @@ Rebase will literally produce a series of patch files of your work and start app
 
 So let's see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans _Commit 1_ and applies the changes between _Commit 0_ and _Commit 1_ to the files in _Remote Commit 1_, creating a new _Commit 2_.
 
-!../artwork/s1/rebase3.png!
+!s1/rebase3.png!
 
 Then, as you'll remember, you and Jen both commit again.  You'll notice that now it looks like she cloned you and committed and then you changed that code, rather than you both working at the same time and merging.
 
-!../artwork/s1/rebase4.png!
+!s1/rebase4.png!
 
 At this point, instead of merging two more times like we did originally, we rebase the next two commits she makes.
 
-!../artwork/s1/rebase5.png!
+!s1/rebase5.png!
 
-!../artwork/s1/rebase6.png!
+!s1/rebase6.png!
 
 And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we had merged instead.
 
-!../artwork/s1/rebase7-final.png!
+!s1/rebase7-final.png!
 
 
 note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to - if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.
@@ -375,7 +375,7 @@ If you get a huge project or idea - say refactoring the entire code base to the 
 
 Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public Git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
 
-!../artwork/s1/branching.png!
+!s1/branching.png!
 _(example of project collaboration using multiple branch forks and merges)_
 
 You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.
@@ -437,7 +437,7 @@ The tilde character, followed by a number, refers to the Nth generation grandpar
 
 code. e65s46^^^^^
 
-!../artwork/s1/treeish.png!
+!s1/treeish.png!
 
 h4. Tree Pointer
 
@@ -666,13 +666,13 @@ shell. git-add-status.txt
 
 You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.
 
-!../artwork/s2/git-add-commit.png!
+!s2/git-add-commit.png!
 
 If we want to commit all our changes, we can use this shorthand, which will automatically run a 'git add' on every modified file to our index, then commit the whole thing:
 
 shell. $ git commit -a -m 'committing all changes'
 
-!../artwork/s2/git-commit-a.png!
+!s2/git-commit-a.png!
 
 If you would like to give a more useful commit message, you can leave out the '-m' option.  That will fire up your $EDITOR to add your commit message.
 
@@ -801,7 +801,7 @@ h4. Gitk
 
 A very popular choice for browsing Git repositories is the Tcl/Tk based browser called 'gitk'.  If you want to see a simple visualization of your repository, gitk is a great tool.
 
-!../artwork/s2/gitk.png!
+!s2/gitk.png!
 
 Gitk will also take most of the same arguments that 'git log' will take, including '--since', '--until', '--max-count', revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is 'gitk --all', which will show you all of your branches (rather than just the one you are currently on) next to each other.
 
@@ -976,11 +976,11 @@ h2. Rebasing
 
 To review, rebasing is an alternative to merging that takes all the changes you've done since you branched off and applies those changes as patches to where the branch you are rebasing to is now, abandoning your original commit objects.  For clean merges, this is a relatively simple process.  Say we have been working in a branch called 'story84' and it's completed and we want to merge it into the master branch.
 
-!../artwork/s2/repo1.png!
+!s2/repo1.png!
 
 If we do a simple merge, our history will look like this:
 
-!../artwork/s2/repo.png!
+!s2/repo.png!
 
 But we don't want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running 'git merge story84' from the master branch, we can stay in the 'story84' branch and run 'git rebase master'
 
@@ -996,11 +996,11 @@ note.  Git rebase options for a conflict : *--continue* : trys to keep going onc
 
 In this case we will simply fix the conflict, run 'git add' on the file and then run 'git rebase --continue' which then makes our history look like this:
 
-!../artwork/s2/repo3.png!
+!s2/repo3.png!
 
 Then all we have to do is switch to the master branch and merge in 'story84' (which is called a 'fast-forward', since 'master' is now a direct ancestor of 'story84') to get this:
 
-!../artwork/s2/repo4.png!
+!s2/repo4.png!
 
 
 h3. Interactive Rebasing
@@ -1009,7 +1009,7 @@ Much like Git provides a nicer way to work with your index before committing wit
 
 Assume we have started working on a story to add the 'git add' functionality to our library and so we've started a new branch called 'story92' and done the work there.  Then we decide that the 'ls-tree' function needs to be recursive and make that change, then we tweak the library again, committing each time. Meanwhile we've pulled in a change that implements the same 'ls-tree' change differently into our 'master' branch.  
 
-!../artwork/s2/repo-rebasei1.png!
+!s2/repo-rebasei1.png!
 
 We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don't even really want to merge it, I just want to throw my change away.  Also, I don't really need the other two commits to be two commits, because the second one is just a tweak and should be included in the first one.  Lets use 'git rebase -i' to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:
 
@@ -1029,7 +1029,7 @@ shell. repo-rebase4.txt
 
 Now we've rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we've just added a single commit with no resolving neccesary:
 
-!../artwork/s2/repo-rebasei2.png!
+!s2/repo-rebasei2.png!
 
 The rebase command is one of the most useful and unique in the git workflow.  To learn more about some spiffy things you can do with it, check out the [History Manipulation] and [Advanced Merging] sections.
 
@@ -1076,7 +1076,7 @@ shell. $ git tag -a v0.1 -m 'this is my v0.1 tag'
 
 As we recall from section one, that command will create a git object that looks something like this:
 
-!../artwork/s1/tag-expand.png!
+!s1/tag-expand.png!
 
 and will store that in the '.git/objects/' directory and then will create a permanent reference to it in '.git/refs/tags/v0.1' that contains the sha of that tag.
 
@@ -1254,7 +1254,7 @@ $ git push mycap master
 
 I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.
 
-!../artwork/s2/fetch-pull.png!
+!s2/fetch-pull.png!
 
 You can also remove remotes at any time, which simply removes the lines that contain the url in your '.git/config' file and the references to their remote branches in '.git/refs/[remote_name]' directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.
 
@@ -1274,7 +1274,7 @@ h4. Central Repository Model
 
 There is a single repository that all developers push to and pull from.
 
-!../artwork/s2/workflow-star.png!
+!s2/workflow-star.png!
 
 This model works just like a centralized SCM and Git can work that way just fine. If you setup a repository for your team on a server that everyone has ssh or NFS access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don't want to worry about a hierarchy - the strength of this model is that it forces everyone to stay up to date with each other and it doesn't depend on a single role. 
 
@@ -1284,7 +1284,7 @@ h4. Dictator and Lieutenant Model
 
 This is a highly hierarchical model where one individual has commit rights to a blessed repository that everyone else fetches from. Changes are fetched from developers by lieutenants responsible for specific subsystems and merged and tested.  Lieutenant branches are then fetched by the dictator and merged and pushed into the blessed repository, where the cycle starts over again.
 
-!../artwork/s2/workflow-dictator.png!
+!s2/workflow-dictator.png!
 
 This is a model something like the Linux kernel uses, Linus being the benevolent dictator. This model is much better for large teams, and can be implemented with multiple and varied levels of lieutenants and sub-lieutenants in charge of various subsystems.  At any stage in this process, patches or commits can be rejected - not merged in and sent up the chain.
 
@@ -1292,7 +1292,7 @@ h4. Integration Manager Model
 
 This is where each developer has a public repository, but one is considered the 'official' repository - it is used to create the packages and binaries.  A person or core team has commit rights to it, but many other developers have public forks of that repository.  When they have changes, they issue a pull request to an integration manager, who adds them as a remote if they haven't already - then merges, tests, accepts and pushes.
 
-!../artwork/s2/integration-manager.png!
+!s2/integration-manager.png!
 
 This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.
 
@@ -1356,13 +1356,13 @@ GitHub is interesting as a source code hosting service because it includes some 
 
 You can follow your friends or developers whose work you are interested in, or individual projects.  You then subscribe to a single Atom feed and are kept up to date on what all those projects and people are doing, code-wise.
 
-!../artwork/s2/github1.png!
+!s2/github1.png!
 
 More interesting, you can publicly fork a project, so you have your own copy of it.  GitHub is unique in concept in that it is really centered around individuals rather than projects.  For instance, if you want to follow or work on Merb, you would follow or fork wycats's Merb, there is really no 'official' Merb page in GitHub.  It's simply that wycats is known to be the blessed repository by the Merb project.  
 
 You could just as easily follow and fork someone else's repository of the project.  An interesting example of this is the "git-wiki":http://github.com/sr/git-wiki project, which was started by a user called 'sr', then was forked and greatly modified by 'al3x'.  'sr' wanted to keep the project simple, and so now there are two major versions of the project by these two.  I have a checkout of the project and remotes added for each one, so I could work on and contribute to either.
 
-!../artwork/s2/github2.png!
+!s2/github2.png!
 
 Let's say there is a popular feature request that is either not completed or not accepted by the main project maintainer.  You can very easily fork the project and keep your patch or patches up to date with the head on a regular basis and people can pull from yours instead.  Perhaps enough demand builds up or enough testing is done from all these users that the patch is accepted.  You can then delete your fork and revert to the original project head.
 

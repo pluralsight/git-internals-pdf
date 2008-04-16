@@ -6,6 +6,6 @@ note.  the first commit message for the Git project was 'initial version of "git
 
 When I learned Git, as many people do, I learned it in the context of other SCMs I had used - Subversion or CVS.  I have come to believe that this is a horrible way to learn Git.  I felt far more comfortable with it when I stopped thinking that 'git add' was sort of like 'svn add', but instead understood what it was actually doing.  Then I found I could find new and interesting ways to use what is really a very powerful and cool toolset.
 
-!../artwork/s1/what-git-is.png!
+!s1/what-git-is.png!
 
 So, let's see what it's doing behind the scenes first. 

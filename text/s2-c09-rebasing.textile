@@ -4,11 +4,11 @@ todo. sidebar:c7-rebasing.textile
 
 To review, rebasing is an alternative to merging that takes all the changes you've done since you branched off and applies those changes as patches to where the branch you are rebasing to is now, abandoning your original commit objects.  For clean merges, this is a relatively simple process.  Say we have been working in a branch called 'story84' and it's completed and we want to merge it into the master branch.
 
-!../artwork/s2/repo1.png!
+!s2/repo1.png!
 
 If we do a simple merge, our history will look like this:
 
-!../artwork/s2/repo.png!
+!s2/repo.png!
 
 But we don't want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running 'git merge story84' from the master branch, we can stay in the 'story84' branch and run 'git rebase master'
 
@@ -24,11 +24,11 @@ note.  Git rebase options for a conflict : *--continue* : trys to keep going onc
 
 In this case we will simply fix the conflict, run 'git add' on the file and then run 'git rebase --continue' which then makes our history look like this:
 
-!../artwork/s2/repo3.png!
+!s2/repo3.png!
 
 Then all we have to do is switch to the master branch and merge in 'story84' (which is called a 'fast-forward', since 'master' is now a direct ancestor of 'story84') to get this:
 
-!../artwork/s2/repo4.png!
+!s2/repo4.png!
 
 
 h3. Interactive Rebasing
@@ -37,7 +37,7 @@ Much like Git provides a nicer way to work with your index before committing wit
 
 Assume we have started working on a story to add the 'git add' functionality to our library and so we've started a new branch called 'story92' and done the work there.  Then we decide that the 'ls-tree' function needs to be recursive and make that change, then we tweak the library again, committing each time. Meanwhile we've pulled in a change that implements the same 'ls-tree' change differently into our 'master' branch.  
 
-!../artwork/s2/repo-rebasei1.png!
+!s2/repo-rebasei1.png!
 
 We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don't even really want to merge it, I just want to throw my change away.  Also, I don't really need the other two commits to be two commits, because the second one is just a tweak and should be included in the first one.  Lets use 'git rebase -i' to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:
 
@@ -57,7 +57,7 @@ shell. repo-rebase4.txt
 
 Now we've rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we've just added a single commit with no resolving neccesary:
 
-!../artwork/s2/repo-rebasei2.png!
+!s2/repo-rebasei2.png!
 
 The rebase command is one of the most useful and unique in the git workflow.  To learn more about some spiffy things you can do with it, check out the [History Manipulation] and [Advanced Merging] sections.
 

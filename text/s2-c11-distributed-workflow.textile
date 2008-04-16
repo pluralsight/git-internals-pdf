@@ -97,7 +97,7 @@ $ git push mycap master
 
 I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.
 
-!../artwork/s2/fetch-pull.png!
+!s2/fetch-pull.png!
 
 You can also remove remotes at any time, which simply removes the lines that contain the url in your '.git/config' file and the references to their remote branches in '.git/refs/[remote_name]' directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.
 
@@ -117,7 +117,7 @@ h4. Central Repository Model
 
 There is a single repository that all developers push to and pull from.
 
-!../artwork/s2/workflow-star.png!
+!s2/workflow-star.png!
 
 This model works just like a centralized SCM and Git can work that way just fine. If you setup a repository for your team on a server that everyone has ssh or NFS access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don't want to worry about a hierarchy - the strength of this model is that it forces everyone to stay up to date with each other and it doesn't depend on a single role. 
 
@@ -127,7 +127,7 @@ h4. Dictator and Lieutenant Model
 
 This is a highly hierarchical model where one individual has commit rights to a blessed repository that everyone else fetches from. Changes are fetched from developers by lieutenants responsible for specific subsystems and merged and tested.  Lieutenant branches are then fetched by the dictator and merged and pushed into the blessed repository, where the cycle starts over again.
 
-!../artwork/s2/workflow-dictator.png!
+!s2/workflow-dictator.png!
 
 This is a model something like the Linux kernel uses, Linus being the benevolent dictator. This model is much better for large teams, and can be implemented with multiple and varied levels of lieutenants and sub-lieutenants in charge of various subsystems.  At any stage in this process, patches or commits can be rejected - not merged in and sent up the chain.
 
@@ -135,7 +135,7 @@ h4. Integration Manager Model
 
 This is where each developer has a public repository, but one is considered the 'official' repository - it is used to create the packages and binaries.  A person or core team has commit rights to it, but many other developers have public forks of that repository.  When they have changes, they issue a pull request to an integration manager, who adds them as a remote if they haven't already - then merges, tests, accepts and pushes.
 
-!../artwork/s2/integration-manager.png!
+!s2/integration-manager.png!
 
 This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.
 

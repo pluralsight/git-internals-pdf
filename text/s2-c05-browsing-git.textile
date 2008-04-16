@@ -42,7 +42,7 @@ h4. Gitk
 
 A very popular choice for browsing Git repositories is the Tcl/Tk based browser called 'gitk'.  If you want to see a simple visualization of your repository, gitk is a great tool.
 
-!../artwork/s2/gitk.png!
+!s2/gitk.png!
 
 Gitk will also take most of the same arguments that 'git log' will take, including '--since', '--until', '--max-count', revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is 'gitk --all', which will show you all of your branches (rather than just the one you are currently on) next to each other.
 
