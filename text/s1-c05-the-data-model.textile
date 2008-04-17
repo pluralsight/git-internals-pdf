@@ -16,7 +16,7 @@ h3. The Model
 
 The basic data model I've been explaining looks something like this:
 
-!s1/dag-model.png!
+!vector/DAG_Model.eps!
 
 The cheap references I've represented as the grey boxes, the immutable objects are the colored round cornered boxes.
 
@@ -30,7 +30,7 @@ code. model-tree-example.txt
 
 When we first commit this tree, our Git model may look something like this:
 
-!s1/object-dag-tree1.png!
+!vector/Object_DAG_Tree1.eps!
 
 We have 3 trees, 3 blobs, 1 commit that points to the top of the tree, the current branch pointing to our last commit and the HEAD file pointing to the branch we're currently on to let Git know which commit will be the parent for the next commit.
 
@@ -38,19 +38,19 @@ Now let's assume that we change the _lib/base/base_include.rb_ file and commit a
 
 Let's also say at this point we tag this commit as a release, which adds a new tag object.  At this point, we'll have the following in Git:
 
-!s1/object-dag-tree2.png!
+!vector/Object_DAG_Tree2.eps!
 
 Notice how the other two blobs that were not changed were not added again.  The new trees that were added point to the same blobs in the data store that the previous trees pointed to.
 
 Now let's say we modify the _init.rb_ file at the base of the project.  The new blob will have to be added, which will add a new top tree, but all the subtrees will not be modified, so Git will re-use those references.  Again, the branch reference will move forward and the new commit will point to it's parent.
 
-!s1/object-dag-tree3.png!
+!vector/Object_DAG_Tree3.eps!
 
 At this point, let's stop to look at the objects we now have in our repository.  From this, we can easily recreate any of the three directories we committed by following the graph from the most recent commit object, and having Git expand the trees that are pointed to.
 
 For instance, if we wanted the first tree, we could look for the parent of the parent of the HEAD, or the parent of the tag.  If we wanted the second tree, we could ask for the commit pointed to by the tag, and so on.
 
-!s1/object-dag.png!
+!vector/Object_DAG.eps!
 
 So, to keep all the information and history on the three versions of this tree, Git stores 16 immutable, signed, compressed objects.
 
@@ -58,5 +58,5 @@ h3. Traversal
 
 So, what do all the arrows in these illustrations really mean?  How does Git actually retrieve these objects in practice?  Well, it gets the initial SHA of the starting commit object by looking in the _.git/refs_ directory for the branch, tag or remote you specify.  Then it traverses the objects by walking the trees one by one, checking out the blobs under the names listed.
 
-!s1/traversing-git-objects.png!
+!vector/Traversing_Git_Objects.eps!
 

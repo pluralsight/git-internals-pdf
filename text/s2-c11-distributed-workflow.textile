@@ -97,7 +97,7 @@ $ git push mycap master
 
 I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.
 
-!s2/fetch-pull.png!
+!vector/Fetch_Pull.eps!
 
 You can also remove remotes at any time, which simply removes the lines that contain the url in your '.git/config' file and the references to their remote branches in '.git/refs/[remote_name]' directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.
 

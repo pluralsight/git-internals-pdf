@@ -8,7 +8,7 @@ shell. $ git tag -a v0.1 -m 'this is my v0.1 tag'
 
 As we recall from section one, that command will create a git object that looks something like this:
 
-!s1/tag-expand.png!
+!vector/Tag_Expand.eps!
 
 and will store that in the '.git/objects/' directory and then will create a permanent reference to it in '.git/refs/tags/v0.1' that contains the sha of that tag.
 

@@ -52,7 +52,7 @@ The tilde character, followed by a number, refers to the Nth generation grandpar
 
 code. e65s46^^^^^
 
-!s1/treeish.png!
+!vector/Treeish.eps!
 
 h4. Tree Pointer
 
