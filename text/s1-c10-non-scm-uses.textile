@@ -10,7 +10,7 @@ Imagine you are a retail chain or university campus and have a network of digita
 
 You need to build a content distribution framework that will easily and efficiently transfer all the necessary content to the machines on your network.  You need to constantly determine what content each machine has and what it needs to have and transfer the difference as efficiently as possible, because networking to these units may be spotty.  
 
-It turns out that Git is an excellent solution to this problem.  You can simply check all the needed content into Git, create a branch for each unit and point that branch to the exact subtree of content it needs.  Then at some interval, you have the unit fetch it's branch.  If nothing has changed, nothing happens - if content has changed somehow, it gets only the files it does not already have in a delta compressed package and then expands them locally.  Log and status files could even be transferred back by a push.
+It turns out that Git is an excellent solution to this problem.  You can simply check all the needed content into Git, create a branch for each unit and point that branch to the exact subtree of content it needs.  Then at some interval, you have the unit fetch its branch.  If nothing has changed, nothing happens - if content has changed somehow, it gets only the files it does not already have in a delta compressed package and then expands them locally.  Log and status files could even be transferred back by a push.
 
 An example of a media company actually using this approach is "Reactrix":http://reactrix.com/, which also happens to be where I work.
 
@@ -40,7 +40,7 @@ Examples of projects trying to do this are
 
 h3. Backup Tool
 
-Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved) that efficiently packs up it's backups and transfers them to multiple machines.  I'm hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn't do, which is permissions.  Git stores the mode of it's content in the tree, but it doesn't store any permissions data, which means it's not good for backing up directories in which permissions are important, like '/etc' for example.
+Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved) that efficiently packs up its backups and transfers them to multiple machines.  I'm hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn't do, which is permissions.  Git stores the mode of its content in the tree, but it doesn't store any permissions data, which means it's not good for backing up directories in which permissions are important, like '/etc' for example.
 
 One project that has tackled this is "Gibak":http://eigenclass.org/hiki/gibak-backup-system-introduction, by implementing a metastore in OCaml, and it's worth a look if this topic interests you.
 

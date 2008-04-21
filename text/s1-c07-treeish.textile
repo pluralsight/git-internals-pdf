@@ -58,7 +58,7 @@ h4. Tree Pointer
 
 code. e65s46^{tree}
 
-This points to the tree of that commit.  Any time you add a ^{tree} to any commit-ish, it resolves to it's tree.
+This points to the tree of that commit.  Any time you add a ^{tree} to any commit-ish, it resolves to its tree.
 
 h4. Blob Spec
 

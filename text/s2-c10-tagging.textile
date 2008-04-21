@@ -10,7 +10,7 @@ As we recall from section one, that command will create a git object that looks 
 
 !vector/Tag_Expand.eps!
 
-and will store that in the '.git/objects/' directory and then will create a permanent reference to it in '.git/refs/tags/v0.1' that contains the sha of that tag.
+and will store that in the '.git/objects/' directory and then will create a permanent reference to it in '.git/refs/tags/v0.1' that contains the SHAof that tag.
 
 Then you can use that as a reference to that commit at any time in commands like 'diff' or 'archive' (see next chapter).
 
@@ -20,11 +20,11 @@ You can also create a tag that doesn't actually add a Tag object to the database
 
 shell. $ git tag v0.1
 
-Git will create the same file as before, '.git/refs/tags/v0.1', but it will contain the sha of the current HEAD commit itself, not the sha of a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.
+Git will create the same file as before, '.git/refs/tags/v0.1', but it will contain the SHAof the current HEAD commit itself, not the SHAof a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.
 
 h3. Signed Tags
 
-At the other end of the tagging spectrum, you can sign Tag object with a GPG key to ensure it's cryptographic integrity.  Replacing '-a' with '-s' in the command will create a Tag object and sign it with the current users email address GPG key.  If you want to specify a key, you can run it with '-u' instead:
+At the other end of the tagging spectrum, you can sign Tag object with a GPG key to ensure its cryptographic integrity.  Replacing '-a' with '-s' in the command will create a Tag object and sign it with the current users email address GPG key.  If you want to specify a key, you can run it with '-u' instead:
 
 shell. $ git tag -u <key-id> v0.1 -m 'the 0.1 release'
 

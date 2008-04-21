@@ -2,7 +2,7 @@ h2. A Short History of Git
 
 The Git project started with Linus Torvalds scratching the very serious itch of needing a fast, efficient and massively distributed source code management system for Linux kernel development. 
 
-The kernel team had moved from a patch emailing system to the proprietary BitKeeper SCM in 2002.  That ended in April 2005 when BitMover stopped providing a free version of it's tool to the open source community because they felt some developers had reverse engineered it in violation of the license.
+The kernel team had moved from a patch emailing system to the proprietary BitKeeper SCM in 2002.  That ended in April 2005 when BitMover stopped providing a free version of its tool to the open source community because they felt some developers had reverse engineered it in violation of the license.
 
 Since Linus had (and still has) a passionate dislike of just about all existing source code management systems, he decided to write his own.  Thus, in April of 2005, Git was born.  A few months later, in July, maintenance was turned over to Junio Hamano, who has maintained the project ever since.
 

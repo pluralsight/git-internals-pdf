@@ -10,7 +10,7 @@ If you just run _git log_, you will get output like this:
 
 shell. git-log.txt
 
-This will show you the sha of each commit, the committer and date of the commit, and the full message, starting from the last commit on your current branch and going backward in reverse chronological order (so if there are multiple parents, it just squishes them together, interleaving the commits ordered by date)
+This will show you the SHAof each commit, the committer and date of the commit, and the full message, starting from the last commit on your current branch and going backward in reverse chronological order (so if there are multiple parents, it just squishes them together, interleaving the commits ordered by date)
 
 h3. Formatting Log Output
 

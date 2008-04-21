@@ -16,7 +16,7 @@ Git is very efficient.  Compared to many popular SCM systems, it seems downright
 
 note.  The Ruby on Rails Git repository download, which includes the full history of the project - every version of every file, weighs in at around 13M, which is not even twice the size of a single checkout of the project (~9M).  The Subversion server repository for the same project is about 115M.
 
-Git also is efficient in it's network operations - the common Git transfer protocols transfer only packed versions of only the objects that have changed.  It also won't try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.
+Git also is efficient in its network operations - the common Git transfer protocols transfer only packed versions of only the objects that have changed.  It also won't try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.
 
 h3. A Toolkit Design
 

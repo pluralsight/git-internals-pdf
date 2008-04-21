@@ -42,7 +42,7 @@ h3. .git/refs/
 
 This directory normally has three subdirectories in it - _heads_, _remotes_ and _tags_.  Each of these directories will hold files that correspond to your local branches, remote branches and tags, respectively. 
 
-For example, if you create a 'development' branch, the file .git/refs/heads/development will be created and will contain the sha of the commit that is the latest commit of that branch.
+For example, if you create a 'development' branch, the file .git/refs/heads/development will be created and will contain the SHAof the commit that is the latest commit of that branch.
 
 h3. .git/HEAD
 

@@ -70,7 +70,7 @@ Runs a 'git fetch' then a 'git merge'.
 
 h3. "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html
 
-Pushes all the objects that you have that a remote version does not yet have to that repository and advances it's branches.
+Pushes all the objects that you have that a remote version does not yet have to that repository and advances its branches.
 
 h3. "git remote":http://www.kernel.org/pub/software/scm/git/docs/git-remote.html
 
@@ -81,7 +81,7 @@ h2. Inspecting Repositories
 
 h3. "git log":http://www.kernel.org/pub/software/scm/git/docs/git-log.html
 
-Shows a listing of commits on a branch or involving a specific file and optionally details about what changed between it and it's parents.
+Shows a listing of commits on a branch or involving a specific file and optionally details about what changed between it and its parents.
 
 h3. "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 

@@ -2,11 +2,11 @@ h2. Branching and Merging
 
 Here we come to one of the real strengths of Git, cheap inline branching.  This is a feature that truly sets it apart and will likely change the way you think about developing code once you get used to it.
 
-When you are working on code in Git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the sha of the last commit for that branch.  
+When you are working on code in Git, storing trees in any state and keeping pointers to them is very simple, as we've seen.  In fact, in Git the act of creating a new branch is simply writing a file in the '.git/refs/heads' directory that has the SHAof the last commit for that branch.  
 
 note.  Creating a branch is nothing more than just writing 40 characters to a file
 
-Switching to that branch simply means having Git make your working directory look like the tree that sha points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
+Switching to that branch simply means having Git make your working directory look like the tree that SHApoints to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
 
 Merging is also easy, compared to most SCM systems - is simply merging the trees that the commits you are telling it to merge are pointing to, which is much simpler than resolving a bunch of deltas.
 
@@ -89,7 +89,7 @@ So why is this helpful, exactly?  It means that you can keep your development cy
 
 You have a 'master' branch that is _always_ stable - you never merge anything into it that you wouldn't put into production. Then you have a 'development' branch that you merge any experimental code into before you imagine pulling it into the 'master' branch.  
 
-You create a new branch each time you begin to work on a story or feature, branching it off your current 'development' branch each time, so if you get blocked and need to put it on hold, it doesn't effect anything else.  When you do get back to them, you rebase them to the current 'development' and it's just like you started from there.  Often times you merge the branch back into 'development' and delete it the same day that you created it.  
+You create a new branch each time you begin to work on a story or feature, branching it off your current 'development' branch each time, so if you get blocked and need to put it on hold, it doesn't effect anything else.  When you do get back to them, you rebase them to the current 'development' and it is just like you started from there.  Often times you merge the branch back into 'development' and delete it the same day that you created it.  
 
 If you get a huge project or idea - say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.
 

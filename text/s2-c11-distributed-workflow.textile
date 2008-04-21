@@ -6,7 +6,7 @@ todo. sidebar:c8-dist-workflow.textile
 
 h3. Cloning
 
-If you want to begin working on an existing project, you will need to get an initial version of it - copy it's repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, it's own 'git' protocol, and rsync.  The 'git' protocol and 'ssh' are preferred because they are more efficient and not difficult to set up.  
+If you want to begin working on an existing project, you will need to get an initial version of it - copy its repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, its own 'git' protocol, and rsync.  The 'git' protocol and 'ssh' are preferred because they are more efficient and not difficult to set up.  
 
 When you clone a repository, it in essence copies all the git objects to a new directory, checks you out a single local branch named the same as the HEAD branch on the cloned repo (normally 'master'), and stores all the other branches under a remote reference by default named 'origin'.
 

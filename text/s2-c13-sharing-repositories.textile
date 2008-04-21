@@ -2,7 +2,7 @@ h2. Sharing Repositories
 
 h3. Over Git
 
-Git provides it's own special protocol, which is basically just a really thin wrapper over the 'git-upload-pack' command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:
+Git provides its own special protocol, which is basically just a really thin wrapper over the 'git-upload-pack' command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:
 
 shell. $ git-daemon --detach --export-all --base-path=/opt/git /opt/git/ambition
  
