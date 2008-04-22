@@ -95,9 +95,7 @@ If you get a huge project or idea - say refactoring the entire code base to the 
 
 Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public Git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
 
-!bitmap/branching.png!
-
-_(example of project collaboration using multiple branch forks and merges)_
+!bitmap/branching.png(Project collaboration using multiple branch forks and merges)!
 
 You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.
 
