@@ -1,12 +1,12 @@
-h3. Focus and Design
+h2. Focus and Design
 
 There are a number of areas that the developers of Git, including and especially Linus, have focused on in conceiving and building Git.  There may be a lot of things that Git is not good at, but these things are what Git is _very_ good at.
 
-h4. Non-Linear Development
+h3. Non-Linear Development
 
 Git is optimized for cheap and efficient branching and merging.  It is built to be worked on simultaneously by many people, having multiple branches developed by individual developers, being merged, branched and re-merged constantly.  Because of this, branching is incredibly cheap and merging is incredibly easy.
 
-h4. Distributed Development
+h3. Distributed Development
 
 Git is built to make distributed development simple.  No repository is special or central in Git - each clone is basically equal and could generally replace any other one at any time.  It works completely offline or with hundreds of remote repositories that can push to and/or fetch from each other over several simple and standard protocols.
 

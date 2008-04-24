@@ -16,8 +16,7 @@
 	<p>Before we can start playing with Git, we&#8217;ll have to install it. I&#8217;ll quickly cover installing Git on Linux, Mac and Windows.  I will not get into really fine detail, because others have done that much better, but I will give you an overview and links as to where to find more detailed instructions on each platform.</p>
 
 
-	<p>For any of these examples, you can find a link to the most current Git source code at 
-<a href="http://git.or.cz/">git.or.cz</a></p>
+	<p>For any of these examples, you can find a link to the most current Git source code at <a href="http://git.or.cz/">git.or.cz</a>.</p>
 
 
 	<p>I would recommend compiling from source if possible, simply because Git is lately making big strides in usability, so more current versions may be a bit easier to use.</p>
@@ -75,8 +74,7 @@ cd ..</p>
 
 
 	<p>However, if you want an easier path, you can use the excellent MacPorts software.  To install MacPorts, simply follow the instructions on the 
-<a href="http://www.macports.org/">MacPorts Homepage</a>
-, and then just run :</p>
+<a href="http://www.macports.org/">MacPorts Homepage</a>, and then just run :</p>
 
 
 	<p>shell. $ sudo port install git-core</p>
@@ -90,8 +88,7 @@ cd ..</p>
 
 
 	<p>The easiest way to install is most likely the 
-<a href="http://code.google.com/p/git-osx-installer/">Git <span class="caps">OSX</span> Installer</a>
-, which you can get from Google Code, and has just recently been linked to as the &#8220;official&#8221; Mac version on the Git homepage.  Just download and run the dmg from the website.</p>
+<a href="http://code.google.com/p/git-osx-installer/">Git <span class="caps">OSX</span> Installer</a>, which you can get from Google Code, and has just recently been linked to as the &#8220;official&#8221; Mac version on the Git homepage.  Just download and run the dmg from the website.</p>
 
 
 	<p>If you want to compile from source, all the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed.</p>
@@ -120,7 +117,7 @@ cd ..</p>
 	<p>The Git project started with Linus Torvalds scratching the very serious itch of needing a fast, efficient and massively distributed source code management system for Linux kernel development.</p>
 
 
-	<p>The kernel team had moved from a patch emailing system to the proprietary BitKeeper <span class="caps">SCM</span> in 2002.  That ended in April 2005 when BitMover stopped providing a free version of it&#8217;s tool to the open source community because they felt some developers had reverse engineered it in violation of the license.</p>
+	<p>The kernel team had moved from a patch emailing system to the proprietary BitKeeper <span class="caps">SCM</span> in 2002.  That ended in April 2005 when BitMover stopped providing a free version of its tool to the open source community because they felt some developers had reverse engineered it in violation of the license.</p>
 
 
 	<p>Since Linus had (and still has) a passionate dislike of just about all existing source code management systems, he decided to write his own.  Thus, in April of 2005, Git was born.  A few months later, in July, maintenance was turned over to Junio Hamano, who has maintained the project ever since.</p>
@@ -147,7 +144,7 @@ cd ..</p>
 	<p>When I learned Git, as many people do, I learned it in the context of other SCMs I had used &#8211; Subversion or <span class="caps">CVS</span>.  I have come to believe that this is a horrible way to learn Git.  I felt far more comfortable with it when I stopped thinking that &#8216;git add&#8217; was sort of like &#8216;svn add&#8217;, but instead understood what it was actually doing.  Then I found I could find new and interesting ways to use what is really a very powerful and cool toolset.</p>
 
 
-	<p><img src="./artwork/s1/what-git-is.png" alt="" /></p>
+	<p><img src="vector/what-git-is.eps" alt="" /></p>
 
 
 	<p>So, let&#8217;s see what it&#8217;s doing behind the scenes first.</p>
@@ -159,7 +156,7 @@ cd ..</p>
 	<p>Git is a stupid content tracker.  That is probably the best description of it &#8211; don&#8217;t think of it in a &#8216;like (insert favorite <span class="caps">SCM</span> system), but&#8230;&#8217; context, but more like a really interesting file system.</p>
 
 
-	<p>Git tracks content &#8211; files and directories.  It is at it&#8217;s heart a collection of simple tools that implement a tree history storage and directory content management system.  It is simply used as an <span class="caps">SCM</span>, not really designed as one.</p>
+	<p>Git tracks content &#8211; files and directories.  It is at its heart a collection of simple tools that implement a tree history storage and directory content management system.  It is simply used as an <span class="caps">SCM</span>, not really designed as one.</p>
 
 
 	<p>note. &#8220;In many ways you can just see git as a filesystem — it&#8217;s content-addressable, and it has a notion of versioning, but I really really designed it coming at the problem from the viewpoint of a filesystem person (hey, kernels is what I do), and I actually have absolutely zero interest in creating a traditional <span class="caps">SCM</span> system.&#8221; &#8211; <a href="http://marc.info/?l=linux-kernel&#38;m=111314792424707">Linus</a></p>
@@ -168,7 +165,7 @@ cd ..</p>
 	<p>When most SCMs store a new version of a project, they store the code delta or diff.  When Git stores a new version of a project, it stores a new <em>tree</em> &#8211; a bunch of blobs of content and a collection of pointers that can be expanded back out into a full directory of files and subdirectories.  If you want a diff between two versions, it doesn&#8217;t add up all the deltas, it simply looks at the two trees and runs a new diff on them.</p>
 
 
-	<p>This is what fundamentally allows the system to be easily distributed &#8211; it doesn&#8217;t have issues figuring out how to apply a complex series of deltas, it simply transfers all the directories and content that one user has and another does not have but is requesting.  It is efficient about it &#8211; it only stores identical files and directories once and it can compress and transfer it&#8217;s content using delta-compressed packfiles &#8211; but in concept, it is a very simple beast.  Git is at it&#8217;s heart very stupid-simple.</p>
+	<p>This is what fundamentally allows the system to be easily distributed &#8211; it doesn&#8217;t have issues figuring out how to apply a complex series of deltas, it simply transfers all the directories and content that one user has and another does not have but is requesting.  It is efficient about it &#8211; it only stores identical files and directories once and it can compress and transfer its content using delta-compressed packfiles &#8211; but in concept, it is a very simple beast.  Git is at it&#8217;s heart very stupid-simple.</p>
 
 
 	<h3>Focus and Design</h3>
@@ -198,7 +195,7 @@ cd ..</p>
 	<p>note.  The Ruby on Rails Git repository download, which includes the full history of the project &#8211; every version of every file, weighs in at around 13M, which is not even twice the size of a single checkout of the project (<sub>9M).  The Subversion server repository for the same project is about 115M.</p>
 
 
-	<p>Git also is efficient in it&#8217;s network operations &#8211; the common Git transfer protocols transfer only packed versions of only the objects that have changed.  It also won&#8217;t try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.</p>
+	<p>Git also is efficient in its network operations &#8211; the common Git transfer protocols transfer only packed versions of only the objects that have changed.  It also won&#8217;t try to transfer content twice, so if you have the same file under two different names, it will only transfer the content once.</p>
 
 
 	<h3>A Toolkit Design</h3>
@@ -225,7 +222,7 @@ cd ..</p>
 	<p>To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to Git, keeping the project in a Git repository.  The basic layout of the project is this:</p>
 
 
-	<p><img src="./artwork/s1/layout.png" alt="" /></p>
+	<p><img src="vector/Layout.eps" alt="" /></p>
 
 
 	<p>Let&#8217;s take a look at what Git does when this is committed to a repository.</p>
@@ -237,13 +234,13 @@ cd ..</p>
 	<p>In Git, the contents of files are stored as <strong>blobs</strong>.</p>
 
 
-	<p><img src="./artwork/s1/blobs.png" alt="" /></p>
+	<p><img src="vector/Blobs.eps" alt="" /></p>
 
 
 	<p>It is important to note that it is the <em>contents</em> that are stored, not the files.  The names and permissions of the files are not stored with the blob, just the contents.</p>
 
 
-	<p><img src="./artwork/s1/blob-expand.png" alt="" /></p>
+	<p><img src="vector/Blob_Expand.eps" alt="" /></p>
 
 
 	<p>This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, Git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, Git will only transfer the blob once, then expand it out into multiple files upon checkout.</p>
@@ -255,13 +252,13 @@ cd ..</p>
 	<p>Directories in Git basically correspond to <strong>trees</strong>.</p>
 
 
-	<p><img src="./artwork/s1/trees.png" alt="" /></p>
+	<p><img src="vector/Trees.eps" alt="" /></p>
 
 
 	<p>A tree is a simple list of trees and blobs that the tree contains, along with the names and permissions of those trees and blobs.  The contents section of a tree object consists of a very simple text file that lists the <em>mode</em>, <em>type</em>, <em>name</em> and <em>sha</em> of each entry.</p>
 
 
-	<p><img src="./artwork/s1/tree-expand.png" alt="" /></p>
+	<p><img src="vector/Tree_Expand.eps" alt="" /></p>
 
 
 	<h3>The Commit</h3>
@@ -270,25 +267,25 @@ cd ..</p>
 	<p>So, now that we can store arbitrary trees of content in Git, where does the &#8216;history&#8217; part of &#8216;tree history storage system&#8217; come in?  The answer is the <strong>commit</strong> object.</p>
 
 
-	<p><img src="./artwork/s1/commit.png" alt="" /></p>
+	<p><img src="vector/Commit.eps" alt="" /></p>
 
 
 	<p>The commit is very simple, much like the tree.  It simply points to a tree and keeps an <em>author</em>, <em>committer</em>, <em>message</em> and any <em>parent</em> commits that directly preceded it.</p>
 
 
-	<p><img src="./artwork/s1/commit-expand.png" alt="" /></p>
+	<p><img src="vector/Commit_Expand.eps" alt="" /></p>
 
 
 	<p>Since this was my first commit, there are no parents.  If I commit a second time, the commit object will look more like this:</p>
 
 
-	<p><img src="./artwork/s1/commit-expand2.png" alt="" /></p>
+	<p><img src="vector/Commit_Expand2.eps" alt="" /></p>
 
 
 	<p>Notice how the <em>parent</em> in that commit is the same <span class="caps">SHA1</span> value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.</p>
 
 
-	<p>note. the current record for number of commit parents in the Linux kernel is 12 &#8211; <em>12</em> branches merged in a single commit</p>
+	<p>note. The current record for number of commit parents in the Linux kernel is 12 branches merged in a single commit!</p>
 
 
 	<h3>The Tag</h3>
@@ -297,7 +294,7 @@ cd ..</p>
 	<p>The final type of object you will find in a Git database is the <strong>tag</strong>.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an <em>object</em>, <em>type</em>, <em>tag</em>, <em>tagger</em> and a <em>message</em>. Normally the <em>type</em> is a &#8216;commit&#8217; and the <em>object</em> is the <span class="caps">SHA1</span> of the commit you&#8217;re tagging.  The tag can also be <span class="caps">GPG</span> signed, providing cryptographic integrity to a release or version.</p>
 
 
-	<p><img src="./artwork/s1/tag-expand.png" alt="" /></p>
+	<p><img src="vector/Tag_Expand.eps" alt="" /></p>
 
 
 	<p>We&#8217;ll talk a little bit more about tags and how they differ from <em>branches</em> (which also point to commits, but are not stored as objects) in the next section, where we&#8217;ll pull all of this together into how all these objects relate to each other conceptually.</p>
@@ -306,7 +303,7 @@ cd ..</p>
 	<h2>The Git Data Model</h2>
 
 
-	<p>In computer science speak, the Git object data is a Directed Acyclic Graph. That is, starting at any commit you can traverse it&#8217;s parents in one direction and there is no chain that begins and ends with the same object.</p>
+	<p>In computer science speak, the Git object data is a Directed Acyclic Graph. That is, starting at any commit you can traverse its parents in one direction and there is no chain that begins and ends with the same object.</p>
 
 
 	<p>All commit objects point to a tree and optionally to previous commits.  All trees point to one or many blobs and/or trees.  Given this simple model, we can store and retrieve vast histories of complex trees of arbitrarily changing content quickly and efficiently.</p>
@@ -321,7 +318,7 @@ cd ..</p>
 	<p>In addition to the Git objects, which are immutable &#8211; that is, they cannot ever be changed, there are references also stored in Git.  Unlike the objects, references can constantly change.  They are simple pointers to a particular commit, something like a tag, but easily moveable.</p>
 
 
-	<p>Examples of references are branches and remotes.  A branch in Git is nothing more than a file in the <em>.git/refs/heads/</em> directory that contains the sha of the most recent commit of that branch.  To branch that line of development, all Git does is create a new file in that directory that points to the same sha.  Then, as you continue to commit, one of the branches will keep changing to point to the new commit shas, while the other one can stay where it was. <em>(Don&#8217;t worry, we&#8217;ll go over this again a bit later&#8230;)</em></p>
+	<p>Examples of references are branches and remotes.  A branch in Git is nothing more than a file in the <em>.git/refs/heads/</em> directory that contains the SHAof the most recent commit of that branch.  To branch that line of development, all Git does is create a new file in that directory that points to the same sha.  Then, as you continue to commit, one of the branches will keep changing to point to the new commit shas, while the other one can stay where it was. <em>(Don&#8217;t worry, we&#8217;ll go over this again a bit later&#8230;)</em></p>
 
 
 	<h3>The Model</h3>
@@ -330,7 +327,7 @@ cd ..</p>
 	<p>The basic data model I&#8217;ve been explaining looks something like this:</p>
 
 
-	<p><img src="./artwork/s1/dag-model.png" alt="" /></p>
+	<p><img src="vector/DAG_Model.eps" alt="" /></p>
 
 
 	<p>The cheap references I&#8217;ve represented as the grey boxes, the immutable objects are the colored round cornered boxes.</p>
@@ -351,28 +348,28 @@ cd ..</p>
 	<p>When we first commit this tree, our Git model may look something like this:</p>
 
 
-	<p><img src="./artwork/s1/object-dag-tree1.png" alt="" /></p>
+	<p><img src="vector/Object_DAG_Tree1.eps" alt="" /></p>
 
 
 	<p>We have 3 trees, 3 blobs, 1 commit that points to the top of the tree, the current branch pointing to our last commit and the <span class="caps">HEAD</span> file pointing to the branch we&#8217;re currently on to let Git know which commit will be the parent for the next commit.</p>
 
 
-	<p>Now let&#8217;s assume that we change the <em>lib/base/base_include.rb</em> file and commit again.  At this point, a new blob is added, which changes the tree that points to it, which changes the tree that points to that tree and so on to the top of the entire directory.  Then a new commit object is added which points to it&#8217;s parent and the new tree, then the branch reference is moved forward.</p>
+	<p>Now let&#8217;s assume that we change the <em>lib/base/base_include.rb</em> file and commit again.  At this point, a new blob is added, which changes the tree that points to it, which changes the tree that points to that tree and so on to the top of the entire directory.  Then a new commit object is added which points to its parent and the new tree, then the branch reference is moved forward.</p>
 
 
 	<p>Let&#8217;s also say at this point we tag this commit as a release, which adds a new tag object.  At this point, we&#8217;ll have the following in Git:</p>
 
 
-	<p><img src="./artwork/s1/object-dag-tree2.png" alt="" /></p>
+	<p><img src="vector/Object_DAG_Tree2.eps" alt="" /></p>
 
 
 	<p>Notice how the other two blobs that were not changed were not added again.  The new trees that were added point to the same blobs in the data store that the previous trees pointed to.</p>
 
 
-	<p>Now let&#8217;s say we modify the <em>init.rb</em> file at the base of the project.  The new blob will have to be added, which will add a new top tree, but all the subtrees will not be modified, so Git will re-use those references.  Again, the branch reference will move forward and the new commit will point to it&#8217;s parent.</p>
+	<p>Now let&#8217;s say we modify the <em>init.rb</em> file at the base of the project.  The new blob will have to be added, which will add a new top tree, but all the subtrees will not be modified, so Git will re-use those references.  Again, the branch reference will move forward and the new commit will point to its parent.</p>
 
 
-	<p><img src="./artwork/s1/object-dag-tree3.png" alt="" /></p>
+	<p><img src="vector/Object_DAG_Tree3.eps" alt="" /></p>
 
 
 	<p>At this point, let&#8217;s stop to look at the objects we now have in our repository.  From this, we can easily recreate any of the three directories we committed by following the graph from the most recent commit object, and having Git expand the trees that are pointed to.</p>
@@ -381,7 +378,7 @@ cd ..</p>
 	<p>For instance, if we wanted the first tree, we could look for the parent of the parent of the <span class="caps">HEAD</span>, or the parent of the tag.  If we wanted the second tree, we could ask for the commit pointed to by the tag, and so on.</p>
 
 
-	<p><img src="./artwork/s1/object-dag.png" alt="" /></p>
+	<p><img src="vector/Object_DAG.eps" alt="" /></p>
 
 
 	<p>So, to keep all the information and history on the three versions of this tree, Git stores 16 immutable, signed, compressed objects.</p>
@@ -393,7 +390,7 @@ cd ..</p>
 	<p>So, what do all the arrows in these illustrations really mean?  How does Git actually retrieve these objects in practice?  Well, it gets the initial <span class="caps">SHA</span> of the starting commit object by looking in the <em>.git/refs</em> directory for the branch, tag or remote you specify.  Then it traverses the objects by walking the trees one by one, checking out the blobs under the names listed.</p>
 
 
-	<p><img src="./artwork/s1/traversing-git-objects.png" alt="" /></p>
+	<p><img src="vector/Traversing_Git_Objects.eps" alt="" /></p>
 
 
 	<h2>Branching and Merging</h2>
@@ -402,13 +399,13 @@ cd ..</p>
 	<p>Here we come to one of the real strengths of Git, cheap inline branching.  This is a feature that truly sets it apart and will likely change the way you think about developing code once you get used to it.</p>
 
 
-	<p>When you are working on code in Git, storing trees in any state and keeping pointers to them is very simple, as we&#8217;ve seen.  In fact, in Git the act of creating a new branch is simply writing a file in the &#8217;.git/refs/heads&#8217; directory that has the sha of the last commit for that branch.</p>
+	<p>When you are working on code in Git, storing trees in any state and keeping pointers to them is very simple, as we&#8217;ve seen.  In fact, in Git the act of creating a new branch is simply writing a file in the &#8217;.git/refs/heads&#8217; directory that has the SHAof the last commit for that branch.</p>
 
 
 	<p>note.  Creating a branch is nothing more than just writing 40 characters to a file</p>
 
 
-	<p>Switching to that branch simply means having Git make your working directory look like the tree that sha points to and updating the <span class="caps">HEAD</span> file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in &#8217;.git/refs/heads/[current_branch_name]&#8217; be the <span class="caps">SHA</span> of your last commit).</p>
+	<p>Switching to that branch simply means having Git make your working directory look like the tree that SHApoints to and updating the <span class="caps">HEAD</span> file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in &#8217;.git/refs/heads/[current_branch_name]&#8217; be the <span class="caps">SHA</span> of your last commit).</p>
 
 
 	<p>Merging is also easy, compared to most <span class="caps">SCM</span> systems &#8211; is simply merging the trees that the commits you are telling it to merge are pointing to, which is much simpler than resolving a bunch of deltas.</p>
@@ -417,7 +414,7 @@ cd ..</p>
 	<p>Now, let&#8217;s see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object.</p>
 
 
-	<p><img src="./artwork/s1/branches1.png" alt="" /></p>
+	<p><img src="vector/Branches1.eps" alt="" /></p>
 
 
 	<h3>Simple Case</h3>
@@ -426,19 +423,19 @@ cd ..</p>
 	<p>Let&#8217;s say we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called &#8216;experiment&#8217; off of our main branch, which is by convention called &#8216;master&#8217;.  We then switch to the new branch and create a few commits.</p>
 
 
-	<p><img src="./artwork/s1/branch-story1.png" alt="" /></p>
+	<p><img src="vector/Branch_Story1.eps" alt="" /></p>
 
 
 	<p>Then, our boss comes in and says we need a hot fix to production.  So we switch back to our &#8216;master&#8217; branch, make the change, push the release and then tag the new commit with the release number. Then we go back to our &#8216;experiment&#8217; branch, continue working and commit again.</p>
 
 
-	<p><img src="./artwork/s1/branch-story2.png" alt="" /></p>
+	<p><img src="vector/Branch_Story2.eps" alt="" /></p>
 
 
 	<p>At this point, we show the new branch code to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our &#8216;experiment&#8217; branch.  Our history of commit objects now looks like this:</p>
 
 
-	<p><img src="./artwork/s1/branch-story3.png" alt="" /></p>
+	<p><img src="vector/Branch_Story3.eps" alt="" /></p>
 
 
 	<h3>Remotes</h3>
@@ -450,19 +447,19 @@ cd ..</p>
 	<p>Lets say you clone someone&#8217;s repository and make a few changes.  You would have two references, one to &#8216;origin/master&#8217; which points to where the master branch was on the persons repository you cloned from when you did so, and a &#8216;master&#8217; branch that points the most recent local commit.</p>
 
 
-	<p><img src="./artwork/s1/remote-story1.png" alt="" /></p>
+	<p><img src="vector/Remote_Story1.eps" alt="" /></p>
 
 
 	<p>Now lets say you run a <em>fetch</em>. A fetch pulls all the refs and objects that you don&#8217;t already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Let&#8217;s say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch &#8216;idea&#8217; locally.  We now have access to those changes as &#8216;origin/idea&#8217;.</p>
 
 
-	<p><img src="./artwork/s1/remote-story2.png" alt="" /></p>
+	<p><img src="vector/Remote_Story2.eps" alt="" /></p>
 
 
 	<p>We look at the &#8216;idea&#8217; branch and like where they&#8217;re going with it, but we also want the changes they&#8217;ve made on their &#8216;master&#8217; branch, so we do a 3-way merge of their two branches and our master.  We don&#8217;t know how well this is going to work, so we make a &#8216;tryidea&#8217; branch first and then do the merge there.</p>
 
 
-	<p><img src="./artwork/s1/remote-story3.png" alt="" /></p>
+	<p><img src="vector/Remote_Story3.eps" alt="" /></p>
 
 
 	<p>Now we can run our tests and merge everything back into our &#8216;master&#8217; branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we&#8217;ve merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that &#8220;patch&#8221;.</p>
@@ -474,13 +471,13 @@ cd ..</p>
 	<p>Let&#8217;s say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote &#8216;jen&#8217;, do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)</p>
 
 
-	<p><img src="./artwork/s1/rebase1.png" alt="" /></p>
+	<p><img src="vector/Rebase1.eps" alt="" /></p>
 
 
 	<p>At this point, you both do work and commit changes and then you fetch and merge from her again.  Then she does another commit and you fetch and merge once more.  At this point, you&#8217;ll have a commit history that looks something like this:</p>
 
 
-	<p><img src="./artwork/s1/rebase2.png" alt="" /></p>
+	<p><img src="vector/Rebase2.eps" alt="" /></p>
 
 
 	<p>Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.</p>
@@ -495,28 +492,28 @@ cd ..</p>
 	<p>So let&#8217;s see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans <em>Commit 1</em> and applies the changes between <em>Commit 0</em> and <em>Commit 1</em> to the files in <em>Remote Commit 1</em>, creating a new <em>Commit 2</em>.</p>
 
 
-	<p><img src="./artwork/s1/rebase3.png" alt="" /></p>
+	<p><img src="vector/Rebase3.eps" alt="" /></p>
 
 
 	<p>Then, as you&#8217;ll remember, you and Jen both commit again.  You&#8217;ll notice that now it looks like she cloned you and committed and then you changed that code, rather than you both working at the same time and merging.</p>
 
 
-	<p><img src="./artwork/s1/rebase4.png" alt="" /></p>
+	<p><img src="vector/Rebase4.eps" alt="" /></p>
 
 
 	<p>At this point, instead of merging two more times like we did originally, we rebase the next two commits she makes.</p>
 
 
-	<p><img src="./artwork/s1/rebase5.png" alt="" /></p>
+	<p><img src="vector/Rebase5.eps" alt="" /></p>
 
 
-	<p><img src="./artwork/s1/rebase6.png" alt="" /></p>
+	<p><img src="vector/Rebase6.eps" alt="" /></p>
 
 
 	<p>And finally, we are left with a commit history that looks like Figure 1, rather than Figure 2, which is what we would have if we had merged instead.</p>
 
 
-	<p><img src="./artwork/s1/rebase7-final.png" alt="" /></p>
+	<p><img src="vector/Rebase7_Final.eps" alt="" /></p>
 
 
 	<p>note. You should remember to only do this on local branches before you push or on repositories that nobody has fetch access to &#8211; if anyone pulls down the objects that will become abandoned during a rebase, it gets a bit frustrating.</p>
@@ -531,7 +528,7 @@ cd ..</p>
 	<p>You have a &#8216;master&#8217; branch that is <em>always</em> stable &#8211; you never merge anything into it that you wouldn&#8217;t put into production. Then you have a &#8216;development&#8217; branch that you merge any experimental code into before you imagine pulling it into the &#8216;master&#8217; branch.</p>
 
 
-	<p>You create a new branch each time you begin to work on a story or feature, branching it off your current &#8216;development&#8217; branch each time, so if you get blocked and need to put it on hold, it doesn&#8217;t effect anything else.  When you do get back to them, you rebase them to the current &#8216;development&#8217; and it&#8217;s just like you started from there.  Often times you merge the branch back into &#8216;development&#8217; and delete it the same day that you created it.</p>
+	<p>You create a new branch each time you begin to work on a story or feature, branching it off your current &#8216;development&#8217; branch each time, so if you get blocked and need to put it on hold, it doesn&#8217;t effect anything else.  When you do get back to them, you rebase them to the current &#8216;development&#8217; and it is just like you started from there.  Often times you merge the branch back into &#8216;development&#8217; and delete it the same day that you created it.</p>
 
 
 	<p>If you get a huge project or idea &#8211; say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.</p>
@@ -540,8 +537,10 @@ cd ..</p>
 	<p>Working with others is unbelievably easy. You ask in an <span class="caps">IRC</span> room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the <span class="caps">URL</span> of their public Git repo for that project.  You add it as a remote, fetch it, create a new &#8216;merge-feature&#8217; branch off your &#8216;development&#8217; branch, merge in the new changes and you&#8217;re done.  No emailing patches around and applying them &#8211; just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the &#8216;merge-feature&#8217; branch and that&#8217;s it.</p>
 
 
-	<p><img src="./artwork/s1/branching.png" alt="" />
-<em>(example of project collaboration using multiple branch forks and merges)</em></p>
+	<p><img src="bitmap/branching.png" alt="" /></p>
+
+
+	<p><em>(example of project collaboration using multiple branch forks and merges)</em></p>
 
 
 	<p>You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.</p>
@@ -626,7 +625,7 @@ master</sup>2</p>
 	<p>code. e65s46<sup>^^</sup><sup></p>
 
 
-	<p><img src="./artwork/s1/treeish.png" alt="" /></p>
+	<p><img src="vector/Treeish.eps" alt="" /></p>
 
 
 	<h4>Tree Pointer</h4>
@@ -635,7 +634,7 @@ master</sup>2</p>
 	<p>code. e65s46</sup>{tree}</p>
 
 
-	<p>This points to the tree of that commit.  Any time you add a <sup>{tree} to any commit-ish, it resolves to it&#8217;s tree.</p>
+	<p>This points to the tree of that commit.  Any time you add a <sup>{tree} to any commit-ish, it resolves to its tree.</p>
 
 
 	<h4>Blob Spec</h4>
@@ -713,7 +712,7 @@ master</sup>2</p>
 	<p>This directory normally has three subdirectories in it &#8211; <em>heads</em>, <em>remotes</em> and <em>tags</em>.  Each of these directories will hold files that correspond to your local branches, remote branches and tags, respectively.</p>
 
 
-	<p>For example, if you create a &#8216;development&#8217; branch, the file .git/refs/heads/development will be created and will contain the sha of the commit that is the latest commit of that branch.</p>
+	<p>For example, if you create a &#8216;development&#8217; branch, the file .git/refs/heads/development will be created and will contain the SHAof the commit that is the latest commit of that branch.</p>
 
 
 	<h3>.git/HEAD</h3>
@@ -781,7 +780,7 @@ for more information on what you can do with hooks.</p>
 	<p>You need to build a content distribution framework that will easily and efficiently transfer all the necessary content to the machines on your network.  You need to constantly determine what content each machine has and what it needs to have and transfer the difference as efficiently as possible, because networking to these units may be spotty.</p>
 
 
-	<p>It turns out that Git is an excellent solution to this problem.  You can simply check all the needed content into Git, create a branch for each unit and point that branch to the exact subtree of content it needs.  Then at some interval, you have the unit fetch it&#8217;s branch.  If nothing has changed, nothing happens &#8211; if content has changed somehow, it gets only the files it does not already have in a delta compressed package and then expands them locally.  Log and status files could even be transferred back by a push.</p>
+	<p>It turns out that Git is an excellent solution to this problem.  You can simply check all the needed content into Git, create a branch for each unit and point that branch to the exact subtree of content it needs.  Then at some interval, you have the unit fetch its branch.  If nothing has changed, nothing happens &#8211; if content has changed somehow, it gets only the files it does not already have in a delta compressed package and then expands them locally.  Log and status files could even be transferred back by a push.</p>
 
 
 	<p>An example of a media company actually using this approach is <a href="http://reactrix.com/">Reactrix</a>, which also happens to be where I work.</p>
@@ -825,7 +824,7 @@ for more information on what you can do with hooks.</p>
 	<h3>Backup Tool</h3>
 
 
-	<p>Let&#8217;s say you want to build something like a distributed Time-Machine (Apple all rights reserved) that efficiently packs up it&#8217;s backups and transfers them to multiple machines.  I&#8217;m hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn&#8217;t do, which is permissions.  Git stores the mode of it&#8217;s content in the tree, but it doesn&#8217;t store any permissions data, which means it&#8217;s not good for backing up directories in which permissions are important, like &#8217;/etc&#8217; for example.</p>
+	<p>Let&#8217;s say you want to build something like a distributed Time-Machine (Apple all rights reserved) that efficiently packs up its backups and transfers them to multiple machines.  I&#8217;m hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn&#8217;t do, which is permissions.  Git stores the mode of its content in the tree, but it doesn&#8217;t store any permissions data, which means it&#8217;s not good for backing up directories in which permissions are important, like &#8217;/etc&#8217; for example.</p>
 
 
 	<p>One project that has tackled this is <a href="http://eigenclass.org/hiki/gibak-backup-system-introduction">Gibak</a>, by implementing a metastore in OCaml, and it&#8217;s worth a look if this topic interests you.</p>
@@ -844,6 +843,9 @@ for more information on what you can do with hooks.</p>
 
 
 	<h2>Setting Up Your Profile</h2>
+
+
+	<p>todo. sidebar:c1-init.textile</p>
 
 
 	<p>For every commit you do, Git will try to associate a name and email address.  One of the first things you&#8217;ll want to do in Git is to set these values.  You can set them as global configuration values with the &#8216;git config&#8217; command:</p>
@@ -905,7 +907,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<h3>Cloning a Repository</h3>
 
 
-	<p>Many times you will be <em>cloning</em> a repository, however.  This means that you are creating a complete copy of another repo, including all of it&#8217;s history and published branches.</p>
+	<p>Many times you will be <em>cloning</em> a repository, however.  This means that you are creating a complete copy of another repo, including all of its history and published branches.</p>
 
 
 	<p>note.  A clone is, for all intents and purposes, a full backup.  If the server that you cloned from has a hard disk failure or something equally catastrophic, you can basically take any of the clones and stick it back up there when the server is restored without anyone really the worse for wear.</p>
@@ -932,6 +934,9 @@ git commit -m &#8216;my first commit&#8217;</p>
 
 
 	<p>Now that we have our repository, let&#8217;s go through some normal workflow examples of a single person developing.</p>
+
+
+	<p>todo. sidebar:c2-normal-workflow.textile</p>
 
 
 	<h3>Ignoring</h3>
@@ -972,7 +977,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>You can see that if we commit at this point, only the Rakefile will show up as changed in the commit.</p>
 
 
-	<p><img src="./artwork/s2/git-add-commit.png" alt="" /></p>
+	<p><img src="vector/Git_Add_Commit.eps" alt="" /></p>
 
 
 	<p>If we want to commit all our changes, we can use this shorthand, which will automatically run a &#8216;git add&#8217; on every modified file to our index, then commit the whole thing:</p>
@@ -981,7 +986,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>shell. $ git commit -a -m &#8216;committing all changes&#8217;</p>
 
 
-	<p><img src="./artwork/s2/git-commit-a.png" alt="" /></p>
+	<p><img src="vector/Git_Commit_A.eps" alt="" /></p>
 
 
 	<p>If you would like to give a more useful commit message, you can leave out the &#8216;-m&#8217; option.  That will fire up your $EDITOR to add your commit message.</p>
@@ -1002,6 +1007,9 @@ git commit -m &#8216;my first commit&#8217;</p>
 
 
 	<p>Although that will work for all of your development needs &#8211; many developers simply use &#8216;-a&#8217; nearly every time they commit to just automatically add everything to the index, there is another way of adding files that makes for a more controlled and thematic set of commits.  This is called &#8216;interactive&#8217; adding, and it is a very powerful tool to controlling what goes into each commit.</p>
+
+
+	<p>todo. sidebar:c3-add-interactive.textile</p>
 
 
 	<p>Let&#8217;s say we add a new function to our &#8216;lib/simplegit.rb&#8217; file, add a new task to our &#8216;Rakefile&#8217; and then add a new &#8216;TODO&#8217; file to our project.  Later we come back and want to commit, but we don&#8217;t remember which files had to do with each other and we don&#8217;t just want to commit them all together because that&#8217;s confusing for collaborators trying to review our code. &#8216;Interactive&#8217; mode let&#8217;s us modify our index interactively before committing.  To fire it up, type &#8216;git add -i&#8217;:</p>
@@ -1055,6 +1063,9 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>So, now we have all this history in our Git repository.  So what?  What can we do with it?  How can we see this history?</p>
 
 
+	<p>todo. sidebar:c4-git-log.textile</p>
+
+
 	<p>The answer is the very powerful <em>git log</em> command.  The &#8216;log&#8217; command can show you nearly anything you want to know about your commit history.  Also, since the entire history is stored locally, it&#8217;s really fast compared with most other <span class="caps">SCM</span> systems (especially if your repository is packed &#8211; see &#8220;Care and Feeding&#8221; chapter)</p>
 
 
@@ -1064,7 +1075,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>shell. git-log.txt</p>
 
 
-	<p>This will show you the sha of each commit, the committer and date of the commit, and the full message, starting from the last commit on your current branch and going backward in reverse chronological order (so if there are multiple parents, it just squishes them together, interleaving the commits ordered by date)</p>
+	<p>This will show you the SHAof each commit, the committer and date of the commit, and the full message, starting from the last commit on your current branch and going backward in reverse chronological order (so if there are multiple parents, it just squishes them together, interleaving the commits ordered by date)</p>
 
 
 	<h3>Formatting Log Output</h3>
@@ -1102,16 +1113,19 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>Git also gives you access to a number of lower level tools that can be used to browse the repository, inspect the status and contents of any of the objects, and are generally helpful for inspection and debugging.</p>
 
 
+	<p>todo. sidebar:c5-git-browsing.textile</p>
+
+
 	<h3>Showing Objects</h3>
 
 
-	<p>The &#8216;git show&#8217; command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of it&#8217;s subtrees.  Where it&#8217;s most useful is using it to look at commits.</p>
+	<p>The &#8216;git show&#8217; command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of its subtrees.  Where it&#8217;s most useful is using it to look at commits.</p>
 
 
 	<h4>Showing Commits</h4>
 
 
-	<p>If you call it on a tree-ish that is a commit object, you will get simple information about the commit (the author, message, date, etc) and a diff of what changed between that commit and it&#8217;s parents.</p>
+	<p>If you call it on a tree-ish that is a commit object, you will get simple information about the commit (the author, message, date, etc) and a diff of what changed between that commit and its parents.</p>
 
 
 	<p>shell. git-show-commit.txt</p>
@@ -1126,7 +1140,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>shell. git-lstree1.txt</p>
 
 
-	<p>You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the sha of any blob anywhere in the tree without having to walk it one node at a time.</p>
+	<p>You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the SHAof any blob anywhere in the tree without having to walk it one node at a time.</p>
 
 
 	<p>shell. git-lstree2.txt</p>
@@ -1138,7 +1152,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<h4>Showing Blobs</h4>
 
 
-	<p>Lastly, you may want to extract the contents of individual blobs.  The &#8216;cat-file&#8217; command is an easy way to do that, and can also serve to let you know what type of object a sha is, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.</p>
+	<p>Lastly, you may want to extract the contents of individual blobs.  The &#8216;cat-file&#8217; command is an easy way to do that, and can also serve to let you know what type of object a SHAis, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.</p>
 
 
 	<p>shell. git-catfile.txt</p>
@@ -1159,7 +1173,7 @@ git commit -m &#8216;my first commit&#8217;</p>
 	<p>A very popular choice for browsing Git repositories is the Tcl/Tk based browser called &#8216;gitk&#8217;.  If you want to see a simple visualization of your repository, gitk is a great tool.</p>
 
 
-	<p><img src="./artwork/s2/gitk.png" alt="" /></p>
+	<p><img src="s2/gitk.png" alt="" /></p>
 
 
 	<p>Gitk will also take most of the same arguments that &#8216;git log&#8217; will take, including &#8216;<del>-since&#8217;, &#8216;</del>-until&#8217;, &#8216;&#8212;max-count&#8217;, revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is &#8216;gitk&#8212;all&#8217;, which will show you all of your branches (rather than just the one you are currently on) next to each other.</p>
@@ -1340,6 +1354,9 @@ Created commit 1a8c32e: added lstree function
 	<h2>Simple Merging</h2>
 
 
+	<p>todo. sidebar:c6-branch-merge.textile</p>
+
+
 	<p>So now we want to move the changes in our &#8216;newfunc&#8217; branch back into our &#8216;master&#8217; branch and remove it.  This will require us merging one branch into another.  Since we&#8217;re already in our &#8216;master&#8217; branch, we&#8217;ll merge in the &#8216;newfunc&#8217; branch like this:</p>
 
 
@@ -1420,16 +1437,19 @@ Created commit 47c668a: fixed conflict</p>
 	<h2>Rebasing</h2>
 
 
+	<p>todo. sidebar:c7-rebasing.textile</p>
+
+
 	<p>To review, rebasing is an alternative to merging that takes all the changes you&#8217;ve done since you branched off and applies those changes as patches to where the branch you are rebasing to is now, abandoning your original commit objects.  For clean merges, this is a relatively simple process.  Say we have been working in a branch called &#8216;story84&#8217; and it&#8217;s completed and we want to merge it into the master branch.</p>
 
 
-	<p><img src="./artwork/s2/repo1.png" alt="" /></p>
+	<p><img src="s2/repo1.png" alt="" /></p>
 
 
 	<p>If we do a simple merge, our history will look like this:</p>
 
 
-	<p><img src="./artwork/s2/repo.png" alt="" /></p>
+	<p><img src="s2/repo.png" alt="" /></p>
 
 
 	<p>But we don&#8217;t want to mess up our history with a bunch of branches and merges when it can be clearer.  Instead of running &#8216;git merge story84&#8217; from the master branch, we can stay in the &#8216;story84&#8217; branch and run &#8216;git rebase master&#8217;</p>
@@ -1453,13 +1473,13 @@ Created commit 47c668a: fixed conflict</p>
 	<p>In this case we will simply fix the conflict, run &#8216;git add&#8217; on the file and then run &#8216;git rebase&#8212;continue&#8217; which then makes our history look like this:</p>
 
 
-	<p><img src="./artwork/s2/repo3.png" alt="" /></p>
+	<p><img src="s2/repo3.png" alt="" /></p>
 
 
 	<p>Then all we have to do is switch to the master branch and merge in &#8216;story84&#8217; (which is called a &#8216;fast-forward&#8217;, since &#8216;master&#8217; is now a direct ancestor of &#8216;story84&#8217;) to get this:</p>
 
 
-	<p><img src="./artwork/s2/repo4.png" alt="" /></p>
+	<p><img src="s2/repo4.png" alt="" /></p>
 
 
 	<h3>Interactive Rebasing</h3>
@@ -1471,7 +1491,7 @@ Created commit 47c668a: fixed conflict</p>
 	<p>Assume we have started working on a story to add the &#8216;git add&#8217; functionality to our library and so we&#8217;ve started a new branch called &#8216;story92&#8217; and done the work there.  Then we decide that the &#8216;ls-tree&#8217; function needs to be recursive and make that change, then we tweak the library again, committing each time. Meanwhile we&#8217;ve pulled in a change that implements the same &#8216;ls-tree&#8217; change differently into our &#8216;master&#8217; branch.</p>
 
 
-	<p><img src="./artwork/s2/repo-rebasei1.png" alt="" /></p>
+	<p><img src="s2/repo-rebasei1.png" alt="" /></p>
 
 
 	<p>We can see before we try the merge that the same change is in each branch, and I can see that the master branch version is better, so I don&#8217;t even really want to merge it, I just want to throw my change away.  Also, I don&#8217;t really need the other two commits to be two commits, because the second one is just a tweak and should be included in the first one.  Lets use &#8216;git rebase -i&#8217; to rebase this branch and make those changes.  When we run the command, our editor comes up, showing this:</p>
@@ -1501,7 +1521,7 @@ Created commit 47c668a: fixed conflict</p>
 	<p>Now we&#8217;ve rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we&#8217;ve just added a single commit with no resolving neccesary:</p>
 
 
-	<p><img src="./artwork/s2/repo-rebasei2.png" alt="" /></p>
+	<p><img src="s2/repo-rebasei2.png" alt="" /></p>
 
 
 	<p>The rebase command is one of the most useful and unique in the git workflow.  To learn more about some spiffy things you can do with it, check out the [History Manipulation] and [Advanced Merging] sections.</p>
@@ -1575,10 +1595,10 @@ Created commit 47c668a: fixed conflict</p>
 	<p>As we recall from section one, that command will create a git object that looks something like this:</p>
 
 
-	<p><img src="./artwork/s1/tag-expand.png" alt="" /></p>
+	<p><img src="vector/Tag_Expand.eps" alt="" /></p>
 
 
-	<p>and will store that in the &#8217;.git/objects/&#8217; directory and then will create a permanent reference to it in &#8217;.git/refs/tags/v0.1&#8217; that contains the sha of that tag.</p>
+	<p>and will store that in the &#8217;.git/objects/&#8217; directory and then will create a permanent reference to it in &#8217;.git/refs/tags/v0.1&#8217; that contains the SHAof that tag.</p>
 
 
 	<p>Then you can use that as a reference to that commit at any time in commands like &#8216;diff&#8217; or &#8216;archive&#8217; (see next chapter).</p>
@@ -1593,13 +1613,13 @@ Created commit 47c668a: fixed conflict</p>
 	<p>shell. $ git tag v0.1</p>
 
 
-	<p>Git will create the same file as before, &#8217;.git/refs/tags/v0.1&#8217;, but it will contain the sha of the current <span class="caps">HEAD</span> commit itself, not the sha of a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.</p>
+	<p>Git will create the same file as before, &#8217;.git/refs/tags/v0.1&#8217;, but it will contain the SHAof the current <span class="caps">HEAD</span> commit itself, not the SHAof a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.</p>
 
 
 	<h3>Signed Tags</h3>
 
 
-	<p>At the other end of the tagging spectrum, you can sign Tag object with a <span class="caps">GPG</span> key to ensure it&#8217;s cryptographic integrity.  Replacing &#8216;-a&#8217; with &#8217;-s&#8217; in the command will create a Tag object and sign it with the current users email address <span class="caps">GPG</span> key.  If you want to specify a key, you can run it with &#8216;-u&#8217; instead:</p>
+	<p>At the other end of the tagging spectrum, you can sign Tag object with a <span class="caps">GPG</span> key to ensure its cryptographic integrity.  Replacing &#8216;-a&#8217; with &#8217;-s&#8217; in the command will create a Tag object and sign it with the current users email address <span class="caps">GPG</span> key.  If you want to specify a key, you can run it with &#8216;-u&#8217; instead:</p>
 
 
 	<p>shell. $ git tag -u <key-id> v0.1 -m &#8216;the 0.1 release&#8217;</p>
@@ -1706,10 +1726,13 @@ Created commit 47c668a: fixed conflict</p>
 	<p>Now we&#8217;ve gone over most of the basic commands that you&#8217;ll use on a day to day basis as a single developer.  This chapter covers some examples of what you will use in order to collaborate with other developers on a code base.</p>
 
 
+	<p>todo. sidebar:c8-dist-workflow.textile</p>
+
+
 	<h3>Cloning</h3>
 
 
-	<p>If you want to begin working on an existing project, you will need to get an initial version of it &#8211; copy it&#8217;s repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, it&#8217;s own &#8216;git&#8217; protocol, and rsync.  The &#8216;git&#8217; protocol and &#8216;ssh&#8217; are preferred because they are more efficient and not difficult to set up.</p>
+	<p>If you want to begin working on an existing project, you will need to get an initial version of it &#8211; copy its repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, its own &#8216;git&#8217; protocol, and rsync.  The &#8216;git&#8217; protocol and &#8216;ssh&#8217; are preferred because they are more efficient and not difficult to set up.</p>
 
 
 	<p>When you clone a repository, it in essence copies all the git objects to a new directory, checks you out a single local branch named the same as the <span class="caps">HEAD</span> branch on the cloned repo (normally &#8216;master&#8217;), and stores all the other branches under a remote reference by default named &#8216;origin&#8217;.</p>
@@ -1846,7 +1869,7 @@ $ git push mycap master</p>
 	<p>I can also add several remotes to pull and merge from, in this case, one for every developer with a public fork of that project that might push changes I care to try.</p>
 
 
-	<p><img src="./artwork/s2/fetch-pull.png" alt="" /></p>
+	<p><img src="vector/Fetch_Pull.eps" alt="" /></p>
 
 
 	<p>You can also remove remotes at any time, which simply removes the lines that contain the url in your &#8217;.git/config&#8217; file and the references to their remote branches in &#8217;.git/refs/[remote_name]&#8217; directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.</p>
@@ -1878,7 +1901,7 @@ $ git push mycap master</p>
 	<p>There is a single repository that all developers push to and pull from.</p>
 
 
-	<p><img src="./artwork/s2/workflow-star.png" alt="" /></p>
+	<p><img src="s2/workflow-star.png" alt="" /></p>
 
 
 	<p>This model works just like a centralized <span class="caps">SCM</span> and Git can work that way just fine. If you setup a repository for your team on a server that everyone has ssh or <span class="caps">NFS</span> access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don&#8217;t want to worry about a hierarchy &#8211; the strength of this model is that it forces everyone to stay up to date with each other and it doesn&#8217;t depend on a single role.</p>
@@ -1893,7 +1916,7 @@ $ git push mycap master</p>
 	<p>This is a highly hierarchical model where one individual has commit rights to a blessed repository that everyone else fetches from. Changes are fetched from developers by lieutenants responsible for specific subsystems and merged and tested.  Lieutenant branches are then fetched by the dictator and merged and pushed into the blessed repository, where the cycle starts over again.</p>
 
 
-	<p><img src="./artwork/s2/workflow-dictator.png" alt="" /></p>
+	<p><img src="s2/workflow-dictator.png" alt="" /></p>
 
 
 	<p>This is a model something like the Linux kernel uses, Linus being the benevolent dictator. This model is much better for large teams, and can be implemented with multiple and varied levels of lieutenants and sub-lieutenants in charge of various subsystems.  At any stage in this process, patches or commits can be rejected &#8211; not merged in and sent up the chain.</p>
@@ -1905,7 +1928,7 @@ $ git push mycap master</p>
 	<p>This is where each developer has a public repository, but one is considered the &#8216;official&#8217; repository &#8211; it is used to create the packages and binaries.  A person or core team has commit rights to it, but many other developers have public forks of that repository.  When they have changes, they issue a pull request to an integration manager, who adds them as a remote if they haven&#8217;t already &#8211; then merges, tests, accepts and pushes.</p>
 
 
-	<p><img src="./artwork/s2/integration-manager.png" alt="" /></p>
+	<p><img src="s2/integration-manager.png" alt="" /></p>
 
 
 	<p>This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.</p>
@@ -1920,7 +1943,7 @@ $ git push mycap master</p>
 	<h3>Over Git</h3>
 
 
-	<p>Git provides it&#8217;s own special protocol, which is basically just a really thin wrapper over the &#8216;git-upload-pack&#8217; command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:</p>
+	<p>Git provides its own special protocol, which is basically just a really thin wrapper over the &#8216;git-upload-pack&#8217; command that will tell you what is available, then you tell it what you have and it gives you a packfile of the difference.  To start it up manually, run something like the following command:</p>
 
 
 	<p>shell. $ git-daemon&#8212;detach&#8212;export-all&#8212;base-path=/opt/git /opt/git/ambition</p>
@@ -1985,7 +2008,7 @@ $ git push mycap master</p>
 	<p>You can follow your friends or developers whose work you are interested in, or individual projects.  You then subscribe to a single Atom feed and are kept up to date on what all those projects and people are doing, code-wise.</p>
 
 
-	<p><img src="./artwork/s2/github1.png" alt="" /></p>
+	<p><img src="s2/github1.png" alt="" /></p>
 
 
 	<p>More interesting, you can publicly fork a project, so you have your own copy of it.  GitHub is unique in concept in that it is really centered around individuals rather than projects.  For instance, if you want to follow or work on Merb, you would follow or fork wycats&#8217;s Merb, there is really no &#8216;official&#8217; Merb page in GitHub.  It&#8217;s simply that wycats is known to be the blessed repository by the Merb project.</p>
@@ -1994,7 +2017,7 @@ $ git push mycap master</p>
 	<p>You could just as easily follow and fork someone else&#8217;s repository of the project.  An interesting example of this is the <a href="http://github.com/sr/git-wiki">git-wiki</a> project, which was started by a user called &#8216;sr&#8217;, then was forked and greatly modified by &#8216;al3x&#8217;.  &#8216;sr&#8217; wanted to keep the project simple, and so now there are two major versions of the project by these two.  I have a checkout of the project and remotes added for each one, so I could work on and contribute to either.</p>
 
 
-	<p><img src="./artwork/s2/github2.png" alt="" /></p>
+	<p><img src="s2/github2.png" alt="" /></p>
 
 
 	<p>Let&#8217;s say there is a popular feature request that is either not completed or not accepted by the main project maintainer.  You can very easily fork the project and keep your patch or patches up to date with the head on a regular basis and people can pull from yours instead.  Perhaps enough demand builds up or enough testing is done from all these users that the patch is accepted.  You can then delete your fork and revert to the original project head.</p>
@@ -2114,7 +2137,7 @@ $ git push mycap master</p>
 	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-push.html">git push</a></h3>
 
 
-	<p>Pushes all the objects that you have that a remote version does not yet have to that repository and advances it&#8217;s branches.</p>
+	<p>Pushes all the objects that you have that a remote version does not yet have to that repository and advances its branches.</p>
 
 
 	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-remote.html">git remote</a></h3>
@@ -2129,7 +2152,7 @@ $ git push mycap master</p>
 	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a></h3>
 
 
-	<p>Shows a listing of commits on a branch or involving a specific file and optionally details about what changed between it and it&#8217;s parents.</p>
+	<p>Shows a listing of commits on a branch or involving a specific file and optionally details about what changed between it and its parents.</p>
 
 
 	<h3><a href="http://www.kernel.org/pub/software/scm/git/docs/git-show.html">git show</a></h3>
@@ -2213,7 +2236,7 @@ $ git push mycap master</p>
 	<p>Here are some references that I used or that you may use to find out more about Git.</p>
 
 
-	<p>The example git repository that I was working with throughout this book can be cloned from it&#8217;s 
+	<p>The example git repository that I was working with throughout this book can be cloned from its 
 <a href="http://github.com/schacon/simplegit">GitHub repository</a></p>
 
 

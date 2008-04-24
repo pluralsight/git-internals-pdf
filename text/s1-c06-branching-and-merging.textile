@@ -8,8 +8,6 @@ note.  Creating a branch is nothing more than just writing 40 characters to a fi
 
 Switching to that branch simply means having Git make your working directory look like the tree that SHApoints to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
 
-Merging is also easy, compared to most SCM systems - is simply merging the trees that the commits you are telling it to merge are pointing to, which is much simpler than resolving a bunch of deltas.
-
 Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
 !vector/Branches1.eps!
