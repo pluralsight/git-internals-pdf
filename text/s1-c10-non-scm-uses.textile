@@ -1,5 +1,7 @@
 h2. Non-SCM Uses of Git
 
+editor. I'm thinking that this should be the start of a new chapter.
+
 I keep saying that Git is primarily a content tracking toolkit with SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.  
 
 This is a simple listing of some other tools that have been built on Git internals to demonstrate that an SCM is the bundled application, but Git can also be a useful toolkit for any application needing to track and manage slowly changing distributed trees of content.
@@ -18,13 +20,13 @@ note.  Somewhat interestingly, Git being a good solution to this problem is what
 
 h3. Distributed Document Oriented Database
 
-Using Git as a backend for a document oriented database could have some interesting applications.  Git provides a number of features such as replication, searching with grep, and full versioning history for free.
+Using Git as a backend for a document oriented database could have some interesting applications.  Git provides a number of features such as replication, searching with @grep@, and full versioning history for free.
 
 h4. Distributed Wiki
 
-Let's say we wanted to have a wiki for documentation on a project we're working on.  If we create a wiki that works off of files, we can simply write those files into a Git repository and run a commit after every change.  This gives us good performance, since it's just reading the content off the disk, and full file version history and easy 'recently changed' data.  We also get searching built in and can edit the wiki offline.  
+Suppose we wanted to have a wiki for documentation on a project.  If we create a wiki that works on files, we can simply write those files into a Git repository and run a commit after every change.  This gives us good performance, since it's just reading the content off the disk. We also get full file version history and easy 'recently changed' data. Searching is built in and we can edit the wiki offline.  
 
-The other cool feature we could use is the distributed nature of it.  We could add other people on the project as remote repositories and push to and fetch from them, merging changes to write a book or documentation collaboratively.  We could branch to try out a re-write and then either merge it in or throw it away if we don't like it.  We could send a pull request to our collegues for them to try out the branch to preview it before we decide whether to merge it in or not.
+The other cool feature we could use is the distributed nature of Git.  We could add other people on the project as remote repositories and push to and fetch from them, merging changes to write a book or documentation collaboratively.  We could branch to try out a re-write and then either merge it in or throw it away if we don't like it.  We could send a pull request to our colleagues for them to try out the branch to preview it before we decide whether to merge it in or not.
 
 It's possible the entire wiki project could even live in a bare branch (that is, a branch with no common ancestors with any existing branch) in the same repository as our project, so clones can get the documentation as well, without it muddying up our code tree.
 
@@ -40,8 +42,8 @@ Examples of projects trying to do this are
 
 h3. Backup Tool
 
-Let's say you want to build something like a distributed Time-Machine (Apple all rights reserved) that efficiently packs up its backups and transfers them to multiple machines.  I'm hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn't do, which is permissions.  Git stores the mode of its content in the tree, but it doesn't store any permissions data, which means it's not good for backing up directories in which permissions are important, like '/etc' for example.
+Let's suppose that you want to build something like a distributed Time Machine[TM] backup system (Apple all rights reserved) that efficiently packs up its backups and transfers them to multiple machines.  I'm hoping by now that you could see the benefits of using the Git toolkit to accomplish this, but this particular problem is interesting because of something that Git doesn't do, which is permissions.  Git stores the mode of its content in the tree, but it doesn't store any permissions data, which means it's not good for backing up directories in which permissions are important. A good example would be the @/etc@ directory on a Unix machine.
 
-One project that has tackled this is "Gibak":http://eigenclass.org/hiki/gibak-backup-system-introduction, by implementing a metastore in OCaml, and it's worth a look if this topic interests you.
+One project that has tackled this is "Gibak":http://eigenclass.org/hiki/gibak-backup-system-introduction. It implements a metastore in OCaml and it's worth a look if this topic interests you.
 
-note.  If you are interested in using Git in a non-standard way and like Ruby, you might be interested in using my "'git' gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.
+note.  If you are interested in using Git in a non-standard way and plan to use Ruby, you might be interested in my "git gem":http://jointheconversation.org/rubygit/, which provides an object oriented interface in Ruby to the Git tools, including several of the lower level functions.

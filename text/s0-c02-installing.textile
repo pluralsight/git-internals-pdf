@@ -1,4 +1,4 @@
-h2. Installing Git
+h1. Installing Git
 
 Before we can start playing with Git, we'll have to install it. I'll quickly cover installing Git on Linux, Mac and Windows.  I will not get into really fine detail, because others have done that much better, but I will give you an overview and links as to where to find more detailed instructions on each platform.
 
@@ -6,7 +6,7 @@ For any of these examples, you can find a link to the most current Git source co
 
 I would recommend compiling from source if possible, simply because Git is lately making big strides in usability, so more current versions may be a bit easier to use.
 
-h3. Installing on Linux
+h2. Installing on Linux
 
 If you are installing from source, it will go something like the standard:
 
@@ -25,13 +25,13 @@ or on yum based systems, you can often run:
 shell. $ yum install git-core
 
 
-h3. Installing on Mac
+h2. Installing on Mac
 
 You are likely going to want to install Git without the asciidoc dependency because it is a pain to install.   Other than that, what you basically need is Curl and Expat.  With the exception of the Leopard binary OS X installer, you will also need the Developer Tools installed.  If you don't have the OS X install discs anymore, you can get the tools from the 
 "Apple Website":http://developer.apple.com/tools/
 
 
-h4. Mac 10.4 - Tiger
+h3. Mac 10.4 - Tiger
 
 There are some requirements you'll have to install before you can compile Git.  Expat can be installed roughly like this:
 
@@ -54,7 +54,7 @@ shell. $ sudo port install git-core
 For an in depth tutorial on installing on 10.4, see 
 "this article":http://blog.kineticweb.com/articles/2007/08/26/compiling-git-for-mac-os-x-10-4-10-intel
 
-h4. Mac 10.5 - Leopard
+h3. Mac 10.5 - Leopard
 
 The easiest way to install is most likely the 
 "Git OSX Installer":http://code.google.com/p/git-osx-installer/, which you can get from Google Code, and has just recently been linked to as the "official" Mac version on the Git homepage.  Just download and run the dmg from the website.
@@ -66,13 +66,12 @@ Finally, MacPorts is also an easy option if you have that installed.
 For an in-depth tutorial on installations under Leopard, see 
 "this article":http://blog.kineticweb.com/articles/2007/10/30/compiling-git-for-mac-os-x-leopard-10-5
 
-h3. Windows
+h2. Windows
 
 There are two options on Windows currently, but the popular one is 
 "MSysGit":http://code.google.com/p/msysgit/
 , which installs easily and is runnable on the Windows command line.  Simply download the exe file from the 
-"downloads list":http://code.google.com/p/msysgit/downloads/list
-, execute it and follow the on-screen instructions.
+"downloads list":http://code.google.com/p/msysgit/downloads/list, execute it and follow the on-screen instructions.
 
 
 

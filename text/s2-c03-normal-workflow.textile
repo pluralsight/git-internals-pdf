@@ -6,9 +6,9 @@ todo. sidebar:c2-normal-workflow.textile
 
 h3. Ignoring
 
-First off, we will often want Git to automatically ignore certain files - often ones that are automatically generated during our development.  For example, in Rails development we often want to ignore the log files, the production specific configuration files, etc. To do this, we can add patterns into the _.gitignore_ file to tell Git that we don't want it to track them.
+First off, we will often want Git to automatically ignore certain files - often ones that are automatically generated during our development.  For example, in Rails development we often want to ignore the log files, the production specific configuration files, etc. To do this, we can add patterns into the @.gitignore@ file to tell Git that we don't want it to track them.
 
-Here is an example _.gitignore_ file.
+Here is an example @.gitignore@ file.
 
 code. gitignore.txt
 
@@ -18,7 +18,7 @@ h3. Adding and Committing
 
 Now we'll do some development and periodically commit our changes.  We have a few options here - we can commit individual files or we can tell the _commit_ command to automatically add all modified files in our working directory to the index, then commit it.
 
-A good way to find out what you're about to commit (that is, what is in your index) is to use the 'status' command.
+A good way to find out what you're about to commit (that is, what is in your index) is to use the @status@ command.
 
 shell. git-status.txt
 
@@ -30,13 +30,13 @@ You can see that if we commit at this point, only the Rakefile will show up as c
 
 !vector/Git_Add_Commit.eps!
 
-If we want to commit all our changes, we can use this shorthand, which will automatically run a 'git add' on every modified file to our index, then commit the whole thing:
+If we want to commit all our changes, we can use this shorthand, which will automatically run a @git add@ on every modified file to our index, then commit the whole thing:
 
 shell. $ git commit -a -m 'committing all changes'
 
 !vector/Git_Commit_A.eps!
 
-If you would like to give a more useful commit message, you can leave out the '-m' option.  That will fire up your $EDITOR to add your commit message.
+If you would like to give a more useful commit message, you can leave out the @-m@ option.  That will fire up your @$EDITOR@ to add your commit message.
 
 note. Give special care to the first line of your commit message - it will often be the only thing people see when they are looking through your commit history.
 
@@ -46,11 +46,11 @@ Now we can continue this loop - modifying, adding and committing - during our de
 
 h3. Interactive Adding
 
-Although that will work for all of your development needs - many developers simply use '-a' nearly every time they commit to just automatically add everything to the index, there is another way of adding files that makes for a more controlled and thematic set of commits.  This is called 'interactive' adding, and it is a very powerful tool to controlling what goes into each commit.
+Although that will work for all of your development needs - many developers simply use @-a@ nearly every time they commit to just automatically add everything to the index - there is another way of adding files that makes for a more controlled and thematic set of commits.  This is called _interactive_ adding, and it is a very powerful tool to controlling what goes into each commit.
 
 todo. sidebar:c3-add-interactive.textile
 
-Let's say we add a new function to our 'lib/simplegit.rb' file, add a new task to our 'Rakefile' and then add a new 'TODO' file to our project.  Later we come back and want to commit, but we don't remember which files had to do with each other and we don't just want to commit them all together because that's confusing for collaborators trying to review our code. 'Interactive' mode let's us modify our index interactively before committing.  To fire it up, type 'git add -i':
+Let's say we add a new function to our @lib/simplegit.rb@ file, add a new task to our @Rakefile@ and then add a new @TODO@ file to our project.  Later we come back and want to commit, but we don't remember which files had to do with each other and we don't just want to commit them all together because that's confusing for collaborators trying to review our code. Interactive mode lets us modify our index interactively before committing.  To fire it up, type @git add -i@:
 
 shell. interactive-mode1.txt
 

@@ -1,4 +1,4 @@
-h1. Section Two - Using Git
+h1. Using Git
 
 Now that you _hopefully_ understand what Git is designed to do at a fundamental level - how it tracks and stores content, how it stores branches and merges and tracks remote copies of the repository, let's see how to actually use it.  This next section presents some of the basic commands that you will need to know in order to use Git effectively.  
 
@@ -8,17 +8,17 @@ h2. Setting Up Your Profile
 
 todo. sidebar:c1-init.textile
 
-For every commit you do, Git will try to associate a name and email address.  One of the first things you'll want to do in Git is to set these values.  You can set them as global configuration values with the 'git config' command:
+For every commit you do, Git will try to associate a name and email address.  One of the first things you'll want to do in Git is to set these values.  You can set them as global configuration values with the @git config@ command:
 
 shell. $ git config --global user.name "Scott Chacon"
 $ git config --global user.email "schacon@gmail.com"
 
-That will create a new '~/.gitconfig' file that will now look like this:
+This will create a new @~/.gitconfig@ file that will look like this:
 
 shell. git-config.txt
 
-You can change those variables at any time either by editing that file, or running the 'git config' commands again.  
+You can change those variables at any time either by editing that file, or running the @git config@ commands again.  
 
-If you want to set different values for a specific project, just leave out the '--global' and it will write the same snippet into your '.git/config' file in that repository, which will overwrite your global values.
+If you want to set different values for a specific project, just leave out the @--global@ and it will write the same snippet into your @.git/config@ file in that repository, which will overwrite your global values.
 
 * "git config":http://www.kernel.org/pub/software/scm/git/docs/git-config.html

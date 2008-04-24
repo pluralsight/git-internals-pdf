@@ -30,25 +30,25 @@ At this point, we show the new branch code to our co-workers and everyone likes 
 
 h3. Remotes
 
-Now lets take a look at remotes.  Remotes are basically pointers to branches in other peoples copies of the same repository, often on other computers.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as 'origin' by default.  Which means the tree that was checked out during your initial clone would be referenced as 'origin/master', which means 'the master branch of the origin remote'. 
+Now lets take a look at remotes.  Remotes are basically pointers to branches in other peoples copies of the same repository, often on other computers.  If you got your repository by cloning it, rather than initializing it, you should have a remote branch of where you copied it from automatically added as @origin@ by default.  Which means the tree that was checked out during your initial clone would be referenced as @origin/master@, which means "the master branch of the origin remote."
 
-Lets say you clone someone's repository and make a few changes.  You would have two references, one to 'origin/master' which points to where the master branch was on the persons repository you cloned from when you did so, and a 'master' branch that points the most recent local commit.
+Lets say you clone someone's repository and make a few changes.  You would have two references, one to @origin/master@ which points to where the master branch was on the person's repository you cloned from when you did so, and a @master@ branch that points the most recent local commit.
 
 !vector/Remote_Story1.eps!
 
-Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Let's say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch 'idea' locally.  We now have access to those changes as 'origin/idea'.
+Now lets say you run a _fetch_. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Let's say we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch @idea@ locally.  We now have access to those changes as @origin/idea@.
 
 !vector/Remote_Story2.eps!
 
-We look at the 'idea' branch and like where they're going with it, but we also want the changes they've made on their 'master' branch, so we do a 3-way merge of their two branches and our master.  We don't know how well this is going to work, so we make a 'tryidea' branch first and then do the merge there.
+We look at the @idea@ branch and like where they're going with it, but we also want the changes they've made on their @master@ branch, so we do a 3-way merge of their two branches and our @master@.  We don't know how well this is going to work, so we make a @tryidea@ branch first and then do the merge there.
 
 !vector/Remote_Story3.eps!
 
-Now we can run our tests and merge everything back into our 'master' branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that "patch".
+Now we can run our tests and merge everything back into our @master@ branch if we want.  Then we can tell our friend we cloned from to fetch from our repository, where we've merged their two branches for them and integrated some of our changes as well.  They can choose to accept or reject that patch.
 
 h3. Rebasing
 
-Let's say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote 'jen', do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)
+Let's say you and another developer, Jen, are working on the same project simultaneously.  She clones from you, and works for a while and commits.  You have committed in the meantime and want to get your work in sync, so you add her repository as the remote @jen@, do a fetch and merge her changes in, creating a new merge commit.  (All commits that are simply merges are given a darker color in this example)
 
 !vector/Rebase1.eps!
 
@@ -58,7 +58,7 @@ At this point, you both do work and commit changes and then you fetch and merge 
 
 Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.
 
-This is where the rebasing command comes in.  With rebase, Git will checkout the _upstream branch_, in this case, Jen's master branch, and then replay all the changes you've done since you forked on top of those files, as if you had forked your work off at _that_ point and done all your changes, rather than earlier.
+This is where the rebasing command comes in.  With rebase, Git will checkout the _upstream branch_, in this case, Jen's @master@ branch, and then replay all the changes you've done since you forked on top of those files, as if you had forked your work off at _that_ point and done all your changes, rather than earlier.
 
 Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  These objects can then be removed, since nothing points to them, when you run the garbage collection tools (see "The Care and Feeding of Git" chapter).
 
@@ -87,17 +87,18 @@ h3. Use Cases
 
 So why is this helpful, exactly?  It means that you can keep your development cycles loosely coupled.  Here is an example of a common workflow with cheap branches.  
 
-You have a 'master' branch that is _always_ stable - you never merge anything into it that you wouldn't put into production. Then you have a 'development' branch that you merge any experimental code into before you imagine pulling it into the 'master' branch.  
+You have a @master@ branch that is _always_ stable - you never merge anything into it that you wouldn't put into production. Then you have a @development@ branch that you merge any experimental code into before you imagine pulling it into the @master@ branch. 
 
-You create a new branch each time you begin to work on a story or feature, branching it off your current 'development' branch each time, so if you get blocked and need to put it on hold, it doesn't effect anything else.  When you do get back to them, you rebase them to the current 'development' and it is just like you started from there.  Often times you merge the branch back into 'development' and delete it the same day that you created it.  
+note. It's a common error to think of the @master@ branch as being equivalent to Subversion's @trunk@. However, a custom @development@ branch is much closer in practice to the Subversion @trunk@, where experimental work is done.
+
+You create a new branch each time you begin to work on a story or feature, branching it off your current @development@ branch each time, so if you get blocked and need to put it on hold, it doesn't effect anything else.  When you do get back to them, you rebase them to the current @development@ and it is just like you started from there.  Often times you merge the branch back into @development@ and delete it the same day that you created it.  
 
 If you get a huge project or idea - say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.
 
-Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public Git repo for that project.  You add it as a remote, fetch it, create a new 'merge-feature' branch off your 'development' branch, merge in the new changes and you're done.  No emailing patches around and applying them - just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the 'merge-feature' branch and that's it.
+Working with others is unbelievably easy. You ask in an IRC room if someone has implemented a feature in a library you are using.  Turns out that someone has and you are sent the URL of their public Git repo for that project.  You add it as a remote, fetch it, create a new @merge-feature@ branch off your @development@ branch, merge in the new changes and you're done.  There's no awkward emailing of patches - you can just add contributors as a remote and try out their branches before deciding to merge them in. If it breaks things or is not a good patch, you simply delete the @merge-feature@ branch and that's it.
 
 !bitmap/branching.png(Project collaboration using multiple branch forks and merges)!
 
+note. A common problem with open source projects managed with Subversion is that a patch is sent which was made against and older version of the code base. With Git, it's as easy as applying the outdated patch in a new branch, then rebasing from @master@ to bring it up to date with the current code base.
+
 You branch and rebase or merge several times a day in and out of several different branches, some of which last for hours and some are continually there.  Once you get used to this pattern, it completely changes the way you approach your development and the way you contribute and collaborate.
-
-
-

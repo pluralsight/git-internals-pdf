@@ -8,12 +8,12 @@ To create a new Git repository somewhere, simply go to the directory you want to
 
 shell. git init
 
-This will create a _.git_ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type:
+This will create a @.git@ directory in your current working directory that is entirely empty.  If you have existing files you want to add to your new repository, type:
 
 shell. git add .
 git commit -m 'my first commit'
 
-This will add all of your current files into your new repository and index and then create your first commit object, pointing your new 'master' branch to it.  Congratulations, you have now added your source code to Git.
+This will add all of your current files into your new repository and index and then create your first commit object, pointing your new @master@ branch to it.  Congratulations, you have now added your source code to Git.
 
 * "git init":http://www.kernel.org/pub/software/scm/git/docs/git-init.html
 * "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
@@ -29,9 +29,8 @@ In order to do this, you simply need a URL that has a Git repository hosted ther
 
 shell. git clone git://github.com/schacon/simplegit.git
 
-This will by default create a new directory called 'simplegit' and do an initial checkout of the 'master' branch.  If you want to put it in a different directory than the name of the project, you can specify that on the command line, too.
+This will by default create a new directory called @simplegit@ and do an initial checkout of the @master@ branch.  If you want to put it in a different directory than the name of the project, you can specify that on the command line, too.
 
 shell. git clone git://github.com/schacon/simplegit.git my_directory
-
 
 * "git clone":http://www.kernel.org/pub/software/scm/git/docs/git-clone.html
