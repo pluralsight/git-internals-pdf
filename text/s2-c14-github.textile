@@ -12,13 +12,13 @@ GitHub is interesting as a source code hosting service because it includes some 
 
 You can follow your friends or developers whose work you are interested in, or individual projects.  You then subscribe to a single Atom feed and are kept up to date on what all those projects and people are doing, code-wise.
 
-!s2/github1.png!
+!bitmap/github1.png!
 
 More interesting, you can publicly fork a project, so you have your own copy of it.  GitHub is unique in concept in that it is really centered around individuals rather than projects.  For instance, if you want to follow or work on Merb, you would follow or fork wycats's Merb, there is really no 'official' Merb page in GitHub.  It's simply that wycats is known to be the blessed repository by the Merb project.  
 
 You could just as easily follow and fork someone else's repository of the project.  An interesting example of this is the "git-wiki":http://github.com/sr/git-wiki project, which was started by a user called 'sr', then was forked and greatly modified by 'al3x'.  'sr' wanted to keep the project simple, and so now there are two major versions of the project by these two.  I have a checkout of the project and remotes added for each one, so I could work on and contribute to either.
 
-!s2/github2.png!
+!bitmap/github2.png!
 
 Let's say there is a popular feature request that is either not completed or not accepted by the main project maintainer.  You can very easily fork the project and keep your patch or patches up to date with the head on a regular basis and people can pull from yours instead.  Perhaps enough demand builds up or enough testing is done from all these users that the patch is accepted.  You can then delete your fork and revert to the original project head.
 

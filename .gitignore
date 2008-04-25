@@ -7,3 +7,5 @@ code/**/*.*~
 *.mov
 *.zip
 *.idlk
+text.textile
+text.html
