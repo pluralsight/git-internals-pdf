@@ -6,7 +6,7 @@ When you are working on code in Git, storing trees in any state and keeping poin
 
 note.  Creating a branch is nothing more than just writing 40 characters to a file
 
-Switching to that branch simply means having Git make your working directory look like the tree that SHApoints to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
+Switching to that branch simply means having Git make your working directory look like the tree that SHA points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in '.git/refs/heads/[current_branch_name]' be the SHA of your last commit).
 
 Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
