@@ -54,6 +54,8 @@ shell. $ sudo port install git-core
 For an in depth tutorial on installing on 10.4, see 
 "this article":http://blog.kineticweb.com/articles/2007/08/26/compiling-git-for-mac-os-x-10-4-10-intel
 
+note. If you hope to use Git with an existing Subversion repository, pass the @+svn@ flag to @port@. This will build Subversion and the necessary Perl interfaces for Subversion as well.
+
 h3. Mac 10.5 - Leopard
 
 The easiest way to install is most likely the 
@@ -63,15 +65,11 @@ If you want to compile from source, all the requirements are installed with the 
 
 Finally, MacPorts is also an easy option if you have that installed.
 
-For an in-depth tutorial on installations under Leopard, see 
-"this article":http://blog.kineticweb.com/articles/2007/10/30/compiling-git-for-mac-os-x-leopard-10-5
+For an in-depth tutorial on installations under Leopard, see "this article":http://blog.kineticweb.com/articles/2007/10/30/compiling-git-for-mac-os-x-leopard-10-5
 
 h2. Windows
 
-There are two options on Windows currently, but the popular one is 
-"MSysGit":http://code.google.com/p/msysgit/
-, which installs easily and is runnable on the Windows command line.  Simply download the exe file from the 
-"downloads list":http://code.google.com/p/msysgit/downloads/list, execute it and follow the on-screen instructions.
+There are two options on Windows currently, but the popular one is "MSysGit":http://code.google.com/p/msysgit/, which installs easily and is runnable on the Windows command line.  Simply download the exe file from the "downloads list":http://code.google.com/p/msysgit/downloads/list, execute it and follow the on-screen instructions.
 
 
 

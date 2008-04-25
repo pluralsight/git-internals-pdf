@@ -10,6 +10,8 @@ To demonstrate these examples, we will develop a small ruby library that provide
 
 Let's take a look at what Git does when this is committed to a repository.
 
+break. x
+
 h3. The Blob
 
 In Git, the contents of files are stored as *blobs*.
@@ -22,6 +24,8 @@ It is important to note that it is the _contents_ that are stored, not the files
 
 This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, Git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, Git will only transfer the blob once, then expand it out into multiple files upon checkout.
 
+break. x
+
 h3. The Tree
 
 Directories in Git basically correspond to *trees*.  
@@ -32,6 +36,8 @@ A tree is a simple list of trees and blobs that the tree contains, along with th
 
 !vector/Tree_Expand.eps!
 
+
+break. x
 
 h3. The Commit
 
@@ -50,6 +56,8 @@ Since this was my first commit, there are no parents.  If I commit a second time
 Notice how the _parent_ in that commit is the same SHA1 value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.
 
 note. The current record for number of commit parents in the Linux kernel is 12 branches merged in a single commit!
+
+break. x
 
 h3. The Tag
 

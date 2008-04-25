@@ -8,4 +8,4 @@ When I learned Git, as many people do, I learned it in the context of other SCMs
 
 !vector/what-git-is.eps!
 
-So, let's see what it's doing behind the scenes first. 
+So, let's see what it's doing behind the scenes first.
