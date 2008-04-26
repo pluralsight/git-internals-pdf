@@ -6,7 +6,7 @@ todo. sidebar:c5-git-browsing.textile
 
 h3. Showing Objects
 
-The 'git show' command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of its subtrees.  Where it's most useful is using it to look at commits.
+The @git show@ command is really useful for presenting any of the objects in a very human readable format.  Running this command on a file will simply output the contents of the file.  Running it on a tree will just give you the filenames of the contents of that tree, but none of its subtrees.  Where it's most useful is using it to look at commits.
 
 h4. Showing Commits
 
@@ -16,19 +16,19 @@ shell. git-show-commit.txt
 
 h4. Showing Trees
 
-Instead of the 'git show' command, it's generally more useful to use the lower level 'git ls-tree' command to view trees, because it gives you the shas of all the blobs and trees that it points to.
+Instead of the @git show@ command, it's generally more useful to use the lower level @git ls-tree@ command to view trees, because it gives you the SHA1s of all the blobs and trees that it points to.
 
 shell. git-lstree1.txt
 
-You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the SHAof any blob anywhere in the tree without having to walk it one node at a time.  
+You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the SHA1 of any blob anywhere in the tree without having to walk it one node at a time.  
 
 shell. git-lstree2.txt
 
-The '-t' makes it also show the shas of the subtrees themselves, rather than just all the blobs.
+The @-t@ makes it also show the SHA1s of the subtrees themselves, rather than just all the blobs.
 
 h4. Showing Blobs
 
-Lastly, you may want to extract the contents of individual blobs.  The 'cat-file' command is an easy way to do that, and can also serve to let you know what type of object a SHAis, if you happen to not know.  It is sort of a catch-all command that you can use to inspect objects.
+Lastly, you may want to extract the contents of individual blobs.  The @cat-file@ command is an easy way to do that, and can also serve to let you know what type of object a SHA1 is, if you don't know.  It is sort of a catch-all command that you can use to inspect objects.
 
 shell. git-catfile.txt
 
@@ -40,27 +40,27 @@ There are two major graphical interfaces that come with Git as tools to browse t
 
 h4. Gitk
 
-A very popular choice for browsing Git repositories is the Tcl/Tk based browser called 'gitk'.  If you want to see a simple visualization of your repository, gitk is a great tool.
+A very popular choice for browsing Git repositories is the Tcl/Tk based browser called @gitk@.  If you want to see a simple visualization of your repository, @gitk@ is a great tool.
 
 !bitmap/gitk.png!
 
-Gitk will also take most of the same arguments that 'git log' will take, including '--since', '--until', '--max-count', revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is 'gitk --all', which will show you all of your branches (rather than just the one you are currently on) next to each other.
+Gitk will also take most of the same arguments that @git log@ will take, including @--since@, @--until@, @--max-count@, revision ranges and path limiters.  One of the most interesting visualizations that I regularly use is @gitk --all@, which will show all of your branches next to each other (rather than just the one you are currently on).
 
 h4. Instaweb
 
-If you don't want to fire up Tk, you can also browse your repository quickly via the 'git instaweb' command.  This will basically fire up a web server running the "gitweb":http://git.or.cz/gitwiki/Gitweb cgi script using lighttpd, apache or webrick.  It then tries to automatically fire up your default web browser and points it at the new server.
+If you don't want to fire up Tk, you can also browse your repository quickly via the @git instaweb@ command.  This will basically fire up a web server running the "gitweb":http://git.or.cz/gitwiki/Gitweb CGI script using lighttpd, apache or webrick.  It then tries to automatically fire up your default web browser and points it at the new server.
 
 shell. git-instaweb.txt
 
 !bitmap/instaweb.png!
 
-When you are done, you can run the following to shut down the server.
+When you are done, you can run the following to shut down the server:
 
 shell. $ git instaweb --stop
 
 This is a quick way to throw up a web interface on your git repository for sharing with others or simply browsing it in a different way.  
 
-For a more long term web interface to your repository, you can put the gitweb perl files that come with Git into your cgi-bin directory.
+For a more long term web interface to your repository, you can put the gitweb Perl files that come with Git into your @cgi-bin@ directory.
 
 * "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 * "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html

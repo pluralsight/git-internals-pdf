@@ -2,6 +2,6 @@ h3. Setup, Init and Cloning Screencast
 
 I have produced a series of short screencasts demonstrating the topics of several of the chapters in this book, so you can see them in practice on a real command line. You should be able to download these movies with this book from the Peepcode website.
 
-The first in this series is 'Git Setup, Initialization and Cloning' and shows you how to setup your git configuration, how to initialize a new repository and how to clone an existing repository over both the git transport and the http transport.
+The first in this series is 'Git Setup, Initialization and Cloning' and shows you how to setup your git configuration, how to initialize a new repository and how to clone an existing repository over both the git transport and the HTTP transport.
 
 movie. c1-init.mov

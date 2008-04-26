@@ -1,7 +1,5 @@
 h2. Non-SCM Uses of Git
 
-editor. I'm thinking that this should be the start of a new chapter.
-
 I keep saying that Git is primarily a content tracking toolkit with SCM tools built on top of it.  So, if it's not built specifically to be an SCM, perhaps it would be useful to see some other examples of things it might be good for.  
 
 This is a simple listing of some other tools that have been built on Git internals to demonstrate that an SCM is the bundled application, but Git can also be a useful toolkit for any application needing to track and manage slowly changing distributed trees of content.

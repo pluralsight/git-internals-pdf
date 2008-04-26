@@ -20,11 +20,9 @@ In Git, the contents of files are stored as *blobs*.
 
 It is important to note that it is the _contents_ that are stored, not the files.  The names and permissions of the files are not stored with the blob, just the contents.  
 
-!vector/Blob_Expand.eps!
-
 This means that if you have two files anywhere in your project that are exactly the same, even if they have different names, Git will only store the blob once.  This also means that during repository transfers, such as clones or fetches, Git will only transfer the blob once, then expand it out into multiple files upon checkout.
 
-break. x
+!vector/Blob_Expand.eps!
 
 h3. The Tree
 
@@ -35,9 +33,6 @@ Directories in Git basically correspond to *trees*.
 A tree is a simple list of trees and blobs that the tree contains, along with the names and permissions of those trees and blobs.  The contents section of a tree object consists of a very simple text file that lists the _mode_, _type_, _name_ and _sha_ of each entry.
 
 !vector/Tree_Expand.eps!
-
-
-break. x
 
 h3. The Commit
 

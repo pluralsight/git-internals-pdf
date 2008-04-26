@@ -6,7 +6,7 @@ todo. sidebar:c8-dist-workflow.textile
 
 h3. Cloning
 
-If you want to begin working on an existing project, you will need to get an initial version of it - copy its repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, http, https, ssh, its own 'git' protocol, and rsync.  The 'git' protocol and 'ssh' are preferred because they are more efficient and not difficult to set up.  
+If you want to begin working on an existing project, you will need to get an initial version of it - copy its repository of objects and references to your machine. This is done with a clone.  Git can clone a repository over several transports, including local, HTTP, HTTPS, SSH, its own @git@ protocol, and @rsync@.  The @git@ protocol and SSH are preferred because they are more efficient and not difficult to set up.  
 
 When you clone a repository, it in essence copies all the git objects to a new directory, checks you out a single local branch named the same as the HEAD branch on the cloned repo (normally 'master'), and stores all the other branches under a remote reference by default named 'origin'.
 
@@ -21,7 +21,7 @@ shell. $ git clone --bare simplegit/.git simplegit-bare.git
 
 h4. SSH and Git Transports
 
-Cloning over ssh requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.
+Cloning over SSH requires that you have user credentials on the machine you are cloning from.  The git transport does not have this authentication and so is normally used for fetching only.
 
 shell. $ git clone git@github.com:schacon/ticgit.git ticgit_directory
 
@@ -60,7 +60,7 @@ shell. $ git fetch origin/story84; git merge origin/story84
 
 h3. Pushing
 
-Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over ssh), we can simply run 'git push'
+Now we can get updates from other repositories, but how can we push changes to them?  If we have commit rights on the repository (normally over SSH), we can simply run @git push@.
 
 shell. $ git push origin master
 
@@ -99,9 +99,9 @@ I can also add several remotes to pull and merge from, in this case, one for eve
 
 !vector/Fetch_Pull.eps!
 
-You can also remove remotes at any time, which simply removes the lines that contain the url in your '.git/config' file and the references to their remote branches in '.git/refs/[remote_name]' directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.
+You can also remove remotes at any time, which simply removes the lines that contain the URL in your @.git/config@ file and the references to their remote branches in @.git/refs/[remote_name]@ directory.  It will not remove any of the git objects, so if you decide to add it again and fetch, very little will be transferred.
 
-You can also view useful information about a remote branch by using the 'remote show' command.  For example, if I run this on a checkout of the Git source code itself, I will see this:
+You can also view useful information about a remote branch by using the @remote show@ command.  For example, if I run this on a checkout of the Git source code itself, I will see this:
 
 shell. git-remote-show.txt
 
@@ -117,9 +117,9 @@ h4. Central Repository Model
 
 There is a single repository that all developers push to and pull from.
 
-!bitmap/workflow-star.png!
+!vector/workflow-star.eps(All developers push to a single server)!
 
-This model works just like a centralized SCM and Git can work that way just fine. If you setup a repository for your team on a server that everyone has ssh or NFS access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don't want to worry about a hierarchy - the strength of this model is that it forces everyone to stay up to date with each other and it doesn't depend on a single role. 
+This model works just like a centralized SCM and Git can work that way just fine. If you setup a repository for your team on a server that everyone has SSH or NFS access to, Git can very easily function as a centralized repository.  This may be common on small teams with non-public projects where you don't want to worry about a hierarchy - the strength of this model is that it forces everyone to stay up to date with each other and it doesn't depend on a single role. 
 
 Even large teams could use this, but in general there are a lot of gains to be made in larger teams with a different or hybrid model.
 
@@ -127,7 +127,7 @@ h4. Dictator and Lieutenant Model
 
 This is a highly hierarchical model where one individual has commit rights to a blessed repository that everyone else fetches from. Changes are fetched from developers by lieutenants responsible for specific subsystems and merged and tested.  Lieutenant branches are then fetched by the dictator and merged and pushed into the blessed repository, where the cycle starts over again.
 
-!bitmap/workflow-dictator.png!
+!vector/workflow-dictator.eps(Approved features gradually make their way up the ladder)!
 
 This is a model something like the Linux kernel uses, Linus being the benevolent dictator. This model is much better for large teams, and can be implemented with multiple and varied levels of lieutenants and sub-lieutenants in charge of various subsystems.  At any stage in this process, patches or commits can be rejected - not merged in and sent up the chain.
 
@@ -135,20 +135,8 @@ h4. Integration Manager Model
 
 This is where each developer has a public repository, but one is considered the 'official' repository - it is used to create the packages and binaries.  A person or core team has commit rights to it, but many other developers have public forks of that repository.  When they have changes, they issue a pull request to an integration manager, who adds them as a remote if they haven't already - then merges, tests, accepts and pushes.
 
-!bitmap/integration-manager.png!
+!vector/integration-manager.eps(Private and public repositories driven by read-only pull requests)!
 
 This is largely how community-based git repositories like GitHub were built to work and how many smaller open source projects operate.
 
-In the end, there is really no single 'right way' to do it - being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase - say your company has an internal fork of the Linux kernel that is managed by the Integration Manager model, in addition to pulling in changes occasionally from Linus's branch.  In the end, you (or you and your team) will have to sit down for a second and think about what will work best for you.
-
-
-
-
-
-
-
-
-
-
-
-
+In the end, there is really no single right way to do it - being a decentralized system, you can have a model with all of these aspects to it, or any combination you can think of.  You can also have subgroups using different models on the same codebase. For example, if your company might have an internal fork of the Linux kernel that is managed by the Integration Manager model in addition to pulling in changes occasionally from Linus's branch.  In the end, you and your team will have to think about what will work best for you.
