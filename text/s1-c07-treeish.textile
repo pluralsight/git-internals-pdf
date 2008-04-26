@@ -48,7 +48,7 @@ h4. Tilde Spec
 
 code. e65s46~5 
 
-The tilde character, followed by a number, refers to the Nth generation grandparent of that commit.  To clarify from the carrot, this is the equivalent commit in carrot syntax:
+The tilde character, followed by a number, refers to the Nth generation grandparent of that commit.  To clarify from the carrot, this is the equivalent commit in caret syntax:
 
 code. e65s46^^^^^
 
