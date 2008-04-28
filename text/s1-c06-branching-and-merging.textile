@@ -34,7 +34,7 @@ Lets say you clone someone's repository and make a few changes.  You would have 
 
 !vector/Remote_Story1.eps!
 
-Now lets say you run a @fetch@. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Suppose we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch @idea@ locally.  We now have access to those changes as @origin/idea@.
+Now lets say you run a @fetch@. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Suppose we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch @idea@ locally, then pushed that branch.  We now have access to those changes as @origin/idea@.
 
 !vector/Remote_Story2.eps!
 
