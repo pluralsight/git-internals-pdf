@@ -1,5 +1,5 @@
-h3. Branching and Merging Screencast
+h4. Branching and Merging Screencast
 
-In this screencast, we take you through a workflow where we branch, stash and merge several times.  It demonstrates the 'branch' and 'show-branch' commands, how to switch branches, how to stash changes, how to list and apply stashes, how to resolve conflicts, how to create and delete topic branches, and what fast-forward merges are.
+In this screencast, we take you through a workflow where we branch, stash and merge several times.  It demonstrates the @branch@ and @show-branch@ commands, how to switch branches, how to stash changes, how to list and apply stashes, how to resolve conflicts, how to create and delete topic branches, and what fast-forward merges are.
 
 movie. c6-branch-merge.mov

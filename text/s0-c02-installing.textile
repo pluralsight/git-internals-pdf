@@ -58,10 +58,9 @@ note. If you hope to use Git with an existing Subversion repository, pass the @+
 
 h3. Mac 10.5 - Leopard
 
-The easiest way to install is most likely the 
-"Git OSX Installer":http://code.google.com/p/git-osx-installer/, which you can get from Google Code, and has just recently been linked to as the "official" Mac version on the Git homepage.  Just download and run the dmg from the website.
+The easiest way to install is most likely the "Git OSX Installer":http://code.google.com/p/git-osx-installer/, which you can get from Google Code, and has just recently been linked to as the official Mac version on the Git homepage.  Just download and run the DMG from the website.
 
-If you want to compile from source, all the requirements are installed with the developer CD, so you can just download source and compile pretty easily if the developer tools are installed. 
+If you want to compile from source, all the requirements are installed with the developer CD. You can just download the Git source and compile pretty easily if the developer tools are installed.
 
 Finally, MacPorts is also an easy option if you have that installed.
 
@@ -69,7 +68,7 @@ For an in-depth tutorial on installations under Leopard, see "this article":http
 
 h2. Windows
 
-There are two options on Windows currently, but the popular one is "MSysGit":http://code.google.com/p/msysgit/, which installs easily and is runnable on the Windows command line.  Simply download the exe file from the "downloads list":http://code.google.com/p/msysgit/downloads/list, execute it and follow the on-screen instructions.
+There are two options on Windows currently, but the popular one is "MSysGit":http://code.google.com/p/msysgit/, which installs easily and can be run on the Windows command line.  Simply download the exe file from the "downloads list":http://code.google.com/p/msysgit/downloads/list, execute it and follow the on-screen instructions.
 
 
 

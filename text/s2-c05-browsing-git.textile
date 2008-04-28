@@ -2,7 +2,7 @@ h2. Browsing Git
 
 Git also gives you access to a number of lower level tools that can be used to browse the repository, inspect the status and contents of any of the objects, and are generally helpful for inspection and debugging.
 
-todo. sidebar:c5-git-browsing.textile
+sidebar. c5-git-browsing.textile
 
 h3. Showing Objects
 
@@ -16,19 +16,19 @@ shell. git-show-commit.txt
 
 h4. Showing Trees
 
-Instead of the @git show@ command, it's generally more useful to use the lower level @git ls-tree@ command to view trees, because it gives you the SHA1s of all the blobs and trees that it points to.
+Instead of the @git show@ command, it's generally more useful to use the lower level @git ls-tree@ command to view trees, because it gives you the SHA-1s of all the blobs and trees that it points to.
 
 shell. git-lstree1.txt
 
-You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the SHA1 of any blob anywhere in the tree without having to walk it one node at a time.  
+You can also run this command recursively, so you can see all the subtrees as well.  This is a great way to get the SHA-1 of any blob anywhere in the tree without having to walk it one node at a time.  
 
 shell. git-lstree2.txt
 
-The @-t@ makes it also show the SHA1s of the subtrees themselves, rather than just all the blobs.
+The @-t@ makes it also show the SHA-1s of the subtrees themselves, rather than just all the blobs.
 
 h4. Showing Blobs
 
-Lastly, you may want to extract the contents of individual blobs.  The @cat-file@ command is an easy way to do that, and can also serve to let you know what type of object a SHA1 is, if you don't know.  It is sort of a catch-all command that you can use to inspect objects.
+Lastly, you may want to extract the contents of individual blobs.  The @cat-file@ command is an easy way to do that, and can also serve to let you know what type of object a SHA-1 is, if you don't know.  It is sort of a catch-all command that you can use to inspect objects.
 
 shell. git-catfile.txt
 

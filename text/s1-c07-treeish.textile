@@ -6,17 +6,17 @@ I will list here the most common, but please read the
 "rev-parse command":http://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html
 for full descriptions of all the available syntaxes.
 
-h4. Full SHA
+h4. Full SHA-1
 
 code. dae86e1950b1277e545cee180551750029cfe735
 
-You can always list out the entire SHA1 value of the object to reference it.  This is sometimes easy if you're copying and pasting values from a tree listing or some other command.
+You can always list out the entire SHA-1 value of the object to reference it.  This is sometimes easy if you're copying and pasting values from a tree listing or some other command.
 
-h4. Partial SHA 
+h4. Partial SHA-1
 
 code. dae86e 
 
-Just about anything you can reference with the full SHA can be referenced fine with the first 6 or 7 characters.  Even though the SHA is always 40 characters long, it's very uncommon for more than the first few to actually be the same.  Git is smart enough to figure out a partial SHA as long as it's unique.
+Just about anything you can reference with the full SHA-1 can be referenced fine with the first 6 or 7 characters.  Even though the SHA-1 is always 40 characters long, it's very uncommon for more than the first few to actually be the same.  Git is smart enough to figure out a partial SHA-1 as long as it's unique.
 
 h4. Branch or Tag Name
 
@@ -29,7 +29,7 @@ h4. Date Spec
 code. master@{yesterday}
 master@{1 month ago}
 
-This example would refer to the value of that branch yesterday. Importantly, this is the value of that branch _in your repository_ yesterday.  This value is relative to your repo - your 'master@{yesterday}' will likely be different than someone else's, even on the same project, whereas the SHA values will _always_ point to the same commit in every copy of the repository.
+This example would refer to the value of that branch yesterday. Importantly, this is the value of that branch _in your repository_ yesterday.  This value is relative to your repo - your 'master@{yesterday}' will likely be different than someone else's, even on the same project, whereas the SHA-1 values will _always_ point to the same commit in every copy of the repository.
 
 h4. Ordinal Spec
 

@@ -10,7 +10,7 @@ As we recall from section one, that command will create a git object that looks 
 
 !vector/Tag_Expand.eps!
 
-and will store that in the '.git/objects/' directory and then will create a permanent reference to it in '.git/refs/tags/v0.1' that contains the SHAof that tag.
+and will store that in the '.git/objects/' directory and then will create a permanent reference to it in '.git/refs/tags/v0.1' that contains the SHA-1 of that tag.
 
 Then you can use that as a reference to that commit at any time in commands like 'diff' or 'archive' (see next chapter).
 
@@ -20,7 +20,7 @@ You can also create a tag that doesn't actually add a Tag object to the database
 
 shell. $ git tag v0.1
 
-Git will create the same file as before, '.git/refs/tags/v0.1', but it will contain the SHAof the current HEAD commit itself, not the SHAof a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.
+Git will create the same file as before, '.git/refs/tags/v0.1', but it will contain the SHA-1 of the current HEAD commit itself, not the SHA-1 of a Tag object pointing to that commit.  Unlike object Tags, these can be moved around easily, which is generally undesirable.
 
 h3. Signed Tags
 

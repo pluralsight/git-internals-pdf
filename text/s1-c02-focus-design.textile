@@ -22,6 +22,6 @@ h3. A Toolkit Design
 
 Git is not really a single binary, but a collection of dozens of small specialized programs, which is sometimes annoying to people trying to learn Git, but is pretty cool when you want to do anything non-standard with it.  Git is less a program and more a toolkit that can be combined and chained to do new and interesting things.
 
-note. For a long time, Git was just the raw toolkit and the project to wrap those into a user friendly SCM was called 'Cogito'.  That project has since been abandoned as Git itself became easier to use.
+note. For a long time, Git was just the raw toolkit and the project to wrap those into a user friendly SCM was called _Cogito_.  That project has since been abandoned as Git itself became easier to use.
 
-The tools can be more or less divided into two major camps, often referred to as the 'porcelain' and the 'plumbing'.  The 'plumbing' is not really meant to be used by people on the command line, but rather to do simple things flexibly and are combined by programs and scripts into 'porcelain' programs.  The 'porcelain' programs are largely what we will be focusing on in this book - the user-oriented interfaces to do SCM type things, hiding the low-level fun.
+The tools can be more or less divided into two major camps, often referred to as the _porcelain_ and the _plumbing_.  The plumbing is not really meant to be used by people on the command line, but rather to do simple things flexibly and are combined by programs and scripts into porcelain programs.  The porcelain programs are largely what we will be focusing on in this book -- the user-oriented interfaces to do SCM type things -- hiding the low-level fun.

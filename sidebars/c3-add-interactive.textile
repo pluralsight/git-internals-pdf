@@ -1,5 +1,5 @@
-h3. Interactive Add Screencast
+h4. Interactive Add Screencast
 
-The next screencast is 'Interactive Add in Git', which demonstrates how to use the 'git add --interactive' command.  It covers all of the major features of interactive adding, including 'status', 'update', 'revert', 'add untracked', 'patch' and 'diff'.
+The next screencast is @Interactive Add in Git@, which demonstrates how to use the @git add --interactive@ command.  It covers all of the major features of interactive adding, including @status@, @update@, @revert@, @add untracked@, @patch@ and @diff@.
 
 movie. c3-add-interactive.mov

@@ -2,7 +2,9 @@ h2. Git Object Types
 
 Git _objects_ are the actual data of Git, the main thing that the repository is made up of.  There are four main object types in Git, the first three being the most important to really understand the main functions of Git.
 
-All of these types of objects are stored in the Git *Object Database*, which is kept in the *Git Directory*.  Each object is compressed (with Zlib) and referenced by the SHA1 value of its contents plus a small header.  In the examples, I will use the first 6 characters of the SHA1 for simplicity, but the actual value is 40 characters long.
+All of these types of objects are stored in the Git *Object Database*, which is kept in the *Git Directory*.  Each object is compressed (with Zlib) and referenced by the SHA-1 value of its contents plus a small header.  In the examples, I will use the first 6 characters of the SHA-1 for simplicity, but the actual value is 40 characters long.
+
+note. SHA stands for Secure Hash Algorithm. A SHA creates an identifier of fixed length that uniquely identifies a specific piece of content. SHA-1 succeeded SHA-0 and is the most commonly used algorithm. "Wikipedia":http://en.wikipedia.org/wiki/SHA1 has more on the topic.
 
 To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to Git, keeping the project in a Git repository.  The basic layout of the project is this:
 
@@ -48,13 +50,13 @@ Since this was my first commit, there are no parents.  If I commit a second time
 
 !vector/Commit_Expand2.eps!
 
-Notice how the _parent_ in that commit is the same SHA1 value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.
+Notice how the _parent_ in that commit is the same SHA-1 value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.
 
 note. The current record for number of commit parents in the Linux kernel is 12 branches merged in a single commit!
 
 h3. The Tag
 
-The final type of object you will find in a Git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the _type_ is a 'commit' and the _object_ is the SHA1 of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
+The final type of object you will find in a Git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the _type_ is a 'commit' and the _object_ is the SHA-1 of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
 
 !vector/Tag_Expand.eps!
 

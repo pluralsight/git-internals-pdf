@@ -1,4 +1,4 @@
-h1. Section Three - Commands Overview
+h1. Commands Overview
 
 This section is meant to be a really quick reference to the commands we have reviewed in Git and a quick description of what they do, where we have talked about them and where to find out more information on them.
 
@@ -89,11 +89,11 @@ Shows information about a git object, normally used to view commit information.
 
 h3. "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
 
-Shows a tree object, including the mode and name of each node and the SHA1 value of the blob or tree that it points to. Can also be run recursively to see all subtrees as well.
+Shows a tree object, including the mode and name of each node and the SHA-1 value of the blob or tree that it points to. Can also be run recursively to see all subtrees as well.
 
 h3. "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-file.html
 
-Used to view the type of an object if you only have the SHA1 value, or used to redirect contents of files or view raw information about any object.
+Used to view the type of an object if you only have the SHA-1 value, or used to redirect contents of files or view raw information about any object.
 
 h3. "git grep":http://www.kernel.org/pub/software/scm/git/docs/git-grep.html
 

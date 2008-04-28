@@ -30,7 +30,7 @@ h3. .git/objects/
 
 This is the main directory that holds the data of your Git objects - that is, all the contents of the files you have ever checked in, plus your commit, tree and tag objects.
 
-The files are stored by their SHA1 values.  The first two characters make up the subdirectory and the last 38 is the filename.  For example, if the SHA for a blob we've checked in was
+The files are stored by their SHA-1 values.  The first two characters make up the subdirectory and the last 38 is the filename.  For example, if the SHA-1 for a blob we've checked in was
 
 code. a576fac355dd17e39fd2671b010e36299f713b4d
 
@@ -42,7 +42,7 @@ h3. .git/refs/
 
 This directory normally has three subdirectories in it - _heads_, _remotes_ and _tags_.  Each of these directories will hold files that correspond to your local branches, remote branches and tags, respectively. 
 
-For example, if you create a @development@ branch, the file @.git/refs/heads/development@ will be created and will contain the SHA of the commit that is the latest commit of that branch.
+For example, if you create a @development@ branch, the file @.git/refs/heads/development@ will be created and will contain the SHA-1 of the commit that is the latest commit of that branch.
 
 h3. .git/HEAD
 
