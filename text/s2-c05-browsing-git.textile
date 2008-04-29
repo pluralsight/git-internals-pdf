@@ -34,6 +34,8 @@ shell. git-catfile.txt
 
 With those basic commands, you should be able to explore and inspect any object in any git repository relatively easily.
 
+break. x
+
 h3. Graphical Interfaces
 
 There are two major graphical interfaces that come with Git as tools to browse the repository.

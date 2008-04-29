@@ -8,11 +8,11 @@ note. Creating a branch is nothing more than just writing 40 characters to a fil
 
 Switching to that branch simply means having Git make your working directory look like the tree that SHA-1 points to and updating the HEAD file so each commit from that point on moves that branch pointer forward (in other words, it changes the 40 characters in @.git/refs/heads/[current_branch_name]@ be the SHA-1 of your last commit).
 
-Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
-
-!vector/Branches1.eps!
+break. x
 
 h3. Simple Case
+
+!<vector/Branches1.eps! Now, let's see how Git handles branching, fetching and merging operations abstractly. For the following illustrations, we will represent the entire tree and the commit it points to as a single object. 
 
 Suppose that we work on a project for a while, then we get an idea for something that may not work out, but we want to do a quick proof-of-concept.  We create a new branch called @experiment@ off of our main branch, which is by convention called @master@.  We then switch to the new branch and create a few commits.
 
@@ -22,7 +22,9 @@ Then, our boss comes in and says we need a hot fix to production.  So we switch 
 
 !vector/Branch_Story2.eps!
 
-At this point, we show the new branch code to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our @experiment@ branch.  Our history of commit objects now looks like this:
+At this point, we show the new branch code to our co-workers and everyone likes the new changes. We decide we want to merge them back into our main branch, so we merge the changes and delete our @experiment@ branch.  
+
+Our history of commit objects now looks like this:
 
 !vector/Branch_Story3.eps!
 
@@ -32,9 +34,9 @@ Now lets take a look at remotes.  Remotes are basically pointers to branches in 
 
 Lets say you clone someone's repository and make a few changes.  You would have two references, one to @origin/master@ which points to where the master branch was on the person's repository you cloned from when you did so, and a @master@ branch that points the most recent local commit.
 
-!vector/Remote_Story1.eps!
+!vector/Remote_Story1.eps! 
 
-Now lets say you run a @fetch@. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Suppose we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch @idea@ locally, then pushed that branch.  We now have access to those changes as @origin/idea@.
+Now let's say you run a @fetch@. A fetch pulls all the refs and objects that you don't already have from the remote repository you specify.  By default, it is origin, but you can name your remotes anything, and you can have more than one.  Suppose we fetch from the repository that we originally cloned from and they had been doing some work.  They have now committed a few times on their master branch, but they also branched off at one point to try an idea, and they named the branch @idea@ locally, then pushed that branch.  We now have access to those changes as @origin/idea@.
 
 !vector/Remote_Story2.eps!
 
@@ -60,9 +62,7 @@ This is where the rebasing command comes in.  With rebase, Git will checkout the
 
 Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  These objects can then be removed, since nothing points to them, when you run the garbage collection tools (see "The Care and Feeding of Git" section).
 
-So let's see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans _Commit 1_ and applies the changes between _Commit 0_ and _Commit 1_ to the files in _Remote Commit 1_, creating a new _Commit 2_.
-
-!vector/Rebase3.eps!
+!<vector/Rebase3.eps! So let's see what happens if we rebase rather than merge in the same scenario.  Here we have our first merge and we can see that it orphans _Commit 1_ and applies the changes between _Commit 0_ and _Commit 1_ to the files in _Remote Commit 1_, creating a new _Commit 2_.
 
 Then, as you'll remember, you and Jen both commit again.  You'll notice that now it looks like she cloned you and committed and then you changed that code, rather than you both working at the same time and merging.
 

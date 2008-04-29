@@ -22,6 +22,8 @@ shell. git-log-oneline.txt
 
 With @--pretty@, you can choose between _oneline_, _short_, _medium_, _full_, _fuller_, _email_, _raw_ and _format:(string)_, where (string) is a format you specify with variables (ex: @--format:"%an added %h on %ar"@ will give you a bunch of lines like "Scott Chacon added @f1cc9df@ 4 days ago").
 
+break. x
+
 h3. Filtering Log Output
 
 There are also a number of options for filtering the log output.  You can specify the maximum number of commits you want to see with @-n@, you can limit the range of dates you want to see commits for with @--since@ and @--until@, you can filter it on the author or committer, text in the commit message and more.  Here is an example showing at most 30 commits between yesterday and a month ago by me :

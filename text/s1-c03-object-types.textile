@@ -8,7 +8,7 @@ note. SHA stands for Secure Hash Algorithm. A SHA creates an identifier of fixed
 
 To demonstrate these examples, we will develop a small ruby library that provides very simple bindings to Git, keeping the project in a Git repository.  The basic layout of the project is this:
 
-!vector/Layout.eps!
+!vector/Layout.eps(Sample project with files and directories)!
 
 Let's take a look at what Git does when this is committed to a repository.
 
@@ -18,7 +18,7 @@ h3. The Blob
 
 In Git, the contents of files are stored as *blobs*.
 
-!vector/Blobs.eps!
+!vector/Blobs.eps(Files are stored as blobs)!
 
 It is important to note that it is the _contents_ that are stored, not the files.  The names and modes of the files are not stored with the blob, just the contents.  
 
@@ -26,38 +26,44 @@ This means that if you have two files anywhere in your project that are exactly 
 
 !vector/Blob_Expand.eps(The contents of a blob, uncompressed)!
 
+break. x
+
 h3. The Tree
 
 Directories in Git basically correspond to *trees*.  
 
-!vector/Trees.eps!
+!vector/Trees.eps(Trees are pointers to blobs and other trees)!
 
 A tree is a simple list of trees and blobs that the tree contains, along with the names and modes of those trees and blobs.  The contents section of a tree object consists of a very simple text file that lists the _mode_, _type_, _name_ and _sha_ of each entry.
 
-!vector/Tree_Expand.eps!
+!vector/Tree_Expand.eps(An uncompressed tree)!
+
+break. x
 
 h3. The Commit
 
 So, now that we can store arbitrary trees of content in Git, where does the 'history' part of 'tree history storage system' come in?  The answer is the *commit* object.
 
-!vector/Commit.eps!
+!vector/Commit.eps(A commit references a tree)!
 
 The commit is very simple, much like the tree.  It simply points to a tree and keeps an _author_, _committer_, _message_ and any _parent_ commits that directly preceded it.  
 
-!vector/Commit_Expand.eps!
+!vector/Commit_Expand.eps(Uncompressed initial commit)!
 
 Since this was my first commit, there are no parents.  If I commit a second time, the commit object will look more like this:
 
-!vector/Commit_Expand2.eps!
+!vector/Commit_Expand2.eps(A commit with a parent)!
 
 Notice how the _parent_ in that commit is the same SHA-1 value of the last commit we did?  Most times a commit will only have a single parent like that, but if you merge two branches, the next commit will point to both of them.
 
 note. The current record for number of commit parents in the Linux kernel is 12 branches merged in a single commit!
 
+break. x
+
 h3. The Tag
 
-The final type of object you will find in a Git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the _type_ is a 'commit' and the _object_ is the SHA-1 of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
+The final type of object you will find in a Git database is the *tag*.  This is an object that provides a permanent shorthand name for a particular commit.  It contains an _object_, _type_, _tag_, _tagger_ and a _message_. Normally the _type_ is @commit@ and the _object_ is the SHA-1 of the commit you're tagging.  The tag can also be GPG signed, providing cryptographic integrity to a release or version.
 
-!vector/Tag_Expand.eps!
+!vector/Tag_Expand.eps(Uncompressed tag)!
 
 We'll talk a little bit more about tags and how they differ from _branches_ (which also point to commits, but are not stored as objects) in the next section, where we'll pull all of this together into how all these objects relate to each other conceptually.

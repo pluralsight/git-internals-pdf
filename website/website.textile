@@ -1,0 +1,19 @@
+!http://peepcode.com/system/previews/git-pdf/gitbook-cover.png!
+
+Many have learned the basics of using Git from the PeepCode "Git screencast":http://peepcode.com/products/git. In this PDF, Scott Chacon goes even further to explain the distributed filesystem behind the popular source code management system. 
+
+If you're tired of terse man pages or academic white papers, you'll enjoy more than four dozen colorful diagrams that clearly explain the complicated inner workings of Git.
+
+The first 50 pages explain the storage system that powers Git, and an additional 60 pages go into detail about using Git on a day to day basis. You'll learn not only how to use the basic commands, but will also learn different strategies for working via either a centralized or distributed collaboration model. This is a great companion to the existing PeepCode screencast or a useful book in its own right.
+
+As a bonus, several short screencasts are included which show how to use the basic Git commands.
+
+The Git source code control system continues to win over developers who are impressed with the speed and flexibility of the distributed workflow. Go beyond the basics with this PDF from PeepCode.
+
+Available as part of the "PeepCode Unlimited":http://peepcode.com/products/unlimited package or as a single purchase for only US$9!
+
+!http://peepcode.com/system/previews/git-pdf/gitbook-commits.png!
+
+!http://peepcode.com/system/previews/git-pdf/gitbook-files.png!
+
+!http://peepcode.com/system/previews/git-pdf/gitbook-trees.png!
