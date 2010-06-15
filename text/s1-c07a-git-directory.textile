@@ -8,7 +8,7 @@ The Git directory for our little project looks something like this:
 
 code. simple-git-dir-tree.txt
 
-For more in-depth information on the Git directory layout, see the "git repository layout docs.":http://www.kernel.org/pub/software/scm/git/docs/repository-layout.html
+For more in-depth information on the Git directory layout, see the "git repository layout docs.":http://www.kernel.org/pub/software/scm/git/docs/gitrepository-layout.html.
 
 For now, let's go over some of the more important contents of this directory.
 
