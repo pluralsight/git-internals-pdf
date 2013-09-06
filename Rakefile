@@ -260,11 +260,11 @@ class WhiteCloth < RedCloth
 
 end
 
-OUTPUT = File.dirname(__FILE__) + "/output"
+OUTPUT = File.dirname(__FILE__) + "/build"
 INPUT  = File.dirname(__FILE__) + "/text"
 
 desc "Generate document as HTML"
-task :preview do
+task :build do
   FileUtils.mkdir(OUTPUT) unless File.exists?(OUTPUT)
   Dir["#{INPUT}/*.textile"].each do |f|
     basename = File.basename(f).gsub!(/.textile$/, ".html")
@@ -272,6 +272,7 @@ task :preview do
       tempfile.puts WhiteCloth.new(File.read(f), File.dirname(__FILE__)).to_html
     end
   end
+  $stdout.puts "Rendered HTML to ./build"
 end
 
 desc "Cleanup 'output' directory"
@@ -279,4 +280,4 @@ task :clean do
   FileUtils.rm_rf(OUTPUT)
 end
 
-task :default => :preview
+task :default => :build
