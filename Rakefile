@@ -1,8 +1,8 @@
 
-# HACK Will be exported to a separate file to share between books.
+$: << 'vendor/isolate-3.2.2/lib/'
 
 require 'rubygems'
-gem 'RedCloth', '= 3.0.4'
+require 'isolate/now'
 require 'RedCloth'
 require 'erb'
 

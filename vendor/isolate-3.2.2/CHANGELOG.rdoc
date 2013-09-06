@@ -1,0 +1,246 @@
+=== 3.2.2 / 2012-02-02
+
+* 2 bug fixes:
+
+  * Isolate hoe plugin shouldn't sandbox until the isolate task triggers. ARGH. I suck.
+  * Add missing opening quotes in docs (semaperepelitsa)
+
+=== 3.2.1 / 2011-11-09
+
+* 2 bug fixes:
+
+  * Now that rubygems has full dependency resolution, remove it from
+    the "Not Gonna Happen" section in README.rdoc.
+  *  Fix broken close tag in documentation. (pbevin)
+
+=== 3.2.0 / 2011-08-31
+
+* 1 major enhancement:
+
+  * hoe/isolate no longer globally activates isolate. Attach via :isolate dependency
+
+* 2 minor enhancements:
+
+  * Fix for custom gem server source overriding. (yaksnrainbows)
+  * Remove isolated gems that are now satisfied globally. (luis)
+
+* 3 bug fixes:
+
+  * Reworked rakefile and dependencies
+  * Fix for custom gem server sources being overwritten by rubygems
+  * Resolve a constant undefined error with rake on ruby-1.9.2
+
+=== 3.1.2 / 2011-08-09
+
+* 1 bug fix:
+
+  * Fixed check for Gem::Deprecate. No clue. But it works now.
+
+=== 3.1.1 / 2011-07-21
+
+* 2 bug fixes:
+
+  * Deprecate is now Gem::Deprecate.  Try both.
+  * Don't install gems for other environments. (rhburrows)
+
+=== 3.1.0 / 2011-05-19
+
+* 4 minor enhancements:
+
+  * Added ZenTest as a development dependency so rake multi works in isolation.
+  * Added rake task git:freshen to forcefully remove stale gems.
+  * Extracted remove from cleanup method so rake tasks can use remove.
+  * Switched to minitest plugin in hoe spec
+
+* 6 bug fixes:
+
+  * Fixed 1.9.x warnings
+  * Fixed a test broken only in isolation from hoe itself.
+  * Fixed an enumeration bug caused by my not running `rake multi` sooner. (Eric Wong)
+  * Fixed requirements in readme.
+  * Hoe plugin now properly adds development dependencies.
+  * Hoe plugin now properly uses (and possibly defines) the Isolate.sandbox.
+
+=== 3.0.2 / 2011-05-14
+
+* 3 bug fixes:
+
+  * Cleanup shouldn't try to uninstall specs outside of our sandbox.
+  * Pass spec.base_dir to the uninstaller during cleanup.
+  * We shouldn't manipulate Gem.path, but if we do, we should be smart/clean about it.
+
+=== 3.0.1 / 2011-05-11
+
+* 6 minor enhancements:
+
+  * Added Entry#to_s and #inspect to make it much more readable.
+  * Added Isolate.sandbox= and used it from Hoe::Isolate plugin.
+  * Deprecated Sandbox#index.
+  * Entry#specification now returns nil if it doesn't resolve to anything.
+  * Refactored Sandbox's default path so that tests won't collide with our Rakefile.
+  * We now require rubygems >= 1.8.2.
+
+* 2 bug fixes:
+
+  * Cleaned up all warnings caused by rubygems 1.8 deprecations.
+  * Fixed Sandbox#legitimize! to properly deal with Gem::Dependency.
+
+=== 3.0.0 / 2010-10-19
+
+* Remove deprecated Isolate.{gems,instance} methods.
+* Update RDoc location in the README.
+* Make isolated Hoe projects use :system => false by default.
+* Teach block file detection regex about Windows.
+
+=== 2.1.2 / 2010-07-23
+
+* Teach `isolate:sh` how to work on Windows.
+
+=== 2.1.1 / 2010-07-08
+
+* Fix $LOAD_PATH filtering bug when system is false.
+
+=== 2.1.0 / 2010-07-01
+
+* Pass self to event hooks. Speculative coding FTL.
+* Load ~/.isolate/user.rb if it exists.
+
+=== 2.0.2 / 2010-05-25
+
+* Provide reasonable stale output for missing deps.
+
+=== 2.0.1 / 2010-05-24
+
+* Fine, fine. Re-enables support for Ruby 1.8.6.
+* Make deprecated Isolate.gems more compatible with 1.x. [Eric Wong]
+
+=== 2.0.0 / 2010-05-10
+
+* Rewrite README and RDoc.
+* Deprecate `Isolate.gems` and `Isolate.instance`.
+* Add Isolate::Event hooks for better extension/integration.
+* Add ISOLATED env var when Isolate is activated.
+* Teach the Hoe plugin to recognize Isolate files.
+* Add `env` as an alias for `environment`.
+* Significantly refactor API and internals.
+* Add .local files for overriding global and gem args and options.
+* Segregate isolated gems by Ruby engine and version.
+* Make sure it's possible to install a local .gem file.
+* Make additive ENV changes idempotent. [Eric Wong]
+* Isolate is a module now, not a class.
+* Use tmp/isolate as the default, replacing tmp/gems.
+* Allow options changes in Isolate files or blocks.
+* Make entries additive. Multiple calls to Isolate#gem is fine.
+* Lock down required Ruby and RubyGems versions (1.8.7+, 1.3.6+).
+
+=== 1.10.2 / 2010-04-24
+
+Add 'isolate/now' convenience require in prep. for 2.x.
+
+=== 1.10.1 / 2010-04-23
+
+* Fix cleanup, it wasn't.
+
+=== 1.10.0 / 2010-03-15
+
+* Speculative now! shortcut.
+
+=== 1.9.3 / 2010-02-24
+
+* Passing <tt>:file => true</tt> to Isolate.gems will try +Isolate+
+  and <tt>config/isolate.rb</tt>.
+
+=== 1.9.2 / 2010-02-17
+
+* Make it easier to break out the manifest to a separate file.
+
+=== 1.9.1 / 2010-01-18
+
+* Append to sources on install, don't just replace 'em.
+
+=== 1.9.0 / 2010-01-18
+
+* Allow isolation to be disabled.
+
+=== 1.8.2 / 2010-01-13
+
+* Don't include Isolate as a dependency in .gems.
+* Tweak the README structure for clarity.
+
+=== 1.8.1 / 2010-01-13
+
+* Allow isolate:dotgems to take an env.
+
+=== 1.8.0 / 2010-01-05
+
+* Make build args forgive non-Array input.
+* OMG, heaven forbid I use math.
+* Remove deprecated Isolate.activate method.
+* Remove passthrough, that's what conditionals are for.
+
+=== 1.7.1 / 2009-12-08
+
+* Move to 1-phase activation. Deprecate Isolate.activate.
+
+=== 1.7.0 / 2009-12-07
+
+* Activate gems even in passthrough mode.
+* hoe/isolate cleans up by default.
+* Isolate#activate cleans up. Isolate.activate is a simple front-end.
+
+=== 1.6.1 / 2009-10-04
+
+* Simplify subshells.
+* Squash warning.
+
+=== 1.6.0 / 2009-10-03
+
+* Add Rake helpers.
+* Expose the bin path to subshells.
+
+=== 1.5.1 / 2009-10-02
+
+* Fix passthrough for explicitly false conditions.
+
+=== 1.5.0 / 2009-10-01
+
+* Implemented passthrough.
+
+=== 1.4.0 / 2009-09-30
+
+* Added automatic cleanup.
+* Minor code refactoring.
+
+=== 1.3.0 / 2009-09-23
+
+* Add support for Gem build args. See the README for details.
+
+=== 1.2.1 / 2009-09-22
+
+* I am a moron. Made the Hoe plugin work again.
+* Be consistent about accessors vs ivars. [Review by Scott W]
+
+=== 1.2.0 / 2009-09-22
+
+* Added a Hoe plugin.
+
+=== 1.1.0 / 2009-09-22
+
+* Breaking change: Install by default.
+
+=== 1.0.2 / 2009-09-21
+
+* Fix some README typos.
+* Add Entry#matches? to encapsulate activation and installation decisions.
+* Remove block form of Isolate#enable, it's unused.
+* Properly instance_eval Isolate#environment blocks.
+* Reset stubs properly after tests (Random test order FTFW).
+
+=== 1.0.1 / 2009-09-21
+
+* Doco updates. [Review by Evan]
+* Don't modify Entry#options on install. [Review by Evan]
+
+=== 1.0.0 / 2009-09-21
+
+* Birthday!
