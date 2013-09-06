@@ -1,5 +1,7 @@
+tmp/*
 text/*.*~
 sidebars/*.*~
+build/*
 output/*
 .DS_Store
 code/**/*.*~
