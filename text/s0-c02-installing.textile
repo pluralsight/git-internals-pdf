@@ -18,7 +18,7 @@ $ sudo make prefix=/usr install install-doc install-info
 
 If you are running Ubuntu or another Debian based system, you can run
 
-shell. $ apt-get git-core
+shell. $ apt-get install git-core
 
 or on yum based systems, you can often run:
 
