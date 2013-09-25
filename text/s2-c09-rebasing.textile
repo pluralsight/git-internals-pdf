@@ -20,7 +20,7 @@ This gives us some options, since the rebase can do this at any point - say you 
 
 You have three things you can do here, you can either fix the file, run a 'git add' on it and then run a 'git rebase --continue', which will move on to the next patch until it's done.  Our second option is to run 'git rebase --abort', which will reset us to what our repo looked like before we tried the rebase. Or, we can run 'git rebase --skip', which will leave this one patch out, abandoning the change forever.
 
-note.  Git rebase options for a conflict : *--continue* : trys to keep going once you've resolved it, *--abort* : gives up altogether and returns to the state before the rebase, *--skip* : skips this patch, abandoning it forever
+note.  Git rebase options for a conflict : *--continue* : tries to keep going once you've resolved it, *--abort* : gives up altogether and returns to the state before the rebase, *--skip* : skips this patch, abandoning it forever
 
 In this case we will simply fix the conflict, run 'git add' on the file and then run 'git rebase --continue' which then makes our history look like this:
 
@@ -55,7 +55,7 @@ So we stick with the first message, save and exit the editor.
 
 shell. repo-rebase4.txt
 
-Now we've rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we've just added a single commit with no resolving neccesary:
+Now we've rebased and instead of three commits on top of our master and having to reconcile a useless conflict, we've just added a single commit with no resolving necessary:
 
 !bitmap/repo-rebasei2.png!
 
