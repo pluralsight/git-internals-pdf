@@ -6,13 +6,13 @@ Two common uses of this include seeing what you've worked on but not committed y
 
 h3. What has changed?
 
-If you simply run 'git diff' with no arguments, it will show you the differences between your current working directory and your index, that is, the last time you ran 'git add' on your files. 
+If you simply run @git diff@ with no arguments, it will show you the differences between your current working directory and your index, that is, the last time you ran @git add@ on your files. 
 
 For example, if I add my email to the README file and run it, I will see this:
 
 shell. git-diff-readme.txt
 
-You can also use 'git diff' to show you some spiffy stats for a diff, rather than a patch file, if you want to see a wider overview of what changed, then drill down into specific files later.  Here are some examples getting stats, the first for the differences between two commits and the second a summary between a commit and the current HEAD.
+You can also use @git diff@ to show you some spiffy stats for a diff, rather than a patch file, if you want to see a wider overview of what changed, then drill down into specific files later.  Here are some examples getting stats, the first for the differences between two commits and the second a summary between a commit and the current HEAD.
 
 shell. git-diff-stat.txt
 
@@ -24,7 +24,7 @@ You can use this command to detect changes between your index and any tree, or y
 
 h3. Generating Patch Files
 
-The default output of the 'git diff' command is a valid patch file.  If you pipe the output into a file and email it to someone, they can apply it with the 'patch' command.  If you've done some work off of a project in an 'experiment' branch, you could create a patch file this way:
+The default output of the @git diff@ command is a valid patch file.  If you pipe the output into a file and email it to someone, they can apply it with the 'patch' command.  If you've done some work off of a project in an 'experiment' branch, you could create a patch file this way:
 
 shell. $ git diff master..experiment > experiment.patch
 

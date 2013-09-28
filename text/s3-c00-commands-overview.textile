@@ -26,7 +26,7 @@ Removes files from your index and your working directory so they will stopped be
 
 h3. "git commit":http://www.kernel.org/pub/software/scm/git/docs/git-commit.html 
 
-Takes all of the changes staged in the index (that have been 'git add'ed),  creates a new commit object pointing to it, and advances the branch to point to that new commit.
+Takes all of the changes staged in the index (that have been @git add@ed),  creates a new commit object pointing to it, and advances the branch to point to that new commit.
 
 h3. "git status":http://www.kernel.org/pub/software/scm/git/docs/git-status.html
 
@@ -34,7 +34,7 @@ Shows you the status of files in your index versus your working directory.  It w
 
 h3. "git branch":http://www.kernel.org/pub/software/scm/git/docs/git-branch.html
 
-Lists existing branches, including remote branches if '-a' is provided.  Creates a new branch if a branch name is provided.  Branches can also be created with '-b' option to 'git checkout'.
+Lists existing branches, including remote branches if '-a' is provided.  Creates a new branch if a branch name is provided.  Branches can also be created with '-b' option to @git checkout@.
 
 h3. "git checkout":http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html
 
@@ -66,7 +66,7 @@ Fetches all the objects that a remote version of your repository has that you do
 
 h3. "git pull":http://www.kernel.org/pub/software/scm/git/docs/git-pull.html
 
-Runs a 'git fetch' then a 'git merge'.
+Runs a @git fetch@ then a @git merge@.
 
 h3. "git push":http://www.kernel.org/pub/software/scm/git/docs/git-push.html
 
