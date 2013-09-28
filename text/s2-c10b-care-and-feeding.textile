@@ -4,7 +4,7 @@ Git requires a bit of tender loving care from time to time.  It may seem a bit o
 
 h3. garbage collection
 
-The 'git gc' command is an important one to remember.  It will pack up your objects into the delta-compressed format, saving you a lot of space and seriously speeding up several commands.
+The @git gc@ command is an important one to remember.  It will pack up your objects into the delta-compressed format, saving you a lot of space and seriously speeding up several commands.
 
 shell. git-gc.txt
 

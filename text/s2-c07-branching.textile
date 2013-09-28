@@ -12,7 +12,7 @@ The other way is to checkout a branch that doesn't exist yet and tell git you wa
 
 shell. $ git checkout -b newfunc
 
-Now, to check which branch we are on, we just type 'git branch':
+Now, to check which branch we are on, we just type @git branch@:
 
 shell. git-branch.txt
 

@@ -10,7 +10,7 @@ If you want to begin working on an existing project, you will need to get an ini
 
 When you clone a repository, it in essence copies all the git objects to a new directory, checks you out a single local branch named the same as the HEAD branch on the cloned repo (normally 'master'), and stores all the other branches under a remote reference by default named 'origin'.
 
-That means that if we cloned the repo in the previous examples, instead of 'story84' being a local branch you can switch to, it becomes 'origin/story84' that you have to create a local branch to pull into in order to work on (eg: 'git checkout --track story84 origin/story84')  
+That means that if we cloned the repo in the previous examples, instead of 'story84' being a local branch you can switch to, it becomes 'origin/story84' that you have to create a local branch to pull into in order to work on (eg: @git checkout --track story84 origin/story84@)  
 The '--track' indicates that you may want to pull from or push to the origin of this branch later, so remember where it came from.
 
 h4. Local Clones
@@ -46,7 +46,7 @@ This will contact the server over the same protocol we used to clone it and grab
 
 So, if we did create a tracking branch on 'story84' and it was changed on the server (someone pushed an update), before we fetch, our local 'story84' branch and our remote 'origin/story84' branch will be the same.  After we fetch, they will be different.  'origin/story84' will now point to one of the new commit objects we downloaded during the fetch.  
 
-At this point, we may want to merge 'origin/story84' into our local 'story84' branch.  That's easy enough, but if we want to do it automatically every time we fetch, we can use 'git pull', which is just a 'fetch' and then a 'merge' command.  
+At this point, we may want to merge 'origin/story84' into our local 'story84' branch.  That's easy enough, but if we want to do it automatically every time we fetch, we can use @git pull@, which is just a 'fetch' and then a 'merge' command.  
 
 So, these commands are functionally equivalent:
 
