@@ -66,6 +66,6 @@ For a more long term web interface to your repository, you can put the gitweb Pe
 
 * "git show":http://www.kernel.org/pub/software/scm/git/docs/git-show.html
 * "git ls-tree":http://www.kernel.org/pub/software/scm/git/docs/git-ls-tree.html
-* "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-fileß.html
+* "git cat-file":http://www.kernel.org/pub/software/scm/git/docs/git-cat-file.html
 * "gitk":http://www.kernel.org/pub/software/scm/git/docs/gitk.html
 * "git instaweb":http://www.kernel.org/pub/software/scm/git/docs/git-instaweb.html
