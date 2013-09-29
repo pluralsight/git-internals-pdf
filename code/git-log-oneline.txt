@@ -1,5 +1,5 @@
 $ git log --pretty=oneline
 cf25cc3bfb0ece7dc3609b8dc0c committing all changes
-0c8a9ec46029a4e92a428cb98c9 changed the verison number
+0c8a9ec46029a4e92a428cb98c9 changed the version number
 0576fac355dd17e39fd2671b010 my second commit, which is..
 a11bef06a3f659402fe7563abf9 first commit

@@ -9,7 +9,7 @@ commit 0c8a9ec46029a4e92a428cb98c9693f09f69a3ff
 Author: Scott Chacon <schacon@gmail.com>
 Date:   Mon Mar 17 21:52:11 2008 -0700
 
-    changed the verison number
+    changed the version number
 
 commit 0576fac355dd17e39fd2671b010e36299f713b4d
 Author: Scott Chacon <schacon@gmail.com>
