@@ -21,7 +21,7 @@ Let's say that we created a @versioning@ branch and then modified the version in
 
 shell. merge-conflict.txt
 
-It tells us that there was a conflict and so the new commit object was not created.  We will have to merge the conflicted file manually and then commit it again.  The output tells us the files that had conflicts, in this case it was the @Rakefile@.
+It tells us that there was a conflict and so the new commit object was not created.  We will have to merge the conflicted file manually and then commit it again.  The output tells us the files that had conflicts; in this case it was the @Rakefile@.
 
 ruby. rakefile.rb
 
