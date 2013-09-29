@@ -37,7 +37,7 @@ code. master@{5}
 
 This indicates the 5th prior value of the master branch.  Like the _Date Spec_, this depends on special files in the _.git/log_ directory that are written during commits, and is specific to _your_ repository.
 
-h4. Carrot Parent
+h4. Caret Parent
 
 code. e65s46^2
 master^2
@@ -48,7 +48,7 @@ h4. Tilde Spec
 
 code. e65s46~5 
 
-The tilde character, followed by a number, refers to the Nth generation grandparent of that commit.  To clarify from the carrot, this is the equivalent commit in caret syntax:
+The tilde character, followed by a number, refers to the Nth generation grandparent of that commit.  To clarify from the caret, this is the equivalent commit in caret syntax:
 
 code. e65s46^^^^^
 
