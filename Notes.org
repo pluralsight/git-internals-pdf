@@ -1,0 +1,16 @@
+* Notes about this and the workflow
+
+** The aim is to work 'on the move.'
+
+Woking on the __iPad__, this promises to be a useful tool that has all the 
+necessary to do this kind ofwork.
+What is this about? About building tools. More tools. About concepts.
+For example, mathematic language to express comprehensions. Again,
+more tools. Math, a language itself. The computer programming language
+'R', which appears with a lean-to-wards statistics.
+
+## Git
+
+Git as a tool to collaborate. The Hub-of-Git as a service to supply
+an infrastructure for this.
+
