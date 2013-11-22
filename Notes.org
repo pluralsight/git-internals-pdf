@@ -14,3 +14,8 @@ more tools. Math, a language itself. The computer programming language
 Git as a tool to collaborate. The Hub-of-Git as a service to supply
 an infrastructure for this.
 
+## And as a Review of the Org Morg
+
+- [ ] There are task lists for the Org Mode - revies this in Emacs
+- [x] This task line is in existence to to illustrate the tick boxing
+- [ ] review, and stick to, the policies
