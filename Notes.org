@@ -19,3 +19,5 @@ an infrastructure for this.
 - [ ] There are task lists for the Org Mode - revies this in Emacs
 - [x] This task line is in existence to to illustrate the tick boxing
 - [ ] review, and stick to, the policies
+
+OK. Make the above task list into an issue.
