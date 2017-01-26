@@ -89,7 +89,7 @@ You have a @master@ branch that is _always_ stable - you never merge anything in
 
 note. It's a common error to think of the @master@ branch as being equivalent to Subversion's @trunk@. However, a custom @development@ branch is much closer in practice to the Subversion @trunk@, where experimental work is done.
 
-You create a new branch each time you begin to work on a story or feature, branching it off your current @development@ branch each time, so if you get blocked and need to put it on hold, it doesn't effect anything else.  When you do get back to them, you rebase them to the current @development@ and it is just like you started from there.  Often times you merge the branch back into @development@ and delete it the same day that you created it.  
+You create a new branch each time you begin to work on a story or feature, branching it off your current @development@ branch each time, so if you get blocked and need to put it on hold, it doesn't affect anything else.  When you do get back to them, you rebase them to the current @development@ and it is just like you started from there.  Often times you merge the branch back into @development@ and delete it the same day that you created it.  
 
 If you get a huge project or idea - say refactoring the entire code base to the newest version of your framework or switching database vendors or something, you create a long-term branch, continuously rebase it to keep it in line with other development, and once everything is tested and ready, merge it in with your master.
 
