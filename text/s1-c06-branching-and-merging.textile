@@ -58,7 +58,7 @@ At this point, you both do work and commit changes and then you fetch and merge 
 
 Perfectly fine, but it can get a little confusing when you litter the history with all those commits that do nothing but merge unshared changes.  The longer you keep out of sync, the worse this can get.
 
-This is where the rebasing command comes in.  With rebase, Git will checkout the _upstream branch_, in this case, Jen's @master@ branch, and then replay all the changes you've done since you forked on top of those files, as if you had forked your work off at _that_ point and done all your changes, rather than earlier.
+This is where the rebasing command comes in.  With rebase, Git will checkout the _upstream branch_, in this case, Jen's @master@ branch, and then replay all the changes you've done since you forked on top of those files, as if you had forked your work off at _that_ point and done all your changes later, rather than earlier.
 
 Rebase will literally produce a series of patch files of your work and start applying them to the upstream branch, automatically making new commits with the same messages as before and orphaning your older ones.  These objects can then be removed, since nothing points to them, when you run the garbage collection tools (see "The Care and Feeding of Git" section).
 
